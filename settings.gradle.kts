@@ -14,4 +14,7 @@ pluginManagement {
 }
 
 rootProject.name = "surveyor-idea"
-include("plugin", "library")
+include("plugin")
+include("android-automator")
+include("android-stubs")
+include("library")

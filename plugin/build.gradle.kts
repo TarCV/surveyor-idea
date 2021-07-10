@@ -65,6 +65,7 @@ tasks {
         // Get the latest available change notes from the changelog file
         changeNotes(
             closure {
+                changelog.path = "$rootDir/CHANGELOG.md"
                 changelog.getLatest().toHTML()
             }
         )
