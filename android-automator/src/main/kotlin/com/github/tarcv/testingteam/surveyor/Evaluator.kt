@@ -26,15 +26,32 @@ import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.UiSelector
+import bsh.Interpreter
 
 class Evaluator {
-    fun evaluateUiSelector(rootNode: Node, selector: UiSelector): Node? {
+    fun evaluate(rootNode: Node, locator: String): Node? {
+        val limitingClassloader = LimitedClassloader(javaClass.classLoader)
+        val interpreter = Interpreter().apply {
+            setClassLoader(limitingClassloader)
+            strictJava = true
+        }
+        return when (val it = interpreter.eval(locator)) {
+            is UiSelector -> evaluateUiSelector(rootNode, it)
+            is BySelector -> evaluateBySelector(rootNode, it)
+            else -> {
+                val typeName = it?.javaClass ?: "<null>"
+                throw InvalidLocatorException("Expression returned unexpected value of type $typeName")
+            }
+        }
+    }
+
+    internal fun evaluateUiSelector(rootNode: Node, selector: UiSelector): Node? {
         return uiDeviceFromRootNode(rootNode)
             .findObject(selector)
             .let { extractNode(it) }
     }
 
-    fun evaluateBySelector(rootNode: Node, selector: BySelector): Node? {
+    internal fun evaluateBySelector(rootNode: Node, selector: BySelector): Node? {
         return uiDeviceFromRootNode(rootNode)
             .findObject(selector)
             ?.let { extractNode(it) }

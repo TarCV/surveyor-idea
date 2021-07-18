@@ -14,6 +14,7 @@ dependencies {
 
     implementation(project(":library"))
     implementation(project(":android-stubs"))
+    implementation("com.github.beanshell:beanshell:cb552a4d08") // cb552a4d08 is 2.0b4
     implementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
         isTransitive = false
     }
@@ -35,6 +36,7 @@ tasks.forEach { task ->
 
 tasks.test {
     useJUnitPlatform {
+        includeEngines.add("junit-jupiter")
         includeEngines.add("jqwik")
     }
     include("**/*.*")

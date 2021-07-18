@@ -1,19 +1,18 @@
 <idea-plugin>
     <id>com.github.tarcv.surveyoridea</id>
-    <name>surveyor-idea</name>
-    <vendor>tarcv</vendor>
+    <name>UI Surveyor</name>
+    <vendor>TarCV</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.tarcv.surveyoridea.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.tarcv.surveyoridea.services.MyProjectService"/>
+        <toolWindow id="Locate Element" anchor="bottom" secondary="false"
+                    factoryClass="com.github.tarcv.surveyoridea.gui.LocateToolWindowFactory" />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.tarcv.surveyoridea.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>

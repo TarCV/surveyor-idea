@@ -4,12 +4,32 @@ import org.jetbrains.changelog.markdownToHTML
 fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
+    kotlin("jvm")
+    id("com.stepango.aar2jar")
+
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij")
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     id("org.jetbrains.changelog")
 }
 
+dependencies {
+    implementation(project(":android-automator"))
+    implementation(project(":library"))
+
+    // This is required because of some quirks of plugins classloaders
+    implementation("androidx.test.uiautomator:uiautomator:2.2.0") {
+        // Workaround 'implementationAar' configuration not being used when building a plugin
+        attributes {
+            attribute(
+                Attribute.of("artifactType", String::class.java),
+                ArtifactTypeDefinition.JAR_TYPE
+            )
+        }
+
+        isTransitive = false
+    }
+}
 
 // Configure gradle-intellij-plugin plugin.
 // Read more: https://github.com/JetBrains/gradle-intellij-plugin
@@ -50,7 +70,7 @@ tasks {
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription(
             closure {
-                File("./README.md").readText().lines().run {
+                File("$rootDir/README.md").readText().lines().run {
                     val start = "<!-- Plugin description -->"
                     val end = "<!-- Plugin description end -->"
 
