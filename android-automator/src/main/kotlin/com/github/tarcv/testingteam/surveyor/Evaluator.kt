@@ -27,6 +27,7 @@ import androidx.test.uiautomator.UiObject
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.UiSelector
 import bsh.Interpreter
+import java.io.Closeable
 
 class Evaluator {
     fun evaluate(rootNode: Node, locator: String): Node? {
@@ -46,20 +47,32 @@ class Evaluator {
     }
 
     internal fun evaluateUiSelector(rootNode: Node, selector: UiSelector): Node? {
-        return uiDeviceFromRootNode(rootNode)
-            .findObject(selector)
-            .let { extractNode(it) }
+        return withUiDeviceFrom(rootNode) {
+            extractNode(findObject(selector))
+        }
     }
 
     internal fun evaluateBySelector(rootNode: Node, selector: BySelector): Node? {
-        return uiDeviceFromRootNode(rootNode)
-            .findObject(selector)
-            ?.let { extractNode(it) }
+        return withUiDeviceFrom(rootNode) {
+            findObject(selector)
+                ?.let { extractNode(it) }
+        }
     }
 
-    private fun uiDeviceFromRootNode(rootNode: Node): UiDevice {
+    internal fun <T> withUiDeviceFrom(rootNode: Node, block: UiDevice.() -> T): T {
+        val instanceResetter = Closeable {
+            UiDevice::class.java
+                .getDeclaredField("sInstance")
+                .apply {
+                    isAccessible = true
+                }
+                .set(null, null)
+        }
         val instrumentation = Instrumentation(rootNode)
-        return UiDevice.getInstance(instrumentation)
+        return instanceResetter.use {
+            val device = UiDevice.getInstance(instrumentation)
+            block(device)
+        }
     }
 
     private fun extractNode(obj: UiObject): Node? {
