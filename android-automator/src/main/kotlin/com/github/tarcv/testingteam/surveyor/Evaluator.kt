@@ -92,7 +92,7 @@ class Evaluator {
             .also {
                 it.isAccessible = true
             }
-            .invoke(obj, 1000)
+            .invoke(obj)
             .let { it as AccessibilityNodeInfo }
             .node
     }

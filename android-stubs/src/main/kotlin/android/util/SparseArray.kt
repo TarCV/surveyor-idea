@@ -7,7 +7,7 @@ class SparseArray<E: Any> private constructor(private val synchronizedMap: Mutab
 
     override fun clone(): SparseArray<E> {
         @Suppress("UNCHECKED_CAST")
-        return SparseArray()
+        return SparseArray(synchronizedMap)
     }
 
     fun indexOfKey(key: Int): Int = synchronizedMap.keys.indexOf(key)

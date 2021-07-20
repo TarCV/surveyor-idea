@@ -9,7 +9,7 @@ import com.github.tarcv.testingteam.surveyor.Properties.IS_CLICKABLE
 import com.github.tarcv.testingteam.surveyor.Properties.IS_ENABLED
 import com.github.tarcv.testingteam.surveyor.Properties.IS_FOCUSABLE
 import com.github.tarcv.testingteam.surveyor.Properties.IS_FOCUSED
-import com.github.tarcv.testingteam.surveyor.Properties.IS_LONGCLICKABLE
+import com.github.tarcv.testingteam.surveyor.Properties.IS_LONG_CLICKABLE
 import com.github.tarcv.testingteam.surveyor.Properties.IS_SCROLLABLE
 import com.github.tarcv.testingteam.surveyor.Properties.IS_SELECTED
 import com.github.tarcv.testingteam.surveyor.Properties.PACKAGE_NAME
@@ -64,7 +64,7 @@ class AccessibilityNodeInfo(val node: Node) {
 
     val isLongClickable: Boolean
         get() {
-            return node.getProperty(IS_LONGCLICKABLE)
+            return node.getProperty(IS_LONG_CLICKABLE)
         }
 
     val isScrollable: Boolean
@@ -106,6 +106,8 @@ class AccessibilityNodeInfo(val node: Node) {
             return node.getProperty(IS_CHECKABLE)
         }
 
+
+    fun getChild(index: Int): AccessibilityNodeInfo = AccessibilityNodeInfo(node.children[index])
 
     val childCount: Int
         get() = node.children.size
