@@ -17,14 +17,6 @@ class LimitedClassloader(parentClassLoader: ClassLoader): ClassLoader(parentClas
         }
     }
 
-    override fun findClass(moduleName: String?, name: String): Class<*>? {
-        return if (isClassAllowed(name)) {
-            super.findClass(moduleName, name)
-        } else {
-            null
-        }
-    }
-
     private fun isClassAllowed(name: String): Boolean {
         return name.startsWith("android.") ||
                 name.startsWith("androidx.")
