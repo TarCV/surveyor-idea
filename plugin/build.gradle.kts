@@ -53,6 +53,7 @@ intellij {
 changelog {
     version = properties("pluginVersion")
     groups = emptyList()
+    path = "$rootDir/CHANGELOG.md"
 }
 
 
