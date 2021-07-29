@@ -14,8 +14,12 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":android-automator"))
-    implementation(project(":library"))
+    implementation(project(":android-automator")) {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+    implementation(project(":library")) {
+        exclude(group = "org.jetbrains.kotlin")
+    }
 
     // This is required because of some quirks of plugins classloaders
     implementation("androidx.test.uiautomator:uiautomator:2.2.0") {
