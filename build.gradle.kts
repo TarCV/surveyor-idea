@@ -17,6 +17,8 @@ plugins {
     // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
 
+    `maven-publish` // for pom generation
+
     id("com.stepango.aar2jar") version "0.6" apply false
 }
 
@@ -40,6 +42,28 @@ allprojects {
         withType<KotlinCompile> {
             kotlinOptions.jvmTarget = "1.8"
             kotlinOptions.apiVersion = "1.3"
+        }
+    }
+}
+subprojects {
+    apply(plugin = "maven-publish")
+    project.afterEvaluate {
+        publishing {
+            publications {
+                artifacts {
+                    create<MavenPublication>("artifact") {
+                        from(components["java"])
+                    }
+                }
+            }
+        }
+
+        task("copyPomForCi", Sync::class) {
+            dependsOn("generatePomFileForArtifactPublication")
+            from("build/publications/artifact")
+            into("${rootProject.projectDir}/ci/poms/${project.projectDir.name}")
+            include("pom-default.xml")
+            rename("pom-default.xml", "pom.xml")
         }
     }
 }
