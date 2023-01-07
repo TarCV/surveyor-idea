@@ -10,6 +10,7 @@ import com.github.tarcv.testingteam.surveyor.Properties
 import com.intellij.codeInsight.daemon.impl.analysis.JavaModuleGraphUtil
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.lang.xml.XMLLanguage
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.WriteAction
@@ -155,11 +156,6 @@ class LocateToolWindow(private val project: Project, toolWindow: ToolWindow) {
     }
 }
 class LocateAction: AnAction() {
-    override fun update(e: AnActionEvent) {
-        super.update(e)
-        // TODO: check if an XML is selected
-    }
-
     override fun actionPerformed(e: AnActionEvent) {
         val project = getEventProject(e)
         val service = project?.getService(LocateToolHoldingService::class.java) ?: return
@@ -175,9 +171,18 @@ class LocateAction: AnAction() {
                     editor to it
                 }
             }
-            .firstOrNull() ?: return // TODO
+            .firstOrNull()
+            ?: return project.notify(
+                "Can't locate an element when no UI Automator dump is focussed",
+                NotificationType.ERROR
+            )
 
-        val uix = DomManager.getDomManager(project).getFileElement(xmlFile, Hierarchy::class.java) ?: return // TODO
+        val uix = DomManager.getDomManager(project).getFileElement(xmlFile, Hierarchy::class.java)
+            ?: return project.notify(
+                "Can't locate an element when no UI Automator dump is focussed",
+                NotificationType.ERROR
+            )
+
         val mapping = IdentityHashMap<Node, com.github.tarcv.surveyoridea.filetypes.uix.Node>()
         val nodes = uix.rootElement.nodes
             .map { convert(it, mapping) }
@@ -185,15 +190,22 @@ class LocateAction: AnAction() {
         val rootNode = when {
             nodes.size > 1 -> Node(null, emptyMap(), nodes, true)
             nodes.size == 1 -> nodes[0]
-            else -> return // TODO
+            else -> return project.notify(
+                "Can't locate an element when the focussed dump has multiple root nodes",
+                NotificationType.ERROR
+            )
         }
 
         val psiNode = Evaluator()
             .evaluate(rootNode, locator)
             .let { mapping[it] }
             ?.xmlElement
-            ?: return // TODO
+            ?: return project.notify(
+                "No elements were found",
+                NotificationType.WARNING
+            )
 
+        project.notify("Found an element", NotificationType.INFORMATION)
         with((editor as TextEditor).editor) {
             caretModel.moveToOffset(psiNode.textOffset, false)
             scrollingModel.scrollToCaret(ScrollType.MAKE_VISIBLE)
