@@ -39,6 +39,12 @@
             <add-to-group group-id="FindMenuGroup" anchor="last"/>
             <add-to-group group-id="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar" />
         </action>
+        <action id="com.github.tarcv.testingteam.surveyoridea.gui.ShowNoticeAction"
+                class="com.github.tarcv.testingteam.surveyoridea.gui.ShowNoticeAction" text="UI Surveyor: Show Licenses and Notices"
+                icon="AllIcons.General.ShowInfos">
+            <add-to-group group-id="HelpMenu" relative-to-action="About" anchor="before" />
+            <add-to-group group-id="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar" />
+        </action>
 
     </actions>
 </idea-plugin>
