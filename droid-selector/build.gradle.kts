@@ -13,7 +13,7 @@ dependencies {
     implementation("org.slf4j:slf4j-log4j12:1.7.30")
 
     implementation(project(":library"))
-    implementation(project(":android-stubs"))
+    implementation(project(":droid-stubs"))
     implementation("com.github.beanshell:beanshell:cb552a4d08") // cb552a4d08 is 2.0b4
     implementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
         isTransitive = false

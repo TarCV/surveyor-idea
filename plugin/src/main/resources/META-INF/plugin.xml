@@ -20,10 +20,18 @@
     <applicationListeners>
     </applicationListeners>
     <actions>
+        <group id="com.github.tarcv.surveyoridea.gui.LocateToolWindow.toolbar"/>
+
         <action id="com.github.tarcv.surveyoridea.gui.LocateAction"
-                class="com.github.tarcv.surveyoridea.gui.LocateAction" text="Locate Element"
-                description="Locate element in the currently active editor using a locator in the tool window">
+                class="com.github.tarcv.surveyoridea.gui.LocateAction" text="UI Surveyor: Locate Element"
+                description="Locate element in the currently active editor using a locator in the tool window"
+                icon="AllIcons.Actions.Find">
+            <override-text place="MainMenu" text="Locate _Element" />
+            <synonym text="Find Element" />
+
             <add-to-group group-id="FindMenuGroup" anchor="last"/>
+            <add-to-group group-id="com.github.tarcv.surveyoridea.gui.LocateToolWindow.toolbar" />
         </action>
+
     </actions>
 </idea-plugin>

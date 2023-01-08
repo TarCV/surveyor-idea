@@ -10,10 +10,7 @@ import com.github.tarcv.testingteam.surveyor.Properties
 import com.intellij.codeInsight.daemon.impl.analysis.JavaModuleGraphUtil
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.lang.xml.XMLLanguage
-import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.actionSystem.ActionPlaces
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.editor.ScrollType
@@ -53,12 +50,21 @@ class LocateToolWindow(private val project: Project, toolWindow: ToolWindow) {
     private lateinit var content: JPanel
     private lateinit var locatorFragment: JavaCodeFragment
     private lateinit var locatorField: EditorTextField
+    private lateinit var toolbar: JComponent
 
     companion object {
         const val moduleName = "UI Surveyor (Highlighting)"
     }
 
     fun createUIComponents() {
+        toolbar = with(ActionManager.getInstance()) {
+            createActionToolbar(
+                ActionPlaces.TOOLWINDOW_CONTENT,
+                getAction("com.github.tarcv.surveyoridea.gui.LocateToolWindow.toolbar") as ActionGroup,
+                false
+            ).component
+        }
+
         val module = ModuleManager.getInstance(project).findModuleByName(moduleName)
             ?: createModuleForHighlighting()
 
