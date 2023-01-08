@@ -16,6 +16,8 @@
                           rootTagName="hierarchy" stubVersion="1" />
         <dom.fileDescription implementation="com.github.tarcv.surveyoridea.filetypes.uix.UixDomDecription" />
         <notificationGroup displayType="TOOL_WINDOW" id="com.github.tarcv.surveyoridea.gui.NotificationGroup" toolWindowId="Locate Element" />
+
+        <navbar implementation="com.github.tarcv.surveyoridea.gui.UiAwareNavigationBar" />
     </extensions>
 
     <applicationListeners>
