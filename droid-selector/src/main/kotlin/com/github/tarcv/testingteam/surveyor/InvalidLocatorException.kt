@@ -17,21 +17,4 @@
  */
 package com.github.tarcv.testingteam.surveyor
 
-@Suppress("ClassName")
-sealed class Properties<T>(){
-    object CLASS_NAME: Properties<String>()
-    object IS_CLICKABLE: Properties<Boolean>()
-    object ACCESSIBILITY_DESCRIPTION: Properties<String>()
-    object IS_ENABLED: Properties<Boolean>()
-    object IS_FOCUSED: Properties<Boolean>()
-    object IS_FOCUSABLE: Properties<Boolean>()
-    object IS_LONG_CLICKABLE: Properties<Boolean>()
-    object IS_PASSWORD_FIELD: Properties<Boolean>()
-    object IS_SCROLLABLE: Properties<Boolean>()
-    object IS_SELECTED: Properties<Boolean>()
-    object PACKAGE_NAME: Properties<String>()
-    object RESOURCE_ID: Properties<String>()
-    object TEXT: Properties<String>()
-    object IS_CHECKED: Properties<Boolean>()
-    object IS_CHECKABLE: Properties<Boolean>()
-}
+class InvalidLocatorException(message: String) : RuntimeException(message)

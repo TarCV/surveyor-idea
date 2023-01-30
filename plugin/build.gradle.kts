@@ -14,7 +14,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":android-automator")) {
+    implementation(project(":droid-selector")) {
         exclude(group = "org.jetbrains.kotlin")
     }
     implementation(project(":library")) {

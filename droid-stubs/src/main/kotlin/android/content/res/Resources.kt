@@ -1,7 +1,7 @@
 /*
  *  Copyright (C) 2023 TarCV
  *
- *  This file is part of UI Surveyor.
+ *  This package (i.e. directory and its contents) is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -15,19 +15,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.gui
+package android.content.res
 
-import com.intellij.openapi.project.Project
-import com.intellij.openapi.wm.ToolWindow
-import com.intellij.openapi.wm.ToolWindowFactory
-import com.intellij.ui.content.ContentFactory
+import android.util.DisplayMetrics
 
-
-class LocateToolWindowFactory: ToolWindowFactory {
-    override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val locateToolWindow = LocateToolWindow(project, toolWindow)
-        val contentFactory = ContentFactory.SERVICE.getInstance()
-        val content = contentFactory.createContent(locateToolWindow.getContent(), "", false)
-        toolWindow.contentManager.addContent(content)
-    }
+class Resources {
+    val displayMetrics = DisplayMetrics()
 }

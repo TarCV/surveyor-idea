@@ -15,19 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.gui
+package com.github.tarcv.surveyoridea.filetypes
 
-import com.intellij.openapi.project.Project
-import com.intellij.openapi.wm.ToolWindow
-import com.intellij.openapi.wm.ToolWindowFactory
-import com.intellij.ui.content.ContentFactory
+import com.intellij.util.xml.DomElement
 
-
-class LocateToolWindowFactory: ToolWindowFactory {
-    override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val locateToolWindow = LocateToolWindow(project, toolWindow)
-        val contentFactory = ContentFactory.SERVICE.getInstance()
-        val content = contentFactory.createContent(locateToolWindow.getContent(), "", false)
-        toolWindow.contentManager.addContent(content)
-    }
-}
+/**
+ * DomElement representing an actual UI item in a UI dump
+ */
+interface ActualUiElement: DomElement
