@@ -55,6 +55,9 @@ jobs:
           distribution: zulu
           java-version: 11
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
       # Set environment variables
       - name: Export Properties
         id: properties
@@ -86,20 +89,22 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tests-result
-          path: ${{ github.workspace }}/build/reports/tests
+          path: |
+            ${{ github.workspace }}/build/reports/tests
+            ${{ github.workspace }}/**/build/reports/tests
 
       # Upload Kover report to CodeCov
       - name: Upload Code Coverage Report
         uses: codecov/codecov-action@v3
         with:
-          files: ${{ github.workspace }}/build/reports/kover/xml/report.xml
+          directory: ${{ github.workspace }}
 
       # Cache Plugin Verifier IDEs
       - name: Setup Plugin Verifier IDEs Cache
         uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
-          key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
+          key: plugin-verifier-${{ hashFiles('plugin/build/listProductsReleases.txt') }}
 
       # Run Verify Plugin task and IntelliJ Plugin Verifier tool
       # TODO: Run verification against latest EAPs of supported IDEs (with cron)
@@ -112,7 +117,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: pluginVerifier-result
-          path: ${{ github.workspace }}/build/reports/pluginVerifier
+          path: |
+            ${{ github.workspace }}/build/reports/pluginVerifier
+            ${{ github.workspace }}/**/build/reports/pluginVerifier
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
@@ -123,7 +130,7 @@ jobs:
         id: artifact
         shell: bash
         run: |
-          cd ${{ github.workspace }}/build/distributions
+          cd ${{ github.workspace }}/plugin/build/distributions
           FILENAME=`ls *.zip`
           unzip "$FILENAME" -d content
 
@@ -134,7 +141,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.artifact.outputs.filename }}
-          path: ./build/distributions/content/*/*
+          path: ./plugin/build/distributions/content/*/*
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
