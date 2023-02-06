@@ -34,8 +34,14 @@ tasks {
 allprojects {
     repositories {
         mavenCentral()
+        maven {
+            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            content {
+                // Download only these groups from the repository
+                includeGroup("org.beanshell")
+            }
+        }
         google()
-        maven { url = uri("https://jitpack.io") }
     }
 
     tasks {

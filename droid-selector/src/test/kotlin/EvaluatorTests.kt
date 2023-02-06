@@ -17,6 +17,8 @@
  */
 package com.github.tarcv.testingteam.surveyor.uiautomator
 
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.UiSelector
 import com.github.tarcv.testingteam.surveyor.Evaluator
 import com.github.tarcv.testingteam.surveyor.Node
 import com.github.tarcv.testingteam.surveyor.Properties
@@ -47,13 +49,12 @@ class EvaluatorTests {
 
     @Test
     fun evaluatorCanLoadSelectorClasses() {
-
         Evaluator().evaluate(
             rootNode,
-            """import androidx.test.uiautomator.UiSelector;
-                |import androidx.test.uiautomator.By;
-                | new UiSelector();
-                | By.clazz("clazz")"""
+            """//import ${UiSelector::class.java.canonicalName};
+                |import ${By::class.java.canonicalName};
+                |//new UiSelector();
+                |By.clazz("clazz")"""
                 .trimMargin()
         )
     }
