@@ -41,7 +41,7 @@ allprojects {
     tasks {
         // Set the JVM compatibility versions
         withType<KotlinCompile> {
-            kotlinOptions.apiVersion = "1.5"
+            kotlinOptions.apiVersion = properties("kotlinApiVersion")
         }
     }
 }
