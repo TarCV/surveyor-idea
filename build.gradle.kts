@@ -41,6 +41,13 @@ allprojects {
                 includeGroup("org.beanshell")
             }
         }
+        maven {
+            url = uri("https://jitpack.io")
+            content {
+                // Download only these groups from the repository
+                includeGroup("com.github.TarCV.beanshell")
+            }
+        }
         google()
     }
 

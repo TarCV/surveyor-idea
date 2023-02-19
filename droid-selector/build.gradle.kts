@@ -14,8 +14,7 @@ dependencies {
 
     implementation(project(":library"))
     implementation(project(":droid-stubs"))
-    implementation("org.beanshell:bsh:3.0.0-20230205" +
-            ".094654-3")
+    implementation("com.github.TarCV.beanshell:bsh:5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c")
     implementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
         isTransitive = false
     }
