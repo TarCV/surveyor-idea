@@ -5,8 +5,13 @@
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <!-- Modules present in all IDEs: -->
     <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.xml</depends>
+    <!-- Modules/plugins that are optional or not present in all IDE: -->
+    <!-- (This list should match platformPlugins in gradle.properties) -->
+    <depends>com.intellij.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Locate Element" anchor="bottom" secondary="false"
@@ -14,7 +19,6 @@
         <fileType name="XML" extensions="uix" />
         <dom.fileMetaData implementation="com.github.tarcv.surveyoridea.filetypes.uix.UixDomDecription"
                           rootTagName="hierarchy" stubVersion="1" />
-        <dom.fileDescription implementation="com.github.tarcv.surveyoridea.filetypes.uix.UixDomDecription" />
         <notificationGroup displayType="TOOL_WINDOW" id="com.github.tarcv.surveyoridea.gui.NotificationGroup" toolWindowId="Locate Element" />
 
         <navbar implementation="com.github.tarcv.surveyoridea.gui.UiAwareNavigationBar" />

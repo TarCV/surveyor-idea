@@ -1,4 +1,3 @@
-import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
@@ -7,15 +6,15 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.5.20"
+    id("org.jetbrains.kotlin.jvm") version "1.8.10"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "0.7.3" apply false
+    id("org.jetbrains.intellij") version "1.12.0" apply false
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
-    id("org.jetbrains.changelog") version "1.1.2" apply false
-    // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
-    id("io.gitlab.arturbosch.detekt") version "1.17.1"
-    // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
-    id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
+    id("org.jetbrains.changelog") version "2.0.0" apply false
+    // Gradle Qodana Plugin
+    id("org.jetbrains.qodana") version "0.1.13"
+    // Gradle Kover Plugin
+    id("org.jetbrains.kotlinx.kover") version "0.6.1"
 
     `maven-publish` // for pom generation
 
@@ -25,28 +24,49 @@ plugins {
 group = properties("pluginGroup")
 version = properties("pluginVersion")
 
-// Configure project's dependencies
+// Configure root project
+tasks {
+    wrapper {
+        gradleVersion = properties("gradleVersion")
+    }
+}
+
 allprojects {
     repositories {
         mavenCentral()
+        maven {
+            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            content {
+                // Download only these groups from the repository
+                includeGroup("org.beanshell")
+            }
+        }
+        maven {
+            url = uri("https://jitpack.io")
+            content {
+                // Download only these groups from the repository
+                includeGroup("com.github.TarCV.beanshell")
+            }
+        }
         google()
-        maven { url = uri("https://jitpack.io") }
     }
 
     tasks {
-        // Set the compatibility versions to 1.8
-        withType<JavaCompile> {
-            sourceCompatibility = "1.8"
-            targetCompatibility = "1.8"
-        }
+        // Set the JVM compatibility versions
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = "1.8"
-            kotlinOptions.apiVersion = "1.5"
+            kotlinOptions.apiVersion = properties("kotlinApiVersion")
         }
     }
 }
 subprojects {
     apply(plugin = "maven-publish")
+    apply(plugin = "kotlin")
+
+    // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
+    kotlin {
+        jvmToolchain(11)
+    }
+
     project.afterEvaluate {
         publishing {
             publications {
@@ -67,25 +87,16 @@ subprojects {
         }
     }
 }
-dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.17.1")
+
+// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
+qodana {
+    cachePath.set(file(".qodana").canonicalPath)
+    reportPath.set(file("build/reports/inspections").canonicalPath)
+    saveReport.set(true)
+    showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
-// Configure detekt plugin.
-// Read more: https://detekt.github.io/detekt/kotlindsl.html
-detekt {
-    config = files("./detekt-config.yml")
-    buildUponDefaultConfig = true
-
-    reports {
-        html.enabled = false
-        xml.enabled = false
-        txt.enabled = false
-    }
-}
-
-tasks {
-    withType<Detekt> {
-        jvmTarget = "1.8"
-    }
+// Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
+kover.xmlReport {
+    onCheck.set(true)
 }

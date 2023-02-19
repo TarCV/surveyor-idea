@@ -14,11 +14,13 @@ dependencies {
 
     implementation(project(":library"))
     implementation(project(":droid-stubs"))
-    implementation("com.github.beanshell:beanshell:cb552a4d08") // cb552a4d08 is 2.0b4
+    implementation("com.github.TarCV.beanshell:bsh:5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c")
     implementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
         isTransitive = false
     }
-    testImplementationAar("androidx.test.uiautomator:uiautomator:2.2.0")
+    testImplementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
+        isTransitive = false
+    }
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
