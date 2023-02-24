@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.github.tarcv.surveyoridea</id>
+    <id>com.github.tarcv.testingteam.surveyoridea</id>
     <name>UI Surveyor</name>
     <vendor>TarCV</vendor>
 
@@ -15,29 +15,29 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Locate Element" anchor="bottom" secondary="false"
-                    factoryClass="com.github.tarcv.surveyoridea.gui.LocateToolWindowFactory" />
+                    factoryClass="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindowFactory" />
         <fileType name="XML" extensions="uix" />
-        <dom.fileMetaData implementation="com.github.tarcv.surveyoridea.filetypes.uix.UixDomDecription"
+        <dom.fileMetaData implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.uix.UixDomDecription"
                           rootTagName="hierarchy" stubVersion="1" />
-        <notificationGroup displayType="TOOL_WINDOW" id="com.github.tarcv.surveyoridea.gui.NotificationGroup" toolWindowId="Locate Element" />
+        <notificationGroup displayType="TOOL_WINDOW" id="com.github.tarcv.testingteam.surveyoridea.gui.NotificationGroup" toolWindowId="Locate Element" />
 
-        <navbar implementation="com.github.tarcv.surveyoridea.gui.UiAwareNavigationBar" />
+        <navbar implementation="com.github.tarcv.testingteam.surveyoridea.gui.UiAwareNavigationBar" />
     </extensions>
 
     <applicationListeners>
     </applicationListeners>
     <actions>
-        <group id="com.github.tarcv.surveyoridea.gui.LocateToolWindow.toolbar"/>
+        <group id="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar"/>
 
-        <action id="com.github.tarcv.surveyoridea.gui.LocateAction"
-                class="com.github.tarcv.surveyoridea.gui.LocateAction" text="UI Surveyor: Locate Element"
+        <action id="com.github.tarcv.testingteam.surveyoridea.gui.LocateAction"
+                class="com.github.tarcv.testingteam.surveyoridea.gui.LocateAction" text="UI Surveyor: Locate Element"
                 description="Locate element in the currently active editor using a locator in the tool window"
                 icon="AllIcons.Actions.Find">
             <override-text place="MainMenu" text="Locate _Element" />
             <synonym text="Find Element" />
 
             <add-to-group group-id="FindMenuGroup" anchor="last"/>
-            <add-to-group group-id="com.github.tarcv.surveyoridea.gui.LocateToolWindow.toolbar" />
+            <add-to-group group-id="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar" />
         </action>
 
     </actions>

@@ -15,10 +15,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.gui
+package com.github.tarcv.testingteam.surveyoridea.gui
 
-import com.github.tarcv.surveyoridea.filetypes.ActualUiElement
-import com.github.tarcv.surveyoridea.filetypes.RootUiElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.ActualUiElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.RootUiElement
 import com.intellij.ide.navigationToolbar.StructureAwareNavBarModelExtension
 import com.intellij.lang.Language
 import com.intellij.lang.xml.XMLLanguage

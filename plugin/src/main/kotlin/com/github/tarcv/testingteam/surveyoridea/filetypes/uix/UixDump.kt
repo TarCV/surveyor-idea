@@ -15,10 +15,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.filetypes.uix
+package com.github.tarcv.testingteam.surveyoridea.filetypes.uix
 
-import com.github.tarcv.surveyoridea.filetypes.ActualUiElement
-import com.github.tarcv.surveyoridea.filetypes.RootUiElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.ActualUiElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.RootUiElement
 import com.intellij.icons.AllIcons
 import com.intellij.ide.presentation.Presentation
 import com.intellij.ide.presentation.PresentationProvider

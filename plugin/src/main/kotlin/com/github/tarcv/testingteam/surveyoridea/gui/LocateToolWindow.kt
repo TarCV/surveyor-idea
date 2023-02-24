@@ -15,12 +15,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.gui
+package com.github.tarcv.testingteam.surveyoridea.gui
 
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiSelector
-import com.github.tarcv.surveyoridea.filetypes.uix.Hierarchy
-import com.github.tarcv.surveyoridea.services.LocateToolHoldingService
+import com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Hierarchy
+import com.github.tarcv.testingteam.surveyoridea.services.LocateToolHoldingService
 import com.github.tarcv.testingteam.surveyor.Evaluator
 import com.github.tarcv.testingteam.surveyor.Node
 import com.github.tarcv.testingteam.surveyor.Properties
@@ -78,7 +78,7 @@ class LocateToolWindow(private val project: Project, toolWindow: ToolWindow) {
         toolbar = with(ActionManager.getInstance()) {
             createActionToolbar(
                 ActionPlaces.TOOLWINDOW_CONTENT,
-                getAction("com.github.tarcv.surveyoridea.gui.LocateToolWindow.toolbar") as ActionGroup,
+                getAction("com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar") as ActionGroup,
                 false
             ).component
         }
@@ -200,7 +200,7 @@ class LocateAction: AnAction() {
                 NotificationType.ERROR
             )
 
-        val mapping = IdentityHashMap<Node, com.github.tarcv.surveyoridea.filetypes.uix.Node>()
+        val mapping = IdentityHashMap<Node, com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node>()
         val nodes = uix.rootElement.nodes
             .map { convert(it, mapping) }
 
@@ -230,8 +230,8 @@ class LocateAction: AnAction() {
     }
 
     private fun convert(
-        node: com.github.tarcv.surveyoridea.filetypes.uix.Node,
-        mapping: MutableMap<Node, com.github.tarcv.surveyoridea.filetypes.uix.Node>
+        node: com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node,
+        mapping: MutableMap<Node, com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node>
     ): Node {
         val props: Map<Properties<*>, Any?> = listOf(
             Properties.IS_CHECKABLE to node.checkable.value,
