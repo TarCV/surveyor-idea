@@ -15,25 +15,19 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.services
+package com.github.tarcv.testingteam.surveyoridea.gui
 
-import com.github.tarcv.surveyoridea.gui.LocateToolWindow
-import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
-import javax.annotation.concurrent.GuardedBy
+import com.intellij.openapi.wm.ToolWindow
+import com.intellij.openapi.wm.ToolWindowFactory
+import com.intellij.ui.content.ContentFactory
 
-@Service
-class LocateToolHoldingService(project: Project) {
-    private val lock = Any()
 
-    @GuardedBy("lock")
-    private var locateToolWindow: LocateToolWindow? = null
-
-    fun registerToolWindow(toolWindow: LocateToolWindow) = synchronized(lock) {
-        locateToolWindow = toolWindow
-    }
-
-    fun getCurrentLocator(): String? = synchronized(lock) {
-        return locateToolWindow?.getCurrentLocator()
+class LocateToolWindowFactory: ToolWindowFactory {
+    override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
+        val locateToolWindow = LocateToolWindow(project, toolWindow)
+        val contentFactory = ContentFactory.SERVICE.getInstance()
+        val content = contentFactory.createContent(locateToolWindow.getContent(), "", false)
+        toolWindow.contentManager.addContent(content)
     }
 }

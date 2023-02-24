@@ -15,11 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.filetypes
+package com.github.tarcv.testingteam.surveyoridea.filetypes
 
 import com.intellij.util.xml.DomElement
 
 /**
- * DomElement not representing any actual UI item in a UI dump, and instead representing a root of a dump instead
+ * DomElement representing an actual UI item in a UI dump
  */
-interface RootUiElement: DomElement
+interface ActualUiElement: DomElement

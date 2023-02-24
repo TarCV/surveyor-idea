@@ -15,22 +15,25 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.surveyoridea.gui
+package com.github.tarcv.testingteam.surveyoridea.services
 
-import com.intellij.notification.NotificationGroupManager
-import com.intellij.notification.NotificationType
+import com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow
+import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
+import javax.annotation.concurrent.GuardedBy
 
+@Service
+class LocateToolHoldingService(project: Project) {
+    private val lock = Any()
 
-private object NotificationGroup
-private val notificationGroupId = NotificationGroup::class.java.canonicalName
+    @GuardedBy("lock")
+    private var locateToolWindow: LocateToolWindow? = null
 
-fun Project.notify(
-    content: String,
-    notificationType: NotificationType
-) {
-    NotificationGroupManager.getInstance()
-        .getNotificationGroup(notificationGroupId)
-        .createNotification(content, notificationType)
-        .notify(this)
+    fun registerToolWindow(toolWindow: LocateToolWindow) = synchronized(lock) {
+        locateToolWindow = toolWindow
+    }
+
+    fun getCurrentLocator(): String? = synchronized(lock) {
+        return locateToolWindow?.getCurrentLocator()
+    }
 }
