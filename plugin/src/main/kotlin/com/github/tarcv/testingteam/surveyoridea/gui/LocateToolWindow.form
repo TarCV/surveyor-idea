@@ -7,7 +7,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="936af" class="com.intellij.ui.EditorTextField" binding="locatorField" custom-create="true">
+      <component id="936af" class="javax.swing.JPanel" binding="locatorField" custom-create="true">
         <constraints border-constraint="Center"/>
         <properties/>
       </component>
