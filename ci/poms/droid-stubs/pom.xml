@@ -8,13 +8,19 @@
   <!-- do_not_remove: published-with-gradle-metadata -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>surveyor-idea</groupId>
-  <artifactId>library</artifactId>
+  <artifactId>droid-stubs</artifactId>
   <version>unspecified</version>
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
       <version>1.8.10</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>surveyor-idea</groupId>
+      <artifactId>library</artifactId>
+      <version>unspecified</version>
       <scope>runtime</scope>
     </dependency>
   </dependencies>
