@@ -17,9 +17,7 @@
  */
 package com.github.tarcv.testingteam.surveyoridea.gui
 
-import com.github.tarcv.testingteam.surveyor.Evaluator
-import com.github.tarcv.testingteam.surveyor.Logger
-import com.github.tarcv.testingteam.surveyor.Node
+import com.github.tarcv.testingteam.surveyor.*
 import com.github.tarcv.testingteam.surveyor.Properties
 import com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Hierarchy
 import com.github.tarcv.testingteam.surveyoridea.services.LocateToolHoldingService
@@ -81,17 +79,30 @@ class LocateAction: AnAction() {
             )
         }
 
-        Logger.apply {
-            onDebugMessage = logger::debug
-            onInfoMessage = logger::info
+        val evaluateResult = try {
+            Logger.apply {
+                onDebugMessage = logger::debug
+                onInfoMessage = logger::info
+            }
+
+            Evaluator().evaluate(rootNode, locator)
+                ?: return project.notify(
+                    "No elements were found",
+                    NotificationType.WARNING
+                )
+        } catch (e: InvalidLocatorException) {
+            return project.notify(
+                "There are some mistakes in the locator",
+                NotificationType.WARNING
+            )
         }
-        val psiNode = Evaluator()
-            .evaluate(rootNode, locator)
+
+        val psiNode = evaluateResult
             .let { mapping[it] }
             ?.xmlElement
             ?: return project.notify(
-                "No elements were found",
-                NotificationType.WARNING
+                "Internal error when selecting an element found",
+                NotificationType.ERROR
             )
 
         project.notify("Found an element", NotificationType.INFORMATION)

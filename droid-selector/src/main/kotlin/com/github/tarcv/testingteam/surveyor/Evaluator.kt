@@ -24,6 +24,7 @@ import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.UiSelector
+import bsh.EvalError
 import bsh.Interpreter
 import java.io.Closeable
 
@@ -34,13 +35,17 @@ class Evaluator {
             setClassLoader(limitingClassloader)
             strictJava = true
         }
-        return when (val it = interpreter.eval(locator)) {
-            is UiSelector -> evaluateUiSelector(rootNode, it)
-            is BySelector -> evaluateBySelector(rootNode, it)
-            else -> {
-                val typeName = it?.javaClass ?: "<null>"
-                throw InvalidLocatorException("Expression returned unexpected value of type $typeName")
+        try {
+            return when (val it = interpreter.eval(locator)) {
+                is UiSelector -> evaluateUiSelector(rootNode, it)
+                is BySelector -> evaluateBySelector(rootNode, it)
+                else -> {
+                    val typeName = it?.javaClass ?: "<null>"
+                    throw InvalidLocatorException("Expression returned unexpected value of type $typeName")
+                }
             }
+        } catch (e: EvalError) {
+            throw InvalidLocatorException("Failed to evaluate the expression: ${e.message}")
         }
     }
 
