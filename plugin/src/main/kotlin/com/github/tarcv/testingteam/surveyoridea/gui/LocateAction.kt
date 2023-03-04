@@ -18,6 +18,7 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyor.Evaluator
+import com.github.tarcv.testingteam.surveyor.Logger
 import com.github.tarcv.testingteam.surveyor.Node
 import com.github.tarcv.testingteam.surveyor.Properties
 import com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Hierarchy
@@ -33,8 +34,13 @@ import com.intellij.psi.PsiManager
 import com.intellij.psi.xml.XmlFile
 import com.intellij.util.xml.DomManager
 import java.util.*
+import com.intellij.openapi.diagnostic.Logger as IdeaLogger
 
 class LocateAction: AnAction() {
+    companion object {
+        private val logger = IdeaLogger.getInstance(LocateAction::class.java)
+    }
+
     override fun actionPerformed(e: AnActionEvent) {
         val project = getEventProject(e)
         val service = project?.getService(LocateToolHoldingService::class.java) ?: return
@@ -75,6 +81,10 @@ class LocateAction: AnAction() {
             )
         }
 
+        Logger.apply {
+            onDebugMessage = logger::debug
+            onInfoMessage = logger::info
+        }
         val psiNode = Evaluator()
             .evaluate(rootNode, locator)
             .let { mapping[it] }
