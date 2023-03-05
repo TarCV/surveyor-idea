@@ -128,4 +128,6 @@ class AccessibilityNodeInfo(val node: Node) {
 
     val childCount: Int
         get() = node.children.size
+
+    fun recycle() { }
 }
