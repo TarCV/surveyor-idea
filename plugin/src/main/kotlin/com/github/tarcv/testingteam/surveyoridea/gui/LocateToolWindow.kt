@@ -25,21 +25,22 @@ import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.ActionPlaces
-import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.application.WriteAction
+import com.intellij.openapi.application.invokeLater
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.module.ModuleManager
 import com.intellij.openapi.module.ModuleTypeId
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.modifyModules
+import com.intellij.openapi.projectRoots.JavaSdkType
 import com.intellij.openapi.roots.ModuleRootModificationUtil
 import com.intellij.openapi.roots.OrderRootType
+import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.playback.commands.ActionCommand
 import com.intellij.openapi.vfs.VfsUtil
-import com.intellij.openapi.wm.ToolWindow
 import com.intellij.psi.JavaCodeFragment
 import com.intellij.psi.JavaCodeFragmentFactory
 import com.intellij.psi.PsiDocumentManager
+import com.intellij.psi.PsiFile
 import com.intellij.ui.EditorTextField
 import java.awt.event.ActionEvent
 import java.awt.event.InputEvent
@@ -53,14 +54,19 @@ import javax.swing.JPanel
 import javax.swing.KeyStroke
 
 
-class LocateToolWindow(private val project: Project, toolWindow: ToolWindow) {
+class LocateToolWindow(private val project: Project) {
     private lateinit var content: JPanel
-    private lateinit var locatorFragment: JavaCodeFragment
+    private val locatorFragment: PsiFile?
+        get() {
+            val docField = locatorField as EditorTextField
+            return PsiDocumentManager.getInstance(project).getPsiFile(docField.document)
+        }
     private lateinit var locatorField: JPanel
     private lateinit var toolbar: JComponent
 
     companion object {
-        const val moduleName = "UI Surveyor (Highlighting)"
+        const val moduleDir = "UISurveyor"
+        const val moduleName = "UISurveyor_Highlighting"
     }
 
     fun createUIComponents() {
@@ -72,24 +78,7 @@ class LocateToolWindow(private val project: Project, toolWindow: ToolWindow) {
             ).component
         }
 
-        val module = ModuleManager.getInstance(project).findModuleByName(moduleName)
-            ?: createModuleForHighlighting()
-
-        val modulePsi = JavaModuleGraphUtil.findDescriptorByModule(module, false)
-
-        val importedClasses = listOf(UiSelector::class.java, By::class.java)
-            .joinToString(",") { it.name }
-        val editorCode = JavaCodeFragmentFactory.getInstance(project).createExpressionCodeFragment(
-            "new UiSelector()",
-            modulePsi,
-            null,
-            true
-        ).apply {
-            addImportsFromString(importedClasses)
-        }
-        val editorDocument = PsiDocumentManager.getInstance(project).getDocument(editorCode)!!
-        val editorField = EditorTextField(editorDocument, project, JavaFileType.INSTANCE)
-
+        val editorField = EditorTextField("new UiSelector()", project, JavaFileType.INSTANCE)
         editorField.registerKeyboardAction(
             object : AbstractAction() {
                 override fun actionPerformed(e: ActionEvent?) {
@@ -110,36 +99,69 @@ class LocateToolWindow(private val project: Project, toolWindow: ToolWindow) {
             JComponent.WHEN_IN_FOCUSED_WINDOW
         )
 
+        invokeLater {
+            val module = ModuleManager.getInstance(project).findModuleByName(moduleName)
+                ?: createModuleForHighlighting()
+
+            val modulePsi = JavaModuleGraphUtil.findDescriptorByModule(module, false)
+
+            val importedClasses = listOf(UiSelector::class.java, By::class.java)
+                .joinToString(",") { it.name }
+            val editorCode = JavaCodeFragmentFactory.getInstance(project).createExpressionCodeFragment(
+                editorField.text,
+                modulePsi,
+                null,
+                true
+            ).apply {
+                addImportsFromString(importedClasses)
+            }
+
+            editorField.document = PsiDocumentManager.getInstance(project).getDocument(editorCode)!!
+        }
+
         project.getService(LocateToolHoldingService::class.java).registerToolWindow(this)
-        locatorFragment = editorCode
         locatorField = editorField
     }
 
     private fun createModuleForHighlighting(): Module {
-        return project.modifyModules {
-            val modulePath = Paths.get(project.projectFilePath!!).parent.resolve("$moduleName.iml")
-            val module = newModule(
-                modulePath.toString(),
+        val module: Module = project.modifyModules {
+            val modulePath = Paths.get(project.basePath!!)
+                .resolve(Project.DIRECTORY_STORE_FOLDER)
+                .resolve(moduleDir)
+                .resolve("$moduleName.iml")
+            newModule(
+                modulePath,
                 ModuleTypeId.JAVA_MODULE
             )
+        }
 
-            val automatorClass = UiSelector::class.java
+        project.modifyModules {
             ModuleRootModificationUtil.updateModel(module) { model ->
-                val automatorJarFile = getAutomatorJarPath(automatorClass)
-                val library = model.moduleLibraryTable.createLibrary("uiautomator")
-                library.modifiableModel.apply {
-                    addRoot(
-                        VfsUtil.getUrlForLibraryRoot(automatorJarFile.toFile()),
-                        OrderRootType.CLASSES
-                    )
-
-                    ApplicationManager.getApplication().invokeAndWait {
-                        WriteAction.run<RuntimeException> { commit() }
-                    }
+                val projectSdk = ProjectRootManager.getInstance(project).projectSdk
+                if (projectSdk == null || projectSdk.sdkType is JavaSdkType) {
+                    model.inheritSdk()
                 }
+            }
+        }
+
+        project.modifyModules {
+            ModuleRootModificationUtil.updateModel(module) { model ->
+                val automatorClass = UiSelector::class.java
+                val automatorJarFile = getAutomatorJarPath(automatorClass)
+                model.moduleLibraryTable
+                    .createLibrary("uiautomator")
+                    .modifiableModel.apply {
+                        addRoot(
+                            VfsUtil.getUrlForLibraryRoot(automatorJarFile.toFile()),
+                            OrderRootType.CLASSES
+                        )
+
+                        commit()
+                    }
             }
             module
         }
+        return module
     }
 
     private fun getAutomatorJarPath(automatorClass: Class<UiSelector>): Path {
@@ -156,8 +178,14 @@ class LocateToolWindow(private val project: Project, toolWindow: ToolWindow) {
     fun getContent(): JPanel = content
 
     fun getCurrentLocator(): String {
-        return locatorFragment.importsToString()
-            .split(Regex("""\s*,\s*"""))
-            .joinToString("", postfix = locatorFragment.text) { "import $it; " }
+        val fragment = locatorFragment
+        val imports = if (fragment is JavaCodeFragment) {
+            fragment.importsToString()
+                .split(Regex("""\s*,\s*"""))
+                .joinToString("") { "import $it; " }
+        } else {
+            ""
+        }
+        return imports + (fragment?.text ?: "")
     }
 }
