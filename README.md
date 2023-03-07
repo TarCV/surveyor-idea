@@ -4,21 +4,31 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [x] Verify the [pluginGroup](/gradle.properties), [plugin ID](/plugin/src/main/resources/META-INF/plugin.xml) and [sources package](/plugin/src/main/kotlin).
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the Plugin ID in the above README badges.
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html).
-- [x] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+## Description
 
+UI Surveyor plugin provides tools helping with mobile application automation.
+They provide the following features:
+* **_Evaluating_ element selectors against an XML UI snapshots** <br />
+![Search](docs/Search.png)
+* **Syntax highlighting and autocomplete for element selectors** <br />
+![Autocomplete & Highlighting](docs/Autocomplete.png)
+* **Improved structure navigation for XML UI snapshots** <br />
+![Structure navigation](docs/StructureNavigation.png)
+
+If for some reason `Locate Element` tool window is not enabled, you can open it from the View menu: <br />
+![View &gt; Tool windows &gt; Locate Element](docs/MenuLocation.png)
+
+At the moment
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+UI Surveyor plugin provides tools helping work with Android UI Snapshot in XML format and UIAutomator selectors.
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+Those tools are:
+* `Locate Element` tool window for **evaluating** element selectors against a currently open XML UI snapshots
+* Basic syntax highlighting and autocomplete for UIAutomator selectors (as Java code)
+* Improved structure navigation for UI snapshots
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+All trademarks are the property of their respective owners. All company, product and service names
+used in this plugin description are for identification purposes only. Use of these names or brands does not imply endorsement.
 <!-- Plugin description end -->
 
 ## Installation
