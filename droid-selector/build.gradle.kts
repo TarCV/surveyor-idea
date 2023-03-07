@@ -10,7 +10,6 @@ plugins {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("org.slf4j:slf4j-log4j12:1.7.30")
 
     implementation(project(":library"))
     implementation(project(":droid-stubs"))
