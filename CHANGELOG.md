@@ -4,4 +4,6 @@
 
 ## [Unreleased]
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- UISelector and BySelector evaluation
+- Selector autocomplete & highlighting as Java code
+- Structure navigation for UI snapshots
