@@ -44,9 +44,7 @@ jobs:
           EOM
           )"
           
-          CHANGELOG="${CHANGELOG//'%'/'%25'}"
-          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
-          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+          CHANGELOG="$(echo -n "$CHANGELOG" | base64 -w 0)"
 
           echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
 
@@ -56,6 +54,7 @@ jobs:
         env:
           CHANGELOG: ${{ steps.properties.outputs.changelog }}
         run: |
+          CHANGELOG="$(echo "$CHANGELOG" | base64 --decode)"
           ./gradlew patchChangelog --release-note="$CHANGELOG"
 
       # Publish the plugin to the Marketplace
