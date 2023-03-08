@@ -44,9 +44,7 @@ jobs:
           EOM
           )"
           
-          CHANGELOG="${CHANGELOG//'%'/'%25'}"
-          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
-          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+          CHANGELOG="$(echo -n "$CHANGELOG" | base64 -w 0)"
 
           echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
 
@@ -56,16 +54,19 @@ jobs:
         env:
           CHANGELOG: ${{ steps.properties.outputs.changelog }}
         run: |
+          CHANGELOG="$(echo "$CHANGELOG" | base64 --decode)"
           ./gradlew patchChangelog --release-note="$CHANGELOG"
 
       # Publish the plugin to the Marketplace
-      - name: Publish Plugin
+      # - name: Publish Plugin
+      # TODO: Revert back to publishing the plugin
+      - name: Build release version of plugin
         env:
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
           CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
-        run: ./gradlew publishPlugin
+        run: ./gradlew buildPlugin
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
