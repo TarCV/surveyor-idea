@@ -1,8 +1,8 @@
 # UI Surveyor plugin for IDEA
 
 ![Build](https://github.com/TarCV/surveyor-idea/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/21218-ui-surveyor.svg)](https://plugins.jetbrains.com/plugin/21218-ui-surveyor)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/21218-ui-surveyor.svg)](https://plugins.jetbrains.com/plugin/21218-ui-surveyor)
 
 ## Description
 
