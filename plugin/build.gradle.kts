@@ -50,6 +50,7 @@ changelog {
     groups.set(emptyList())
     path.set("$rootDir/CHANGELOG.md")
     repositoryUrl.set(properties("pluginRepositoryUrl"))
+    version.set(project.version.toString())
 }
 
 

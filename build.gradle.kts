@@ -21,9 +21,6 @@ plugins {
     id("com.stepango.aar2jar") version "0.6" apply false
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
-
 // Configure root project
 tasks {
     wrapper {
@@ -32,6 +29,9 @@ tasks {
 }
 
 allprojects {
+    group = properties("pluginGroup")
+    version = properties("pluginVersion")
+
     repositories {
         mavenCentral()
         maven {
