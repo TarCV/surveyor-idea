@@ -31,14 +31,8 @@ jobs:
     outputs:
       version: ${{ steps.properties.outputs.version }}
       changelog: ${{ steps.properties.outputs.changelog }}
+      filename: ${{ steps.artifact.outputs.filename }}
     steps:
-
-      # Free GitHub Actions Environment Disk Space
-      - name: Maximize Build Space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
 
       # Check out current repository
       - name: Fetch Sources
@@ -72,9 +66,6 @@ jobs:
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          # prepare list of IDEs for Plugin Verifier:
-          ./gradlew listProductsReleases
-
       # Run tests
       # TODO: Run tests against latest EAPs of supported IDEs (with cron)
       - name: Run Tests
@@ -95,28 +86,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           directory: ${{ github.workspace }}
-
-      # Cache Plugin Verifier IDEs
-      - name: Setup Plugin Verifier IDEs Cache
-        uses: actions/cache@v3.3.1
-        with:
-          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
-          key: plugin-verifier-${{ hashFiles('plugin/build/listProductsReleases.txt') }}
-
-      # Run Verify Plugin task and IntelliJ Plugin Verifier tool
-      # TODO: Run verification against latest EAPs of supported IDEs (with cron)
-      - name: Run Plugin Verification tasks
-        run: ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
-
-      # Collect Plugin Verifier Result
-      - name: Collect Plugin Verifier Result
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: pluginVerifier-result
-          path: |
-            ${{ github.workspace }}/build/reports/pluginVerifier
-            ${{ github.workspace }}/**/build/reports/pluginVerifier
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
@@ -139,6 +108,86 @@ jobs:
         with:
           name: ${{ steps.artifact.outputs.filename }}
           path: ./plugin/build/distributions/content/*/*
+
+      - name: Collect Dependency Verification Errors
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.job }}-dependency-verification-errors
+          path: |
+            ${{ github.workspace }}/build/reports/dependency-verification
+            ${{ github.workspace }}/**/build/reports/dependency-verification
+
+  verify:
+    name: Verify plugin
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+
+      # Free GitHub Actions Environment Disk Space
+      - name: Maximize Build Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+
+      - name: Download plugin
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build.outputs.filename }}
+          working-directory: plugin-artifact
+
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+
+      # Setup Java 11 environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 11
+
+        # Cache Plugin Verifier IDEs
+      - name: Prepare
+        run: |
+          # it's unknown what IDEs Verifier will check in advance (as version upper bound not set),
+          # so verification is incompatible with it
+          rm gradle/verification-metadata.xml
+
+          # prepare list of IDEs for Plugin Verifier:
+          ./gradlew listProductsReleases
+      - name: Setup Plugin Verifier IDEs Cache
+        uses: actions/cache@v3.3.1
+        with:
+          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
+          key: plugin-verifier-${{ hashFiles('plugin/build/listProductsReleases.txt') }}
+
+      # Run Verify Plugin task and IntelliJ Plugin Verifier tool
+      # TODO: Run verification against latest EAPs of supported IDEs (with cron)
+      - name: Run Plugin Verification tasks
+        run: |
+          ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }} \
+            -PpluginDistributionFile=plugin-artifact/*
+
+      # Collect Plugin Verifier Result
+      - name: Collect Plugin Verifier Result
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: pluginVerifier-result
+          path: |
+            ${{ github.workspace }}/build/reports/pluginVerifier
+            ${{ github.workspace }}/**/build/reports/pluginVerifier
+
+      - name: Collect Dependency Verification Errors
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.job }}-dependency-verification-errors
+          path: |
+            ${{ github.workspace }}/build/reports/dependency-verification
+            ${{ github.workspace }}/**/build/reports/dependency-verification
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered

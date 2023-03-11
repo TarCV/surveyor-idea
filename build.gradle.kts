@@ -57,6 +57,10 @@ allprojects {
         withType<KotlinCompile> {
             kotlinOptions.apiVersion = properties("kotlinApiVersion").get()
         }
+        withType<AbstractArchiveTask>().configureEach {
+            isPreserveFileTimestamps = false
+            isReproducibleFileOrder = true
+        }
     }
 }
 subprojects {

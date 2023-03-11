@@ -38,6 +38,8 @@ dependencies {
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
+    intellijRepository.set(properties("NIX_GRADLE_DEPS_1").map { "file://${it}" }.orNull)
+
     pluginName.set(properties("pluginName"))
     version.set(properties("platformVersion"))
     type.set(properties("platformType"))
