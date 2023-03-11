@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-fun properties(key: String) = project.findProperty(key).toString()
+fun properties(key: String) = providers.gradleProperty(key)
+fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     // Java support
@@ -24,13 +25,13 @@ plugins {
 // Configure root project
 tasks {
     wrapper {
-        gradleVersion = properties("gradleVersion")
+        gradleVersion = properties("gradleVersion").get()
     }
 }
 
 allprojects {
-    group = properties("pluginGroup")
-    version = properties("pluginVersion")
+    group = properties("pluginGroup").get()
+    version = properties("pluginVersion").get()
 
     repositories {
         mavenCentral()
@@ -54,7 +55,7 @@ allprojects {
     tasks {
         // Set the JVM compatibility versions
         withType<KotlinCompile> {
-            kotlinOptions.apiVersion = properties("kotlinApiVersion")
+            kotlinOptions.apiVersion = properties("kotlinApiVersion").get()
         }
     }
 }
@@ -90,10 +91,10 @@ subprojects {
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
 qodana {
-    cachePath.set(file(".qodana").canonicalPath)
-    reportPath.set(file("build/reports/inspections").canonicalPath)
+    cachePath.set(provider { file(".qodana").canonicalPath })
+    reportPath.set(provider { file("build/reports/inspections").canonicalPath })
     saveReport.set(true)
-    showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
+    showReport.set(environment("QODANA_SHOW_REPORT").map { it.toBoolean() }.getOrElse(false))
 }
 
 // Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration

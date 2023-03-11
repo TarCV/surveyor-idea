@@ -24,10 +24,11 @@ import com.intellij.ui.content.ContentFactory
 
 
 class LocateToolWindowFactory: ToolWindowFactory {
+    private val contentFactory = ContentFactory.SERVICE.getInstance()
+
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val locateToolWindow = LocateToolWindow(project)
-        val contentFactory = ContentFactory.SERVICE.getInstance()
-        val content = contentFactory.createContent(locateToolWindow.getContent(), "", false)
+        val content = contentFactory.createContent(locateToolWindow.getContent(), null, false)
         toolWindow.contentManager.addContent(content)
     }
 }
