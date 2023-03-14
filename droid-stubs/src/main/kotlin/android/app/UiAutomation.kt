@@ -1,7 +1,7 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
- *  This package (i.e. directory and its contents) is part of UI Surveyor.
+ *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -23,8 +23,8 @@ import android.view.accessibility.AccessibilityWindowInfo
 import com.github.tarcv.testingteam.surveyor.Node
 
 @Suppress("UNUSED_PARAMETER", "unused")
-class UiAutomation(rootNode: Node) {
-    private val rootNode = AccessibilityNodeInfo(rootNode)
+class UiAutomation(rootNodes: List<Node>) {
+    private val rootNodes = rootNodes.map{ AccessibilityNodeInfo(it) }
 
     var onAccessibilityEventListener: OnAccessibilityEventListener? = null
     var serviceInfo: AccessibilityServiceInfo = AccessibilityServiceInfo()
@@ -37,7 +37,7 @@ class UiAutomation(rootNode: Node) {
     }
 
     fun getRootInActiveWindow(): AccessibilityNodeInfo {
-        return rootNode
+        return rootNodes.last()
     }
 
     fun getWindows(): List<AccessibilityWindowInfo> {

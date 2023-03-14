@@ -37,12 +37,12 @@ jobs:
 
   testUI:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 30
+    timeout-minutes: 60
     needs: getPlugin
     strategy:
       fail-fast: false
       matrix:
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        os: [ macos-13, ubuntu-latest, windows-latest ]
         ideDate: # Up to 2 versions per year, initial major ver release date should be not older than a year
           #          - IC-LATEST_EAP # TODO: Run this variant weekly
           - IC-2023.3.2 # released on 20.12.2023, major from 06.12.2023
@@ -62,7 +62,7 @@ jobs:
               sleep 10
               ./gradlew :plugin-test:test
             reportName: ui-tests-linux
-          - os: macos-latest
+          - os: macos-13
             runTests: |
               ./gradlew :plugin-test:test
             reportName: ui-tests-mac
@@ -83,12 +83,20 @@ jobs:
         with:
           script: return "${{ matrix.ideDate }}".split("-", 2)[1]
           result-encoding: string
-      - name: Setup FFmpeg
+      - name: Setup FFmpeg via action
         uses: FedericoCarboni/setup-ffmpeg@v2
         with:
           # Not strictly necessary, but it may prevent rate limit
           # errors especially on GitHub-hosted macos machines.
           token: ${{ secrets.GITHUB_TOKEN }}
+
+# Uncomment when migrating to version 14
+#      - name: Install homebrew (for FFmpeg)
+#        uses: Homebrew/actions/setup-homebrew@e05416b42376bcda221f9102c4f595f4994016be
+#        if: ${{ startsWith(matrix.os,  'macos-') }}
+#      - name: Setup FFmpeg via homebrew
+#        if: ${{ startsWith(matrix.os,  'macos-') }}
+#        run: brew install ffmpeg
 
       # Setup Java environment for the next steps
       - name: Setup Java

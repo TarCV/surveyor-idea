@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
@@ -53,6 +51,7 @@ allprojects {
             url = uri("https://jitpack.io")
             content {
                 // Download only these groups from the repository
+                includeGroup("com.github.TarCV")
                 includeGroup("com.github.TarCV.beanshell")
             }
         }
@@ -60,10 +59,6 @@ allprojects {
     }
 
     tasks {
-        // Set the JVM compatibility versions
-        withType<KotlinCompile> {
-            kotlinOptions.apiVersion = properties("kotlinApiVersion").get()
-        }
         withType<AbstractArchiveTask>().configureEach {
             // Settings for reproducibility
             isPreserveFileTimestamps = false
@@ -110,6 +105,11 @@ subprojects {
     }
 
     project.afterEvaluate {
+        dependencies {
+            implementation(platform(libs.junitBom))
+            implementation(platform(libs.kotlinBom))
+        }
+
         publishing {
             publications {
                 artifacts {

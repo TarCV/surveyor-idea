@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -18,8 +18,8 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyor.*
-import com.github.tarcv.testingteam.surveyor.Properties
-import com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Hierarchy
+import com.github.tarcv.testingteam.surveyoridea.filetypes.XmlFileType
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.UiPsiElementReference
 import com.github.tarcv.testingteam.surveyoridea.services.LocateToolHoldingService
 import com.intellij.lang.xml.XMLLanguage
 import com.intellij.notification.NotificationType
@@ -28,10 +28,10 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.editor.ScrollType
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.TextEditor
+import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.xml.XmlFile
-import com.intellij.util.xml.DomManager
-import java.util.*
+import java.util.IdentityHashMap
 import com.intellij.openapi.diagnostic.Logger as IdeaLogger
 
 class LocateAction: AnAction() {
@@ -43,8 +43,13 @@ class LocateAction: AnAction() {
         val project = getEventProject(e)
         val service = project?.getService(LocateToolHoldingService::class.java) ?: return
         val locator = service.getCurrentLocator() ?: return
+        val locatorType = service.locatorType ?: return project.notify(
+            "Can't locate an element when no locator type is selected",
+            NotificationType.ERROR
+        )
 
-        val (editor, xmlFile) = FileEditorManager.getInstance(project).selectedEditors
+        // TODO: Check if locatorType supports current UI snapshot type
+        val (editor, xmlFile: PsiFile) = FileEditorManager.getInstance(project).selectedEditors
             .asSequence()
             .mapNotNull { editor ->
                 val virtualFile = editor.file
@@ -56,28 +61,21 @@ class LocateAction: AnAction() {
             }
             .firstOrNull()
             ?: return project.notify(
-                "Can't locate an element when no UI Automator dump is focussed",
+                "Can't locate an element when no UI Automator snapshot is focussed",
                 NotificationType.ERROR
             )
 
-        val uix = DomManager.getDomManager(project).getFileElement(xmlFile, Hierarchy::class.java)
+        val mapping = IdentityHashMap<Node, UiPsiElementReference>()
+        val nodes = XmlFileType::class.sealedSubclasses
+            .firstNotNullOfOrNull { type ->
+                requireNotNull(type.objectInstance)
+                    .tryConvert(project, xmlFile, mapping)
+            }
+            ?.takeIf { it.isNotEmpty() }
             ?: return project.notify(
-                "Can't locate an element when no UI Automator dump is focussed",
+                "File in the active editor is empty or not of a known snapshot type",
                 NotificationType.ERROR
             )
-
-        val mapping = IdentityHashMap<Node, com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node>()
-        val nodes = uix.rootElement.nodes
-            .map { convert(it, mapping) }
-
-        val rootNode = when {
-            nodes.size > 1 -> Node(null, emptyMap(), nodes, true)
-            nodes.size == 1 -> nodes[0]
-            else -> return project.notify(
-                "Can't locate an element when the focussed dump has multiple root nodes",
-                NotificationType.ERROR
-            )
-        }
 
         val evaluateResult = try {
             Logger.apply {
@@ -85,21 +83,26 @@ class LocateAction: AnAction() {
                 onInfoMessage = logger::info
             }
 
-            Evaluator().evaluate(rootNode, locator)
+            locatorType.evaluate(nodes, locator)
                 ?: return project.notify(
                     "No elements were found",
                     NotificationType.WARNING
                 )
         } catch (e: InvalidLocatorException) {
             return project.notify(
-                "There are some mistakes in the locator",
+                "There are some mistakes in the locator: ${e.message}",
+                NotificationType.WARNING
+            )
+        } catch (e: InvalidSnapshotException) {
+            return project.notify(
+                "There are some issues with the snapshot: ${e.message}",
                 NotificationType.WARNING
             )
         }
 
         val psiNode = evaluateResult
             .let { mapping[it] }
-            ?.xmlElement
+            ?.psiElement
             ?: return project.notify(
                 "Internal error when selecting an element found",
                 NotificationType.ERROR
@@ -110,41 +113,5 @@ class LocateAction: AnAction() {
             caretModel.moveToOffset(psiNode.textOffset, false)
             scrollingModel.scrollToCaret(ScrollType.MAKE_VISIBLE)
         }
-    }
-
-    private fun convert(
-        node: com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node,
-        mapping: MutableMap<Node, com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node>
-    ): Node {
-        val props: Map<Properties<*>, Any?> = listOf(
-            Properties.IS_CHECKABLE to node.checkable.value,
-            Properties.IS_CHECKED to node.checked.value,
-            Properties.CLASS_NAME to node.clazz.value,
-            Properties.IS_CLICKABLE to node.clickable.value,
-            Properties.ACCESSIBILITY_DESCRIPTION to node.contentDesc.value,
-            Properties.IS_ENABLED to node.enabled.value,
-            Properties.IS_FOCUSABLE to node.focusable.value,
-            Properties.IS_FOCUSED to node.focused.value,
-            Properties.IS_LONG_CLICKABLE to node.longClickable.value,
-            Properties.PACKAGE_NAME to node.`package`.value,
-            Properties.IS_PASSWORD_FIELD to node.password.value,
-            Properties.RESOURCE_ID to node.resourceId.value,
-            Properties.IS_SCROLLABLE to node.scrollable.value,
-            Properties.IS_SELECTED to node.selected.value,
-            Properties.TEXT to node.text.value,
-        ).filter { it.second != null }.toMap()
-
-        val out = Node(
-            null,
-            props,
-            node.nodes.map { convert(it, mapping) },
-            true // TODO
-        ).apply {
-            finalizeChildren()
-        }
-
-        mapping[out] = node
-
-        return out
     }
 }

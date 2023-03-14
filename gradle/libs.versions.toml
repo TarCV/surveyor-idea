@@ -5,14 +5,15 @@ changelog = "2.1.2"
 gradleIntelliJPlugin = "1.15.0"
 jqwik = "1.5.0"
 junit = "5.7.1"
-kotlin = "1.9.10"
+kotlin = "1.9.20"
 kover = "0.7.3"
 qodana = "0.1.13"
 
 # libraries
 beanshell = "5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c"
+u4jregex = "67352f493146a4436c340c294a3f680a3281dde3"
 junitVideo = "2.0"
-remoteRobot = "0.11.20"
+remoteRobot = "0.11.22"
 uiautomator = "2.2.0"
 
 [plugins]
@@ -25,12 +26,15 @@ qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
 
 [libraries]
 beanshell = { group = "com.github.TarCV.beanshell", name = "bsh", version.ref = "beanshell" }
+u4jregex = { group = "com.github.TarCV", name = "u4j-regex", version.ref = "u4jregex" }
 jqwik = { group = "net.jqwik", name = "jqwik", version.ref = "jqwik" }
-junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api" }
 junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine"}
 junitLauncher = { group =  "org.junit.platform", name =  "junit-platform-launcher"}
+junitParams = { group = "org.junit.jupiter", name = "junit-jupiter-params"}
 junitVideo = { group = "com.automation-remarks", name = "video-recorder-junit5", version.ref = "junitVideo" }
+kotlinBom = { group = 'org.jetbrains.kotlin', name = 'kotlin-bom', version.ref = 'kotlin' }
 remoteRobot = { group = "com.intellij.remoterobot", name = "remote-robot", version.ref = "remoteRobot" }
 remoteRobotFixtures = { group = "com.intellij.remoterobot", name = "remote-fixtures", version.ref = "remoteRobot" }
 remoteRobotLauncher = { group = "com.intellij.remoterobot", name = "ide-launcher", version.ref = "remoteRobot" }

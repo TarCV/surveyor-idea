@@ -1,0 +1,1578 @@
+--- a/prefix/GSPredicate.kt	1970-01-01 00:00:00.000000000 +0000
++++ b/prefix/GSPredicate.kt	1970-01-01 00:00:00.000000000 +0000
+@@ -10,23 +10,19 @@
+    Boston, MA 02110 USA.
+ */
++package com.github.tarcv.testingteam.surveyor.ipredicate
++import com.github.tarcv.testingteam.surveyor.ipredicate.NSString.Companion.toNSString
++import java.lang.IllegalArgumentException
++import java.lang.IllegalStateException
++import java.lang.Math.pow
++
+ val NSObject._cVarArgEncoding: List<Int>
+     get() {
+         return listOf(1, 1)
+     }
+ 
+-internal data class Selector(
+-
+-)
+-
+-internal val NSDecimalSeparator: NSString = "\""
+-
+-internal fun isEqual(lhs: AnyObject?, rhs: AnyObject?): Boolean {
+-    return false
+-}
++internal inline fun isEqual(lhs: AnyObject?, rhs: AnyObject?): Boolean = lhs == rhs
+ 
+-internal fun notIsEqual(lhs: AnyObject?, rhs: AnyObject?): Boolean {
+-    return true
+-}
++internal inline fun notIsEqual(lhs: AnyObject?, rhs: AnyObject?): Boolean = lhs != rhs
+ 
+ internal enum class NSComparisonResult(val rawValue: Int) {
+     NS_ORDERED_ASCENDING(rawValue = 0),
+@@ -63,7 +56,7 @@
+             return scanner
+         }
+ 
+-        fun _scanDouble(value: Double, str: NSString): Boolean {
++        fun _scanDouble(value: InOut<Double>, str: NSString): Boolean {
+             //      let myLock:gs_mutex_t = GS_MUTEX_INIT_STATIC
+             var _doubleScanner: NSScanner? = null
+             var ok: Boolean = false
+@@ -82,42 +75,42 @@
+             //      GS_MUTEX_UNLOCK(myLock)
+             return ok
+         }
++    }
+ 
+-        operator fun invoke(aString: NSString?): NSScanner? {
+-            val aString_: NSString = aString ?: "".toNSString()
+-            if (true) {
+-                if (aString == null) {
+-                    NSLog("Scanner initialised with nil string".toNSString())
+-                }
+-                if ((aString_ is NSString) == false) {
+-                    NSLog("Scanner initialised with something not a string".toNSString())
+-                    return null
+-                }
+-                else {
+-                    this._setString(aString = aString_)
+-                    this._charactersToBeSkipped = defaultSkipSet
+-                    _decimal = ".".utf16.first!!
+-                }
++    constructor(aString: String?): this(aString?.toNSString())
++
++    constructor(aString: NSString?) {
++        val aString_: NSString = aString ?: "".toNSString()
++        if (true) {
++            if (aString == null) {
++                NSLog("Scanner initialised with nil string".toNSString())
++            }
++            if ((aString_ is NSString) == false) {
++                throw IllegalArgumentException("Scanner initialised with something not a string")
++            }
++            else {
++                this._setString(aString = aString_)
++                this._charactersToBeSkipped = defaultSkipSet
++                _decimal = ".".utf16.first!!
+             }
+         }
+     }
+ 
+-    private var _string: NSString
++    private lateinit var _string: NSString
+     private var _charactersToBeSkipped: NSCharacterSet? = null
+     private var _locale: Map<NSString, Any>? = null
+-    private var _scanLocation: Int
+-    private var _decimal: UShort
+-    private var _caseSensitive: Boolean
+-    private var _isUnicode: Boolean
+-    private var _internal: AnyObject
++    private var _scanLocation: Int = 0
++    private var _decimal: UShort = 0.toUShort()
++    private var _caseSensitive: Boolean = false
++    private var _isUnicode: Boolean = false
+ 
++    open fun _setString(aString: String?) = _setString(aString?.toNSString())
+     open fun _setString(aString: NSString?) {
+         val aString_: NSString = aString ?: "".toNSString()
+ 
+         _scanLocation = 0
+         _isUnicode = false
+ 
+-        if (aString_ != _string) {
+             var c: (NSString) = (aString_)
+ 
+             //_string = nil
+@@ -133,7 +126,6 @@
+             if ((c != null) == true) {
+                 _isUnicode = true
+             }
+-        }
+     }
+ 
+     open fun isAtEnd(): Boolean {
+@@ -157,7 +149,7 @@
+         return ret
+     }
+ 
+-    open fun _scanInt(value: Int): Boolean {
++    open fun _scanInt(value: InOut<Int>): Boolean {
+         var num: UInt = 0u
+         val limit: UInt = 0xffffffffu / 10u
+         var negative: Boolean = false
+@@ -201,22 +193,22 @@
+             return false
+         }
+ 
+-        if ((value != 0)) {
++        if ((value != null)) {
+             if (overflow || (num > (if (negative) { (UInt.min) } else { (UInt.max) }))) {
+-                value = Int(if (negative) { UInt.min } else { UInt.max })
++                value `=` Int(if (negative) { UInt.min } else { UInt.max })
+             }
+             else if (negative) {
+-                value = -Int(num)
++                value `=` -Int(num)
+             }
+             else {
+-                value = Int(num)
++                value `=` Int(num)
+             }
+         }
+ 
+         return true
+     }
+ 
+-    open fun scanInt(value: Int): Boolean {
++    open fun scanInt(value: InOut<Int>): Boolean {
+         val saveScanLocation: Int = _scanLocation
+ 
+         while (_scanLocation < _string.utf16.count && _charactersToBeSkipped != null && _charactersToBeSkipped!!.characterIsMember(
+@@ -234,7 +226,7 @@
+     }
+ 
+     open fun scanUnsignedLongLong_(
+-        value: ULong,
++        value: InOut<ULong>,
+         radix: UInt,
+         max: ULong,
+         gotDigits: Boolean)
+@@ -300,21 +292,21 @@
+             return false
+         }
+ 
+-        if ((value != UInt(0u))) {
++        if ((value != null)) {
+             if (overflow) {
+-                value = (9223372036854775807u * 2u + 1u)
++                value `=` (9223372036854775807u * 2u + 1u)
+             }
+             else {
+-                value = num
++                value `=` num
+             }
+         }
+ 
+         return true
+     }
+ 
+-    open fun scanRadixUnsignedInt(value: UInt): Boolean {
++    open fun scanRadixUnsignedInt(value: InOut<UInt>): Boolean {
+         var radix: UInt
+-        var tmp: ULong = 0u
++        val tmp = InOut<ULong>()
+         var gotDigits: Boolean = false
+         val saveScanLocation: Int = _scanLocation
+ 
+@@ -351,11 +343,11 @@
+         }
+ 
+         if (this.scanUnsignedLongLong_(tmp, radix, 0xffffffffu, gotDigits)) {
+-            if (tmp > 0xffffffffu) {
+-                value = 0xffffffffu
++            if (+tmp > 0xffffffffu) {
++                value `=` 0xffffffffu
+             }
+             else {
+-                value = UInt(tmp)
++                value `=` UInt(+tmp)
+             }
+             return true
+         }
+@@ -365,7 +357,7 @@
+         return false
+     }
+ 
+-    open fun scanRadixUnsignedLongLong(value: ULong): Boolean {
++    open fun scanRadixUnsignedLongLong(value: InOut<ULong>): Boolean {
+         var radix: UInt
+         var gotDigits: Boolean = false
+         val saveScanLocation: Int = _scanLocation
+@@ -411,9 +403,9 @@
+         return false
+     }
+ 
+-    open fun scanHexInt(value: UInt): Boolean {
++    open fun scanHexInt(value: InOut<UInt>): Boolean {
+         val saveScanLocation: Int = _scanLocation
+-        var tmp: ULong = 0u
++        val tmp = InOut<ULong>()
+ 
+         while (_scanLocation < _string.utf16.count && _charactersToBeSkipped != null && _charactersToBeSkipped!!.characterIsMember(
+             _string.utf16[_string.utf16.index(_string.utf16.startIndex, _scanLocation)])) {
+@@ -439,7 +431,7 @@
+         }
+ 
+         if (this.scanUnsignedLongLong_(tmp, 16u, 0xffffffffu, false)) {
+-            value = UInt(tmp)
++            value `=` UInt(+tmp)
+             return true
+         }
+ 
+@@ -448,7 +440,7 @@
+         return false
+     }
+ 
+-    open fun scanLongLong(value: Long): Boolean {
++    open fun scanLongLong(value: InOut<Long>): Boolean {
+         var num: ULong = 0u
+         val limit: ULong = (9223372036854775807u * 2u + 1u) / 10u
+         var negative: Boolean = false
+@@ -504,21 +496,21 @@
+             return false
+         }
+ 
+-        if ((value != Int64(0))) {
++        if ((value != null)) {
+             if (negative) {
+-                if (overflow || (num > (UInt64(-9223372036854775807 - 1)))) {
+-                    value = (-9223372036854775807 - 1)
++                if (overflow || (num > (UInt64_(-9223372036854775807 - 1)))) {
++                    value `=` (-9223372036854775807 - 1)
+                 }
+                 else {
+-                    value = -Int64(num)
++                    value `=` -Int64(num)
+                 }
+             }
+             else {
+                 if (overflow || (num > UInt64(9223372036854775807u))) {
+-                    value = 9223372036854775807
++                    value `=` 9223372036854775807
+                 }
+                 else {
+-                    value = Int64(num)
++                    value `=` Int64(num)
+                 }
+             }
+         }
+@@ -526,7 +518,7 @@
+         return true
+     }
+ 
+-    open fun scanHexLongLong(value: ULong): Boolean {
++    open fun scanHexLongLong(value: InOut<ULong>): Boolean {
+         val saveScanLocation: Int = _scanLocation
+ 
+         while (_scanLocation < _string.utf16.count && _charactersToBeSkipped != null && _charactersToBeSkipped!!.characterIsMember(
+@@ -562,13 +554,13 @@
+     }
+ 
+     open fun scanDecimal(value: Decimal): Boolean {
+-        println("Fatal error: ${"scanDecimal is not implemented"}".toNSString()); exitProcess(-1)
++        throw NotImplementedError("Fatal error: ${"scanDecimal is not implemented"}");
+         return false
+     }
+ 
+-    open fun scanDouble(value: Double): Boolean {
++    open fun scanDouble(value: InOut<Double>): Boolean {
+         var c: UShort = 0u
+-        var mantissa: List<UShort>
++        var mantissa = mutableListOf<UShort>()
+         var ptr: Int
+         var d: Int
+         var result: Double
+@@ -634,10 +626,13 @@
+                     }
+                 }
+                 else if (mantissaLength < 19) {
+-                    mantissa[mantissaLength] = c
++                    require(mantissa.size == mantissaLength)
++                    mantissa.add(c)
+                     mantissaLength += 1
+                 }
+             }
++
++            _scanLocation += 1
+         }
+ 
+         if (false == mantissaDigit) {
+@@ -769,34 +764,34 @@
+             result *= e
+         }
+ 
+-        if (0.0 != value) {
++        if (null != value) {
+             if (true == negativeMantissa) {
+-                value = -result
++                value `=` -result
+             }
+             else {
+-                value = result
++                value `=` result
+             }
+         }
+ 
+         return true
+     }
+ 
+-    open fun scanFloat(value: Float): Boolean {
+-        var num: Double
++    open fun scanFloat(value: InOut<Float>): Boolean {
++        var num = InOut<Double>()
+ 
+         if (value == null) {
+             return this.scanDouble(InOut())
+         }
+ 
+         if (this.scanDouble(num)) {
+-            value = num.toFloat()
++            value `=` (+num).toFloat()
+             return true
+         }
+ 
+         return false
+     }
+ 
+-    open fun scanCharactersFromSet(aSet: NSCharacterSet, value: NSString): Boolean {
++    open fun scanCharactersFromSet(aSet: NSCharacterSet, value: InOut<NSString>): Boolean {
+         val saveScanLocation: Int = _scanLocation
+ 
+         while (_scanLocation < _string.utf16.count && _charactersToBeSkipped != null && _charactersToBeSkipped!!.characterIsMember(
+@@ -827,9 +822,9 @@
+             }
+ 
+             if (_scanLocation != start) {
+-                if (value != "\0".toNSString()) {
++                if (value != null) {
+                     var range: Range<StringUTF16ViewIndex> = _string.utf16.index(_string.utf16.startIndex, start) until _string.utf16.index(_string.utf16.startIndex, (_scanLocation))
+-                    value = _string.substring(range)
++                    value `=` _string.substring(range)
+                 }
+                 return true
+             }
+@@ -840,7 +835,7 @@
+         return false
+     }
+ 
+-    open fun scanUpToCharactersFromSet(aSet: NSCharacterSet, value: NSString): Boolean {
++    open fun scanUpToCharactersFromSet(aSet: NSCharacterSet, value: InOut<NSString>): Boolean {
+         val saveScanLocation: Int = _scanLocation
+         var start: Int
+ 
+@@ -879,13 +874,13 @@
+ 
+         if ((value != null)) {
+             var range: Range<StringUTF16ViewIndex> = _string.utf16.index(_string.utf16.startIndex, start) until _string.utf16.index(_string.utf16.startIndex, (_scanLocation - start))
+-            value = _string.substring(range)
++            value `=` _string.substring(range)
+         }
+ 
+         return true
+     }
+ 
+-    open fun scanString(string: NSString, value: NSString): Boolean {
++    open fun scanString(string: NSString, value: InOut<NSString>): Boolean {
+         val saveScanLocation: Int = _scanLocation
+ 
+         while (_scanLocation < _string.utf16.count && _charactersToBeSkipped != null && _charactersToBeSkipped!!.characterIsMember(
+@@ -905,7 +900,7 @@
+ 
+         range = _string.range(
+             string,
+-            if (_caseSensitive) { NSString.CompareOptions() } else { NSString.CompareOptions.caseInsensitive },
++            if (_caseSensitive) { NSString.CompareOptions() } else { StringCompareOption.caseInsensitive.toOptions() },
+             range)!!
+ 
+         if (range.isEmpty) {
+@@ -914,7 +909,7 @@
+         }
+ 
+         if ((value != null)) {
+-            value = _string.substring(range)
++            value `=` _string.substring(range)
+         }
+ 
+         _scanLocation += Int(range.upperBound.utf16Offset(_string) - range.lowerBound.utf16Offset(_string))
+@@ -922,7 +917,7 @@
+         return true
+     }
+ 
+-    open fun scanUpToString(string: NSString, value: NSString): Boolean {
++    open fun scanUpToString(string: NSString, value: InOut<NSString>): Boolean {
+         val saveScanLocation: Int = _scanLocation
+ 
+         while (_scanLocation < _string.utf16.count && _charactersToBeSkipped != null && _charactersToBeSkipped!!.characterIsMember(
+@@ -935,9 +930,9 @@
+         }
+ 
+         var range: Range<StringUTF16ViewIndex> = _string.utf16.index(_string.utf16.startIndex, _scanLocation) until _string.utf16.index(_string.utf16.startIndex, _string.utf16.count)
+-        var found: IntRange? = _string.range(
++        var found = _string.range(
+             string,
+-            if (_caseSensitive) { NSString.CompareOptions() } else { NSString.CompareOptions.caseInsensitive },
++            if (_caseSensitive) { NSString.CompareOptions() } else { StringCompareOption.caseInsensitive.toOptions() },
+             range)
+ 
+         if ((found?.isEmpty == false)) {
+@@ -952,7 +947,7 @@
+         }
+ 
+         if ((value != null)) {
+-            value = _string.substring(range)
++            value `=` _string.substring(range)
+         }
+ 
+         _scanLocation += Int(range.upperBound.utf16Offset(_string.utf16) - range.lowerBound.utf16Offset(_string.utf16))
+@@ -1025,7 +1020,7 @@
+         return false
+     }
+ 
+-    open fun scanInteger(value: Int): Boolean {
++    open fun scanInteger(value: InOut<Int>): Boolean {
+         return this.scanInt(value)
+     }
+ }
+@@ -1082,8 +1077,10 @@
+ 
+ internal val evaluatedObjectExpression: NSExpression = GSEvaluatedObjectExpression()
+ 
+-internal open class NSPredicate: NSObject() {
++abstract class NSPredicate: NSObject(), HasDescription {
+     companion object {
++        
++        fun predicateWithFormat(format: NSString, vararg args: AnyObject) = predicateWithFormat(format, args.toList())
+         fun predicateWithFormat(format: NSString, args: List<AnyObject>): NSPredicate {
+             var s: GSPredicateScanner
+             var p: NSPredicate
+@@ -1104,34 +1101,22 @@
+         }
+     }
+ 
+-    open fun evaluateWithObject(`object`: AnyObject): Boolean {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-        return false
+-    }
++    abstract fun evaluateWithObject(`object`: AnyObject): Boolean
+ 
+-    open fun description(): NSString {
++    override fun description(): NSString {
+         return this.predicateFormat()
+     }
+ 
+-    open fun predicateFormat(): NSString {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
++    abstract fun predicateFormat(): NSString
+ 
+     open fun predicateWithSubstitutionVariables(variables: Map<NSString, AnyObject>): NSPredicate {
+-        return (this.copy()) as NSPredicate
++        return (this.javaClass.getConstructor().newInstance()) as NSPredicate
+     }
+ 
+     open fun evaluateWithObject(`object`: AnyObject, variables: Map<NSString, AnyObject>): Boolean {
+         return this.predicateWithSubstitutionVariables(variables).evaluateWithObject(`object` = `object`)
+     }
+ 
+-    open fun classForCoder(): AnyClass {
+-        return NSPredicate.this
+-    }
+-
+-    constructor() {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+ }
+ 
+ internal open class GSTruePredicate: NSPredicate() {
+@@ -1140,7 +1125,7 @@
+     }
+ 
+     override open fun predicateFormat(): NSString {
+-        return "TRUEPREDICATE"
++        return "TRUEPREDICATE".toNSString()
+     }
+ }
+ 
+@@ -1150,12 +1135,21 @@
+     }
+ 
+     override open fun predicateFormat(): NSString {
+-        return "FALSEPREDICATE"
++        return "FALSEPREDICATE".toNSString()
+     }
+ }
+ 
+-internal open class NSCompoundPredicate: NSPredicate() {
++internal sealed abstract class NSCompoundPredicate(type: NSCompoundPredicateType, list: List<NSPredicate>):
++    NSPredicate() {
+     companion object {
++        operator fun invoke(type: NSCompoundPredicateType, list: List<NSPredicate>): NSCompoundPredicate {
++            return when(type) {
++                NSCompoundPredicateType.NS_OR_PREDICATE_TYPE -> GSOrCompoundPredicate(type, list)
++                NSCompoundPredicateType.NS_NOT_PREDICATE_TYPE -> GSNotCompoundPredicate(type, list)
++                NSCompoundPredicateType.NS_AND_PREDICATE_TYPE -> GSAndCompoundPredicate(type, list)
++            }
++        }
++
+         fun andPredicateWithSubpredicates(list: List<NSPredicate>): NSPredicate {
+             return (GSAndCompoundPredicate(NSCompoundPredicateType.NS_AND_PREDICATE_TYPE, list))
+         }
+@@ -1171,18 +1165,13 @@
+         }
+     }
+ 
+-    private var _type: NSCompoundPredicateType
+-    open var _subs: List<NSPredicate>
++    private var _type: NSCompoundPredicateType = type
++    open var _subs: List<NSPredicate> = list.toMutableList()
+ 
+     open fun compoundPredicateType(): NSCompoundPredicateType {
+         return _type
+     }
+ 
+-    constructor(type: NSCompoundPredicateType, list: List<NSPredicate>) {
+-        _type = type
+-        _subs = list.toMutableList()
+-    }
+-
+     open fun subpredicates(): List<NSPredicate> {
+         return _subs
+     }
+@@ -1210,22 +1199,11 @@
+ 
+         return (p)
+     }
+-
+-    constructor() {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+ }
+ 
+ internal open class GSAndCompoundPredicate(type: NSCompoundPredicateType, list: List<NSPredicate>): NSCompoundPredicate(type, list) {
+-    constructor(
+-        type: NSCompoundPredicateType,
+-        subpredicates: List<NSPredicate>)
+-        : super(type = type, subpredicates = subpredicates)
+-    {
+-    }
+-
+     override open fun evaluateWithObject(`object`: AnyObject): Boolean {
+-        var e: IndexingIterator<NSPredicate> = _subs.makeIterator()
++        var e = _subs.makeIterator()
+         while (true) {
+             val p: NSPredicate? = e.next() as? NSPredicate
+             if (p != null) {
+@@ -1241,8 +1219,8 @@
+     }
+ 
+     override open fun predicateFormat(): NSString {
+-        var fmt: NSString = ""
+-        var e: IndexingIterator<NSPredicate> = _subs.makeIterator()
++        var fmt: NSString = "".toNSString()
++        var e = _subs.makeIterator()
+         var cnt: Int = 0
+ 
+         while (true) {
+@@ -1275,7 +1253,7 @@
+ 
+ internal open class GSOrCompoundPredicate(type: NSCompoundPredicateType, list: List<NSPredicate>): NSCompoundPredicate(type, list) {
+     override open fun evaluateWithObject(`object`: AnyObject): Boolean {
+-        var e: IndexingIterator<NSPredicate> = _subs.makeIterator()
++        var e = _subs.makeIterator()
+         while (true) {
+             val p: NSPredicate? = e.next() as? NSPredicate
+             if (p != null) {
+@@ -1291,8 +1269,8 @@
+     }
+ 
+     override open fun predicateFormat(): NSString {
+-        var fmt: NSString = ""
+-        var e: IndexingIterator<NSPredicate> = _subs.makeIterator()
++        var fmt: NSString = "".toNSString()
++        var e = _subs.makeIterator()
+ 
+         while (true) {
+             val sub: NSPredicate? = e.next() as? NSPredicate
+@@ -1314,12 +1292,6 @@
+ }
+ 
+ internal open class GSNotCompoundPredicate(type: NSCompoundPredicateType, list: List<NSPredicate>): NSCompoundPredicate(type, list) {
+-    constructor(
+-        type: NSCompoundPredicateType,
+-        subpredicates: List<NSPredicate>)
+-        : super(type = type, subpredicates = subpredicates)
+-    {
+-    }
+ 
+     override open fun evaluateWithObject(`object`: AnyObject): Boolean {
+         val sub: NSPredicate = _subs[0]
+@@ -1335,50 +1307,33 @@
+     }
+ }
+ 
+-internal open class NSComparisonPredicate: NSPredicate() {
++internal open class NSComparisonPredicate(
++    left: NSExpression,
++    right: NSExpression,
++    modifier: NSComparisonPredicateModifier,
++    type: NSPredicateOperatorType,
++    opts: Int): NSPredicate() {
+     companion object {
+         fun predicateWithLeftExpression(
+             left: NSExpression,
+             right: NSExpression,
+-            sel: Selector)
+-            : NSPredicate
+-        {
+-            return (this.init(left, right, sel))
+-        }
+-
+-        fun predicateWithLeftExpression(
+-            left: NSExpression,
+-            right: NSExpression,
+             modifier: NSComparisonPredicateModifier,
+             type: NSPredicateOperatorType,
+             opts: Int)
+             : NSPredicate
+         {
+-            return (this.init(left, right, modifier, type, opts))
++            return (NSComparisonPredicate(left, right, modifier, type, opts))
+         }
+     }
+ 
+     private var _modifier: NSComparisonPredicateModifier
+-    private var _selector: Selector
+     private var _options: Int
+     private var _type: NSPredicateOperatorType
+-    private var _internal: AnyObject
+     private var _left: NSExpression
+     private var _right: NSExpression
+ 
+-    constructor(left: NSExpression, right: NSExpression, sel: Selector) {
+-        _left = (left)
+-        _right = (right)
+-        _selector = sel
+-        _type = NSPredicateOperatorType.NS_CUSTOM_SELECTOR_PREDICATE_OPERATOR_TYPE
+-    }
+ 
+-    constructor(
+-        left: NSExpression,
+-        right: NSExpression,
+-        modifier: NSComparisonPredicateModifier,
+-        type: NSPredicateOperatorType,
+-        opts: Int)
++    init
+     {
+         _left = (left)
+         _right = (right)
+@@ -1391,9 +1346,6 @@
+         return _modifier
+     }
+ 
+-    open fun customSelector(): Selector {
+-        return _selector
+-    }
+ 
+     open fun leftExpression(): NSExpression {
+         return _left
+@@ -1412,39 +1364,39 @@
+     }
+ 
+     override open fun predicateFormat(): NSString {
+-        var modi: NSString = ""
+-        var comp: NSString = "?comparison?"
+-        var opt: NSString = ""
++        var modi: NSString = "".toNSString()
++        var comp: NSString = "?comparison?".toNSString()
++        var opt: NSString = "".toNSString()
+ 
+         when ((_modifier)) {
+             NSComparisonPredicateModifier.NS_DIRECT_PREDICATE_MODIFIER -> {
+             }
+-            NSComparisonPredicateModifier.NS_ANY_PREDICATE_MODIFIER -> modi = "ANY "
+-            NSComparisonPredicateModifier.NS_ALL_PREDICATE_MODIFIER -> modi = "ALL"
+-            else -> modi = "?modifier?"
++            NSComparisonPredicateModifier.NS_ANY_PREDICATE_MODIFIER -> modi = "ANY ".toNSString()
++            NSComparisonPredicateModifier.NS_ALL_PREDICATE_MODIFIER -> modi = "ALL".toNSString()
++            else -> modi = "?modifier?".toNSString()
+         }
+ 
+         when ((_type)) {
+-            NSPredicateOperatorType.NS_LESS_THAN_PREDICATE_OPERATOR_TYPE -> comp = "<"
+-            NSPredicateOperatorType.NS_LESS_THAN_OR_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = "<="
+-            NSPredicateOperatorType.NS_GREATER_THAN_PREDICATE_OPERATOR_TYPE -> comp = ">="
+-            NSPredicateOperatorType.NS_GREATER_THAN_OR_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = ">"
+-            NSPredicateOperatorType.NS_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = "="
+-            NSPredicateOperatorType.NS_NOT_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = "!="
+-            NSPredicateOperatorType.NS_MATCHES_PREDICATE_OPERATOR_TYPE -> comp = "MATCHES"
+-            NSPredicateOperatorType.NS_LIKE_PREDICATE_OPERATOR_TYPE -> comp = "LIKE"
+-            NSPredicateOperatorType.NS_BEGINS_WITH_PREDICATE_OPERATOR_TYPE -> comp = "BEGINSWITH"
+-            NSPredicateOperatorType.NS_ENDS_WITH_PREDICATE_OPERATOR_TYPE -> comp = "ENDSWITH"
+-            NSPredicateOperatorType.NS_IN_PREDICATE_OPERATOR_TYPE -> comp = "IN"
+-            NSPredicateOperatorType.NS_CUSTOM_SELECTOR_PREDICATE_OPERATOR_TYPE -> println("Fatal error: ${"Custom selector predicates are not supported"}".toNSString()); exitProcess(-1)
+-            NSPredicateOperatorType.NS_CONTAINS_PREDICATE_OPERATOR_TYPE -> comp = "CONTAINS"
+-            NSPredicateOperatorType.NS_BETWEEN_PREDICATE_OPERATOR_TYPE -> comp = "BETWEEN"
++            NSPredicateOperatorType.NS_LESS_THAN_PREDICATE_OPERATOR_TYPE -> comp = "<".toNSString()
++            NSPredicateOperatorType.NS_LESS_THAN_OR_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = "<=".toNSString()
++            NSPredicateOperatorType.NS_GREATER_THAN_PREDICATE_OPERATOR_TYPE -> comp = ">=".toNSString()
++            NSPredicateOperatorType.NS_GREATER_THAN_OR_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = ">".toNSString()
++            NSPredicateOperatorType.NS_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = "==".toNSString()
++            NSPredicateOperatorType.NS_NOT_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> comp = "!=".toNSString()
++            NSPredicateOperatorType.NS_MATCHES_PREDICATE_OPERATOR_TYPE -> comp = "MATCHES".toNSString()
++            NSPredicateOperatorType.NS_LIKE_PREDICATE_OPERATOR_TYPE -> comp = "LIKE".toNSString()
++            NSPredicateOperatorType.NS_BEGINS_WITH_PREDICATE_OPERATOR_TYPE -> comp = "BEGINSWITH".toNSString()
++            NSPredicateOperatorType.NS_ENDS_WITH_PREDICATE_OPERATOR_TYPE -> comp = "ENDSWITH".toNSString()
++            NSPredicateOperatorType.NS_IN_PREDICATE_OPERATOR_TYPE -> comp = "IN".toNSString()
++            NSPredicateOperatorType.NS_CUSTOM_SELECTOR_PREDICATE_OPERATOR_TYPE -> throw NotImplementedError("Fatal error: ${"Custom selector predicates are not supported"}")
++            NSPredicateOperatorType.NS_CONTAINS_PREDICATE_OPERATOR_TYPE -> comp = "CONTAINS".toNSString()
++            NSPredicateOperatorType.NS_BETWEEN_PREDICATE_OPERATOR_TYPE -> comp = "BETWEEN".toNSString()
+         }
+ 
+         when ((_options)) {
+-            NSComparisonPredicateOptions.NS_CASE_INSENSITIVE_PREDICATE_OPTION.rawValue -> opt = "[c]"
+-            NSComparisonPredicateOptions.NS_DIACRITIC_INSENSITIVE_PREDICATE_OPTION.rawValue -> opt = "[d]"
+-            NSComparisonPredicateOptions.NS_CASE_INSENSITIVE_PREDICATE_OPTION.rawValue or NSComparisonPredicateOptions.NS_DIACRITIC_INSENSITIVE_PREDICATE_OPTION.rawValue -> opt = "[cd]"
++            NSComparisonPredicateOptions.NS_CASE_INSENSITIVE_PREDICATE_OPTION.rawValue -> opt = "[c]".toNSString()
++            NSComparisonPredicateOptions.NS_DIACRITIC_INSENSITIVE_PREDICATE_OPTION.rawValue -> opt = "[d]".toNSString()
++            NSComparisonPredicateOptions.NS_CASE_INSENSITIVE_PREDICATE_OPTION.rawValue or NSComparisonPredicateOptions.NS_DIACRITIC_INSENSITIVE_PREDICATE_OPTION.rawValue -> opt = "[cd]".toNSString()
+             else -> {
+             }
+         }
+@@ -1463,7 +1415,7 @@
+         right = _right._expressionWithSubstitutionVariables(variables)
+ 
+         if (_type == NSPredicateOperatorType.NS_CUSTOM_SELECTOR_PREDICATE_OPERATOR_TYPE) {
+-            return NSComparisonPredicate.predicateWithLeftExpression(left = left, right = right, sel = _selector)
++            throw NotImplementedError("Custom selector predicates are not supported")
+         }
+         else {
+             return NSComparisonPredicate.predicateWithLeftExpression(
+@@ -1478,10 +1430,38 @@
+     open fun GSICUStringMatchesRegex(
+         string: NSString,
+         regex: NSString,
+-        opts: NSString.CompareOptions)
++        opts: NSStringCompareOptions)
+-        : Boolean
+-    {
+-        return false
++        : Boolean = try { // TODO: Avoid generation of 'return false' in the previous line
++        GSICUStringMatchesRegexThrowing(string, regex, opts)
++    } catch (e: com.github.tarcv.u4jregex.RegexParseException) {
++        false
++    } catch (e: IllegalStateException) {
++        false
++    } catch (e: IllegalArgumentException) {
++        false
++    }
++
++    fun GSICUStringMatchesRegexThrowing(
++        string: NSString,
++        regex: NSString,
++        opts: NSStringCompareOptions): Boolean
++    {
++        if (regex.length == 0) { // C version of regex API errors on empty strings
++            throw IllegalArgumentException()
++        }
++
++        val result: Boolean = false;
++        var flags = mutableListOf<com.github.tarcv.u4jregex.URegexpFlag>();
++
++        flags += com.github.tarcv.u4jregex.URegexpFlag.UREGEX_DOTALL; // . is supposed to recognize newlines
++        if (opts.contains(StringCompareOption.caseInsensitive)) {
++            flags += com.github.tarcv.u4jregex.URegexpFlag.UREGEX_CASE_INSENSITIVE
++        }
++
++        val icuregex = com.github.tarcv.u4jregex.RegexPattern.compile(regex.toString(), flags);
++        val matcher = icuregex.matcher()
++        matcher.reset(string.toString())
++        return matcher.matches()
+     }
+ 
+     open fun doubleValueFor(value: AnyObject): Double {
+@@ -1489,7 +1449,13 @@
+             return (value as NSDate).timeIntervalSinceReferenceDate
+         }
+         else {
+-            return (value as NSNumber).doubleValue
++            return if (value is Boolean) {
++                value.toNSNumber().doubleValue
++            } else if (value is Number) {
++                value.toNSNumber().doubleValue
++            } else {
++                value.toString().toNSNumber().doubleValue
++            }
+         }
+     }
+ 
+@@ -1499,7 +1465,7 @@
+         `object`: AnyObject)
+         : Boolean
+     {
+-        var compareOptions: NSString.CompareOptions = NSString.CompareOptions(0u)
++        var compareOptions = NSString.CompareOptions(0u)
+         var leftIsNil: Boolean
+         var rightIsNil: Boolean
+ 
+@@ -1519,11 +1485,11 @@
+         }
+ 
+         if (!((_options and NSComparisonPredicateOptions.NS_DIACRITIC_INSENSITIVE_PREDICATE_OPTION.rawValue) != 0)) {
+-            compareOptions.insert(NSString.CompareOptions.literal)
++            compareOptions.insert(StringCompareOption.literal)
+         }
+ 
+         if ((_options and NSComparisonPredicateOptions.NS_CASE_INSENSITIVE_PREDICATE_OPTION.rawValue != 0)) {
+-            compareOptions.insert(NSString.CompareOptions.caseInsensitive)
++            compareOptions.insert(StringCompareOption.caseInsensitive)
+         }
+ 
+         return when ((_type)) {
+@@ -1547,8 +1513,18 @@
+                 val rd: Double = this.doubleValueFor(value = rightResult!!)
+                 if ((ld >= rd)) { true } else { false }
+             }
+-            NSPredicateOperatorType.NS_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> leftResult!!.isEqual(rightResult)
+-            NSPredicateOperatorType.NS_NOT_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> NSPredicate2.notIsEqual(leftResult!!, rightResult)
++            NSPredicateOperatorType.NS_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> {
++                if (leftResult is Boolean && rightResult is Number) {
++                    leftResult.toNSNumber().compareTo(rightResult.toNSNumber()) == 0
++                } else if (leftResult is Number && rightResult is Boolean) {
++                    leftResult.toNSNumber().compareTo(rightResult.toNSNumber()) == 0
++                } else if (leftResult is Number && rightResult is Number) {
++                    leftResult.toNSNumber().compareTo(rightResult.toNSNumber()) == 0
++                } else {
++                    leftResult!!.isEqual(rightResult)
++                }
++            }
++            NSPredicateOperatorType.NS_NOT_EQUAL_TO_PREDICATE_OPERATOR_TYPE -> notIsEqual(leftResult!!, rightResult)
+             NSPredicateOperatorType.NS_MATCHES_PREDICATE_OPERATOR_TYPE -> GSICUStringMatchesRegex(
+     string = leftResult as NSString,
+     regex = rightResult as NSString,
+@@ -1599,7 +1575,7 @@
+                             mapOf(NSLocalizedDescriptionKey to "The right hand side for an IN operator must be a collection".toNSString()))
+                     }
+ 
+-                    var e: IndexingIterator<AnyObject> = eArray.makeIterator()
++                    var e = eArray.makeIterator()
+ 
+                     while (true) {
+                         val value: AnyObject? = e.next() as? AnyObject
+@@ -1622,8 +1598,8 @@
+     }
+ 
+     override open fun evaluateWithObject(`object`: AnyObject): Boolean {
+-        val leftValue: AnyObject = _left.expressionValueWithObject(`object`, null)!!
+-        val rightValue: AnyObject = _right.expressionValueWithObject(`object`, null)!!
++        val leftValue: AnyObject? = _left.expressionValueWithObject(`object`, null)
++        val rightValue: AnyObject? = _right.expressionValueWithObject(`object`, null)
+         if (_modifier == NSComparisonPredicateModifier.NS_DIRECT_PREDICATE_MODIFIER) {
+             return this._evaluateLeftValue(leftResult = leftValue, rightResult = rightValue, `object` = `object`)
+         }
+@@ -1638,7 +1614,7 @@
+                     mapOf(NSLocalizedDescriptionKey to "The left hand side for an ALL or ANY operator must be a collection".toNSString()))
+             }
+ 
+-            var e: IndexingIterator<AnyObject> = leftVal.makeIterator()
++            var e = leftVal.makeIterator()
+ 
+             while (true) {
+                 val value: AnyObject? = e.next() as? AnyObject
+@@ -1657,18 +1633,16 @@
+         }
+     }
+ 
+-    constructor() {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+ }
+ 
+-internal open class NSExpression: NSObject() {
++internal abstract class NSExpression(): NSObject(), HasDescription {
+     companion object {
+         fun expressionForConstantValue(obj: Any?): NSExpression {
++            require(obj !is InOut<*>)
++
+             var e: GSConstantValueExpression
+ 
+-            e = GSConstantValueExpression()
+-            e._obj = obj
++            e = GSConstantValueExpression(obj)
+ 
+             return (e)
+         }
+@@ -1677,45 +1651,53 @@
+             return evaluatedObjectExpression!!
+         }
+ 
+-        fun expressionForFunction(name: NSString, args: List<AnyObject?>): NSExpression {
+-            var e: GSFunctionExpression
++        fun expressionForFunction(name: NSString, args: List<AnyObject>): NSExpression {
++            require(args.none { it is InOut<*> })
++
+             var s: NSString
+ 
+-            e = GSFunctionExpression()
+             s = NSString("_eval_%@:".toNSString(), name)
+-            e._selector = NSSelectorFromString(s)
++            val _selector = NSSelectorFromString(s)
+ 
+-            if (!e.respondsToSelector(to = e._selector)) {
+-                throw NSError(
+-                    "NSInvalidArgumentException".toNSString(),
+-                    0,
+-                    mapOf(NSLocalizedDescriptionKey to "Unknown function implementation".toNSString()))
+-            }
+-
+-            e._function = (name)
+-            e._argc = args.size
+-            e._args = (args)
+-
+-            if ((name == "_add".toNSString())) {
+-                e._op = "+"
++            val _op = if ((name == "_add".toNSString())) {
++                "+".toNSString()
+             }
+             else if ((name == "_sub".toNSString())) {
+-                e._op = "-"
++                "-".toNSString()
+             }
+             else if ((name == "_mul".toNSString())) {
+-                e._op = "*"
++                "*".toNSString()
+             }
+             else if ((name == "_div".toNSString())) {
+-                e._op = "/"
++                "/".toNSString()
+             }
+             else if ((name == "_pow".toNSString())) {
+-                e._op = "**"
++                "**".toNSString()
++            }
++            else {
++                null
++            }
++
++            var e: GSFunctionExpression
++            e = GSFunctionExpression(
++                _selector = _selector,
++                _op = _op,
++                _function = (name),
++                _argc = args.size,
++                _args = (args)
++            )
++
++            if (!e.respondsToSelector(to = e._selector)) {
++                throw NSError(
++                    "NSInvalidArgumentException".toNSString(),
++                    0,
++                    mapOf(NSLocalizedDescriptionKey to "Unknown function implementation".toNSString()))
+             }
+ 
+             return (e)
+         }
+ 
+-        fun expressionForKeyPath(path: NSString): NSExpression {
++        fun expressionForKeyPath(path: NSString): NSExpressionWithKeyPath {
+             var e: GSKeyPathExpression
+ 
+             if (!(path is NSString)) {
+@@ -1725,8 +1707,7 @@
+                     mapOf(NSLocalizedDescriptionKey to "Keypath is not NSString".toNSString()))
+             }
+ 
+-            e = GSKeyPathExpression()
+-            e._keyPath = (path)
++            e = GSKeyPathExpression(_keyPath = (path))
+ 
+             return (e)
+         }
+@@ -1738,9 +1719,10 @@
+         {
+             var e: GSKeyPathCompositionExpression
+ 
+-            e = GSKeyPathCompositionExpression()
+-            e._left = (left)
+-            e._right = (right)
++            e = GSKeyPathCompositionExpression(
++                _left = (left),
++                _right = (right)
++            )
+ 
+             return (e)
+         }
+@@ -1748,75 +1730,40 @@
+         fun expressionForVariable(string: NSString): NSExpression {
+             var e: GSVariableExpression
+ 
+-            e = GSVariableExpression()
+-            e._variable = (string)
++            e = GSVariableExpression(_variable = (string))
+ 
+             return (e)
+         }
+     }
+ 
+-    constructor() {
+-    }
+-
+-    open fun arguments(): List<AnyObject?> {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+-
+-    open fun constantValue(): Any {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+-
+-    open fun description(): NSString {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+ 
+-    open fun expressionValueWithObject(
++    abstract override fun description(): NSString
++    
++    abstract fun expressionValueWithObject(
+         `object`: AnyObject,
+         context: Map<NSString, AnyObject>?)
+         : AnyObject?
+-    {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+-
+-    open fun function(): NSString {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+-
+-    open fun keyPath(): NSString? {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+ 
+-    open fun operand(): NSExpression {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+-
+-    open fun variable(): NSString {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
+-
+-    open fun _expressionWithSubstitutionVariables(
++    abstract fun _expressionWithSubstitutionVariables(
+         variables: Map<NSString, AnyObject>)
+         : NSExpression
+-    {
+-        println("Fatal error: ${"subclassResponsibility"}".toNSString()); exitProcess(-1)
+-    }
++}
++internal abstract class NSExpressionWithKeyPath(): NSExpression() {
++    abstract fun keyPath(): NSString?
+ }
+ 
+-internal open class GSConstantValueExpression: NSExpression() {
+-    constructor(): super() {
+-    }
+ 
+-    open var _obj: Any
++internal open class GSConstantValueExpression(val _obj: Any?): NSExpression() {
+ 
+-    override open fun constantValue(): Any {
++    open fun constantValue(): Any? {
+         return _obj
+     }
+ 
+     override open fun description(): NSString {
+         if ((_obj is NSString)) {
+-            var result: NSString? = null
++            var result = InOut<NSString>()
+             GSPropertyListMake(_obj, null, false, true, 2, result)
+-            return result!!
++            return +result!!
+         }
+         else if ((_obj is NSDate)) {
+             return NSString("CAST(%15.6f, \"NSDate\")".toNSString(), (_obj as NSDate).timeIntervalSinceReferenceDate)
+@@ -1829,7 +1776,7 @@
+         context: Map<NSString, AnyObject>?)
+         : AnyObject?
+     {
+-        if ((_obj is List<AnyObject>)) {
++        if ((_obj is List<*>) && _obj.firstOrNull() is NSExpression) {
+             val count: Int = (_obj as List<AnyObject>).size
+             var tmp = mutableListOf<AnyObject>()
+             var index: Int = 0
+@@ -1859,9 +1806,9 @@
+     }
+ }
+ 
+-internal open class GSEvaluatedObjectExpression: NSExpression() {
++internal open class GSEvaluatedObjectExpression: NSExpressionWithKeyPath() {
+     override open fun description(): NSString {
+-        return "SELF"
++        return "SELF".toNSString()
+     }
+ 
+     override open fun expressionValueWithObject(
+@@ -1880,15 +1827,11 @@
+     }
+ 
+     override open fun keyPath(): NSString? {
+-        return "SELF"
++        return "SELF".toNSString()
+     }
+ }
+ 
+-internal open class GSVariableExpression: NSExpression() {
+-    open var _variable: NSString
+-
+-    constructor(): super() {
+-    }
++internal open class GSVariableExpression(open var _variable: NSString): NSExpression() {
+ 
+     override open fun description(): NSString {
+         return NSString("\$%@".toNSString(), _variable)
+@@ -1902,7 +1845,7 @@
+         return context!![_variable] as AnyObject
+     }
+ 
+-    override open fun variable(): NSString {
++    open fun variable(): NSString {
+         return _variable
+     }
+ 
+@@ -1920,11 +1863,7 @@
+     }
+ }
+ 
+-internal open class GSKeyPathExpression: NSExpression() {
+-    open var _keyPath: NSString
+-
+-    constructor(): super() {
+-    }
++internal open class GSKeyPathExpression(open var _keyPath: NSString): NSExpressionWithKeyPath() {
+ 
+     override open fun description(): NSString {
+         return _keyPath
+@@ -1935,10 +1874,10 @@
+         context: Map<NSString, AnyObject>?)
+         : AnyObject?
+     {
+-        return `object`.valueForKeyPath(_keyPath) as AnyObject
++        return `object`.valueForKeyPath(_keyPath)
+     }
+ 
+-    override open fun keyPath(): NSString? {
++    override open fun keyPath(): NSString {
+         return _keyPath
+     }
+ 
+@@ -1950,12 +1889,10 @@
+     }
+ }
+ 
+-internal open class GSKeyPathCompositionExpression: NSExpression() {
+-    open var _left: NSExpression
+-    open var _right: NSExpression
+-
+-    constructor(): super() {
+-    }
++internal open class GSKeyPathCompositionExpression(
++    open var _left: NSExpression,
++    open var _right: NSExpression    
++): NSExpressionWithKeyPath() {
+ 
+     override open fun description(): NSString {
+         return NSString("%@.%@".toNSString(), _left, _right)
+@@ -1989,21 +1926,19 @@
+     }
+ }
+ 
+-internal open class GSFunctionExpression: NSExpression() {
+-    open var _function: NSString
+-    open var _args: List<AnyObject?>
+-    open var _argc: Int
+-    open var _selector: Selector
+-    open var _op: NSString
+-
+-    constructor(): super() {
+-    }
++internal open class GSFunctionExpression(
++    open var _function: NSString,
++    open var _args: List<AnyObject>,
++    open var _argc: Int,
++    open var _selector: Selector,
++    open var _op: NSString?
++): NSExpressionWithKeyPath() {
+ 
+     open fun respondsToSelector(to: Selector): Boolean {
+-        return false
++        return getMethodBySelector(to) != null
+     }
+ 
+-    override open fun arguments(): List<AnyObject?> {
++    open fun arguments(): List<AnyObject> {
+         return _args
+     }
+ 
+@@ -2016,8 +1951,8 @@
+             return NSString("%@%@".toNSString(), _op, a0)
+         }
+         if (null != _op) {
+-            val a0: GSFunctionExpression = _args[0] as GSFunctionExpression
+-            val a1: GSFunctionExpression = _args[1] as GSFunctionExpression
++            val a0 = _args[0]
++            val a1 = _args[1]
+ 
+             if (true == (a0 is GSFunctionExpression) && null != a0._op) {
+                 if (true == (a1 is GSFunctionExpression) && null != a1._op) {
+@@ -2035,7 +1970,7 @@
+         return NSString("%@(%@)".toNSString(), this.function(), _args)
+     }
+ 
+-    override open fun function(): NSString {
++    open fun function(): NSString {
+         return _function
+     }
+ 
+@@ -2105,14 +2040,14 @@
+         return (expressions[0] as List<AnyObject>).lastOrNull() as AnyObject
+     }
+ 
+-    open fun _eval__index(expressions: List<AnyObject>): AnyObject {
++    open fun _eval__index(expressions: List<AnyObject>): AnyObject? {
+         val left: AnyObject = expressions[0] as AnyObject
+         val right: AnyObject = expressions[1] as AnyObject
+-        if ((left is Map<NSString, AnyObject>)) {
++        if ((left is Map<*, *>)) {
+             return left[right]
+         }
+         else {
+-            return (left as List<AnyObject>)[Int((right as NSNumber).uint32Value)] as AnyObject
++            return (left as List<AnyObject>)[Int((right.toNSNumber()).uint32Value)] as AnyObject
+         }
+     }
+ 
+@@ -2152,12 +2087,12 @@
+     }
+ 
+     open fun _eval_avg(expressions: List<NSNumber>): AnyObject {
+-        var e: IndexingIterator<AnyObject> = this._enum(expressions)
++        var e = this._enum(expressions)
+         var sum: Double = 0.0
+         var count: Int = 0
+ 
+         while (true) {
+-            val o: NSNumber? = e.next() as? NSNumber
++            val o: NSNumber? = e.next()?.toNSNumber()
+             if (o != null) {
+                 sum += o.doubleValue
+                 count += 1
+@@ -2175,13 +2110,13 @@
+     }
+ 
+     open fun _eval_max(expressions: List<NSNumber>): AnyObject {
+-        var e: IndexingIterator<AnyObject> = this._enum(expressions)
+-        val o: NSNumber? = e.next() as? NSNumber
++        var e = this._enum(expressions)
++        val o: NSNumber? = e.next()?.toNSNumber()
+         var max: Double = o?.doubleValue ?: 0.0
+         var cur: Double
+ 
+         while (true) {
+-            val o: NSNumber? = e.next() as? NSNumber
++            val o: NSNumber? = e.next()?.toNSNumber()
+             if (o != null) {
+                 cur = o.doubleValue
+                 if (max < cur) {
+@@ -2197,13 +2132,13 @@
+     }
+ 
+     open fun _eval_min(expressions: List<NSNumber>): AnyObject {
+-        var e: IndexingIterator<AnyObject> = this._enum(expressions)
+-        val o: NSNumber? = e.next() as? NSNumber
++        var e = this._enum(expressions)
++        val o: NSNumber? = e.next()?.toNSNumber()
+         var min: Double = (o?.doubleValue ?: 0.0)
+         var cur: Double
+ 
+         while (true) {
+-            val o: NSNumber? = e.next() as? NSNumber
++            val o: NSNumber? = e.next()?.toNSNumber()
+             if (o != null) {
+                 cur = o.doubleValue
+                 if (min > cur) {
+@@ -2219,11 +2154,11 @@
+     }
+ 
+     open fun _eval_sum(expressions: List<NSNumber>): AnyObject {
+-        var e: IndexingIterator<AnyObject> = this._enum(expressions)
++        var e = this._enum(expressions)
+         var sum: Double = 0.0
+ 
+         while (true) {
+-            val o: NSNumber? = e.next() as? NSNumber
++            val o: NSNumber? = e.next()?.toNSNumber()
+             if (o != null) {
+                 sum += o.doubleValue
+             }
+@@ -2236,7 +2171,7 @@
+     }
+ 
+     open fun _eval_CAST(expressions: List<AnyObject>): AnyObject? {
+-        val left: AnyObject = expressions[0] as NSNumber
++        val left = expressions[0].toNSNumber()
+         val right: AnyObject = expressions[1]
+ 
+         if ((right as? NSString == "NSDate".toNSString())) {
+@@ -2249,12 +2184,12 @@
+     }
+ }
+ 
+-internal fun Array.filteredArrayUsingPredicate(predicate: NSPredicate): List<AnyObject> {
++internal fun <Element: Any> List<Element>.filteredArrayUsingPredicate(predicate: NSPredicate): List<AnyObject> {
+     var result = mutableListOf<Element>()
+ 
+     result.reserveCapacity(this.size)
+ 
+-    var e: IndexingIterator<Element> = this.makeIterator()
++    var e = this.makeIterator()
+     var `object`: AnyObject
+ 
+     while (true) {
+@@ -2272,11 +2207,11 @@
+     return result.toMutableList() as List<AnyObject>
+ }
+ 
+-internal fun Array.filterUsingPredicate(predicate: NSPredicate) {
++internal fun <T: Any> MutableList<T>.filterUsingPredicate(predicate: NSPredicate) {
+     var count: Int = this.size
+     while (true) {
+         count -= 1
+-        if (count > 0) {
++        if (count >= 0) {
+             val `object`: AnyObject = this[count] as AnyObject
+             if (predicate.evaluateWithObject(`object` = `object`) == false) {
+                 this.removeAt(count)
+@@ -2290,7 +2225,7 @@
+ 
+ internal fun NSSet.filteredSetUsingPredicate(predicate: NSPredicate): NSSet {
+     var result: NSMutableSet
+-    var e: NSSet.Iterator = this.makeIterator()
++    var e = this.makeIterator()
+ 
+     result = NSMutableSet(this.count)
+ 
+@@ -2308,7 +2243,7 @@
+ 
+ internal fun NSMutableSet.filterUsingPredicate(predicate: NSPredicate) {
+     var rejected: NSMutableSet
+-    var e: NSSet.Iterator = this.makeIterator()
++    var e = this.makeIterator()
+ 
+     rejected = NSMutableSet(this.count)
+ 
+@@ -2327,12 +2262,10 @@
+     this.minus(rejected as Set<Any>)
+ }
+ 
+-internal open class GSPredicateScanner: NSScanner {
++internal open class GSPredicateScanner(format: NSString, args: List<Any>): NSScanner(format) {
+     private var _args: IndexingIterator<Any>
+-    private var _retrieved: Int
+ 
+-    constructor(format: NSString, args: List<Any>) {
+-        super.init(format)!!
++    init {
+         _args = args.makeIterator()
+     }
+ 
+@@ -2402,14 +2335,14 @@
+ 
+                     left = (l as NSCompoundPredicate)
+ 
+-                    var subs = mutableListOf<NSPredicate>(left.subpredicates())
++                    var subs = (left.subpredicates()).toMutableList()
+ 
+                     subs.addAll(right.subpredicates())
+ 
+                     l = NSCompoundPredicate.andPredicateWithSubpredicates(subs)
+                 }
+                 else {
+-                    var subs = mutableListOf<NSPredicate>(right.subpredicates())
++                    var subs = right.subpredicates().toMutableList()
+                     subs.add(0, l)
+                     l = NSCompoundPredicate.andPredicateWithSubpredicates(subs)
+                 }
+@@ -2419,7 +2352,7 @@
+ 
+                 left = (l as NSCompoundPredicate)
+ 
+-                var subs = mutableListOf<NSPredicate>(left.subpredicates())
++                var subs = left.subpredicates().toMutableList()
+ 
+                 subs.add(r)
+ 
+@@ -2468,21 +2401,21 @@
+                 val right: NSCompoundPredicate = (r as NSCompoundPredicate)
+                 if ((l is NSCompoundPredicate) && (l as NSCompoundPredicate).compoundPredicateType() == NSCompoundPredicateType.NS_OR_PREDICATE_TYPE) {
+                     val left: NSCompoundPredicate = (l as NSCompoundPredicate)
+-                    var subs: List<NSPredicate> = left.subpredicates().toMutableList()
++                    var subs = left.subpredicates().toMutableList()
+ 
+                     subs.addAll(right.subpredicates())
+ 
+                     l = NSCompoundPredicate.orPredicateWithSubpredicates(subs)
+                 }
+                 else {
+-                    var subs: List<NSPredicate> = right.subpredicates().toMutableList()
++                    var subs = right.subpredicates().toMutableList()
+                     subs.add(0, l)
+                     l = NSCompoundPredicate.orPredicateWithSubpredicates(subs)
+                 }
+             }
+             else if ((l is NSCompoundPredicate) && (l as NSCompoundPredicate).compoundPredicateType() == NSCompoundPredicateType.NS_OR_PREDICATE_TYPE) {
+                 val left: NSCompoundPredicate = (l as NSCompoundPredicate)
+-                var subs: List<NSPredicate> = left.subpredicates().toMutableList()
++                var subs = left.subpredicates().toMutableList()
+ 
+                 subs.add(r)
+ 
+@@ -2561,7 +2494,7 @@
+             swap = true
+         }
+         else if (this.scanPredicateKeyword(key = "BETWEEN".toNSString())) {
+-            val exp: NSExpression = this.parseSimpleExpression()
++            val exp: GSConstantValueExpression = this.parseSimpleExpression() as GSConstantValueExpression
+             val a: List<AnyObject> = exp.constantValue() as List<AnyObject>
+             var lower: NSNumber
+             var upper: NSNumber
+@@ -2577,8 +2510,8 @@
+                     mapOf(NSLocalizedDescriptionKey to "BETWEEN operator requires array argument".toNSString()))
+             }
+ 
+-            lower = a[0] as NSNumber
+-            upper = a[1] as NSNumber
++            lower = a[0].toNSNumber()
++            upper = a[1].toNSNumber()
+             lexp = NSExpression.expressionForConstantValue(obj = lower)
+             uexp = NSExpression.expressionForConstantValue(obj = upper)
+             lp = NSComparisonPredicate.predicateWithLeftExpression(
+@@ -2635,29 +2568,27 @@
+         return this.parseBinaryExpression()
+     }
+ 
+-    open fun parseIdentifierExpression(): NSExpression {
++    open fun parseIdentifierExpression(): NSExpressionWithKeyPath {
+         var _identifier: NSCharacterSet
+-        var ident: NSString
++        var ident = InOut<NSString>()
+ 
+         this.scanString("#".toNSString(), InOut())
+ 
+-        if ((_identifier == null)) {
+             _identifier = (NSCharacterSet("_\$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toNSString())) as NSCharacterSet
+-        }
+ 
+         if (!this.scanCharactersFromSet(_identifier, ident)) {
+             throw NSError("NSInvalidArgumentException".toNSString(), 0, mapOf(NSLocalizedDescriptionKey to "Missing identifier".toNSString()))
+         }
+ 
+-        return NSExpression.expressionForKeyPath(path = ident)
++        return NSExpression.expressionForKeyPath(path = +ident)
+     }
+ 
+     open fun parseSimpleExpression(): NSExpression {
+         var location: Int
+-        var dbl: Double
++        var dbl = InOut<Double>()
+ 
+         if (this.scanDouble(dbl)) {
+-            return NSExpression.expressionForConstantValue(obj = NSNumber(dbl))
++            return NSExpression.expressionForConstantValue(obj = NSNumber(+dbl))
+         }
+ 
+ 
+@@ -2718,7 +2649,7 @@
+         }
+ 
+         if (this.scanString("\$".toNSString(), InOut())) {
+-            val var0: NSExpression = this.parseIdentifierExpression()
++            val var0: NSExpressionWithKeyPath = this.parseIdentifierExpression()
+             if ((var0.keyPath() == null)) {
+                 throw NSError(
+                     "NSInvalidArgumentException".toNSString(),
+@@ -2772,7 +2703,7 @@
+ 
+         if (this.scanString("\"".toNSString(), InOut())) {
+             val skip: NSCharacterSet? = this.charactersToBeSkipped()
+-            var str: NSString = ""
++            var str = InOut<NSString>()
+ 
+             this.setCharactersToBeSkipped(aSet = NSCharacterSet())
+ 
+@@ -2793,12 +2724,12 @@
+                     mapOf(NSLocalizedDescriptionKey to "Unterminated double quoted literal".toNSString()))
+             }
+ 
+-            return NSExpression.expressionForConstantValue(obj = str)
++            return NSExpression.expressionForConstantValue(obj = +str)
+         }
+ 
+         if (this.scanString("'".toNSString(), InOut())) {
+             val skip: NSCharacterSet? = this.charactersToBeSkipped()
+-            var str: NSString = ""
++            var str = InOut<NSString>()
+ 
+             this.setCharactersToBeSkipped(aSet = null)
+ 
+@@ -2819,11 +2750,11 @@
+                     mapOf(NSLocalizedDescriptionKey to "Unterminated single quoted literal".toNSString()))
+             }
+ 
+-            return NSExpression.expressionForConstantValue(obj = str)
++            return NSExpression.expressionForConstantValue(obj = +str)
+         }
+ 
+         if (this.scanString("@".toNSString(), InOut())) {
+-            val e: NSExpression = this.parseIdentifierExpression()
++            val e: NSExpressionWithKeyPath = this.parseIdentifierExpression()
+             if ((e.keyPath() == null)) {
+                 throw NSError(
+                     "NSInvalidArgumentException".toNSString(),
+@@ -2844,7 +2775,7 @@
+ 
+                 args.reserveCapacity(5)
+ 
+-                if ((left.keyPath() == null)) {
++                if (left !is NSExpressionWithKeyPath || (left.keyPath() == null)) {
+                     throw NSError(
+                         "NSInvalidArgumentException".toNSString(),
+                         0,
+@@ -2890,7 +2821,7 @@
+                 var right: NSExpression
+                 right = this.parseExpression()
+                 if (evaluatedObjectExpression != left) {
+-                    if ((left.keyPath() != null) && (right.keyPath() != null)) {
++                    if (((left as? NSExpressionWithKeyPath)?.keyPath() != null) && ((right as? NSExpressionWithKeyPath)?.keyPath() != null)) {
+                         left = NSExpression.expressionForKeyPath(path = NSString("%@.%@".toNSString(), left.keyPath()!!, right.keyPath()!!))
+                     }
+                     else {
+@@ -2898,7 +2829,7 @@
+                     }
+                 }
+                 else {
+-                    left = NSExpression.expressionForKeyPath(path = right.keyPath()!!)
++                    left = NSExpression.expressionForKeyPath(path = (right as NSExpressionWithKeyPath).keyPath()!!)
+                 }
+             }
+             else {

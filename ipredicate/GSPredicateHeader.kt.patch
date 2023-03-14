@@ -1,0 +1,308 @@
+--- a/prefix/GSPredicateHeader.kt	1970-01-01 00:00:00.000000000 +0000
++++ b/prefix/GSPredicateHeader.kt	1970-01-01 00:00:00.000000000 +0000
+@@ -1,4 +1,25 @@
+-/* GSVersionMacros.h - macros for managing API versioning and visibility
++/*
++ Copyright (C) 2024 TarCV
++
++ This file is part of UI Surveyor.
++ UI Surveyor is free software: you can redistribute it and/or modify
++ it under the terms of the GNU General Public License as published by
++ the Free Software Foundation, either version 3 of the License, or
++ (at your option) any later version.
++
++ This program is distributed in the hope that it will be useful,
++ but WITHOUT ANY WARRANTY; without even the implied warranty of
++ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ GNU General Public License for more details.
++
++ You should have received a copy of the GNU General Public License
++ along with this program.  If not, see <https://www.gnu.org/licenses/>.
++
++ This file is based on parts of GNUstep that are covered under the following terms
++ (Copies of referenced files can be found in ipredicate/licenses/gnustepbase subdirectory in this
++ repository):
++
++ * GSVersionMacros.h - macros for managing API versioning and visibility
+    Copyright (C) 2006-2014 Free Software Foundation, Inc.
+ 
+    Written by: Richard Frith-Macdonald <rfm@gnu.org>
+@@ -7,22 +28,21 @@
+    This file is part of GNUstep.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Library General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110-1301, USA.
+-*/
+ 
+-/* GNUstep.h - macros to make easier to port gnustep apps to macos-x
++ * GNUstep.h - macros to make easier to port gnustep apps to macos-x
+    Copyright (C) 2001 Free Software Foundation, Inc.
+ 
+    Written by: Nicola Pero <n.pero@mi.flashnet.it>
+@@ -31,22 +51,21 @@
+    This file is part of GNUstep.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Library General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110-1301, USA.
+-*/ 
+ 
+-/** Interface to ObjC runtime for GNUStep
++ * Interface to ObjC runtime for GNUStep
+    Copyright (C) 1995, 1997, 2000 Free Software Foundation, Inc.
+ 
+    Written by:  Andrew Kachites McCallum <mccallum@gnu.ai.mit.edu>
+@@ -55,26 +74,21 @@
+    This file is part of the GNUstep Base Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+ 
+-    AutogsdocSource: NSObjCRuntime.m
+-    AutogsdocSource: NSLog.m
+-
+-   */
+-
+-/** Interface for NSException for GNUStep
++ * Interface for NSException for GNUStep
+    Copyright (C) 1995, 1996 Free Software Foundation, Inc.
+ 
+    Written by:  Adam Fedor <fedor@boulder.colorado.edu>
+@@ -83,28 +97,21 @@
+    This file is part of the GNUstep Base Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+ 
+-    <title>NSException and NSAssertionHandler class reference</title>
+-
+-    AutogsdocSource: NSAssertionHandler.m
+-    AutogsdocSource: NSException.m
+-
+-   */ 
+-
+-/* Interface for NSPredicate for GNUStep
++ * Interface for NSPredicate for GNUStep
+    Copyright (C) 2005 Free Software Foundation, Inc.
+ 
+    Written by:  Dr. H. Nikolaus Schaller
+@@ -113,22 +120,21 @@
+    This file is part of the GNUstep Base Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+-   */ 
+ 
+-/* Definitions for NSScanner class
++ * Definitions for NSScanner class
+    Copyright (C) 1996,1999 Free Software Foundation, Inc.
+ 
+    Author:  Eric Norum <eric@skatter.usask.ca>
+@@ -137,22 +143,21 @@
+    This file is part of the GNUstep Objective-C Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+-*/ 
+ 
+-/** Implemenation of NSScanner class
++ * Implemenation of NSScanner class
+    Copyright (C) 1996,1999 Free Software Foundation, Inc.
+ 
+    Author:  Eric Norum <eric@skatter.usask.ca>
+@@ -163,25 +168,21 @@
+    This file is part of the GNUstep Objective-C Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+ 
+-   <title>NSScanner class reference</title>
+-   $Date$ $Revision$
+-*/
+-
+-/* Interface for NSComparisonPredicate for GNUStep
++ * Interface for NSComparisonPredicate for GNUStep
+    Copyright (C) 2005 Free Software Foundation, Inc.
+ 
+    Written by:  Dr. H. Nikolaus Schaller
+@@ -190,22 +191,21 @@
+    This file is part of the GNUstep Base Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+-   */ 
+ 
+-/* Interface for NSCompoundPredicate for GNUStep
++ * Interface for NSCompoundPredicate for GNUStep
+    Copyright (C) 2005 Free Software Foundation, Inc.
+ 
+    Written by:  Dr. H. Nikolaus Schaller
+@@ -214,22 +214,21 @@
+    This file is part of the GNUstep Base Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+-   */ 
+ 
+-/* Interface for NSPredicate for GNUStep
++ * Interface for NSPredicate for GNUStep
+    Copyright (C) 2005 Free Software Foundation, Inc.
+ 
+    Written by:  Dr. H. Nikolaus Schaller
+@@ -242,18 +241,17 @@
+    This file is part of the GNUstep Base Library.
+
+    This library is free software; you can redistribute it and/or
+-   modify it under the terms of the GNU Lesser General Public
++   modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-   Lesser General Public License for more details.
++   General Public License for more details.
+
+-   You should have received a copy of the GNU Lesser General Public
++   You should have received a copy of the GNU General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110 USA.
+-   */ 
+-
++*/

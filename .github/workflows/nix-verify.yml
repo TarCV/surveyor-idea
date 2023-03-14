@@ -8,7 +8,7 @@ jobs:
     name: Compare with Garnix artefact
     if: >-
       github.event.check_run.app.name == 'Garnix CI'
-      && contains(github.event.check_run.name, 'default package')
+      && contains(github.event.check_run.name, 'package default')
     runs-on: ubuntu-latest
     steps:
       - uses: lewagon/wait-on-check-action@v1.3.1
@@ -66,4 +66,5 @@ jobs:
           path: ./artefact/*
       - name: Verify same (i.e. reproducible)
         run: |
-          cmp -b gha-artefact/*/* artefact/*
+          cmp -b gha-artefact/*/*.zip artefact/*.zip
+          cmp -b ci/generated/project/*.kt artefact/*.kt

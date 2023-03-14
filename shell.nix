@@ -33,5 +33,13 @@ with import <nixpkgs> {};
   profile = ''
 export JAVA_HOME="${pkgs.jdk11.home}"
 export GRADLE_OPTS="-Dorg.gradle.java.home=${pkgs.jdk11.home}"
+
+# Write out a configuration for EnvFile Idea Plugin.
+cat <<EOF > .env
+JAVA11_HOME="${pkgs.jdk11.home}"
+EOF
+
+./gradlew --stop # Make sure there is no leftover daemons running outside of this env
+./gradlew help || true
 '';
 }).env

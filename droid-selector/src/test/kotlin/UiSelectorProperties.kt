@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ class UiSelectorProperties {
     fun uiSelectorsDontCrash(
         @ForAll("uiSelector") selector: UiSelector
     ) {
-        evaluator.evaluateUiSelector(singleRootNode, selector)
+        evaluator.evaluateUiSelector(listOf(singleRootNode), selector)
     }
 
     @Provide

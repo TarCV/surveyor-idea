@@ -20,11 +20,14 @@
                   language="XML"
                   implementationClass="com.github.tarcv.testingteam.surveyoridea.filetypes.uix.UixFileType"
                   extensions="uix" />
-        <dom.fileMetaData implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.uix.UixDomDecription"
+        <dom.fileMetaData implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.UixDomDecription"
                           rootTagName="hierarchy" stubVersion="1" />
         <notificationGroup displayType="TOOL_WINDOW" id="com.github.tarcv.testingteam.surveyoridea.gui.NotificationGroup" toolWindowId="Locate Element" />
 
         <navbar implementation="com.github.tarcv.testingteam.surveyoridea.gui.UiAwareNavigationBar" />
+
+        <xmlStructureViewBuilderProvider
+                implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.structure.IAutStructureViewFactory"/>
     </extensions>
 
     <applicationListeners>
@@ -42,6 +45,19 @@
 
             <add-to-group group-id="FindMenuGroup" anchor="last"/>
             <add-to-group group-id="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar" />
+        </action>
+        <action id="com.github.tarcv.testingteam.surveyoridea.gui.LocatorTypeComboBoxAction"
+                class="com.github.tarcv.testingteam.surveyoridea.gui.LocatorTypeComboBoxAction"
+                text="UI Surveyor: Select Locator Type..."
+                description="Select locator type to use for Locate Element command">
+            <override-text place="MainMenu" text="Open Locator _Type Dropdown..." />
+            <override-text place="ToolwindowContent" text="Select Locator Type..." />
+            <synonym text="Select Locator Type for Finding an Element" />
+
+            <add-to-group group-id="FindMenuGroup"
+                          anchor="before" relative-to-action="com.github.tarcv.testingteam.surveyoridea.gui.LocateAction" />
+            <add-to-group group-id="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar"
+                          anchor="before" relative-to-action="com.github.tarcv.testingteam.surveyoridea.gui.LocateAction" />
         </action>
         <action id="com.github.tarcv.testingteam.surveyoridea.gui.ShowNoticeAction"
                 class="com.github.tarcv.testingteam.surveyoridea.gui.ShowNoticeAction" text="UI Surveyor: Show Licenses and Notices"

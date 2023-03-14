@@ -7,7 +7,6 @@ pluginManagement {
             url = uri("https://jitpack.io")
             content {
                 // Download only these groups from the repository
-                includeGroup("com.github.TarCV")
                 includeGroup("com.github.TarCV.aar2jar")
             }
         }
@@ -35,7 +34,11 @@ rootProject.name = "surveyor-idea"
 include("plugin")
 include("plugin-test")
 
+include("droid-common")
 include("droid-selector")
 include("droid-stubs")
+
+include("ipredicate")
+project(":ipredicate").projectDir = file("ipredicate/project")
 
 include("library")

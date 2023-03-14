@@ -58,7 +58,7 @@ class JvmLocateToolWindow(project: Project) : LocateToolWindow(project) {
 
     override val fileType: LanguageFileType = JavaFileType.INSTANCE
 
-    override fun initSelectorField(editorField: EditorTextField) {
+    override fun switchToDroidUiAutomator(editorField: EditorTextField) {
         invokeLater {
             removeModuleIfExists(OLD_MODULE_NAME)
             removeModuleIfExists(MODULE_NAME)
@@ -77,6 +77,7 @@ class JvmLocateToolWindow(project: Project) : LocateToolWindow(project) {
                 addImportsFromString(importedClasses)
             }
 
+            editorField.fileType = JavaFileType.INSTANCE
             editorField.document = PsiDocumentManager.getInstance(project).getDocument(editorCode)!!
         }
     }
@@ -146,7 +147,7 @@ class JvmLocateToolWindow(project: Project) : LocateToolWindow(project) {
         return Paths.get(URI(jarUrl))
     }
 
-    override fun getCurrentLocator(): String {
+    override fun getCurrentDroidUiAutomatorLocator(): String {
         val fragment = locatorFragment
         val imports = if (fragment is JavaCodeFragment) {
             fragment.importsToString()

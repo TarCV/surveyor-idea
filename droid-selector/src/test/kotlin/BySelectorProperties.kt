@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ class BySelectorProperties {
     fun bySelectorsDontCrash(
         @ForAll("bySelector") selector: BySelector
     ) {
-        evaluator.evaluateBySelector(singleRootNode, selector)
+        evaluator.evaluateBySelector(listOf(singleRootNode), selector)
     }
 
     @Provide

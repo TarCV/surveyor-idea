@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyor.DroidNotices
+import com.github.tarcv.testingteam.surveyor.IPredicateNotices
 import com.github.tarcv.testingteam.surveyor.Notice
 import com.intellij.openapi.application.invokeLater
 import com.intellij.openapi.ui.DialogWrapper
@@ -75,7 +76,9 @@ class NoticeDialogWrapper : DialogWrapper(false) {
                     border = createBorder()
 
                     model = JBList.createDefaultListModel(
-                        DroidNotices.uiAutomatorNotice
+                        DroidNotices.uiAutomatorNotice,
+                        IPredicateNotices.gnuStepNotice,
+                        IPredicateNotices.wdaNotice
                     )
 
                     addListSelectionListener {

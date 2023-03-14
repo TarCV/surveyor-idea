@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -15,6 +15,18 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.testingteam.surveyor
+package com.github.tarcv.testingteam.surveyoridea.services
 
-class InvalidLocatorException(message: String) : RuntimeException(message)
+import com.github.tarcv.testingteam.surveyoridea.data.LocatorType
+import com.intellij.util.messages.Topic
+
+interface LocatorTypeChangedListener {
+    companion object {
+        val topic = Topic(
+            "${LocatorTypeChangedListener::class.java.name}Topic",
+            LocatorTypeChangedListener::class.java
+        )
+    }
+
+    fun onLocatorTypeChanged(newType: LocatorType?)
+}
