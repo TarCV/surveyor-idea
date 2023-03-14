@@ -31,11 +31,24 @@ plugins {
 }
 */
 
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            library("jqwik", "net.jqwik:jqwik:1.5.0")
+            library("junit-jupiter-api", "org.junit.jupiter:junit-jupiter-api:5.7.1")
+        }
+    }
+}
+
 rootProject.name = "surveyor-idea"
 include("plugin")
 include("plugin-test")
 
+include("droid-common")
 include("droid-selector")
 include("droid-stubs")
+
+include("ipredicate")
+project(":ipredicate").projectDir = file("ipredicate/project")
 
 include("library")

@@ -18,6 +18,9 @@ dependencies {
     implementation(project(":droid-selector")) {
         exclude(group = "org.jetbrains.kotlin")
     }
+    implementation(project(":ipredicate")) {
+        exclude(group = "org.jetbrains.kotlin")
+    }
     implementation(project(":library")) {
         exclude(group = "org.jetbrains.kotlin")
     }

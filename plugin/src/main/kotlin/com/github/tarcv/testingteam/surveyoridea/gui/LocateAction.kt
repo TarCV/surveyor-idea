@@ -18,7 +18,6 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyor.*
-import com.github.tarcv.testingteam.surveyor.Properties
 import com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Hierarchy
 import com.github.tarcv.testingteam.surveyoridea.services.LocateToolHoldingService
 import com.intellij.lang.xml.XMLLanguage
@@ -116,22 +115,22 @@ class LocateAction: AnAction() {
         node: com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node,
         mapping: MutableMap<Node, com.github.tarcv.testingteam.surveyoridea.filetypes.uix.Node>
     ): Node {
-        val props: Map<Properties<*>, Any?> = listOf(
-            Properties.IS_CHECKABLE to node.checkable.value,
-            Properties.IS_CHECKED to node.checked.value,
-            Properties.CLASS_NAME to node.clazz.value,
-            Properties.IS_CLICKABLE to node.clickable.value,
-            Properties.ACCESSIBILITY_DESCRIPTION to node.contentDesc.value,
-            Properties.IS_ENABLED to node.enabled.value,
-            Properties.IS_FOCUSABLE to node.focusable.value,
-            Properties.IS_FOCUSED to node.focused.value,
-            Properties.IS_LONG_CLICKABLE to node.longClickable.value,
-            Properties.PACKAGE_NAME to node.`package`.value,
-            Properties.IS_PASSWORD_FIELD to node.password.value,
-            Properties.RESOURCE_ID to node.resourceId.value,
-            Properties.IS_SCROLLABLE to node.scrollable.value,
-            Properties.IS_SELECTED to node.selected.value,
-            Properties.TEXT to node.text.value,
+        val props: Map<Property<*>, Any?> = listOf(
+            DroidProperty.IS_CHECKABLE to node.checkable.value,
+            DroidProperty.IS_CHECKED to node.checked.value,
+            DroidProperty.CLASS_NAME to node.`clazz`.value,
+            DroidProperty.IS_CLICKABLE to node.clickable.value,
+            DroidProperty.ACCESSIBILITY_DESCRIPTION to node.contentDesc.value,
+            DroidProperty.IS_ENABLED to node.enabled.value,
+            DroidProperty.IS_FOCUSABLE to node.focusable.value,
+            DroidProperty.IS_FOCUSED to node.focused.value,
+            DroidProperty.IS_LONG_CLICKABLE to node.longClickable.value,
+            DroidProperty.PACKAGE_NAME to node.`package`.value,
+            DroidProperty.IS_PASSWORD_FIELD to node.password.value,
+            DroidProperty.RESOURCE_ID to node.resourceId.value,
+            DroidProperty.IS_SCROLLABLE to node.scrollable.value,
+            DroidProperty.IS_SELECTED to node.selected.value,
+            DroidProperty.TEXT to node.text.value,
         ).filter { it.second != null }.toMap()
 
         val out = Node(

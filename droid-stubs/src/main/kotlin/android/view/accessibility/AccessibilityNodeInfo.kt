@@ -1,7 +1,7 @@
 /*
  *  Copyright (C) 2023 TarCV
  *
- *  This package (i.e. directory and its contents) is part of UI Surveyor.
+ *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -18,20 +18,20 @@
 package android.view.accessibility
 
 import com.github.tarcv.testingteam.surveyor.Node
-import com.github.tarcv.testingteam.surveyor.Properties.ACCESSIBILITY_DESCRIPTION
-import com.github.tarcv.testingteam.surveyor.Properties.CLASS_NAME
-import com.github.tarcv.testingteam.surveyor.Properties.IS_CHECKABLE
-import com.github.tarcv.testingteam.surveyor.Properties.IS_CHECKED
-import com.github.tarcv.testingteam.surveyor.Properties.IS_CLICKABLE
-import com.github.tarcv.testingteam.surveyor.Properties.IS_ENABLED
-import com.github.tarcv.testingteam.surveyor.Properties.IS_FOCUSABLE
-import com.github.tarcv.testingteam.surveyor.Properties.IS_FOCUSED
-import com.github.tarcv.testingteam.surveyor.Properties.IS_LONG_CLICKABLE
-import com.github.tarcv.testingteam.surveyor.Properties.IS_SCROLLABLE
-import com.github.tarcv.testingteam.surveyor.Properties.IS_SELECTED
-import com.github.tarcv.testingteam.surveyor.Properties.PACKAGE_NAME
-import com.github.tarcv.testingteam.surveyor.Properties.RESOURCE_ID
-import com.github.tarcv.testingteam.surveyor.Properties.TEXT
+import com.github.tarcv.testingteam.surveyor.DroidProperty.ACCESSIBILITY_DESCRIPTION
+import com.github.tarcv.testingteam.surveyor.DroidProperty.CLASS_NAME
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_CHECKABLE
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_CHECKED
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_CLICKABLE
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_ENABLED
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_FOCUSABLE
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_FOCUSED
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_LONG_CLICKABLE
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_SCROLLABLE
+import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_SELECTED
+import com.github.tarcv.testingteam.surveyor.DroidProperty.PACKAGE_NAME
+import com.github.tarcv.testingteam.surveyor.DroidProperty.RESOURCE_ID
+import com.github.tarcv.testingteam.surveyor.DroidProperty.TEXT
 
 class AccessibilityNodeInfo(val node: Node) {
     companion object {

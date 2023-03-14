@@ -6,8 +6,9 @@
         url = "github:hercules-ci/gitignore.nix";
         inputs.nixpkgs.follows = "nixpkgs";
       };
+      ipredicateKt.url = "path:./ipredicate";
     };
-  outputs = { self, gitignore, nixpkgs } : {
+  outputs = { self, gitignore, nixpkgs, ipredicateKt } : {
       # TODO: use forEachSystem here
       defaultPackage.x86_64-linux =
         with import nixpkgs { system = "x86_64-linux"; };
@@ -116,7 +117,7 @@
                    src = pluginSource;
                    filter = customGitIgnoreFilter pluginSource;
                  };
-                 buildInputs = [ pkgs.autoPatchelfHook pkgs.jdk11 pkgs.perl pkgs.unzip ];
+                 buildInputs = [ pkgs.autoPatchelfHook pkgs.jdk11 pkgs.perl pkgs.unzip ipredicateKt.defaultPackage.${system} ];
                  dontBuild = true;
 
                  # TODO: also build and package sources jar
@@ -158,6 +159,8 @@
 
                    patchShebangs .
 
+                   install -Dm444 ${ipredicateKt.defaultPackage.${system}}/* ipredicate/project/src/main/kotlin/com/github/tarcv/testingteam/surveyor/ipredicate/
+
                    export JAVA_HOME=${jdk11}
 
                    # Use '--debug' to debug dependency downloads by plugins
@@ -165,7 +168,7 @@
                        -PNIX_GRADLE_DEPS_1=$out/gradleDeps \
                        --no-build-cache --no-configuration-cache \
                        --info --stacktrace \
-                       --init-script ${gradleInit} buildPlugin -x :plugin-test:test
+                       --init-script ${gradleInit} check buildPlugin -x :plugin-test:test
 
                    cp -v plugin/build/distributions/*.zip $out
                    popd
