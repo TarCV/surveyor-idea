@@ -15,6 +15,8 @@ plugins {
 }
 
 dependencies {
+    implementation(kotlin("reflect"))
+
     implementation(project(":droid-selector")) {
         exclude(group = "org.jetbrains.kotlin")
     }

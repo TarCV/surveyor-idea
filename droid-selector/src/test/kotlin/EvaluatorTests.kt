@@ -51,7 +51,7 @@ class EvaluatorTests {
     @Test
     fun evaluatorCanLoadSelectorClasses() {
         Evaluator().evaluate(
-            rootNode,
+            listOf(rootNode),
             """//import ${UiSelector::class.java.canonicalName};
                 |import ${By::class.java.canonicalName};
                 |//new UiSelector();
@@ -63,10 +63,10 @@ class EvaluatorTests {
     @Test
     fun evaluatorDeviceIsReset() {
         val evaluator = Evaluator()
-        val firstDevice = evaluator.withUiDeviceFrom(rootNode) {
+        val firstDevice = evaluator.withUiDeviceFrom(listOf(rootNode)) {
             this
         }
-        val secondDevice = evaluator.withUiDeviceFrom(rootNode) {
+        val secondDevice = evaluator.withUiDeviceFrom(listOf(rootNode)) {
             this
         }
         Assertions.assertNotSame(firstDevice, secondDevice)

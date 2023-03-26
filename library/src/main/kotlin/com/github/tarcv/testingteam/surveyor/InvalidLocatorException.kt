@@ -15,11 +15,6 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.testingteam.surveyoridea.filetypes
+package com.github.tarcv.testingteam.surveyor
 
-import com.intellij.util.xml.DomElement
-
-/**
- * DomElement representing an actual UI item in a UI dump
- */
-interface ActualUiElement: DomElement
+class InvalidLocatorException(message: String) : Exception(message)

@@ -145,6 +145,8 @@ class NSString private constructor(val utf16: StringUTF16View, unused: Nothing?)
     fun characterAtIndex(index: Int) = utf16[index]
     fun suffix(index: Int) = NSString(utf16.drop(index))
 
+    fun substringFromIndex(index: Int) = NSString(utf16.drop((index - 1).coerceAtLeast(0)))
+
     fun substringToIndex(index: Int) = NSString(utf16.take(index))
 
     fun prefix(index: Int) = NSString(utf16.take(index))

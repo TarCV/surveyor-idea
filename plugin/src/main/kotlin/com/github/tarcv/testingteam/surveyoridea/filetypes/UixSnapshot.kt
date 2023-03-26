@@ -1,59 +1,90 @@
-/*
- *  Copyright (C) 2023 TarCV
- *
- *  This file is part of UI Surveyor.
- *  UI Surveyor is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-package com.github.tarcv.testingteam.surveyoridea.filetypes.uix
+package com.github.tarcv.testingteam.surveyoridea.filetypes
 
-import com.github.tarcv.testingteam.surveyoridea.filetypes.ActualUiElement
-import com.github.tarcv.testingteam.surveyoridea.filetypes.RootUiElement
+import com.github.tarcv.testingteam.surveyor.DroidProperty
+import com.github.tarcv.testingteam.surveyor.Property
+import com.github.tarcv.testingteam.surveyoridea.filetypes.FileType.Companion.tryReadAsXml
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.ActualCodeElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.RootUiElement
 import com.intellij.icons.AllIcons
-import com.intellij.ide.highlighter.DomSupportEnabled
-import com.intellij.ide.highlighter.XmlLikeFileType
 import com.intellij.ide.presentation.Presentation
 import com.intellij.ide.presentation.PresentationProvider
-import com.intellij.lang.xml.XMLLanguage
+import com.intellij.openapi.project.Project
+import com.intellij.psi.PsiFile
 import com.intellij.util.xml.Attribute
 import com.intellij.util.xml.DomFileDescription
 import com.intellij.util.xml.ElementPresentationManager
 import com.intellij.util.xml.GenericAttributeValue
 import java.lang.ref.WeakReference
+import java.util.IdentityHashMap
 import javax.swing.Icon
 
-class UixDomDecription: DomFileDescription<Hierarchy>(Hierarchy::class.java, "hierarchy")
+object UixSnapshot: FileType {
+    override fun tryConvert(
+        project: Project,
+        psiFile: PsiFile,
+        mapping: IdentityHashMap<com.github.tarcv.testingteam.surveyor.Node, ActualCodeElement>
+    ): List<com.github.tarcv.testingteam.surveyor.Node>? {
+        val uix = tryReadAsXml(project, psiFile, Hierarchy::class.java)
+            ?: return null
+        return uix.rootElement.nodes
+            .map { convert(it, mapping) }
+    }
 
-class UixFileType : XmlLikeFileType(XMLLanguage.INSTANCE), DomSupportEnabled {
-    override fun getName(): String = UixFileType::class.java.name
+    private fun convert(
+        node: Node,
+        mapping: IdentityHashMap<com.github.tarcv.testingteam.surveyor.Node, ActualCodeElement>
+    ): com.github.tarcv.testingteam.surveyor.Node {
+        val props: Map<Property<*>, Any?> = listOf(
+            DroidProperty.IS_CHECKABLE to node.checkable.value,
+            DroidProperty.IS_CHECKED to node.checked.value,
+            DroidProperty.CLASS_NAME to node.clazz.value,
+            DroidProperty.IS_CLICKABLE to node.clickable.value,
+            DroidProperty.ACCESSIBILITY_DESCRIPTION to node.contentDesc.value,
+            DroidProperty.IS_ENABLED to node.enabled.value,
+            DroidProperty.IS_FOCUSABLE to node.focusable.value,
+            DroidProperty.IS_FOCUSED to node.focused.value,
+            DroidProperty.IS_LONG_CLICKABLE to node.longClickable.value,
+            DroidProperty.PACKAGE_NAME to node.`package`.value,
+            DroidProperty.IS_PASSWORD_FIELD to node.password.value,
+            DroidProperty.RESOURCE_ID to node.resourceId.value,
+            DroidProperty.IS_SCROLLABLE to node.scrollable.value,
+            DroidProperty.IS_SELECTED to node.selected.value,
+            DroidProperty.TEXT to node.text.value,
+        ).filter { it.second != null }.toMap()
 
-    override fun getDescription(): String = "UI Automator hierarchy XML"
+        val out = com.github.tarcv.testingteam.surveyor.Node(
+            null,
+            props,
+            node.nodes.map { convert(it, mapping) },
+            true // TODO
+        ).apply {
+            finalizeChildren()
+        }
 
-    override fun getDefaultExtension(): String = "uix"
+        mapping[out] = node
 
-    override fun getIcon(): Icon = AllIcons.FileTypes.Xml
+        return out
+    }
 }
 
-@Presentation(provider = RootUiElement.DescriptionProvider::class)
+class UixDomDecription: DomFileDescription<Hierarchy>(Hierarchy::class.java, "hierarchy") {
+    override fun getVersion(): Int {
+        return super.getVersion()
+    }
+
+    override fun getStubVersion(): Int {
+        return super.getStubVersion()
+    }
+}
+
 interface Hierarchy: RootUiElement {
-    @Suppress("unused")
     val rotation: GenericAttributeValue<Int>
 
     val nodes: List<Node>
 }
 
 @Presentation(provider = Node.DescriptionProvider::class)
-interface Node: ActualUiElement {
+interface Node: ActualCodeElement {
     val nodes: List<Node>
 
     val index: GenericAttributeValue<Int>

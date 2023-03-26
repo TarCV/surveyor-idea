@@ -17,17 +17,29 @@
  */
 package com.github.tarcv.testingteam.surveyoridea.services
 
+import com.github.tarcv.testingteam.surveyoridea.data.LocatorType
 import com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
 import javax.annotation.concurrent.GuardedBy
 
 @Service
-class LocateToolHoldingService(project: Project) {
+class LocateToolHoldingService(@Suppress("UNUSED_PARAMETER") project: Project) {
     private val lock = Any()
 
     @GuardedBy("lock")
     private var locateToolWindow: LocateToolWindow? = null
+    @GuardedBy("lock")
+    private var _locatorType: LocatorType? = null
+
+    // TODO: Persist this property per project
+    var locatorType: LocatorType?
+        get() = synchronized(lock) {
+            _locatorType
+        }
+        set(value) = synchronized(lock) {
+            _locatorType = value
+        }
 
     fun registerToolWindow(toolWindow: LocateToolWindow) = synchronized(lock) {
         locateToolWindow = toolWindow

@@ -3809,7 +3809,7 @@ diff --git a/prefix/GSPredicate1.swift b/prefix/GSPredicate2.swift
 -                       format: "Invalid comparison predicate: %@",
 -         self.string().substringFromIndex(self.scanLocation()))
 +            throw NSError(domain: "NSInvalidArgumentException", code: 0,
-+                    userInfo: [NSLocalizedDescriptionKey: "Invalid comparison predicate: %@"])
++                    userInfo: [NSLocalizedDescriptionKey: "Invalid comparison predicate"])
          }
  
 -      if self.scanString("[cd]", intoString: nil)

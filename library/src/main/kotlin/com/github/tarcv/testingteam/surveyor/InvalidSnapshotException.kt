@@ -17,4 +17,4 @@
  */
 package com.github.tarcv.testingteam.surveyor
 
-class InvalidLocatorException(message: String) : RuntimeException(message)
+class InvalidSnapshotException(message: String) : Exception(message)

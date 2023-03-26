@@ -19,7 +19,7 @@ package com.github.tarcv.testingteam.surveyor
 
 class Node(
     parent: Node?,
-    val properties: Map<Property<*>, Any?>,
+    val properties: Map<out Property<*>, Any?>,
     val children: List<Node>,
     val isVisible: Boolean
 ) {
@@ -32,7 +32,7 @@ class Node(
     fun <T> getProperty(key: Property<T>, clazz: Class<T>): T {
         val found = properties[key]
         return if (found == null && !properties.containsKey(key)) {
-            throw RuntimeException("${key.javaClass.simpleName} property is not supported within the current snapshot format")
+            throw InvalidSnapshotException("${key.javaClass.simpleName} property is missing")
         } else {
             found as T
         }

@@ -21,8 +21,8 @@ import android.content.Context
 import com.github.tarcv.testingteam.surveyor.Node
 
 @Suppress("UNUSED_PARAMETER", "MemberVisibilityCanBePrivate")
-class Instrumentation(rootNode: Node) {
-    val uiAutomation: UiAutomation = UiAutomation(rootNode)
+class Instrumentation(rootNodes: List<Node>) {
+    val uiAutomation: UiAutomation = UiAutomation(rootNodes)
     val context: Context = Context()
 
     fun getUiAutomation(flags: Int): UiAutomation = uiAutomation

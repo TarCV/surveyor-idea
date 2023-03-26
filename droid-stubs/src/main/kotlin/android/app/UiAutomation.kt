@@ -23,8 +23,8 @@ import android.view.accessibility.AccessibilityWindowInfo
 import com.github.tarcv.testingteam.surveyor.Node
 
 @Suppress("UNUSED_PARAMETER", "unused")
-class UiAutomation(rootNode: Node) {
-    private val rootNode = AccessibilityNodeInfo(rootNode)
+class UiAutomation(rootNodes: List<Node>) {
+    private val rootNodes = rootNodes.map{ AccessibilityNodeInfo(it) }
 
     var onAccessibilityEventListener: OnAccessibilityEventListener? = null
     var serviceInfo: AccessibilityServiceInfo = AccessibilityServiceInfo()
@@ -37,7 +37,7 @@ class UiAutomation(rootNode: Node) {
     }
 
     fun getRootInActiveWindow(): AccessibilityNodeInfo {
-        return rootNode
+        return rootNodes.last()
     }
 
     fun getWindows(): List<AccessibilityWindowInfo> {

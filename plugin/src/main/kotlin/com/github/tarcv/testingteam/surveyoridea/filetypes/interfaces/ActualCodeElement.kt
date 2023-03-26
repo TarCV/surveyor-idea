@@ -15,7 +15,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.testingteam.surveyor
+package com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces
 
-// TODO: Remove properties and create node objects directly from XML (or pass data class objects if needed)
-interface Property<T>
+import com.intellij.psi.PsiElement
+
+/**
+ * DomElement representing an actual UI item in a UI snapshot
+ */
+interface ActualCodeElement {
+    val psiElement: PsiElement?
+}
