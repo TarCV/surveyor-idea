@@ -7,11 +7,49 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
       ipredicateKt.url = "path:./ipredicate";
+  inputs = {
+    nixpkgs.url = "nixpkgs/007ccf2f4f1da567903ae392cbf19966eb30cf20"; # Swift is not compatible or broken in later revisions
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # For ipredicate:
+    gnuStepBaseSrc = {
+      url = "github:gnustep/libs-base/cc38f2f4a1ce2d3f0a5f478ead595d2b011ecf41";
+      flake = false;
     };
-  outputs = { self, gitignore, nixpkgs, ipredicateKt } : {
-      # TODO: use forEachSystem here
-      defaultPackage.x86_64-linux =
-        with import nixpkgs { system = "x86_64-linux"; };
+    webDriverAgentSrc = {
+      url = "github:appium/WebDriverAgent/v3.16.0";
+      flake = false;
+    };
+
+    # For thirdparty/objc2swift:
+    objc2swift-src = {
+     url = "github:okaxaki/objc2swift/ee82a541de19e075f197abf307082a19bdfac7c6";
+     flake = false;
+    };
+
+    # For thirdparty/gryphon:
+    gryphon-src = {
+     url = "github:vinivendra/Gryphon/v0.18.1";
+     flake = false;
+    };
+  };
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+          imports = [
+            # To import a flake module
+            # 1. Add foo to inputs
+            # 2. Add foo as a parameter to the outputs function
+            # 3. Add here: foo.flakeModule
+            ./ipredicate/flake-module.nix
+          ];
+          debug = true;
+          systems = [ "x86_64-linux" ]; # TODO
+          flake = {};
+          perSystem = { config, self', inputs', pkgs, lib, ... }: {
+             packages.default = let
+                stdenv = pkgs.stdenv;
+                ipredicateKt = self'.packages.ipredicateKt;
+               in
                let
                  pluginSource = ./.;
                  customGitIgnoreFilter = src:
@@ -85,7 +123,7 @@
                    url = gradleDist;
                    sha256 = gradleSha256;
                  };
-                 gradleInit = writeText "init.gradle" ''
+                 gradleInit = pkgs.writeText "init.gradle" ''
                    gradle.projectsLoaded {
                      rootProject.allprojects {
                        buildscript {
@@ -117,7 +155,7 @@
                    src = pluginSource;
                    filter = customGitIgnoreFilter pluginSource;
                  };
-                 buildInputs = [ pkgs.autoPatchelfHook pkgs.jdk11 pkgs.perl pkgs.unzip ipredicateKt.defaultPackage.${system} ];
+                 buildInputs = [ pkgs.autoPatchelfHook pkgs.jdk11 pkgs.perl pkgs.unzip ipredicateKt ];
                  dontBuild = true;
 
                  # TODO: also build and package sources jar
@@ -159,9 +197,9 @@
 
                    patchShebangs .
 
-                   install -Dm444 ${ipredicateKt.defaultPackage.${system}}/* ipredicate/project/src/main/kotlin/com/github/tarcv/testingteam/surveyor/ipredicate/
+                   install -Dm444 ${ipredicateKt}/* ipredicate/project/src/main/kotlin/com/github/tarcv/testingteam/surveyor/ipredicate/
 
-                   export JAVA_HOME=${jdk11}
+                   export JAVA_HOME=${pkgs.jdk11}
 
                    # Use '--debug' to debug dependency downloads by plugins
                    ./gradlew -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=1g \
@@ -171,6 +209,7 @@
                        --init-script ${gradleInit} check buildPlugin -x :plugin-test:test
 
                    cp -v plugin/build/distributions/*.zip $out
+                   cp ${ipredicateKt}/* $out
                    popd
 
                    pushd $out
@@ -178,5 +217,6 @@
                    popd
                  '';
                };
+     };
   };
 }

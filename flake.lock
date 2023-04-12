@@ -1,32 +1,20 @@
 {
   "nodes": {
-    "flake-utils": {
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
       "locked": {
-        "lastModified": 1678901627,
-        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
+        "lastModified": 1680392223,
+        "narHash": "sha256-n3g7QFr85lDODKt250rkZj2IFS3i4/8HBU2yKHO3tqw=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "dcc36e45d054d7bb554c9cdab69093debd91a0b5",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_2": {
-      "locked": {
-        "lastModified": 1678901627,
-        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
         "type": "github"
       }
     },
@@ -45,23 +33,6 @@
         "repo": "libs-base",
         "rev": "cc38f2f4a1ce2d3f0a5f478ead595d2b011ecf41",
         "type": "github"
-      }
-    },
-    "gryphon": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "gryphon-src": "gryphon-src",
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-A57aGa0eb1Z7oB0WoLSjTMtzMKA9JKhlaw2ifh625lc=",
-        "path": "./thirdparty/gryphon",
-        "type": "path"
-      },
-      "original": {
-        "path": "./thirdparty/gryphon",
-        "type": "path"
       }
     },
     "gryphon-src": {
@@ -133,6 +104,24 @@
         "id": "nixpkgs",
         "rev": "007ccf2f4f1da567903ae392cbf19966eb30cf20",
         "type": "indirect"
+      }
+    },
+    "nixpkgs-lib": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1680213900,
+        "narHash": "sha256-cIDr5WZIj3EkKyCgj/6j3HBH4Jj1W296z7HTcWj1aMA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e3652e0735fbec227f342712f180f4f21f0594f2",
+        "type": "github"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_2": {
@@ -216,9 +205,14 @@
     },
     "root": {
       "inputs": {
+        "flake-parts": "flake-parts",
         "gitignore": "gitignore",
+        "gnuStepBaseSrc": "gnuStepBaseSrc",
+        "gryphon-src": "gryphon-src",
         "ipredicateKt": "ipredicateKt",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_4",
+        "objc2swift-src": "objc2swift-src",
+        "webDriverAgentSrc": "webDriverAgentSrc"
       }
     },
     "webDriverAgentSrc": {

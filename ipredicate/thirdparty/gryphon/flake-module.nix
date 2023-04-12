@@ -9,21 +9,15 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-{
-  inputs = {
-    nixpkgs.url = "nixpkgs/007ccf2f4f1da567903ae392cbf19966eb30cf20"; # Swift is not compatible or broken in later revisions
-    flake-utils.url = "github:numtide/flake-utils";
-    gryphon-src = {
-     url = "github:vinivendra/Gryphon/v0.18.1";
-     flake = false;
-    };
-  };
-
-  outputs = { self, nixpkgs, flake-utils, gryphon-src }:
-    (flake-utils.lib.eachDefaultSystem (system:
+top@{ inputs, ... } : {
+  flake = { };
+  perSystem = { self', inputs', pkgs, flake-utils, ... }: {
+    packages.gryphon =
       let
-        pkgs = import nixpkgs { inherit system; };
-      in let
+        swift = pkgs.swift;
+        gryphon-src = top.inputs.gryphon-src;
+      in
+      let
         fetchDependencies = resolvedDeps: let
           checkout = { package, repositoryURL, state, ... }:
             let
@@ -54,11 +48,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
           in builtins.concatStringsSep " " (map linkARepo resolvedDeps);
       in let
         resolvedDeps = (builtins.fromJSON (builtins.readFile "${./.}/Package.resolved")).object.pins;
-      in {
-          defaultPackage = pkgs.stdenv.mkDerivation {
+      in pkgs.stdenv.mkDerivation {
               name = "gryphon";
               src = gryphon-src;
-              buildInputs = [ pkgs.perl pkgs.swift ];
+              buildInputs = [ pkgs.perl swift ];
               phases = [ "unpackPhase" "buildPhase" "installPhase" ];
 
               buildPhase = ''
@@ -76,8 +69,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                       ls -al
                       perl -i -0pe 's#\.package\(\s*name:\s*"([^"]+?)"[-\s\w.,:/"]*(?:,\s*\.\w+\([^)]+\))*\)#\.package(name: "$1", path: ".mirrors/$1")#g' Package.swift || true
                       perl -i -0pe 's#\.package\(\s*url:\s*"[^"]+/([^"]+?)"[\s\S]*?\)#\.package(path: ".mirrors/$1")#g' Package.swift || true
-                      swift build -c debug
-                      patchelf .build/debug/gryphon --add-rpath ${pkgs.swift}/lib
+
+                      swift build
+                      patchelf .build/debug/gryphon --add-rpath ${swift}/lib
               '';
               installPhase = ''
                 set -ex
@@ -85,7 +79,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 cp .build/debug/gryphon $out/bin/gryphon
               '';
         };
-      }
-    )
-  );
+  };
 }

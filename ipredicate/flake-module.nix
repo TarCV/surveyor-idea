@@ -1,24 +1,21 @@
-{
-  description = "Kotlin port of predicates from gnustep";
-  inputs = {
-    nixpkgs.url = "nixpkgs/release-22.11";
-    gryphon.url = "path:./thirdparty/gryphon";
-    objc2swift.url = "path:./thirdparty/objc2swift";
-    gnuStepBaseSrc = {
-      url = "github:gnustep/libs-base/cc38f2f4a1ce2d3f0a5f478ead595d2b011ecf41";
-      flake = false;
-    };
-    webDriverAgentSrc = {
-      url = "github:appium/WebDriverAgent/v3.16.0";
-      flake = false;
-    };
-  };
-  outputs = { self, nixpkgs, gryphon, objc2swift, gnuStepBaseSrc, webDriverAgentSrc }: {
-    defaultPackage.x86_64-linux =
-        with import nixpkgs { system = "x86_64-linux"; };
+top@{ inputs, ... }: {
+  imports = [
+    ./thirdparty/gryphon/flake-module.nix
+    ./thirdparty/objc2swift/flake-module.nix
+  ];
+  flake = { };
+  perSystem = { pkgs, lib, stdenv, self', webDriverAgentSrc, ... }: {
+    packages.ipredicateKt =
+        let
+          gryphon = self'.packages.gryphon;
+          objc2swift = self'.packages.objc2swift;
+          gnuStepBaseSrc = top.inputs.gnuStepBaseSrc;
+          webDriverAgentSrc = top.inputs.webDriverAgentSrc;
+          stdenv = pkgs.stdenv;
+        in
         let predicateConcatenated = stdenv.mkDerivation {
           name = "GSPredicate.swift";
-          src = self;
+          src = ./.;
           dontBuild = true;
           installPhase = ''
                  set -ex
@@ -36,9 +33,9 @@
         let predicateSwift = stdenv.mkDerivation {
           inherit predicateConcatenated;
           name = "GSPredicate.swift";
-          src = self;
+          src = ./.;
           dontBuild = true;
-          buildInputs = [ pkgs.perl pkgs.pcre2 python38Packages.pcpp objc2swift.defaultPackage.${system} ];
+          buildInputs = [ pkgs.perl pkgs.pcre2 pkgs.python38Packages.pcpp objc2swift ];
           installPhase = ''
                  set -ex
                  mkdir -p $out
@@ -161,7 +158,7 @@
        let predicateHeaderKt = stdenv.mkDerivation rec {
                  inherit predicateConcatenated;
                  name = "GSPredicateHeader.kt";
-                 src = self;
+                 src = ./.;
                  dontBuild = true;
 
                  installPhase = ''
@@ -180,8 +177,8 @@
                  inherit predicateHeaderKt;
 
                  name = "GSPredicate.kt";
-                 src = [ self ];
-                 buildInputs = [ pkgs.perl gryphon.defaultPackage.${system} ];
+                 src = [ ./. ];
+                 buildInputs = [ pkgs.perl gryphon ];
                  dontBuild = true;
                  installPhase = ''
                  set -ex
@@ -219,7 +216,7 @@
        }; in
        let wdaConcatenated = stdenv.mkDerivation {
                  name = "WebDriverAgent.m";
-                 src = self;
+                 src = ./.;
                  dontBuild = true;
                  installPhase = ''
                  set -ex
@@ -257,9 +254,9 @@
                  inherit wdaConcatenated;
 
                  name = "WebDriverAgent.swift";
-                 src = self;
+                 src = ./.;
                  dontBuild = true;
-                 buildInputs = [ pkgs.perl objc2swift.defaultPackage.${system} ];
+                 buildInputs = [ pkgs.perl objc2swift ];
                  installPhase = ''
                  set -ex
                  mkdir -p $out
@@ -330,8 +327,8 @@
                  inherit wdaSwift;
 
                  name = "WebDriverAgent.kt";
-                 src = [ self ];
-                 buildInputs = [ pkgs.perl pkgs.pcre2 gryphon.defaultPackage.${system} ];
+                 src = [ ./. ];
+                 buildInputs = [ pkgs.perl pkgs.pcre2 gryphon ];
                  dontBuild = true;
                  installPhase = ''
                  set -ex
@@ -375,7 +372,7 @@
                         inherit wdaKt;
 
                         name = "output";
-                        src = [ self ];
+                        src = [ ./. ];
                         dontBuild = true;
                         installPhase = ''
                         set -ex

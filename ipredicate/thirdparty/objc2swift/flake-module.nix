@@ -1,20 +1,11 @@
-{
-  description = "Patched objc2swift";
-
-  inputs = {
-    nixpkgs.url = "nixpkgs/release-22.11";
-    flake-utils.url = "github:numtide/flake-utils";
-    objc2swift-src = {
-     url = "github:okaxaki/objc2swift/ee82a541de19e075f197abf307082a19bdfac7c6";
-     flake = false;
-    };
+top@{ inputs, ... } : {
+  flake = {
+    description = "Patched objc2swift";
   };
-
-  outputs = { self, nixpkgs, flake-utils, objc2swift-src }:
-  (flake-utils.lib.eachDefaultSystem
-    (system:
-      let pkgs = import nixpkgs { inherit system; }; in rec {
-        packages.objc2swift = pkgs.mkYarnPackage {
+  perSystem = { pkgs, ... }: {
+    packages.objc2swift = let
+       objc2swift-src = top.inputs.objc2swift-src;
+      in pkgs.mkYarnPackage {
           name = "objc2swift";
           src = pkgs.stdenv.mkDerivation {
               name = "objc2swift-patched";
@@ -31,10 +22,6 @@
           };
           packageJSON = "${objc2swift-src}/package.json";
           yarnLock = ./yarn.lock;
-        };
-
-        defaultPackage = packages.objc2swift;
-      }
-    )
-  );
+    };
+  };
 }
