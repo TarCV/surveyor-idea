@@ -48,6 +48,7 @@ class LocateAction: AnAction() {
             NotificationType.ERROR
         )
 
+        // TODO: Check if locatorType supports current UI snapshot type
         val (editor, xmlFile: PsiFile) = FileEditorManager.getInstance(project).selectedEditors
             .asSequence()
             .mapNotNull { editor ->

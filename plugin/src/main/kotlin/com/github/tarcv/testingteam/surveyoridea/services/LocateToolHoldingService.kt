@@ -19,27 +19,46 @@ package com.github.tarcv.testingteam.surveyoridea.services
 
 import com.github.tarcv.testingteam.surveyoridea.data.LocatorType
 import com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow
+import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
+import com.intellij.ui.AppUIUtil
 import javax.annotation.concurrent.GuardedBy
 
 @Service
-class LocateToolHoldingService(@Suppress("UNUSED_PARAMETER") project: Project) {
+class LocateToolHoldingService(private val project: Project) {
     private val lock = Any()
 
     @GuardedBy("lock")
     private var locateToolWindow: LocateToolWindow? = null
     @GuardedBy("lock")
-    private var _locatorType: LocatorType? = null
+    private var _locatorType: LocatorType? = synchronized(lock) {
+        val locatorTypeValue = PropertiesComponent.getInstance(project)
+            .getValue(locatorTypePersistanceKey)
+        LocatorType::class.sealedSubclasses
+            .firstOrNull { it.simpleName == locatorTypeValue }
+            ?.objectInstance
+    }
 
-    // TODO: Persist this property per project
     var locatorType: LocatorType?
         get() = synchronized(lock) {
             _locatorType
         }
         set(value) = synchronized(lock) {
             _locatorType = value
+
+            PropertiesComponent.getInstance(project)
+                .setValue(locatorTypePersistanceKey, value?.javaClass?.simpleName, null)
+
+            AppUIUtil.invokeLaterIfProjectAlive(project) {
+                project.messageBus.syncPublisher(LocatorTypeChangedListener.topic)
+                    .onLocatorTypeChanged(value)
+            }
         }
+
+    companion object {
+        private val locatorTypePersistanceKey = "${LocateToolHoldingService::class.java.name}.locatorType"
+    }
 
     fun registerToolWindow(toolWindow: LocateToolWindow) = synchronized(lock) {
         locateToolWindow = toolWindow

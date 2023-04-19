@@ -18,6 +18,7 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyoridea.services.LocateToolHoldingService
+import com.github.tarcv.testingteam.surveyoridea.services.LocatorTypeChangedListener
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.ActionPlaces
@@ -36,12 +37,15 @@ import javax.swing.JPanel
 import javax.swing.KeyStroke
 
 
-abstract class LocateToolWindow(protected val project: Project) {
+abstract class LocateToolWindow(protected val project: Project) : LocatorTypeChangedListener {
     private lateinit var content: JPanel
     protected lateinit var locatorField: JPanel
     private lateinit var toolbar: JComponent
 
     protected abstract val fileType: LanguageFileType
+    init {
+        project.messageBus.connect().subscribe(LocatorTypeChangedListener.topic, this)
+    }
 
     fun createUIComponents() {
         val actionToolbar = with(ActionManager.getInstance()) {
@@ -79,8 +83,10 @@ abstract class LocateToolWindow(protected val project: Project) {
 
         initSelectorField(editorField)
 
-        project.getService(LocateToolHoldingService::class.java).registerToolWindow(this)
-        actionToolbar.setTargetComponent(editorField)
+        with(project.getService(LocateToolHoldingService::class.java)) {
+            onLocatorTypeChanged(locatorType)
+            registerToolWindow(this@LocateToolWindow)
+        }
         locatorField = editorField
     }
 
