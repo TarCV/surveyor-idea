@@ -18,8 +18,8 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyor.*
-import com.github.tarcv.testingteam.surveyoridea.filetypes.FileType
-import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.ActualCodeElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.XmlFileType
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.UiPsiElementReference
 import com.github.tarcv.testingteam.surveyoridea.services.LocateToolHoldingService
 import com.intellij.lang.xml.XMLLanguage
 import com.intellij.notification.NotificationType
@@ -31,7 +31,7 @@ import com.intellij.openapi.fileEditor.TextEditor
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.xml.XmlFile
-import java.util.*
+import java.util.IdentityHashMap
 import com.intellij.openapi.diagnostic.Logger as IdeaLogger
 
 class LocateAction: AnAction() {
@@ -65,8 +65,8 @@ class LocateAction: AnAction() {
                 NotificationType.ERROR
             )
 
-        val mapping = IdentityHashMap<Node, ActualCodeElement>()
-        val nodes = FileType::class.sealedSubclasses
+        val mapping = IdentityHashMap<Node, UiPsiElementReference>()
+        val nodes = XmlFileType::class.sealedSubclasses
             .firstNotNullOfOrNull { type ->
                 requireNotNull(type.objectInstance)
                     .tryConvert(project, xmlFile, mapping)

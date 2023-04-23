@@ -18,10 +18,12 @@
 package com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces
 
 import com.intellij.psi.PsiElement
+import com.intellij.util.xml.DomElement
 
 /**
  * DomElement representing an actual UI item in a UI snapshot
  */
-interface ActualCodeElement {
-    val psiElement: PsiElement?
+interface UiDomElement: DomElement, UiPsiElementReference {
+    override val psiElement: PsiElement?
+        get() = xmlElement
 }

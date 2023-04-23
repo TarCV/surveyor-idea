@@ -25,9 +25,9 @@ import javax.swing.Icon
 /**
  * DomElement not representing any actual UI item in a UI snapshot, and instead representing a root of such snapshot instead
  */
-interface RootUiElement: DomElement {
-    class DescriptionProvider : PresentationProvider<RootUiElement>() {
-        override fun getName(t: RootUiElement?): String? {
+interface RootDomElement: DomElement {
+    class DescriptionProvider: PresentationProvider<RootDomElement>() {
+        override fun getName(t: RootDomElement?): String? {
             return t?.xmlTag
                 ?.containingFile
                 ?.virtualFile
@@ -35,7 +35,7 @@ interface RootUiElement: DomElement {
                 ?: t?.xmlTag?.containingFile?.name
         }
 
-        override fun getIcon(t: RootUiElement?): Icon? {
+        override fun getIcon(t: RootDomElement?): Icon? {
             return t?.xmlTag
                 ?.containingFile
                 ?.getIcon(Iconable.ICON_FLAG_VISIBILITY)

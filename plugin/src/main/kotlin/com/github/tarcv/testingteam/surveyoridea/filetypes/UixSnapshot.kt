@@ -2,9 +2,10 @@ package com.github.tarcv.testingteam.surveyoridea.filetypes
 
 import com.github.tarcv.testingteam.surveyor.DroidProperty
 import com.github.tarcv.testingteam.surveyor.Property
-import com.github.tarcv.testingteam.surveyoridea.filetypes.FileType.Companion.tryReadAsXml
-import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.ActualCodeElement
-import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.RootUiElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.XmlFileType.Companion.tryReadAsXml
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.RootDomElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.UiDomElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.UiPsiElementReference
 import com.intellij.icons.AllIcons
 import com.intellij.ide.presentation.Presentation
 import com.intellij.ide.presentation.PresentationProvider
@@ -18,11 +19,12 @@ import java.lang.ref.WeakReference
 import java.util.IdentityHashMap
 import javax.swing.Icon
 
-object UixSnapshot: FileType {
+@Suppress("unused")
+object UixSnapshot: XmlFileType {
     override fun tryConvert(
         project: Project,
         psiFile: PsiFile,
-        mapping: IdentityHashMap<com.github.tarcv.testingteam.surveyor.Node, ActualCodeElement>
+        mapping: IdentityHashMap<com.github.tarcv.testingteam.surveyor.Node, UiPsiElementReference>
     ): List<com.github.tarcv.testingteam.surveyor.Node>? {
         val uix = tryReadAsXml(project, psiFile, Hierarchy::class.java)
             ?: return null
@@ -32,7 +34,7 @@ object UixSnapshot: FileType {
 
     private fun convert(
         node: Node,
-        mapping: IdentityHashMap<com.github.tarcv.testingteam.surveyor.Node, ActualCodeElement>
+        mapping: IdentityHashMap<com.github.tarcv.testingteam.surveyor.Node, UiPsiElementReference>
     ): com.github.tarcv.testingteam.surveyor.Node {
         val props: Map<Property<*>, Any?> = listOf(
             DroidProperty.IS_CHECKABLE to node.checkable.value,
@@ -67,24 +69,18 @@ object UixSnapshot: FileType {
     }
 }
 
-class UixDomDecription: DomFileDescription<Hierarchy>(Hierarchy::class.java, "hierarchy") {
-    override fun getVersion(): Int {
-        return super.getVersion()
-    }
+class UixDomDecription: DomFileDescription<Hierarchy>(Hierarchy::class.java, "hierarchy")
 
-    override fun getStubVersion(): Int {
-        return super.getStubVersion()
-    }
-}
-
-interface Hierarchy: RootUiElement {
+@Presentation(provider = RootDomElement.DescriptionProvider::class)
+interface Hierarchy: RootDomElement {
+    @Suppress("unused")
     val rotation: GenericAttributeValue<Int>
 
     val nodes: List<Node>
 }
 
 @Presentation(provider = Node.DescriptionProvider::class)
-interface Node: ActualCodeElement {
+interface Node: UiDomElement {
     val nodes: List<Node>
 
     val index: GenericAttributeValue<Int>

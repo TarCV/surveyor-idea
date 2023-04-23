@@ -25,6 +25,9 @@
         <notificationGroup displayType="TOOL_WINDOW" id="com.github.tarcv.testingteam.surveyoridea.gui.NotificationGroup" toolWindowId="Locate Element" />
 
         <navbar implementation="com.github.tarcv.testingteam.surveyoridea.gui.UiAwareNavigationBar" />
+
+        <xmlStructureViewBuilderProvider
+                implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.structure.IAutStructureViewFactory"/>
     </extensions>
 
     <applicationListeners>

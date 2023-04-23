@@ -2,35 +2,41 @@ package com.github.tarcv.testingteam.surveyoridea.filetypes
 
 import com.github.tarcv.testingteam.surveyor.IProperty
 import com.github.tarcv.testingteam.surveyor.Node
-import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.ActualCodeElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.UiPsiElementReference
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.util.NlsSafe
 import com.intellij.psi.PsiFile
 import com.intellij.psi.xml.XmlFile
 import com.intellij.psi.xml.XmlTag
 import java.util.IdentityHashMap
 
-object IAutSnapshot: FileType {
+object IAutSnapshot: XmlFileType {
     override fun tryConvert(
         project: Project,
         psiFile: PsiFile,
-        mapping: IdentityHashMap<Node, ActualCodeElement>
+        mapping: IdentityHashMap<Node, UiPsiElementReference>
     ): List<Node>? {
         if (psiFile !is XmlFile) {
             return null
         }
 
-        val rootTag = psiFile.rootTag
-        if (rootTag == null || rootTag.name != "AppiumAUT") {
+        val rootTag = psiFile.rootTag ?: return null
+        if (!isXmlFileOfType(rootTag)) {
             return null
         }
         return rootTag.subTags
             .map { convert(it, mapping) }
     }
 
+    fun isXmlFileOfType(rootTag: XmlTag): Boolean {
+        if (rootTag.name == "AppiumAUT") {
+            return true
+        }
+        return false
+    }
+
     private fun convert(
         node: XmlTag,
-        mapping: IdentityHashMap<Node, ActualCodeElement>
+        mapping: IdentityHashMap<Node, UiPsiElementReference>
     ): Node {
         // TODO: How to handle missing values?
         val props: Map<IProperty<*>, Any?> = IProperty.allProperties
@@ -67,6 +73,17 @@ object IAutSnapshot: FileType {
 
         return out
     }
+
+    fun structureTitleFor(tag: XmlTag): String = buildString {
+        append(tag.name.removePrefix("XCUIElementType"))
+        append(' ')
+        append(
+            tag.getAttribute("name")?.value
+                ?: tag.getAttribute("label")?.value?.let { "'$it'" }
+                ?: tag.getAttribute("value")?.value?.let { "\"$it\"" }
+                ?: ""
+        )
+    }
 }
 private fun getPropertyFromTag(property: IProperty<out Boolean?>, node: XmlTag, attribute: String): Boolean? {
     return node.getAttribute(attribute)
@@ -78,8 +95,8 @@ private fun getPropertyFromTag(property: IProperty<out Int?>, node: XmlTag, attr
         ?.value
         ?.toIntOrNull()
 }
-private fun getPropertyFromTag(property: IProperty<out String?>, node: XmlTag, attribute: String): @NlsSafe String? {
+private fun getPropertyFromTag(property: IProperty<out String?>, node: XmlTag, attribute: String): String? {
     return node.getAttribute(attribute)?.value
 }
 
-data class IAutNode(override val psiElement: XmlTag): ActualCodeElement
+data class IAutNode(override val psiElement: XmlTag): UiPsiElementReference
