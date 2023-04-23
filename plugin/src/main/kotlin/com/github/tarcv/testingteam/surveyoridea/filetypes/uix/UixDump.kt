@@ -20,23 +20,33 @@ package com.github.tarcv.testingteam.surveyoridea.filetypes.uix
 import com.github.tarcv.testingteam.surveyoridea.filetypes.ActualUiElement
 import com.github.tarcv.testingteam.surveyoridea.filetypes.RootUiElement
 import com.intellij.icons.AllIcons
+import com.intellij.ide.highlighter.DomSupportEnabled
+import com.intellij.ide.highlighter.XmlLikeFileType
 import com.intellij.ide.presentation.Presentation
 import com.intellij.ide.presentation.PresentationProvider
-import com.intellij.util.xml.*
+import com.intellij.lang.xml.XMLLanguage
+import com.intellij.util.xml.Attribute
+import com.intellij.util.xml.DomFileDescription
+import com.intellij.util.xml.ElementPresentationManager
+import com.intellij.util.xml.GenericAttributeValue
 import java.lang.ref.WeakReference
 import javax.swing.Icon
 
-class UixDomDecription: DomFileDescription<Hierarchy>(Hierarchy::class.java, "hierarchy") {
-    override fun getVersion(): Int {
-        return super.getVersion()
-    }
+class UixDomDecription: DomFileDescription<Hierarchy>(Hierarchy::class.java, "hierarchy")
 
-    override fun getStubVersion(): Int {
-        return super.getStubVersion()
-    }
+class UixFileType : XmlLikeFileType(XMLLanguage.INSTANCE), DomSupportEnabled {
+    override fun getName(): String = UixFileType::class.java.name
+
+    override fun getDescription(): String = "UI Automator hierarchy XML"
+
+    override fun getDefaultExtension(): String = "uix"
+
+    override fun getIcon(): Icon = AllIcons.FileTypes.Xml
 }
 
+@Presentation(provider = RootUiElement.DescriptionProvider::class)
 interface Hierarchy: RootUiElement {
+    @Suppress("unused")
     val rotation: GenericAttributeValue<Int>
 
     val nodes: List<Node>

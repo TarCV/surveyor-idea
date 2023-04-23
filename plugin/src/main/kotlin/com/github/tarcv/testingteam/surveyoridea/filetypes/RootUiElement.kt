@@ -17,9 +17,28 @@
  */
 package com.github.tarcv.testingteam.surveyoridea.filetypes
 
+import com.intellij.ide.presentation.PresentationProvider
+import com.intellij.openapi.util.Iconable
 import com.intellij.util.xml.DomElement
+import javax.swing.Icon
 
 /**
  * DomElement not representing any actual UI item in a UI dump, and instead representing a root of a dump instead
  */
-interface RootUiElement: DomElement
+interface RootUiElement: DomElement {
+    class DescriptionProvider : PresentationProvider<RootUiElement>() {
+        override fun getName(t: RootUiElement?): String? {
+            return t?.xmlTag
+                ?.containingFile
+                ?.virtualFile
+                ?.presentableName
+                ?: t?.xmlTag?.containingFile?.name
+        }
+
+        override fun getIcon(t: RootUiElement?): Icon? {
+            return t?.xmlTag
+                ?.containingFile
+                ?.getIcon(Iconable.ICON_FLAG_VISIBILITY)
+        }
+    }
+}
