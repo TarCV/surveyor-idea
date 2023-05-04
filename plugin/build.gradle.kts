@@ -3,7 +3,7 @@ import org.jetbrains.changelog.markdownToHTML
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
-sourceSets
+
 plugins {
     kotlin("jvm")
     id("com.github.TarCV.aar2jar")
