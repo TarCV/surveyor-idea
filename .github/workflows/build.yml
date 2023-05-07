@@ -29,8 +29,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.properties.outputs.version }}
       changelog: ${{ steps.properties.outputs.changelog }}
+      pluginVerifierHomeDir: ${{ steps.properties.outputs.pluginVerifierHomeDir }}
+      version: ${{ steps.properties.outputs.version }}
+
       filename: ${{ steps.artifact.outputs.filename }}
     steps:
 
@@ -164,14 +166,14 @@ jobs:
       - name: Setup Plugin Verifier IDEs Cache
         uses: actions/cache@v3.3.1
         with:
-          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
+          path: ${{ needs.build.outputs.pluginVerifierHomeDir }}/ides
           key: plugin-verifier-${{ hashFiles('plugin/build/listProductsReleases.txt') }}
 
       # Run Verify Plugin task and IntelliJ Plugin Verifier tool
       # TODO: Run verification against latest EAPs of supported IDEs (with cron)
       - name: Run Plugin Verification tasks
         run: |
-          ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }} \
+          ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }} \
             -PpluginDistributionFile=plugin-artifact/*
 
       # Collect Plugin Verifier Result
