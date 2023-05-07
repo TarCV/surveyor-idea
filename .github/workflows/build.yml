@@ -48,6 +48,8 @@ jobs:
         with:
           distribution: zulu
           java-version: 11
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
 
       # Set environment variables
       - name: Export Properties
@@ -96,6 +98,8 @@ jobs:
         id: artifact
         shell: bash
         run: |
+          ./gradlew buildPlugin
+          
           cd ${{ github.workspace }}/plugin/build/distributions
           FILENAME=`ls *.zip`
           unzip "$FILENAME" -d content

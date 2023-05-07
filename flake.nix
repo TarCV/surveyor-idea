@@ -2,8 +2,12 @@
   description = "UI Surveyor plugin for Idea IDE";
     inputs = {
       nixpkgs.url = "nixpkgs/release-22.11";
+      gitignore = {
+        url = "github:hercules-ci/gitignore.nix";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
     };
-  outputs = { self, nixpkgs } : {
+  outputs = { self, gitignore, nixpkgs } : {
       # TODO: use forEachSystem here
       defaultPackage.x86_64-linux =
         with import nixpkgs { system = "x86_64-linux"; };
@@ -86,7 +90,25 @@
                    }
                  '';
 
-                 src = [ ./. ];
+                 src = nixpkgs.lib.cleanSourceWith {
+                   name = name + "source";
+                   src = ./.;
+                   filter = gitignore.lib.gitignoreFilterWith {
+                     extraRules = ''
+                        /.*
+                        /ci
+                        /docs
+                        /*.yml
+                        /*.txt
+                        /*.md
+                        !/CHANGELOG.md
+                        /prepare4nix.sh
+                        flake.lock
+                        *.nix
+                     '';
+                     basePath = ./.;
+                   };
+                 };
                  buildInputs = [ pkgs.autoPatchelfHook pkgs.jdk11 pkgs.perl pkgs.unzip ];
                  dontBuild = true;
 
