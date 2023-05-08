@@ -96,3 +96,13 @@ jobs:
             --body "Current pull request contains patched \`CHANGELOG.md\` file for the \`$VERSION\` version." \
             --label "$LABEL" \
             --head $BRANCH
+
+      - name: Collect Dependency Verification Errors
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.job }}-dependency-verification-errors
+          path: |
+            ${{ github.workspace }}/build/reports/dependency-verification
+            ${{ github.workspace }}/**/build/reports/dependency-verification
+
