@@ -19,7 +19,7 @@ jobs:
             require-sigs = true
       - run: |
           # This will timeout when flake is not built on Garnix
-          timeout --signal=9 20s nix build
+          timeout --signal=9 40s nix build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
