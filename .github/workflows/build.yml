@@ -157,6 +157,8 @@ jobs:
         # Cache Plugin Verifier IDEs
       - name: Prepare
         run: |
+          ls -R ${{ github.workspace }}/plugin-artifact
+
           # it's unknown what IDEs Verifier will check in advance (as version upper bound not set),
           # so verification is incompatible with it
           rm gradle/verification-metadata.xml
