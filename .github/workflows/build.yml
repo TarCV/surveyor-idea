@@ -100,7 +100,7 @@ jobs:
         id: artifact
         shell: bash
         run: |
-          ./gradlew buildPlugin
+          ./gradlew buildPlugin verifyPlugin
           
           cd ${{ github.workspace }}/plugin/build/distributions
           FILENAME=`ls *.zip`
@@ -125,7 +125,7 @@ jobs:
             ${{ github.workspace }}/**/build/reports/dependency-verification
 
   verify:
-    name: Verify plugin
+    name: Verify plugin against different IDEs
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -141,7 +141,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ needs.build.outputs.filename }}
-          working-directory: plugin-artifact
+          path: plugin-artifact
 
       # Check out current repository
       - name: Fetch Sources
@@ -173,8 +173,8 @@ jobs:
       # TODO: Run verification against latest EAPs of supported IDEs (with cron)
       - name: Run Plugin Verification tasks
         run: |
-          ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }} \
-            -PpluginDistributionFile=plugin-artifact/*
+          ./gradlew runPluginVerifier -x buildPlugin -x verifyPlugin -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }} \
+            -PpluginDistributionFile=${{ github.workspace }}/plugin-artifact/*
 
       # Collect Plugin Verifier Result
       - name: Collect Plugin Verifier Result

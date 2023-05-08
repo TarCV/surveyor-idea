@@ -57,6 +57,10 @@ changelog {
 
 
 tasks {
+    runPluginVerifier {
+        distributionFile.set(properties("pluginDistributionFile").map { file(it) }.orNull)
+    }
+
     patchPluginXml {
         version.set(properties("pluginVersion"))
         sinceBuild.set(properties("pluginSinceBuild"))
