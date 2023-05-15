@@ -58,8 +58,38 @@ allprojects {
             kotlinOptions.apiVersion = properties("kotlinApiVersion").get()
         }
         withType<AbstractArchiveTask>().configureEach {
+            // Settings for reproducibility
             isPreserveFileTimestamps = false
             isReproducibleFileOrder = true
+            fileMode = "644".toInt(8)
+        }
+    }
+    afterEvaluate {
+        tasks {
+            withType<Jar> {
+                manifest {
+                    // Settings for reproducibility
+                    attributes.replaceAll { k, v ->
+                        when (k) {
+                            "Build-JVM" -> {
+                                v.toString()
+                                    .replace(Regex("""(?<=[\.\+])\d+"""), "0")
+                                    .replace(Regex("""(?<=\().+?(?=\d)"""), "_ ")
+                                    .replace(Regex("""\D+(?=\))"""), "")
+                                    .replace(Regex("""[+-][A-Za-z_]+"""), "")
+                            }
+                            "Build-OS" -> {
+                                v.toString()
+                                    .replace(Regex("""(?<=\.)\d+"""), "0")
+                                    .replace(Regex("""[+-]\d+"""), "")
+                                    .replace(Regex("""[+-][A-Za-z_]+"""), "")
+                            }
+                            else -> v
+                        }
+                    }
+                }
+                // Settings for reproducibility
+            }
         }
     }
 }

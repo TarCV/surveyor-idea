@@ -1,0 +1,85 @@
+name: Plugin Verify
+on:
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+
+jobs:
+  verify:
+    name: Verify plugin against different IDEs
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+
+      # Free GitHub Actions Environment Disk Space
+      - name: Maximize Build Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+
+      - name: Download plugin
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yml
+          commit: ${{github.event.workflow_run.head_sha}}
+          name: ".+[Ss]urveyor-\\d.+"
+          name_is_regexp: true
+          path: plugin-artifact
+
+      # Setup Java 11 environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 11
+
+        # Cache Plugin Verifier IDEs
+      - name: Prepare
+        id: prepare
+        run: |
+          # it's unknown what IDEs Verifier will check in advance (as version upper bound not set),
+          # so verification is incompatible with it
+          rm gradle/verification-metadata.xml
+
+          echo "pluginVerifierHomeDir=~/.pluginVerifier" >> $GITHUB_OUTPUT
+
+          # prepare list of IDEs for Plugin Verifier:
+          ./gradlew listProductsReleases
+      - name: Setup Plugin Verifier IDEs Cache
+        uses: actions/cache@v3.3.1
+        with:
+          path: ${{ steps.prepare.outputs.pluginVerifierHomeDir }}/ides
+          key: plugin-verifier-${{ hashFiles('plugin/build/listProductsReleases.txt') }}
+
+      # Run Verify Plugin task and IntelliJ Plugin Verifier tool
+      # TODO: Run verification against latest EAPs of supported IDEs (with cron)
+      - name: Run Plugin Verification tasks
+        run: |
+          ls -R ${{ github.workspace }}
+          ./gradlew runPluginVerifier -x buildPlugin -x verifyPlugin -Dplugin.verifier.home.dir=${{ steps.prepare.outputs.pluginVerifierHomeDir }} \
+            -PpluginDistributionFile="$(find ${{ github.workspace }}/plugin-artifact/*/*.zip)"
+
+      # Collect Plugin Verifier Result
+      - name: Collect Plugin Verifier Result
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: pluginVerifier-result
+          path: |
+            ${{ github.workspace }}/build/reports/pluginVerifier
+            ${{ github.workspace }}/**/build/reports/pluginVerifier
+
+      - name: Collect Dependency Verification Errors
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.job }}-dependency-verification-errors
+          path: |
+            ${{ github.workspace }}/build/reports/dependency-verification
+            ${{ github.workspace }}/**/build/reports/dependency-verification
+

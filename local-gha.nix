@@ -10,7 +10,7 @@ let
   # };
 
   # Starting podman service: `podman system service --time=0`
-  # Starting act: `DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock act --container-daemon-socket $XDG_RUNTIME_DIR/podman/podman.sock`
+  # Starting act: `act --container-daemon-socket $XDG_RUNTIME_DIR/podman/podman.sock`
 
   podmanSetupScript = let
     registriesConf = pkgs.writeText "registries.conf" ''
@@ -56,6 +56,8 @@ in pkgs.mkShell {
   shellHook = ''
     # Install required configuration
     ${podmanSetupScript}
+    podman system service --time=0 &
+    export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
   '';
 
 }

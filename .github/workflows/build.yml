@@ -1,17 +1,3 @@
-# GitHub Actions Workflow is created for testing and preparing the plugin release in the following steps:
-# - validate Gradle Wrapper,
-# - run 'test' and 'verifyPlugin' tasks,
-# - run Qodana inspections,
-# - run 'buildPlugin' task and prepare artifact for the further tests,
-# - run 'runPluginVerifier' task,
-# - create a draft release.
-#
-# Workflow is triggered on push and pull_request events.
-#
-#
-#
-## JBIJPPTPL
-
 name: Build
 on:
   # Trigger the workflow on pushes to only the 'main' branch (this avoids duplicate checks being run e.g. for dependabot pull requests)
@@ -30,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       changelog: ${{ steps.properties.outputs.changelog }}
-      pluginVerifierHomeDir: ${{ steps.properties.outputs.pluginVerifierHomeDir }}
       version: ${{ steps.properties.outputs.version }}
 
       filename: ${{ steps.artifact.outputs.filename }}
@@ -65,7 +50,6 @@ jobs:
 
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "name=$NAME" >> $GITHUB_OUTPUT
-          echo "pluginVerifierHomeDir=~/.pluginVerifier" >> $GITHUB_OUTPUT
           
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
@@ -122,110 +106,3 @@ jobs:
             ${{ github.workspace }}/build/reports/dependency-verification
             ${{ github.workspace }}/**/build/reports/dependency-verification
 
-  verify:
-    name: Verify plugin against different IDEs
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-
-      # Free GitHub Actions Environment Disk Space
-      - name: Maximize Build Space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
-
-      # Check out current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v3
-
-      - name: Download plugin
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ needs.build.outputs.filename }}
-          path: plugin-artifact
-
-      # Setup Java 11 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: zulu
-          java-version: 11
-
-        # Cache Plugin Verifier IDEs
-      - name: Prepare
-        run: |
-          # it's unknown what IDEs Verifier will check in advance (as version upper bound not set),
-          # so verification is incompatible with it
-          rm gradle/verification-metadata.xml
-
-          # prepare list of IDEs for Plugin Verifier:
-          ./gradlew listProductsReleases
-      - name: Setup Plugin Verifier IDEs Cache
-        uses: actions/cache@v3.3.1
-        with:
-          path: ${{ needs.build.outputs.pluginVerifierHomeDir }}/ides
-          key: plugin-verifier-${{ hashFiles('plugin/build/listProductsReleases.txt') }}
-
-      # Run Verify Plugin task and IntelliJ Plugin Verifier tool
-      # TODO: Run verification against latest EAPs of supported IDEs (with cron)
-      - name: Run Plugin Verification tasks
-        run: |
-          ./gradlew runPluginVerifier -x buildPlugin -x verifyPlugin -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }} \
-            -PpluginDistributionFile="${{ github.workspace }}/plugin-artifact/${{ needs.build.outputs.filename }}.zip"
-
-      # Collect Plugin Verifier Result
-      - name: Collect Plugin Verifier Result
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: pluginVerifier-result
-          path: |
-            ${{ github.workspace }}/build/reports/pluginVerifier
-            ${{ github.workspace }}/**/build/reports/pluginVerifier
-
-      - name: Collect Dependency Verification Errors
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ github.job }}-dependency-verification-errors
-          path: |
-            ${{ github.workspace }}/build/reports/dependency-verification
-            ${{ github.workspace }}/**/build/reports/dependency-verification
-
-  # Prepare a draft release for GitHub Releases page for the manual verification
-  # If accepted and published, release workflow would be triggered
-  releaseDraft:
-    name: Release Draft
-    if: github.event_name != 'pull_request'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-
-      # Check out current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v3
-
-      # Remove old release drafts by using the curl request for the available releases with a draft flag
-      - name: Remove Old Release Drafts
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api repos/{owner}/{repo}/releases \
-            --jq '.[] | select(.draft == true) | .id' \
-            | xargs -I '{}' gh api -X DELETE repos/{owner}/{repo}/releases/{}
-
-      # Create a new release draft which is not publicly visible and requires manual acceptance
-      - name: Create Release Draft
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create v${{ needs.build.outputs.version }} \
-            --draft \
-            --title "v${{ needs.build.outputs.version }}" \
-            --notes "$(cat << 'EOM'
-          ${{ needs.build.outputs.changelog }}
-          EOM
-          )"
