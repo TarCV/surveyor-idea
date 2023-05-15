@@ -1,28 +1,47 @@
 name: Fetch from Garnix
 on:
-  check_suite:
+  check_run:
     types: [completed]
 
 jobs:
   verifyReproducible:
-    name: Fetch Garnix build
+    name: Compare with Garnix artefact
+    if: >-
+      github.event.check_run.app.name == 'Garnix CI'
+      && contains(github.event.check_run.name, 'default package')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v19
+      - uses: lewagon/wait-on-check-action@v1.3.1
         with:
-          nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: |
-            extra-experimental-features = nix-command flakes
-            extra-substituters = https://cache.nixos.org/ https://cache.garnix.io/
-            extra-trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
-            require-sigs = true
+          ref: ${{github.event.check_run.head_sha}}
+          check-name: 'Build'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Sleep
+        run: sleep 15s
+        shell: bash
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yml
+          commit: ${{github.event.check_run.head_sha}}
+          name: ".+[Ss]urveyor-\\d.+"
+          name_is_regexp: true
+          path: gha-artefact
       - run: |
-          # This will timeout when flake is not built on Garnix
-          timeout --signal=9 40s nix build
-
+          ls -R .
+      - uses: cachix/install-nix-action@v20
+      - run: |
+          cat <<- 'EOF' | grep -P --only-matching '\/nix\/store\/\K\S+(?=-gradleBuild)' | tail -n 1 | curl "https://cache.garnix.io/$(cat).narinfo" | tee _narinfo
+            ${{ github.event.check_run.output.text }}
+          EOF
+          echo '=========='
+          curl --verbose --output _artefact.nar "https://cache.garnix.io/$(grep -P --only-matching 'URL:\s*\K\S+' <_narinfo)"
+          nix-store --restore ./artefact <_artefact.nar && rm _*
+          ls -R .
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.artifact.outputs.filename }}-from-garnix
-          path: ./result/*
+          name: artefact-from-garnix
+          path: ./artefact/*
+      - name: Verify same (i.e. reproducible)
+        run: |
+          cmp -b gha-artefact/*/* artefact/*

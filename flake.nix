@@ -12,6 +12,24 @@
       defaultPackage.x86_64-linux =
         with import nixpkgs { system = "x86_64-linux"; };
                let
+                 pluginSource = ./.;
+                 customGitIgnoreFilter = src:
+                   let
+                     # Use a let binding like this to memoize info about the git directories.
+                     # MDs are included in during the build as parts of CHANGELOG and README are copied
+                     #  into the plugin manifest.
+                     srcIgnored = gitignore.lib.gitignoreFilterWith { basePath = src; extraRules = ''
+                       /.*
+                       /ci
+                       /docs
+                       /*.yml
+                       /*.txt
+                       /prepare4nix.sh
+                       flake.lock
+                       *.nix
+                     ''; };
+                   in path: type: srcIgnored path type;
+               in let
                  gradleUrls = builtins.filter
                                    (x: x != "")
                                    (lib.strings.splitString "\n" (builtins.readFile ./artifacts.lst));
@@ -90,24 +108,9 @@
                    }
                  '';
 
-                 src = nixpkgs.lib.cleanSourceWith {
-                   name = name + "source";
-                   src = ./.;
-                   filter = gitignore.lib.gitignoreFilterWith {
-                     extraRules = ''
-                        /.*
-                        /ci
-                        /docs
-                        /*.yml
-                        /*.txt
-                        /*.md
-                        !/CHANGELOG.md
-                        /prepare4nix.sh
-                        flake.lock
-                        *.nix
-                     '';
-                     basePath = ./.;
-                   };
+                 src = lib.cleanSourceWith {
+                   src = pluginSource;
+                   filter = customGitIgnoreFilter pluginSource;
                  };
                  buildInputs = [ pkgs.autoPatchelfHook pkgs.jdk11 pkgs.perl pkgs.unzip ];
                  dontBuild = true;
@@ -153,17 +156,6 @@
 
                    export JAVA_HOME=${jdk11}
 
-#                   mkdir -p $out/m2/com/jetbrains/intellij/idea/ideaIC/2021.1.3
-#                   cp -TR {$out/gradleDeps,$out/m2}/com/jetbrains/intellij/idea/ideaIC/2021.1.3
-#
-#                   pushd $HOME/.gradle/caches/modules-2/files-2.1/com.jetbrains/jbre/jbr-11_0_10-linux-x64-b1145.96/jbr
-#                     LIBDIRS="$(find . -name \*.so\* -exec dirname {} \+ | sort | uniq | tr '\n' ':')"
-#                     BINLIBS=$(find ./bin/ -type f; find $OUTPUTDIR -name \*.so\*)
-#                     echo "$BINLIBS" | while read i; do
-#                       patchelf --set-rpath "$LIBDIRS:$(patchelf --print-rpath "$i")" "$i" || true
-#                       patchelf --shrink-rpath "$i" || true
-#                     done
-#                   popd
                    ./gradlew -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=1g \
                        -PNIX_GRADLE_DEPS_1=$out/gradleDeps \
                        -Dkotlin.compiler.execution.strategy="in-process" --no-daemon \
