@@ -28,16 +28,40 @@ jobs:
             --jq '.[] | select(.draft == true) | .id' \
             | xargs -I '{}' gh api -X DELETE repos/{owner}/{repo}/releases/{}
 
+      - name: Download plugin
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yml
+          commit: ${{github.event.workflow_run.head_sha}}
+          name: ".+[Ss]urveyor-\\d.+"
+          name_is_regexp: true
+          path: plugin-artifact
+
+      - name: Extract manifest data
+        id: prepare
+        run: |
+          unzip "$(find ${{ github.workspace }}/plugin-artifact/*/*.zip)" -d ${{ github.workspace }}/plugin-artifact
+          unzip "$(find ${{ github.workspace }}/plugin-artifact/*/lib/instrumented-plugin-*.jar)" -d ${{ github.workspace }}/plugin-artifact
+
+          echo "version=$(yq '.Version' ${{ github.workspace }}/plugin-artifact/META-INF/MANIFEST.MF)" >> "$GITHUB_OUTPUT"
+
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "changelog<<$EOF" >> "$GITHUB_OUTPUT"
+          yq -p=xml -o=yaml '.idea-plugin.change-notes' ${{ github.workspace }}/plugin-artifact/META-INF/plugin.xml >> "$GITHUB_OUTPUT"
+          echo "$EOF" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+          rm -r ${{ github.workspace }}/plugin-artifact
+
       # Create a new release draft which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # TODO: read version and changelog from plugin metadata
         run: |
-          gh release create v${{ needs.build.outputs.version }} \
+          gh release create v${{ steps.prepare.outputs.version }} \
             --draft \
-            --title "v${{ needs.build.outputs.version }}" \
+            --title "v${{ steps.prepare.outputs.version }}" \
             --notes "$(cat << 'EOM'
-          ${{ needs.build.outputs.changelog }}
+          ${{ steps.prepare.outputs.changelog }}
           EOM
           )"
