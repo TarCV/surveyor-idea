@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- IDEs should now suggest this plugin for .UIX files 
+
 ## [1.0.0] - 2023-03-08
 
 ### Added
