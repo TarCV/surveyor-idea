@@ -66,7 +66,8 @@ class LocateToolWindow(private val project: Project) {
     private lateinit var toolbar: JComponent
 
     companion object {
-        const val moduleName = "UISurveyor_Highlighting"
+        const val oldModuleName = "UISurveyor_Highlighting"
+        const val moduleName = "__UISurveyor_Highlighting"
         const val highlightingLibraryName = "uiautomator"
     }
 
@@ -101,7 +102,8 @@ class LocateToolWindow(private val project: Project) {
         )
 
         invokeLater {
-            removeModuleIfExists()
+            removeModuleIfExists(oldModuleName)
+            removeModuleIfExists(moduleName)
             val module = createModuleForHighlighting()
 
             val modulePsi = JavaModuleGraphUtil.findDescriptorByModule(module, false)
@@ -124,8 +126,8 @@ class LocateToolWindow(private val project: Project) {
         locatorField = editorField
     }
 
-    private fun removeModuleIfExists() {
-        val module = ModuleManager.getInstance(project).findModuleByName(moduleName)
+    private fun removeModuleIfExists(name: String) {
+        val module = ModuleManager.getInstance(project).findModuleByName(name)
             ?: return
         project.modifyModules {
             var isHighlightingModule = false

@@ -7,6 +7,9 @@
 ### Fixed
 - Highlighter module files should not be created on a disk now (previously .idea/UISurveyor/UISurveyor_Highlighting.iml
 were created).
+- Added underscores to the highlighter module (new name is __UISurveyor_Highlighting) to avoid confusion with normal
+project modules. Old module will be automatically removed when the plugin toolbar is opened, as long as the module still
+contains just one library - 'uiautomator'.
 
 ## [1.0.0] - 2023-03-08
 
