@@ -1,4 +1,4 @@
-name: Fetch from Garnix
+name: Compare with Garnix artefact
 on:
   check_run:
     types: [completed]
@@ -19,6 +19,8 @@ jobs:
       - name: Sleep
         run: sleep 15s
         shell: bash
+      - name: Fetch Sources
+        uses: actions/checkout@v3
       - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: build.yml
@@ -26,17 +28,33 @@ jobs:
           name: ".+[Ss]urveyor-\\d.+"
           name_is_regexp: true
           path: gha-artefact
-      - run: |
-          ls -R .
       - uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: |
+            extra-substituters = https://cache.garnix.io
+            extra-trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
       - run: |
-          cat <<- 'EOF' | grep -P --only-matching '\/nix\/store\/\K\S+(?=-gradleBuild)' | tail -n 1 | curl "https://cache.garnix.io/$(cat).narinfo" | tee _narinfo
-            ${{ github.event.check_run.output.text }}
+          set -o errexit -o nounset -o pipefail -o xtrace
+          if cat <<- 'EOF' | grep --perl-regexp --only-matching '\/nix\/store\/\K\S+(?=-gradleBuild)' | tail --lines=1 | curl "https://cache.garnix.io/$(cat).narinfo" | tee _narinfo; then
+          ${{ github.event.check_run.output.text }}
           EOF
-          echo '=========='
-          curl --verbose --output _artefact.nar "https://cache.garnix.io/$(grep -P --only-matching 'URL:\s*\K\S+' <_narinfo)"
-          nix-store --restore ./artefact <_artefact.nar && rm _*
-          ls -R .
+            curl --output _artefact.nar "https://cache.garnix.io/$(grep --perl-regexp --only-matching 'URL:\s*\K\S+' <_narinfo)"
+            nix-store --restore ./artefact <_artefact.nar && rm _*
+            if [[ -f ./artefact ]]; then
+              # Received a .drv file instead of an out artefact directory
+              grep --perl-regexp --only-matching '\/nix\/store\/\K\S+(?=-gradleBuild)' <./artefact | tail --lines=1 | curl "https://cache.garnix.io/$(cat).narinfo" | tee _narinfo
+              curl --verbose --output _artefact.nar "https://cache.garnix.io/$(grep --perl-regexp --only-matching 'URL:\s*\K\S+' <_narinfo)"
+              rm ./artefact
+              nix-store --restore ./artefact <_artefact.nar && rm _*
+            fi
+          else
+            # Failed to get a valid NAR URL, so trying the long way for getting an artifact
+            nix build --max-jobs 0 --print-build-logs .#defaultPackage.x86_64-linux
+            # upload-artifact doesn't accept links
+            cp --dereference --recursive ./result ./artefact
+          fi
+          ls --almost-all --format=long --recursive .
+          [[ -d ./artefact ]]
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
