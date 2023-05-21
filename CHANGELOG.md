@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Fixed
+- Highlighter module files should not be created on a disk now (previously .idea/UISurveyor/UISurveyor_Highlighting.iml
+were created).
+
 ## [1.0.0] - 2023-03-08
 
 ### Added

@@ -54,6 +54,7 @@ import javax.swing.JPanel
 import javax.swing.KeyStroke
 
 
+@Suppress("UnstableApiUsage")
 class LocateToolWindow(private val project: Project) {
     private lateinit var content: JPanel
     private val locatorFragment: PsiFile?
@@ -65,8 +66,8 @@ class LocateToolWindow(private val project: Project) {
     private lateinit var toolbar: JComponent
 
     companion object {
-        const val moduleDir = "UISurveyor"
         const val moduleName = "UISurveyor_Highlighting"
+        const val highlightingLibraryName = "uiautomator"
     }
 
     fun createUIComponents() {
@@ -100,8 +101,8 @@ class LocateToolWindow(private val project: Project) {
         )
 
         invokeLater {
-            val module = ModuleManager.getInstance(project).findModuleByName(moduleName)
-                ?: createModuleForHighlighting()
+            removeModuleIfExists()
+            val module = createModuleForHighlighting()
 
             val modulePsi = JavaModuleGraphUtil.findDescriptorByModule(module, false)
 
@@ -123,14 +124,27 @@ class LocateToolWindow(private val project: Project) {
         locatorField = editorField
     }
 
+    private fun removeModuleIfExists() {
+        val module = ModuleManager.getInstance(project).findModuleByName(moduleName)
+            ?: return
+        project.modifyModules {
+            var isHighlightingModule = false
+            ModuleRootModificationUtil.modifyModel(module) { model ->
+                isHighlightingModule = model.moduleLibraryTable.libraries
+                    .singleOrNull()
+                    ?.name == highlightingLibraryName
+                false
+            }
+            if (isHighlightingModule) {
+                disposeModule(module)
+            }
+        }
+    }
+
     private fun createModuleForHighlighting(): Module {
         val module: Module = project.modifyModules {
-            val modulePath = Paths.get(project.basePath!!)
-                .resolve(Project.DIRECTORY_STORE_FOLDER)
-                .resolve(moduleDir)
-                .resolve("$moduleName.iml")
-            newModule(
-                modulePath,
+            newNonPersistentModule(
+                moduleName,
                 ModuleTypeId.JAVA_MODULE
             )
         }
@@ -149,7 +163,7 @@ class LocateToolWindow(private val project: Project) {
                 val automatorClass = UiSelector::class.java
                 val automatorJarFile = getAutomatorJarPath(automatorClass)
                 model.moduleLibraryTable
-                    .createLibrary("uiautomator")
+                    .createLibrary(highlightingLibraryName)
                     .modifiableModel.apply {
                         addRoot(
                             VfsUtil.getUrlForLibraryRoot(automatorJarFile.toFile()),
