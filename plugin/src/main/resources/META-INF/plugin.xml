@@ -16,7 +16,10 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Locate Element" anchor="bottom" secondary="false"
                     factoryClass="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindowFactory" />
-        <fileType name="XML" extensions="uix" />
+        <fileType name="com.github.tarcv.testingteam.surveyoridea.filetypes.uix.UixFileType"
+                  language="XML"
+                  implementationClass="com.github.tarcv.testingteam.surveyoridea.filetypes.uix.UixFileType"
+                  extensions="uix" />
         <dom.fileMetaData implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.uix.UixDomDecription"
                           rootTagName="hierarchy" stubVersion="1" />
         <notificationGroup displayType="TOOL_WINDOW" id="com.github.tarcv.testingteam.surveyoridea.gui.NotificationGroup" toolWindowId="Locate Element" />
