@@ -5,6 +5,11 @@
 ## [Unreleased]
 
 ### Fixed
+- Module files for selector highlighting should not be created now (previously,
+.idea/UISurveyor/UISurveyor_Highlighting.iml was created, which is now safe to delete).
+- Added underscores to the name of the module for selector highlighting (\_\_UISurveyor\_Highlighting), so this utility
+module is not confused with normal project modules. Duplicates with the old name are automatically removed when
+the plugin tool window is opened. But only as long as they still contain just one library - 'uiautomator'.
 - IDEs should now suggest this plugin for .UIX files 
 
 ## [1.0.0] - 2023-03-08
