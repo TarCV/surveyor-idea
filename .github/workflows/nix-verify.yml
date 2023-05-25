@@ -55,6 +55,10 @@ jobs:
           fi
           ls --almost-all --format=long --recursive .
           [[ -d ./artefact ]]
+      - name: Compute sha256sum for the artifact from Garnix
+        run: |
+          echo 'sha256sum of the artifact built in Garnix:'
+          sha256sum -b "$(find artefact/*)"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
