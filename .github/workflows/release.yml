@@ -13,51 +13,22 @@ jobs:
   release:
     name: Publish Plugin
     runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name }}
     permissions:
       contents: write
       pull-requests: write
     steps:
-
-      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.release.tag_name }}
-
-      # Setup Java 11 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: zulu
-          java-version: 11
-
-      # Set environment variables
-      - name: Export Properties
-        id: properties
-        shell: bash
-        run: |
-          CHANGELOG="$(cat << 'EOM' | sed -e 's/^[[:space:]]*$//g' -e '/./,$!d'
-          ${{ github.event.release.body }}
-          EOM
-          )"
-          
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      # Update Unreleased section with the current release note
-      - name: Patch Changelog
-        if: ${{ steps.properties.outputs.changelog != '' }}
-        env:
-          CHANGELOG: ${{ steps.properties.outputs.changelog }}
-        run: |
-          ./gradlew patchChangelog --release-note="$CHANGELOG"
+          ref: ${{ env.GITHUB_SHA }}
 
       - name: Download plugin
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: build.yml
-          commit: ${{github.event.release.tag_name}}
+          commit: ${{ env.GITHUB_SHA }}
           name: ".+[Ss]urveyor-\\d.+"
           name_is_regexp: true
           path: plugin-artifact
@@ -65,27 +36,68 @@ jobs:
       # Publish the plugin to the Marketplace
       # - name: Publish Plugin
       # TODO: Revert back to publishing the plugin
-      - name: Build release version of plugin
-        env:
-          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-          CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
-        run: ./gradlew -x buildPlugin signPlugin
+      #- name: Build release version of plugin
+      #  env:
+      #    PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+      #    CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
+      #    PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      #    PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
+      #  run: ./gradlew -x buildPlugin signPlugin
 
       # Upload artifact as a release asset
+      - name: Extract manifest data
+        id: prepare
+        run: |
+          set -x
+          unzip "$(find ${{ github.workspace }}/plugin-artifact/*/*.zip)" -d ${{ github.workspace }}/plugin-artifact
+          unzip "$(find ${{ github.workspace }}/plugin-artifact/*/lib/instrumented-plugin-*.jar)" -d ${{ github.workspace }}/plugin-artifact
+
+          VERSION=$(yq '.Version' ${{ github.workspace }}/plugin-artifact/META-INF/MANIFEST.MF)
+          [[ "v$VERSION" == "$RELEASE_TAG" ]]
+          [[ "$(git rev-list -n 1 "v$VERSION")" == "$GITHUB_SHA" ]]
+          
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "changelog<<$EOF" >> "$GITHUB_OUTPUT"
+          yq -p=xml -o=yaml '.idea-plugin.change-notes' ${{ github.workspace }}/plugin-artifact/META-INF/plugin.xml >> "$GITHUB_OUTPUT"
+          echo "$EOF" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
       - name: Upload Release Asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ github.event.release.tag_name }} ./plugin/build/distributions/*
+        run: |
+          echo 'sha256sum of the uploaded file is (please compare this sum with the sum from Garnix workflow):'
+          sha256sum -b "$(find ${{ github.workspace }}/plugin-artifact/*/*.zip)"
+          gh release upload $RELEASE_TAG "$(find ${{ github.workspace }}/plugin-artifact/*/*.zip)"
 
-      # Create pull request
-      - name: Create Pull Request
-        if: ${{ steps.properties.outputs.changelog != '' }}
+      # Create a branch for PR updating Unreleased section with the current release note
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.GITHUB_SHA }}
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1.0.6
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 11
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Patch Changelog
+        if: ${{ steps.prepare.outputs.changelog != '' }}
+        env:
+          CHANGELOG: ${{ steps.prepare.outputs.changelog }}
+        run: |
+          ./gradlew patchChangelog
+      - name: Create a Branch for a Pull Request
+        if: ${{ steps.prepare.outputs.changelog != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION="${{ github.event.release.tag_name }}"
+          VERSION="$RELEASE_TAG"
           BRANCH="changelog-update-$VERSION"
           LABEL="release changelog"
 
@@ -100,11 +112,11 @@ jobs:
             --description "Pull requests with release changelog update" \
             || true
 
-          gh pr create \
-            --title "Changelog update - \`$VERSION\`" \
-            --body "Current pull request contains patched \`CHANGELOG.md\` file for the \`$VERSION\` version." \
-            --label "$LABEL" \
-            --head $BRANCH
+      #    gh pr create \
+      #      --title "Changelog update - \`$VERSION\`" \
+      #      --body "Current pull request contains patched \`CHANGELOG.md\` file for the \`$VERSION\` version." \
+      #      --label "$LABEL" \
+      #      --head $BRANCH
 
       - name: Collect Dependency Verification Errors
         if: ${{ failure() }}
@@ -114,4 +126,3 @@ jobs:
           path: |
             ${{ github.workspace }}/build/reports/dependency-verification
             ${{ github.workspace }}/**/build/reports/dependency-verification
-
