@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2023 TarCV
+
+  This file is part of UI Surveyor.
+  UI Surveyor is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+  This file is based on the parts of WebDriverAgent which are
+  (copies of referenced files can be found in ipredicate/licenses/wda subdirectory
+  in this repository):
+
+      Copyright (c) 2015-present, Facebook, Inc.
+      All rights reserved.
+
+      This source code is licensed under the BSD-style license found in the
+      LICENSE file in the root directory of this source tree. An additional grant
+      of patent rights can be found in the PATENTS file in the same directory.
+-->
+<AppiumAUT><XCUIElementTypeApplication type="XCUIElementTypeApplication" name="IntegrationApp" label="IntegrationApp" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+  <XCUIElementTypeWindow type="XCUIElementTypeWindow" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+    <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+      <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+          <XCUIElementTypeNavigationBar type="XCUIElementTypeNavigationBar" name="View" enabled="true" visible="true" x="0" y="48" width="414" height="44" index="0"/>
+          <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="1">
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+              <XCUIElementTypeOther type="XCUIElementTypeOther" name="MainView" label="MainView" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Alerts" label="Alerts" enabled="true" visible="true" x="186" y="121" width="42" height="30" index="0">
+                  <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Alerts" name="Alerts" label="Alerts" enabled="true" visible="true" x="186" y="127" width="42" height="18" index="0"/>
+                </XCUIElementTypeButton>
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Deadlock app" label="Deadlock app" enabled="true" visible="true" x="159" y="159" width="96" height="30" index="1">
+                  <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Deadlock app" name="Deadlock app" label="Deadlock app" enabled="true" visible="true" x="159" y="165" width="96" height="18" index="0"/>
+                </XCUIElementTypeButton>
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Attributes" label="Attributes" enabled="true" visible="true" x="173" y="197" width="68" height="30" index="2">
+                  <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Attributes" name="Attributes" label="Attributes" enabled="true" visible="true" x="173" y="203" width="68" height="18" index="0"/>
+                </XCUIElementTypeButton>
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Scrolling" label="Scrolling" enabled="true" visible="true" x="177" y="235" width="60" height="30" index="3">
+                  <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Scrolling" name="Scrolling" label="Scrolling" enabled="true" visible="true" x="177" y="241" width="60" height="18" index="0"/>
+                </XCUIElementTypeButton>
+                <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Portrait" name="Portrait" label="Portrait" enabled="true" visible="true" x="178" y="273" width="58" height="21" index="4"/>
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Touch" label="Touch" enabled="true" visible="true" x="186" y="301" width="42" height="31" index="5">
+                  <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Touch" name="Touch" label="Touch" enabled="true" visible="true" x="186" y="307" width="42" height="19" index="0"/>
+                </XCUIElementTypeButton>
+              </XCUIElementTypeOther>
+            </XCUIElementTypeOther>
+          </XCUIElementTypeOther>
+        </XCUIElementTypeOther>
+      </XCUIElementTypeOther>
+    </XCUIElementTypeOther>
+  </XCUIElementTypeWindow>
+</XCUIElementTypeApplication></AppiumAUT>
