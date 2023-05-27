@@ -4,6 +4,8 @@ import org.jetbrains.changelog.markdownToHTML
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
+val remoteRobotVersion = "0.11.18"
+
 plugins {
     kotlin("jvm")
     id("com.github.TarCV.aar2jar")
@@ -34,6 +36,17 @@ dependencies {
 
         isTransitive = false
     }
+
+    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+
+    testImplementation("com.intellij.remoterobot:remote-robot:$remoteRobotVersion") {
+        exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
+    }
+    testImplementation("com.intellij.remoterobot:remote-fixtures:$remoteRobotVersion") {
+        exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
+    }
+    testImplementation("com.automation-remarks:video-recorder-junit5:2.0")
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
@@ -57,6 +70,18 @@ changelog {
 
 
 tasks {
+    test {
+        systemProperty("idea.split.test.logs", true)
+        useJUnitPlatform()
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
+    }
+
+    downloadRobotServerPlugin {
+        version.set(remoteRobotVersion) // otherwise the current latest version is used which is bad for reproducibility
+    }
+
     buildSearchableOptions {
         // Remove once some settings are added
         enabled = false
@@ -104,6 +129,7 @@ tasks {
     runIdeForUiTests {
         systemProperty("robot-server.port", "8082")
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
+        systemProperty("idea.trust.all.projects", "true")
         systemProperty("jb.privacy.policy.text", "<!--999.999-->")
         systemProperty("jb.consents.confirmation.enabled", "false")
     }
