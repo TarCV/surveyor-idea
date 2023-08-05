@@ -22,7 +22,7 @@ import com.github.tarcv.testingteam.surveyor.ipredicate.NSString.Companion.toNSS
 interface NSCharacterSet {
     fun characterIsMember(ch: UniChar): Boolean = characterIsMember(Char(ch))
 
-    abstract fun characterIsMember(ch: Char): Boolean
+    fun characterIsMember(ch: Char): Boolean
 
     fun copy() = this
 
@@ -44,6 +44,17 @@ interface NSCharacterSet {
                                         || it.code.startsWith("M")
                                         || it.code.startsWith("N")
                             }
+                            .any { it.contains(ch) }
+                    }
+                }
+            }
+
+        val nonBaseCharacters: NSCharacterSet
+            get() {
+                return object : NSCharacterSet {
+                    override fun characterIsMember(ch: Char): Boolean {
+                        return CharCategory.values()
+                            .filter { it.code.startsWith("M") }
                             .any { it.contains(ch) }
                     }
                 }

@@ -18,7 +18,6 @@
 package com.github.tarcv.testingteam.surveyor.ipredicate
 
 import com.github.tarcv.testingteam.surveyor.ipredicate.NSString.Companion.toNSString
-import java.text.Collator
 import java.util.Collections
 import kotlin.jvm.JvmInline
 import kotlin.math.ceil
@@ -143,6 +142,12 @@ class NSString private constructor(val utf16: StringUTF16View, unused: Nothing?)
     }
 
     fun characterAtIndex(index: Int) = utf16[index]
+
+    fun getCharacters(range: Range<StringUTF16ViewIndex>): Array<UniChar> {
+        return this.characters
+            .subList(range.start.index, range.endInclusive.index + 1)
+            .toTypedArray()
+    }
     fun suffix(index: Int) = NSString(utf16.drop(index))
 
     fun substringFromIndex(index: Int) = NSString(utf16.drop((index - 1).coerceAtLeast(0)))
@@ -153,40 +158,7 @@ class NSString private constructor(val utf16: StringUTF16View, unused: Nothing?)
     fun prefix(index: StringUTF16ViewIndex) = prefix(index.index)
 
     fun compare(other: NSString, options: Set<StringCompareOption>, range: Range<StringUTF16ViewIndex>): ComparisonResult {
-        // TODO: port this method from OpenSTEP
-
-        val thisSeq = this[range].toString()
-        val otherSeq = NSString(
-            other.utf16.subList(
-                range.start.index.coerceAtMost(other.count - 1),
-                (range.endInclusive.index + 1).coerceAtMost(other.count)
-            )
-        ).toString()
-
-        val result = when (options) {
-            // diacriticSensitive = OFF, caseSensitive = OFF
-            setOf(StringCompareOption.caseInsensitive) -> with(Collator.getInstance()) {
-                strength = Collator.PRIMARY
-                compare(thisSeq, otherSeq)
-            }
-
-            // diacriticSensitive = ON, caseSensitive = ON
-            setOf(StringCompareOption.literal) -> {
-                thisSeq.compareTo(otherSeq, ignoreCase = false)
-            }
-
-            // diacriticSensitive = ON, caseSensitive = OFF
-            setOf(StringCompareOption.caseInsensitive, StringCompareOption.literal) -> {
-                thisSeq.compareTo(otherSeq, ignoreCase = true)
-            }
-            else -> throw IllegalArgumentException("Combination of $options comparison options is not implemented yet")
-        }
-
-        return when {
-            result == 0 -> ComparisonResult.orderedSame
-            result < 0 -> ComparisonResult.orderedAscending
-            else -> ComparisonResult.orderedDescending
-        }
+        return gsCompare(this, other, options, range)
     }
 
     fun replace(oldStr: NSString, newStr: NSString): NSString {

@@ -1,4 +1,5 @@
 plugins {
+    `java-library`
     kotlin("jvm")
 }
 
@@ -9,6 +10,7 @@ dependencies {
 
     testImplementation(libs.junit.jupiter.api)
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation(libs.jqwik)
 }
 
 sourceSets.main {
@@ -16,5 +18,9 @@ sourceSets.main {
 }
 
 tasks.test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        includeEngines.add("junit-jupiter")
+        includeEngines.add("jqwik")
+    }
+    include("**/*.*")
 }

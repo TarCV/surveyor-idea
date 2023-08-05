@@ -147,8 +147,16 @@ fun <T : Any> Class<T>.init(vararg args: Any): T {
 typealias Range<T> = ClosedRange<T>
 val <T : Comparable<T>> Range<T>.isEmpty
     get() = this.isEmpty()
+
+val <T : Comparable<T>> Range<T>.location
+    get() = this.start
+
 val <T : Comparable<T>> Range<T>.lowerBound
     get() = this.start
+
+val Range<StringUTF16ViewIndex>.length
+    get() = this.endInclusive.index - this.start.index + 1
+
 val Range<StringUTF16ViewIndex>.upperBound
     get() = StringUTF16ViewIndex(this.endInclusive.index + 1)
 
@@ -157,6 +165,7 @@ infix fun StringUTF16ViewIndex.until(to: StringUTF16ViewIndex): ClosedRange<Stri
 )
 
 fun NSMakeRange(start: Int, count: Int) = start until start+count
+fun NSMakeRange(start: StringUTF16ViewIndex, count: Int) = start until StringUTF16ViewIndex(start.index + count)
 
 typealias AnyObject = Any
 fun Any.isEqual(other: Any?) = Objects.equals(this, other)
