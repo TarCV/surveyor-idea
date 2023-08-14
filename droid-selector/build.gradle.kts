@@ -5,7 +5,7 @@ val jqwikVersion = "1.5.0"
 plugins {
     java
     kotlin("jvm")
-    id("com.stepango.aar2jar")
+    id("com.github.TarCV.aar2jar")
 }
 
 dependencies {
@@ -23,6 +23,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("net.jqwik:jqwik:${jqwikVersion}")
     testImplementation(kotlin("reflect"))
 }
