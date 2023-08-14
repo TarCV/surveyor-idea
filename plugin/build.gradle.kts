@@ -6,7 +6,7 @@ fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     kotlin("jvm")
-    id("com.stepango.aar2jar")
+    id("com.github.TarCV.aar2jar")
 
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij")
@@ -57,6 +57,11 @@ changelog {
 
 
 tasks {
+    buildSearchableOptions {
+        // Remove once some settings are added
+        enabled = false
+    }
+
     runPluginVerifier {
         distributionFile.set(properties("pluginDistributionFile").map { file(it) }.orNull)
     }

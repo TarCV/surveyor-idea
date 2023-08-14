@@ -7,9 +7,9 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
+    id("org.jetbrains.kotlin.jvm") version "1.8.20"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.13.2" apply false
+    id("org.jetbrains.intellij") version "1.15.0" apply false
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     id("org.jetbrains.changelog") version "2.0.0" apply false
     // Gradle Qodana Plugin
@@ -19,7 +19,7 @@ plugins {
 
     `maven-publish` // for pom generation
 
-    id("com.stepango.aar2jar") version "0.6" apply false
+    id("com.github.TarCV.aar2jar") version "d4d5195de2" apply false
 }
 
 // Configure root project

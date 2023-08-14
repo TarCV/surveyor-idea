@@ -76,9 +76,13 @@
                    lib.strings.removePrefix "distributionUrl=" (lib.lists.findSingle (it: lib.strings.hasPrefix "distributionUrl=" it) (abort "Unexpected gradle-wrapper content") (abort "Unexpected gradle-wrapper content") (
                      gradleLines
                  )));
+                 gradleSha256 = lib.strings.stringAsChars (x: if x == "\\" then "" else x) (
+                   lib.strings.removePrefix "distributionSha256Sum=" (lib.lists.findSingle (it: lib.strings.hasPrefix "distributionSha256Sum=" it) (abort "Unexpected gradle-wrapper content") (abort "Unexpected gradle-wrapper content") (
+                     gradleLines
+                 )));
                  gradleWrapper = builtins.fetchurl {
                    url = gradleDist;
-                   sha256 = "0jwycvzv8a5v2bhg5d8zccr2csr3sf9y5mrr9d2ap44p09a8r9kv";
+                   sha256 = gradleSha256;
                  };
                  gradleInit = writeText "init.gradle" ''
                    gradle.projectsLoaded {
