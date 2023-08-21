@@ -1,5 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-val junitJupiterVersion = "5.7.1"
+val junitJupiterVersion = "5.10.0"
 val jqwikVersion = "1.5.0"
 
 plugins {
