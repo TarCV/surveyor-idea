@@ -4,7 +4,6 @@ plugins {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
     implementation(kotlin("reflect"))
     implementation(project(":library"))
 
@@ -16,8 +15,15 @@ dependencies {
 sourceSets.main {
     resources.srcDir("../licenses")
 }
-
+tasks.compileTestKotlin {
+    kotlinJavaToolchain.toolchain.use(javaToolchains.launcherFor {
+        languageVersion.set(JavaLanguageVersion.of(20))
+    })
+}
 tasks.test {
+    javaLauncher.set(javaToolchains.launcherFor {
+        languageVersion.set(JavaLanguageVersion.of(20))
+    })
     useJUnitPlatform {
         includeEngines.add("junit-jupiter")
         includeEngines.add("jqwik")

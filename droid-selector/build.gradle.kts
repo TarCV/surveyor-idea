@@ -33,6 +33,10 @@ tasks.forEach { task ->
     }
 }
 
+tasks.compileTestJava {
+    options.compilerArgs.add("--enable-preview")
+}
+
 tasks.test {
     useJUnitPlatform {
         includeEngines.add("junit-jupiter")

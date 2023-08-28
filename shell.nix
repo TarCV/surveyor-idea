@@ -6,6 +6,7 @@ with import <nixpkgs> {};
     [
       pkgs.git
       pkgs.jdk11
+      pkgs.jdk20
 
       # required for JBR JVM installed by various Gradle test tasks
       # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/compilers/openjdk/11.nix

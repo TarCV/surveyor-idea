@@ -30,12 +30,12 @@ package com.github.tarcv.testingteam.surveyor.ipredicate
 
 import com.github.tarcv.testingteam.surveyor.IProperty
 import com.github.tarcv.testingteam.surveyor.Property
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
 import javax.xml.parsers.DocumentBuilderFactory
-import kotlin.test.assertEquals
 
 class TestWda {
     @Test

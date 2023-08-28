@@ -23,9 +23,9 @@
 */
 package com.github.tarcv.testingteam.surveyor.ipredicate
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 private fun assertTrue(actual: Boolean, message: NSString) =
   assertTrue(actual, message.toString())
