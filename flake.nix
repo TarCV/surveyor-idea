@@ -162,9 +162,8 @@
 
                    ./gradlew -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=1g \
                        -PNIX_GRADLE_DEPS_1=$out/gradleDeps \
-                       -Dkotlin.compiler.execution.strategy="in-process" --no-daemon \
                        --no-build-cache --no-configuration-cache \
-                       --info --full-stacktrace \
+                       --info --stacktrace \
                        --init-script ${gradleInit} buildPlugin
 
                    cp -v plugin/build/distributions/*.zip $out
