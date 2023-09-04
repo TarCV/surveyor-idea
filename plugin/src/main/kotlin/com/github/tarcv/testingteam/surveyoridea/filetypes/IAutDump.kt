@@ -85,16 +85,19 @@ object IAutSnapshot: XmlFileType {
         )
     }
 }
+@Suppress("UNUSED_PARAMETER")
 private fun getPropertyFromTag(property: IProperty<out Boolean?>, node: XmlTag, attribute: String): Boolean? {
     return node.getAttribute(attribute)
         ?.value
         ?.toBooleanStrictOrNull()
 }
+@Suppress("UNUSED_PARAMETER")
 private fun getPropertyFromTag(property: IProperty<out Int?>, node: XmlTag, attribute: String): Int? {
     return node.getAttribute(attribute)
         ?.value
         ?.toIntOrNull()
 }
+@Suppress("UNUSED_PARAMETER")
 private fun getPropertyFromTag(property: IProperty<out String?>, node: XmlTag, attribute: String): String? {
     return node.getAttribute(attribute)?.value
 }

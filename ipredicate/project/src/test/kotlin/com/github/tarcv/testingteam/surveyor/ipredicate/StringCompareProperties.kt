@@ -27,8 +27,9 @@ import net.jqwik.api.Property
 import net.jqwik.api.Provide
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
-import kotlin.streams.toList
-
+import java.lang.foreign.Arena
+import java.lang.foreign.ValueLayout.JAVA_INT
+import java.lang.foreign.ValueLayout.JAVA_SHORT
 
 class StringCompareProperties {
     companion object {
@@ -70,27 +71,6 @@ class StringCompareProperties {
             .strings()
             .withCharRange(Char(32), Char.MAX_VALUE)
             .ofMinLength(1)
-            .filter {
-                val regexBuffer = it
-                    .chars()
-                    .toList()
-                    .map { it.toShort() }
-                    .plus(0)
-                    .toTypedArray()
-                val success = synchronized(lock) {
-                    Arena.openConfined().use { arena ->
-                        val errorCode = arena.allocate(JAVA_INT).apply {
-                            set(JAVA_INT, 0, 0)
-                        }
-                        val parseError = arena.allocate(UParseError.`$LAYOUT`())
-                        val flags = UREGEX_DOTALL // . is supposed to recognize newlines
-                        val regex = uregex_open_70(regexStr, regexLength, flags, parseError, errorCode)
-                        uregex_close_70(regex)
-                        U_SUCCESS(errorCode.get(JAVA_INT, 0))
-                    }
-                }
-                success
-            }
             .map { it.toNSString() }
     }
 
@@ -122,7 +102,7 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
             .map { it.toShort() }
             .plus(0)
             .let {
-                arena.allocateArray(JAVA_SHORT, it)
+                arena.allocateArray(JAVA_SHORT, *it.toShortArray())
             }
         val errorCode = arena.allocate(JAVA_INT).apply {
             set(JAVA_INT, 0, 0)
@@ -133,7 +113,7 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
         if (opts.contains(StringCompareOption.caseInsensitive)) {
             flags = flags or UREGEX_CASE_INSENSITIVE; }
 
-        val regex = uregex_open_70(regexStr, regexLength, flags, parseError, errorCode)
+        val regexObj = uregex_open_70(regexStr, regexLength, flags, parseError, errorCode)
         require(U_SUCCESS(errorCode.get(JAVA_INT, 0))) { "Got error: ${errorCode.get(JAVA_INT, 0)}" }
 
         try {
@@ -141,18 +121,18 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
             .map { it.toShort() }
             .plus(0)
             .let {
-                arena.allocateArray(JAVA_SHORT, it)
+                arena.allocateArray(JAVA_SHORT, *it.toShortArray())
             }
 
-            uregex_setText_70(regex, textStr, stringLength, errorCode)
+            uregex_setText_70(regexObj, textStr, stringLength, errorCode)
             require(U_SUCCESS(errorCode.get(JAVA_INT, 0))) { "Got error: ${errorCode.get(JAVA_INT, 0)}" }
 
-            val result = uregex_matches_70(regex, 0, errorCode)
+            val result = uregex_matches_70(regexObj, 0, errorCode)
             println("Result: $result")
-            require(U_SUCCESS(errorCode.get(JAVA_INT, 0))) { "Got error: ${errorCode.getInt(0)}" }
-            return@synchronized (result != 0)
+            require(U_SUCCESS(errorCode.get(JAVA_INT, 0))) { "Got error: ${errorCode.get(JAVA_INT, 0)}" }
+            return@synchronized (result.toInt() != 0)
         } finally {
-            uregex_close_70(regex)
+            uregex_close_70(regexObj)
         }
 
     }

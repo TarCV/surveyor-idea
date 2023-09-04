@@ -15,10 +15,17 @@ dependencies {
 sourceSets.main {
     resources.srcDir("../licenses")
 }
+tasks.compileTestJava {
+    javaCompiler.set(javaToolchains.compilerFor {
+        languageVersion.set(JavaLanguageVersion.of(20))
+    })
+    options.compilerArgs.add("--enable-preview")
+}
 tasks.compileTestKotlin {
     kotlinJavaToolchain.toolchain.use(javaToolchains.launcherFor {
         languageVersion.set(JavaLanguageVersion.of(20))
     })
+    compilerOptions.freeCompilerArgs.add("-Xjvm-enable-preview")
 }
 tasks.test {
     javaLauncher.set(javaToolchains.launcherFor {
@@ -28,5 +35,6 @@ tasks.test {
         includeEngines.add("junit-jupiter")
         includeEngines.add("jqwik")
     }
+    jvmArgs("--enable-preview")
     include("**/*.*")
 }
