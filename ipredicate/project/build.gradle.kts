@@ -35,6 +35,12 @@ tasks.test {
         includeEngines.add("junit-jupiter")
         includeEngines.add("jqwik")
     }
-    jvmArgs("--enable-preview")
+    jvmArgs(
+        "--enable-preview",
+        providers.environmentVariable("ICU_HOME")
+            .orElse("/nix/store/cxw0yh9fa41wzhhm51dv97annri01lid-icu4c-70.1")
+            .map { "-Djava.library.path=$it/lib" }
+            .get()
+    )
     include("**/*.*")
 }

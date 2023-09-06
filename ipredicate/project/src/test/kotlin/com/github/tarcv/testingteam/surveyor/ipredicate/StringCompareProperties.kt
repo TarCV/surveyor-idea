@@ -18,6 +18,7 @@
 package com.github.tarcv.testingteam.surveyor.ipredicate
 
 import com.github.tarcv.testingteam.surveyor.ipredicate.NSString.Companion.toNSString
+import com.github.tarcv.testingteam.surveyor.ipredicate.StringCompareProperties.Companion.library
 import icu.UParseError
 import icu.uregex_h_1.*
 import net.jqwik.api.Arbitraries
@@ -33,9 +34,7 @@ import java.lang.foreign.ValueLayout.JAVA_SHORT
 
 class StringCompareProperties {
     companion object {
-        @BeforeAll
-        @JvmStatic
-        fun initIcu() {
+        val library by lazy {
             System.loadLibrary("icui18n")
         }
     }
@@ -91,6 +90,8 @@ val lock = Any()
 fun U_SUCCESS(code: Int): Boolean {
     return (code <= 0); }
 fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringCompareOption>): Boolean = synchronized(lock) {
+    println(library)
+
     val UREGEX_CASE_INSENSITIVE = 2
     val UREGEX_DOTALL = 32
 
@@ -113,6 +114,7 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
         if (opts.contains(StringCompareOption.caseInsensitive)) {
             flags = flags or UREGEX_CASE_INSENSITIVE; }
 
+        println("java.library.path=${System.getProperty("java.library.path")}")
         val regexObj = uregex_open_70(regexStr, regexLength, flags, parseError, errorCode)
         require(U_SUCCESS(errorCode.get(JAVA_INT, 0))) { "Got error: ${errorCode.get(JAVA_INT, 0)}" }
 

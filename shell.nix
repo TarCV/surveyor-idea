@@ -7,6 +7,7 @@ with import <nixpkgs> {};
       pkgs.git
       pkgs.jdk11
       pkgs.jdk20
+      pkgs.icu70
 
       # required for JBR JVM installed by various Gradle test tasks
       # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/compilers/openjdk/11.nix
@@ -33,6 +34,8 @@ with import <nixpkgs> {};
 
   profile = ''
 export JAVA_HOME="${pkgs.jdk11.home}"
+export JAVA20_HOME="${pkgs.jdk20.home}"
+export ICU_HOME="${pkgs.icu70}"
 export GRADLE_OPTS="-Dorg.gradle.java.home=${pkgs.jdk11.home}"
 '';
 }).env
