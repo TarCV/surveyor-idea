@@ -71,6 +71,7 @@ changelog {
 
 tasks {
     test {
+        doNotTrackState("UI tests should always run")
         systemProperty("idea.split.test.logs", true)
         useJUnitPlatform()
         testLogging {
