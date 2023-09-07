@@ -1,5 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
@@ -74,6 +75,11 @@ tasks {
         doNotTrackState("UI tests should always run")
         systemProperty("idea.split.test.logs", true)
         systemProperty("ide.show.tips.on.startup.default.value", false)
+
+        // Disable native menus on Mac:
+        systemProperty("jbScreenMenuBar.enabled", false)
+        systemProperty("apple.laf.useScreenMenuBar", false)
+
         useJUnitPlatform()
         testLogging {
             events("passed", "skipped", "failed")
@@ -126,14 +132,40 @@ tasks {
         })
     }
 
+    prepareUiTestingSandbox {
+        finalizedBy("finalizeUiTestingSandbox")
+    }
+    register("finalizeUiTestingSandbox") {
+        val disablePluginPath = prepareUiTestingSandbox.get()
+            .configDir.map { file(it).resolve("disabled_plugins.txt") }
+            .get()
+        doLast {
+            disablePluginPath.ensureParentDirsCreated()
+            disablePluginPath.writeText(buildString {
+                // Disable 'Code with Me' tooltip:
+                appendLine("com.jetbrains.codeWithMe")
+            })
+        }
+    }
+
     // Configure UI tests plugin
     // Read more: https://github.com/JetBrains/intellij-ui-test-robot
     runIdeForUiTests {
+        jbrVariant.set(
+            environment("CI")
+                .map {
+                    if (it.isNotEmpty()) {
+                        ""
+                    } else {
+                        "sdk"
+                    }
+                }
+        )
         systemProperty("robot-server.port", "8082")
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("idea.trust.all.projects", "true")
-        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
         systemProperty("jb.consents.confirmation.enabled", "false")
+        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
     }
 
     signPlugin {
