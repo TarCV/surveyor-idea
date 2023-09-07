@@ -73,6 +73,7 @@ tasks {
     test {
         doNotTrackState("UI tests should always run")
         systemProperty("idea.split.test.logs", true)
+        systemProperty("ide.show.tips.on.startup.default.value", false)
         useJUnitPlatform()
         testLogging {
             events("passed", "skipped", "failed")
