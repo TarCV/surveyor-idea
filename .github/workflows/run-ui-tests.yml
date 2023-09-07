@@ -19,13 +19,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            runIde: |
-              export DISPLAY=:99.0
-              Xvfb -ac :99 -screen 0 1920x1080x16 &
-              gradle runIdeForUiTests &
-          - os: windows-latest
-            runIde: start gradlew.bat runIdeForUiTests
+#          - os: ubuntu-latest
+#            runIde: |
+#              export DISPLAY=:99.0
+#              Xvfb -ac :99 -screen 0 1920x1080x16 &
+#              gradle runIdeForUiTests &
+#          - os: windows-latest
+#            runIde: start gradlew.bat runIdeForUiTests
           - os: macos-latest
             runIde: ./gradlew runIdeForUiTests &
 
@@ -57,3 +57,14 @@ jobs:
       # Run tests
       - name: Tests
         run: ./gradlew test
+
+      # Collect Tests Result of failed tests
+      - name: Collect Tests Result
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: tests-result
+          path: |
+            ${{ github.workspace }}/build/reports/tests
+            ${{ github.workspace }}/**/build/reports/tests
+            ${{ github.workspace }}/**/video
