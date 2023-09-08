@@ -151,7 +151,7 @@ tasks {
     // Configure UI tests plugin
     // Read more: https://github.com/JetBrains/intellij-ui-test-robot
     runIdeForUiTests {
-        jbrVariant.set(
+/*        jbrVariant.set(
             environment("CI")
                 .map {
                     if (it.isNotEmpty()) {
@@ -160,7 +160,7 @@ tasks {
                         "sdk"
                     }
                 }
-        )
+        )*/
         systemProperty("robot-server.port", "8082")
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("idea.trust.all.projects", "true")
