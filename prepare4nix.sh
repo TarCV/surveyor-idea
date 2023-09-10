@@ -14,8 +14,7 @@ sort -u -o artifacts.lst artifacts.lst
   echo 'https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-script-runtime/1.9.10/kotlin-script-runtime-1.9.10.pom'
 } >> artifacts.lst
 # TODO: Remove artifacts that are missing in $HOME/.gradle
-# TODO: Compare actual hashes of files in $HOME/.gradle with hashes in verification-metadata.xml
-# TODO: Add missing artefacts to verification-metadata.xml
+# TODO: Add missing artefacts to verification-metadata.xml (mostly POMs)
 
 # FindSha
 fs() { find "$HOME/.gradle" -name "$1*" -exec sha256sum {} \;; }

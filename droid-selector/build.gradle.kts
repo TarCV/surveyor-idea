@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-val junitJupiterVersion = "5.7.1"
-val jqwikVersion = "1.5.0"
 
 plugins {
     java
@@ -13,18 +11,18 @@ dependencies {
 
     implementation(project(":library"))
     implementation(project(":droid-stubs"))
-    implementation("com.github.TarCV.beanshell:bsh:5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c")
-    implementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
+    implementation(libs.beanshell)
+    implementationAar(libs.uiautomator) {
         isTransitive = false
     }
-    testImplementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
+    testImplementationAar(libs.uiautomator) {
         isTransitive = false
     }
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+    testImplementation(libs.junitApi)
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("net.jqwik:jqwik:${jqwikVersion}")
+    testImplementation(libs.jqwik)
     testImplementation(kotlin("reflect"))
 }
 
