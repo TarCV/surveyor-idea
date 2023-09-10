@@ -1,5 +1,8 @@
+import org.gradle.configurationcache.extensions.serviceOf
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.intellij.jbr.JbrResolver
+import org.jetbrains.intellij.logCategory
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
 fun properties(key: String) = providers.gradleProperty(key)
@@ -26,7 +29,7 @@ dependencies {
     }
 
     // This is required because of some quirks of plugins classloaders
-    implementation("androidx.test.uiautomator:uiautomator:2.2.0") {
+    implementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
         // Workaround 'implementationAar' configuration not being used when building a plugin
         attributes {
             attribute(
@@ -74,11 +77,6 @@ tasks {
     test {
         doNotTrackState("UI tests should always run")
         systemProperty("idea.split.test.logs", true)
-        systemProperty("ide.show.tips.on.startup.default.value", false)
-
-        // Disable native menus on Mac:
-        systemProperty("jbScreenMenuBar.enabled", false)
-        systemProperty("apple.laf.useScreenMenuBar", false)
 
         useJUnitPlatform()
         testLogging {
@@ -136,15 +134,29 @@ tasks {
         finalizedBy("finalizeUiTestingSandbox")
     }
     register("finalizeUiTestingSandbox") {
-        val disablePluginPath = prepareUiTestingSandbox.get()
+        val disablePluginPathProperty = prepareUiTestingSandbox.get()
             .configDir.map { file(it).resolve("disabled_plugins.txt") }
-            .get()
+        outputs.file(disablePluginPathProperty)
         doLast {
+            val disablePluginPath = disablePluginPathProperty.get()
             disablePluginPath.ensureParentDirsCreated()
             disablePluginPath.writeText(buildString {
                 // Disable 'Code with Me' tooltip:
                 appendLine("com.jetbrains.codeWithMe")
             })
+        }
+    }
+
+    create("probeJbrVersion") {
+        doLast {
+            val jbrResolverProp = project.provider {
+                project.objects.newInstance<JbrResolver>(
+                    project.provider { "invalid-url" },
+                    project.objects.newInstance<org.jetbrains.intellij.utils.ArchiveUtils>(),
+                    project.objects.newInstance<org.jetbrains.intellij.utils.DependenciesDownloader>(project.gradle.startParameter.isOffline),
+                    project.logCategory(),
+                )
+            }
         }
     }
 
@@ -163,9 +175,62 @@ tasks {
         )*/
         systemProperty("robot-server.port", "8082")
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
+        systemProperty("ide.show.tips.on.startup.default.value", false)
         systemProperty("idea.trust.all.projects", "true")
         systemProperty("jb.consents.confirmation.enabled", "false")
         systemProperty("jb.privacy.policy.text", "<!--999.999-->")
+
+        // Disable native menus on Mac:
+        systemProperty("apple.laf.useScreenMenuBar", false)
+        systemProperty("jbScreenMenuBar.enabled", false)
+
+        dependsOn("probeJbrVersion")
+        /*javaLauncher.set(
+            ideDir
+                .zip(jbrResolverProp) { dir, resolver ->
+                    val otherExecutable = resolver.resolveRuntime(ideDir = dir)!!.toFile()
+                object : JavaLauncher {
+                    override fun getMetadata(): JavaInstallationMetadata {
+                        return object : JavaInstallationMetadata {
+                            override fun getLanguageVersion(): JavaLanguageVersion {
+                                return JavaLanguageVersion.of(11)
+                            }
+
+                            override fun getJavaRuntimeVersion(): String {
+                                return "11"
+                            }
+
+                            override fun getJvmVersion(): String {
+                                return "11"
+                            }
+
+                            override fun getVendor(): String {
+                                return "11"
+                            }
+
+                            override fun getInstallationPath(): Directory {
+                                return layout.dir(
+                                    project.provider { file(otherExecutable).parentFile }
+                                ).get()
+                            }
+
+                            override fun isCurrentJvm(): Boolean = false
+
+                        }
+                    }
+
+                    override fun getExecutablePath(): RegularFile {
+
+                        return layout.file(
+                            project.provider { file(otherExecutable) }
+                        ).get()
+                    }
+                }
+            }
+        )*/
+        projectExecutable.set(javaLauncher.map{
+            it.executablePath.toString()
+        })
     }
 
     signPlugin {
