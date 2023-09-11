@@ -6,7 +6,28 @@ with import <nixpkgs> {};
     [
       pkgs.git
       pkgs.jdk11
-      pkgs.zlib # required for JBR JVM installed by various Gradle test tasks
+
+      # required for JBR JVM installed by various Gradle test tasks
+      # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/compilers/openjdk/11.nix
+      pkgs.freetype
+      pkgs.harfbuzz
+      pkgs.alsa-lib
+      pkgs.libjpeg
+      pkgs.giflib
+      pkgs.libpng
+      pkgs.zlib
+      pkgs.lcms2
+      pkgs.xorg.libX11
+      pkgs.xorg.libICE
+      pkgs.xorg.libXrender
+      pkgs.xorg.libXext
+      pkgs.xorg.libXt
+      pkgs.xorg.libXtst
+      pkgs.xorg.libXi
+      pkgs.xorg.libXinerama
+      pkgs.xorg.libXcursor
+      pkgs.xorg.libXrandr
+      pkgs.fontconfig
     ]);
 
   profile = ''

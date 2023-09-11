@@ -29,7 +29,7 @@ dependencies {
     }
 
     // This is required because of some quirks of plugins classloaders
-    implementationAar("androidx.test.uiautomator:uiautomator:2.2.0") {
+    implementation(libs.uiautomator) {
         // Workaround 'implementationAar' configuration not being used when building a plugin
         attributes {
             attribute(
@@ -55,21 +55,21 @@ dependencies {
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    intellijRepository.set(properties("NIX_GRADLE_DEPS_1").map { "file://${it}" }.orNull)
+    intellijRepository = properties("NIX_GRADLE_DEPS_1").map { "file://${it}" }.orNull
 
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    type.set(properties("platformType"))
+    pluginName = properties("pluginName")
+    version = properties("platformVersion")
+    type = properties("platformType")
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    plugins.set(properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) })
+    plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     groups.empty()
-    path.set(rootProject.layout.projectDirectory.file("CHANGELOG.md").toString())
-    repositoryUrl.set(properties("pluginRepositoryUrl"))
+    path = rootProject.layout.projectDirectory.file("CHANGELOG.md").toString()
+    repositoryUrl = properties("pluginRepositoryUrl")
 }
 
 
@@ -94,16 +94,16 @@ tasks {
     }
 
     runPluginVerifier {
-        distributionFile.set(properties("pluginDistributionFile").map { file(it) }.orNull)
+        distributionFile = properties("pluginDistributionFile").map { file(it) }.orNull
     }
 
     patchPluginXml {
-        version.set(properties("pluginVersion"))
-        sinceBuild.set(properties("pluginSinceBuild"))
-        untilBuild.set(properties("pluginUntilBuild"))
+        version = properties("pluginVersion")
+        sinceBuild = properties("pluginSinceBuild")
+        untilBuild = properties("pluginUntilBuild")
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
-        pluginDescription.set(providers.fileContents(rootProject.layout.projectDirectory.file("README.md")).asText.map {
+        pluginDescription = providers.fileContents(rootProject.layout.projectDirectory.file("README.md")).asText.map {
             val start = "<!-- Plugin description -->"
             val end = "<!-- Plugin description end -->"
 
@@ -113,12 +113,12 @@ tasks {
                 }
                 subList(indexOf(start) + 1, indexOf(end)).joinToString("\n").let(::markdownToHTML)
             }
-        })
+        }
 
         // local variables for configuration cache compatibility:
         val changelog = project.changelog
         // Get the latest available change notes from the changelog file
-        changeNotes.set(properties("pluginVersion").map { pluginVersion ->
+        changeNotes = properties("pluginVersion").map { pluginVersion ->
             with(changelog) {
                 renderItem(
                     (getOrNull(pluginVersion) ?: getUnreleased())
@@ -127,7 +127,7 @@ tasks {
                     Changelog.OutputType.HTML,
                 )
             }
-        })
+        }
     }
 
     prepareUiTestingSandbox {
@@ -144,19 +144,6 @@ tasks {
                 // Disable 'Code with Me' tooltip:
                 appendLine("com.jetbrains.codeWithMe")
             })
-        }
-    }
-
-    create("probeJbrVersion") {
-        doLast {
-            val jbrResolverProp = project.provider {
-                project.objects.newInstance<JbrResolver>(
-                    project.provider { "invalid-url" },
-                    project.objects.newInstance<org.jetbrains.intellij.utils.ArchiveUtils>(),
-                    project.objects.newInstance<org.jetbrains.intellij.utils.DependenciesDownloader>(project.gradle.startParameter.isOffline),
-                    project.logCategory(),
-                )
-            }
         }
     }
 
@@ -183,68 +170,20 @@ tasks {
         // Disable native menus on Mac:
         systemProperty("apple.laf.useScreenMenuBar", false)
         systemProperty("jbScreenMenuBar.enabled", false)
-
-        dependsOn("probeJbrVersion")
-        /*javaLauncher.set(
-            ideDir
-                .zip(jbrResolverProp) { dir, resolver ->
-                    val otherExecutable = resolver.resolveRuntime(ideDir = dir)!!.toFile()
-                object : JavaLauncher {
-                    override fun getMetadata(): JavaInstallationMetadata {
-                        return object : JavaInstallationMetadata {
-                            override fun getLanguageVersion(): JavaLanguageVersion {
-                                return JavaLanguageVersion.of(11)
-                            }
-
-                            override fun getJavaRuntimeVersion(): String {
-                                return "11"
-                            }
-
-                            override fun getJvmVersion(): String {
-                                return "11"
-                            }
-
-                            override fun getVendor(): String {
-                                return "11"
-                            }
-
-                            override fun getInstallationPath(): Directory {
-                                return layout.dir(
-                                    project.provider { file(otherExecutable).parentFile }
-                                ).get()
-                            }
-
-                            override fun isCurrentJvm(): Boolean = false
-
-                        }
-                    }
-
-                    override fun getExecutablePath(): RegularFile {
-
-                        return layout.file(
-                            project.provider { file(otherExecutable) }
-                        ).get()
-                    }
-                }
-            }
-        )*/
-        projectExecutable.set(javaLauncher.map{
-            it.executablePath.toString()
-        })
     }
 
     signPlugin {
-        certificateChain.set(environment("CERTIFICATE_CHAIN"))
-        privateKey.set(environment("PRIVATE_KEY"))
-        password.set(environment("PRIVATE_KEY_PASSWORD"))
+        certificateChain = environment("CERTIFICATE_CHAIN")
+        privateKey = environment("PRIVATE_KEY")
+        password = environment("PRIVATE_KEY_PASSWORD")
     }
 
     publishPlugin {
         dependsOn("patchChangelog")
-        token.set(environment("PUBLISH_TOKEN"))
+        token = environment("PUBLISH_TOKEN")
         // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels.set(properties("pluginVersion").map { listOf(it.split('-').getOrElse(1) { "default" }.split('.').first()) })
+        channels = properties("pluginVersion").map { listOf(it.split('-').getOrElse(1) { "default" }.split('.').first()) }
     }
 }
