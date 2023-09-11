@@ -1,8 +1,8 @@
 #!/bin/sh
 set -exu
 
-./gradlew buildPlugin --write-verification-metadata sha256
-./gradlew buildPlugin --info --refresh-dependencies | grep -P -o 'http[^,\]\s]+' >artifacts.lst
+./gradlew check buildPlugin --write-verification-metadata sha256
+./gradlew check buildPlugin --info --refresh-dependencies | grep -P -o 'http[^,\]\s]+' >artifacts.lst
 
 # TODO: Only keep the last download URL for each artifact
 sort -u -o artifacts.lst artifacts.lst
