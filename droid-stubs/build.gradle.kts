@@ -8,7 +8,7 @@ dependencies {
 
     implementation(project(":library"))
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
+    testImplementation(libs.junitApi)
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

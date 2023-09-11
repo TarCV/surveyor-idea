@@ -1,0 +1,28 @@
+[versions]
+# plugins
+aar2jar = "d4d5195de2"
+changelog = "2.1.2"
+gradleIntelliJPlugin = "1.15.0"
+jqwik = "1.5.0"
+junit = "5.7.1"
+kotlin = "1.9.10"
+kover = "0.7.3"
+qodana = "0.1.13"
+
+# libraries
+beanshell = "5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c"
+uiautomator = "2.2.0"
+
+[plugins]
+aar2jar = { id = "com.github.TarCV.aar2jar", version.ref = "aar2jar" }
+changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
+gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
+
+[libraries]
+beanshell = { group = "com.github.TarCV.beanshell", name = "bsh", version.ref = "beanshell" }
+jqwik = { group = "net.jqwik", name = "jqwik", version.ref = "jqwik" }
+junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }

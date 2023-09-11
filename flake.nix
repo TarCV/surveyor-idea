@@ -160,6 +160,7 @@
 
                    export JAVA_HOME=${jdk11}
 
+                   # Use '--debug' to debug dependency downloads by plugins
                    ./gradlew -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=1g \
                        -PNIX_GRADLE_DEPS_1=$out/gradleDeps \
                        --no-build-cache --no-configuration-cache \

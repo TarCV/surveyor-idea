@@ -13,10 +13,10 @@ jobs:
 
       # Free GitHub Actions Environment Disk Space
       - name: Maximize Build Space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
+        uses: jlumbroso/free-disk-space@4d9e71b726748f254fe64fa44d273194bd18ec91
+        with:
+          tool-cache: false
+          large-packages: false
 
       # Check out current repository
       - name: Fetch Sources
@@ -31,12 +31,18 @@ jobs:
           name_is_regexp: true
           path: plugin-artifact
 
-      # Setup Java 11 environment for the next steps
+      # Setup Java environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: zulu
           java-version: 11
+
+      # Setup Gradle
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-home-cache-cleanup: true
 
         # Cache Plugin Verifier IDEs
       - name: Prepare
@@ -62,7 +68,7 @@ jobs:
         run: |
           ls -R ${{ github.workspace }}
           ./gradlew runPluginVerifier -x buildPlugin -x verifyPlugin -Dplugin.verifier.home.dir=${{ steps.prepare.outputs.pluginVerifierHomeDir }} \
-            -PpluginDistributionFile="$(find ${{ github.workspace }}/plugin-artifact/*/*.zip)"
+            -DpluginDistributionFile="$(find ${{ github.workspace }}/plugin-artifact/*/*.zip)"
 
       # Collect Plugin Verifier Result
       - name: Collect Plugin Verifier Result
