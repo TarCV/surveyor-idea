@@ -1,7 +1,7 @@
 [versions]
 # plugins
 aar2jar = "d4d5195de2"
-changelog = "2.1.2"
+changelog = "2.2.0"
 gradleIntelliJPlugin = "1.15.0"
 jqwik = "1.5.0"
 junit = "5.7.1"
