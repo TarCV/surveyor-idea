@@ -20,7 +20,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Fetch Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ env.GITHUB_SHA }}
 
@@ -74,7 +74,7 @@ jobs:
 
       # Create a branch for PR updating Unreleased section with the current release note
       - name: Fetch Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ env.GITHUB_SHA }}
       - name: Gradle Wrapper Validation

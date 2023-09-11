@@ -20,7 +20,7 @@ jobs:
         run: sleep 15s
         shell: bash
       - name: Fetch Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: build.yml
