@@ -15,47 +15,49 @@ jobs:
 
   testUI:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+
     strategy:
       fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
             runIde: |
-              export AWT_TOOLKIT=
               export DISPLAY=:99.0
-              Xvfb -ac :99 -screen 0 1920x1080x16 &
+              Xvfb -ac :99 -screen 0 1920x1080x24 &
               sleep 10
               mkdir -p plugin/build/reports
-              ./gradlew :plugin:runIdeForUiTests > plugin/build/reports/idea.log &
+              ./gradlew :plugin:runIdeForUiTests >plugin/build/reports/idea.log 2>&1 &
             runTests: |
               export DISPLAY=:99.0
               ./gradlew :plugin:test
             url: http://127.0.0.1:8082
             reportName: ui-tests-linux
+          - os: macos-latest
+            runIde: |
+              mkdir -p plugin/build/reports
+              ./gradlew :plugin:runIdeForUiTests >plugin/build/reports/idea.log 2>&1 &
+            runTests: |
+              sleep 5
+              osascript <<EOF
+              tell application "Finder"
+                set _b to bounds of window of desktop
+                set _width to item 3 of _b
+                set _height to item 4 of _b
+              end tell
+              tell application "System Events" to click at {_width / 2, _height / 2}
+              EOF
+              ./gradlew :plugin:test
+            url: http://127.0.0.1:8082
+            reportName: ui-tests-mac
           - os: windows-latest
             runIde: |
               mkdir "plugin/build/reports"
-              start gradlew.bat :plugin:runIdeForUiTests > plugin/build/reports/idea.log
-            runTests: ./gradlew :plugin:test
+              ./gradlew.bat :plugin:runIdeForUiTests
+#              Start-Process -FilePath "cmd" -ArgumentList "/c gradlew.bat :plugin:runIdeForUiTests >plugin/build/reports/ideaCmdOut.log" -RedirectStandardOutput "plugin/build/reports/idea.log" -RedirectStandardError "plugin/build/reports/ideaErr.log" -NoNewWindow
+            runTests: ./gradlew :plugin>:test
             url: http://localhost:8082
             reportName: ui-tests-windows
-#          - os: macos-latest
-#            runIde: |
-#              mkdir -p plugin/build/reports
-#              ./gradlew :plugin:runIdeForUiTests > plugin/build/reports/idea.log &
-#            runTests: |
-#              sleep 5
-#              osascript <<EOF
-#              tell application "Finder"
-#                set _b to bounds of window of desktop
-#                set _width to item 3 of _b
-#                set _height to item 4 of _b
-#              end tell
-#              tell application "System Events" to click at {_width / 2, _height / 2}
-#              EOF
-#              ./gradlew :plugin:test
-#            url: http://127.0.0.1:8082
-#            reportName: ui-tests-mac
 
     steps:
 
@@ -70,11 +72,11 @@ jobs:
           distribution: zulu
           java-version: 11
 
-      # Setup Gradle
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-home-cache-cleanup: true
+#      # Setup Gradle
+#      - name: Setup Gradle
+#        uses: gradle/gradle-build-action@v2
+#        with:
+#          gradle-home-cache-cleanup: true
 
       - name: Setup FFmpeg
         uses: FedericoCarboni/setup-ffmpeg@v2
@@ -83,11 +85,15 @@ jobs:
           # errors especially on GitHub-hosted macos machines.
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clean
-        run: ./gradlew :plugin:clean
+      - name: Disable artifact verification
+        run: rm gradle/verification-metadata.xml
+
+      - name: Build plugin & tests
+        run: ./gradlew :plugin:clean :plugin:jar :plugin:testClasses
 
       # Run IDEA prepared for UI testing
       - name: Run IDE
+        timeout-minutes: 10
         run: ${{ matrix.runIde }}
 
       # Wait for IDEA to be started
@@ -95,7 +101,7 @@ jobs:
         uses: jtalk//url-health-check-action@v3
         with:
           url: ${{ matrix.url }}
-          max-attempts: 15
+          max-attempts: 8
           retry-delay: 30s
 
       # Run tests

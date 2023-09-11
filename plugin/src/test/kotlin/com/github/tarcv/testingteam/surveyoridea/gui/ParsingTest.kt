@@ -3,11 +3,13 @@ package com.github.tarcv.testingteam.surveyoridea.gui
 import com.automation.remarks.junit5.Video
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.locateElementToolWindow
+import com.intellij.remoterobot.client.IdeaSideException
 import com.intellij.remoterobot.utils.keyboard
 import com.intellij.remoterobot.utils.waitFor
 import org.apache.commons.lang.StringEscapeUtils
 import org.junit.jupiter.api.Test
 import java.awt.event.KeyEvent
+import java.lang.Thread.sleep
 import java.time.Duration
 import kotlin.test.assertEquals
 
@@ -41,14 +43,14 @@ class ParsingTest : BaseTestProjectTests() {
                 assertEquals("Language: JAVA", editorLanguage)
 
                 editor.keyboard {
-                    pressing(KeyEvent.VK_CONTROL) {
-                        key(KeyEvent.VK_END)
-                    }
+                    key(KeyEvent.VK_END)
+                    sleep(5_000)
                     enterText(".")
                 }
-                val popupItems = waitFor(Duration.ofSeconds(5), functionWithCondition = {
-                    val items: List<String> = editor.callJs(
-                        runInEdt = true, script = """
+                val popupItems = waitFor(Duration.ofSeconds(10), functionWithCondition = {
+                    val items: List<String> = try {
+                        editor.callJs(
+                            runInEdt = true, script = """
                         importPackage(com.intellij.codeInsight.lookup)
                         const model = LookupManager.getActiveLookup(local.get('editor')).getList().getModel()
                         const listItems = new ArrayList();
@@ -57,8 +59,11 @@ class ParsingTest : BaseTestProjectTests() {
                         }
                         listItems
                     """.trimIndent()
-                    )
-                    items.isNotEmpty() to items
+                        )
+                    } catch (e: IdeaSideException) {
+                        emptyList()
+                    }
+                    (items.isNotEmpty() && items.contains("resourceId")) to items
                 })
                 assert(popupItems.contains("index")) { "contains 'index'" }
                 assert(popupItems.contains("resourceId")) { "contains 'resourceId'" }

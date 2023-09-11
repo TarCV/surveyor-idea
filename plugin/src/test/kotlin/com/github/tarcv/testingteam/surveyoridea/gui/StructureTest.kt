@@ -7,7 +7,6 @@ import com.github.tarcv.testingteam.surveyoridea.waitingAssertion
 import com.intellij.remoterobot.fixtures.ActionButtonFixture.PopState.PUSHED
 import com.intellij.remoterobot.fixtures.ActionButtonFixture.PopState.SELECTED
 import com.intellij.remoterobot.utils.waitForIgnoringError
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class StructureTest : BaseTestProjectTests() {
@@ -40,17 +39,18 @@ class StructureTest : BaseTestProjectTests() {
                 true
             }
 
-            Assertions.assertEquals(
+            waitingAssertion(
+                "Correct node should be selected",
                 """
                     <node index="6" text="32.00" resource-id="com.github.tarcv.converter:id/fahrenheitText"
                                   class="android.widget.EditText" package="com.github.tarcv.converter" content-desc=""
                                   checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
                                   focused="false" scrollable="false" long-clickable="true" password="false"
                                   selected="false" bounds="[250,1140][830,1264]"/>
-                    """.trimAllIndent(),
-                getSelectedXmlNodeOuterXml("editorWithSnapshot").trimAllIndent(),
-                "Correct node should be selected"
-            )
+                    """.trimAllIndent()
+            ) {
+                getSelectedXmlNodeOuterXml("editorWithSnapshot").trimAllIndent()
+            }
         }
     }
 

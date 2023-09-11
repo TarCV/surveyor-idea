@@ -31,12 +31,18 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
 
     val structureTree
         get() = step("With Structure tool window") {
-            return@step jTree(byXpath("//div[@accessiblename='Structure View tree']"))
+            return@step jTree(
+                byXpath("//div[@accessiblename='Structure View tree']"),
+                Duration.ofSeconds(10)
+            )
         }
 
     fun actionButtonByName(name: String): ActionButtonFixture {
         val escapedName = StringEscapeUtils.escapeJavaScript(name)
-        return actionButton(byXpath("//div[@accessiblename='$escapedName']"))
+        return actionButton(
+            byXpath("//div[@accessiblename='$escapedName']"),
+            Duration.ofSeconds(10)
+        )
     }
 
     fun waitForNoTasks(timeout: Duration = Duration.ofSeconds(10)) {
@@ -67,8 +73,35 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
                         const textEditor = FileEditorManagerEx.getInstance(project)
                             .openFile(file, true, true)
                             [0]
-                        textEditor.editor.caretModel.moveToOffset(0)
                         local.put('$editorKey', textEditor)
+                    }
+                }))
+                """.trimIndent()
+        )
+        runJs(
+            runInEdt = true, script =
+            """
+                importPackage(com.intellij.openapi.application)
+                importPackage(com.intellij.openapi.project.ex)
+                importPackage(com.intellij.openapi.wm)
+
+                ApplicationManager.getApplication().invokeLater(new Runnable({
+                    run: function () {
+                        const project = ProjectManagerEx.getInstance().openProjects[0]
+                        const textEditor = local.get('$editorKey')
+                        IdeFocusManager.getInstance(project).requestFocus(textEditor.getContentComponent(), true);
+                    }
+                }))
+                """.trimIndent()
+        )
+        runJs(
+            runInEdt = true, script =
+            """
+                importPackage(com.intellij.openapi.application)
+                ApplicationManager.getApplication().invokeLater(new Runnable({
+                    run: function () {
+                        const textEditor = local.get('$editorKey')
+                        textEditor.editor.caretModel.moveToOffset(0)
                     }
                 }))
                 """.trimIndent()

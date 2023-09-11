@@ -22,5 +22,5 @@ class LocateElementToolWindowFixture(remoteRobot: RemoteRobot, remoteComponent: 
         get() = find(ActionButtonFixture.byTooltipText("Locate Element"))
 
     val editor: EditorFixture
-        get() = find(EditorFixture.locator)
+        get() = find(EditorFixture.locator, Duration.ofSeconds(10))
 }

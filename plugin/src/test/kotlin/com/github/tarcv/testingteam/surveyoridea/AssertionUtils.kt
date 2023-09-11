@@ -1,10 +1,11 @@
 package com.github.tarcv.testingteam.surveyoridea
 
 import com.intellij.remoterobot.utils.waitFor
+import java.time.Duration
 
-fun <T> waitingAssertion(errorMessage: String, expectedValue: List<String>, valueSupplier: () -> T) {
+fun <T> waitingAssertion(errorMessage: String, expectedValue: T, valueSupplier: () -> T) {
     var lastValue: T? = null
-    waitFor(errorMessageSupplier = { "$errorMessage Actual value was $lastValue" }) {
+    waitFor(Duration.ofSeconds(10), errorMessageSupplier = { "$errorMessage Actual value was $lastValue" }) {
         lastValue = valueSupplier()
         lastValue == expectedValue
     }

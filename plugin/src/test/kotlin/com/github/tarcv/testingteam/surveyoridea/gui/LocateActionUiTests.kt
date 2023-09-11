@@ -5,9 +5,9 @@ import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.IdeaFrame
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.locateElementToolWindow
 import com.github.tarcv.testingteam.surveyoridea.trimAllIndent
+import com.github.tarcv.testingteam.surveyoridea.waitingAssertion
 import com.intellij.remoterobot.utils.keyboard
 import org.apache.commons.lang.StringEscapeUtils
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.awt.event.KeyEvent
 
@@ -17,8 +17,14 @@ class LocateActionUiTests : BaseTestProjectTests() {
     fun testLocatingFromKeyboard() = verifyLocatingFrom {
         locateElementToolWindow {
             editor.keyboard {
-                pressing(KeyEvent.VK_CONTROL) {
-                    enter()
+                if (remoteRobot.isMac()) {
+                    pressing(KeyEvent.VK_META) {
+                        enter()
+                    }
+                } else {
+                    pressing(KeyEvent.VK_CONTROL) {
+                        enter()
+                    }
                 }
             }
         }
@@ -61,17 +67,18 @@ class LocateActionUiTests : BaseTestProjectTests() {
             }
             triggerActionWithBlock()
 
-            Assertions.assertEquals(
+            waitingAssertion(
+                "Correct node should be selected.",
                 """
                     <node index="4" text="-0.00" resource-id="com.github.tarcv.converter:id/celsiusText"
                         class="android.widget.EditText" package="com.github.tarcv.converter" content-desc=""
                         checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
                         focused="true" scrollable="false" long-clickable="true" password="false"
                         selected="false" bounds="[250,933][830,1057]"/>
-                    """.trimAllIndent(),
-                getSelectedXmlNodeOuterXml("editorWithSnapshot").trimAllIndent(),
-                "Correct node should be selected"
-            )
+                    """.trimAllIndent()
+            ) {
+                getSelectedXmlNodeOuterXml("editorWithSnapshot").trimAllIndent()
+            }
         }
     }
 }

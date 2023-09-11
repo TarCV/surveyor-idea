@@ -3,6 +3,7 @@ package com.github.tarcv.testingteam.surveyoridea.gui
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.ifTipOfTheDayDialogPresent
 import com.intellij.remoterobot.RemoteRobot
+import com.intellij.remoterobot.steps.CommonSteps
 import com.intellij.remoterobot.utils.waitForIgnoringError
 import com.intellij.util.TimeoutUtil.sleep
 import org.apache.commons.io.file.PathUtils
@@ -32,6 +33,7 @@ open class BaseTestProjectTests {
             throw e
         }
     }
+    protected val commonSteps by lazy { CommonSteps(remoteRobot) }
 
     @BeforeEach
     fun openTestProject() {
@@ -76,17 +78,8 @@ open class BaseTestProjectTests {
 
     @AfterEach
     fun closeTestProject(): Unit = with(remoteRobot) {
-        runJs(
-            runInEdt = true, script =
-            """
-                    importPackage(com.intellij.openapi.project.ex)
-                    importPackage(com.intellij.openapi.application)
-                    ApplicationManager.getApplication().invokeLater(() => { // only invokeLater is safe for closeAndDisposeAllProjects
-                        ProjectManagerEx.getInstanceEx().closeAndDisposeAllProjects(/* checkCanClose = */ false)
-                    })
-                """
-        )
-        sleep(3_000) // wait until invokeLater lambda is executed
+        commonSteps.invokeAction("CloseProject")
+        sleep(3_000) // wait until invokeAction is executed
     }
 
     private fun extractResourceRecursively(
