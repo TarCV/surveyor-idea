@@ -10,6 +10,7 @@ import com.intellij.remoterobot.utils.keyboard
 import org.apache.commons.lang.StringEscapeUtils
 import org.junit.jupiter.api.Test
 import java.awt.event.KeyEvent
+import java.lang.Thread.sleep
 
 class LocateActionUiTests : BaseTestProjectTests() {
     @Test
@@ -59,6 +60,10 @@ class LocateActionUiTests : BaseTestProjectTests() {
                 "Tool Windows",
                 "Locate Element"
             )
+
+            // Opening 'Locate Element' tool window sometimes causes reindexing
+            sleep(2_000)
+            commonSteps.waitForSmartMode(1)
 
             locateElementToolWindow {
                 // Escaping is required due to simple concatenation in the text#set implementation

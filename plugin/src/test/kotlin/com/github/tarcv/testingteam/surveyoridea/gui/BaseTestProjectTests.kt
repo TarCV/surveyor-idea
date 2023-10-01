@@ -2,18 +2,31 @@ package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.ifTipOfTheDayDialogPresent
+import com.intellij.openapi.ui.ComboBox
 import com.intellij.remoterobot.RemoteRobot
+import com.intellij.remoterobot.fixtures.CommonContainerFixture
+import com.intellij.remoterobot.fixtures.JButtonFixture
+import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.steps.CommonSteps
+import com.intellij.remoterobot.utils.DefaultHttpClient
+import com.intellij.remoterobot.utils.Locators
+import com.intellij.remoterobot.utils.WaitForConditionTimeoutException
+import com.intellij.remoterobot.utils.keyboard
 import com.intellij.remoterobot.utils.waitForIgnoringError
 import com.intellij.util.TimeoutUtil.sleep
 import org.apache.commons.io.file.PathUtils
+import org.apache.commons.lang.StringEscapeUtils
 import org.junit.Assume
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.TestInfo
 import org.junit.jupiter.api.io.TempDir
+import java.io.File
 import java.net.ConnectException
 import java.nio.file.Files
 import java.nio.file.Path
+import java.time.Duration
+import javax.imageio.ImageIO
 
 open class BaseTestProjectTests {
     @field:TempDir
@@ -25,7 +38,13 @@ open class BaseTestProjectTests {
 
     protected val remoteRobot: RemoteRobot by lazy {
         try {
-            RemoteRobot("http://127.0.0.1:8082").apply {
+            val httpClient = DefaultHttpClient.client.newBuilder()
+                .readTimeout(Duration.ofMinutes(1)) // prevent timing out on Macs when entering paths in Open dialogs
+                .build()
+            RemoteRobot(
+                "http://127.0.0.1:8082",
+                httpClient
+            ).apply {
                 runJs("")
             }
         } catch (e: ConnectException) {
@@ -43,43 +62,109 @@ open class BaseTestProjectTests {
         extractResourceRecursively("", "project", projectPath)
 
         with(remoteRobot) {
-            runJs(
-                runInEdt = true, script =
-                """
-                importPackage(java.nio.file)
-                importPackage(com.intellij.openapi.application)
-                importPackage(com.intellij.ide.impl)
-                ApplicationManager.getApplication().invokeLater(new Runnable({
-                    run: function () {
-                        ProjectUtil.openOrImport(Paths.get("$projectPath"))
-                    }
-                }))
-            """.trimIndent()
-            )
-            waitForIgnoringError {
-                callJs(
-                    runInEdt = true, script =
-                    """
-                    importPackage(com.intellij.openapi.project.ex)
-                    ProjectManagerEx.getInstance().openProjects.length > 0
-                """.trimIndent()
-                )
+            cancelModalIfNeeded()
+
+            find(
+                CommonContainerFixture::class.java,
+                Locators.byType("WelcomeScreen"),
+                Duration.ofSeconds(10)
+            ).apply {
+                button(
+                    byXpath(
+                        "//div[contains(@class, 'Button')" +
+                                " and (contains(@accessiblename,'Open') or @text='Open')" +
+                                " and not(div[contains(@class, 'Button')])]"
+                    ),
+                    Duration.ofSeconds(10)
+                ).clickWhenEnabled()
             }
+            find<CommonContainerFixture>(
+                Locators.byProperties(Locators.XpathProperty.SIMPLE_CLASS_NAME to "DialogRootPane"),
+                Duration.ofSeconds(10)
+            ).apply {
+                val fullProjectPath = projectPath.toAbsolutePath()
+
+                comboBox(Locators.byType(ComboBox::class.java)).apply {
+                    // workaround flakiness on Mac
+                    (0..4).takeUnless {
+                            click()
+                            try {
+                                waitForIgnoringError {
+                                    hasFocus
+                                }
+                                true
+                            } catch (e: WaitForConditionTimeoutException) {
+                                false
+                            }
+                        }
+                    keyboard {
+                        val escapedPath = StringEscapeUtils.escapeJavaScript(fullProjectPath.toString())
+                            .replace("\\\"", "\"") // workaround escaping in enterText
+                        // workaround opening external apps or emoji keyboard on Mac
+                        sleep(2_000)
+                        backspace()
+                        sleep(2_000)
+                        // delayBetweenCharsInMs here is also part of the workaround
+                        enterText(escapedPath, delayBetweenCharsInMs = 100)
+                    }
+                }
+                sleep(10_000)
+                // workaround flakiness on Mac
+                (0..4).takeUnless {
+                    button("OK").click()
+                    try {
+                        waitForIgnoringError(Duration.ofSeconds(10)) {
+                            remoteRobot.callJs(
+                                runInEdt = true, script =
+                                """
+                                importPackage(com.intellij.openapi.project.ex)
+                                ProjectManagerEx.getInstance().openProjects.length > 0
+                            """.trimIndent()
+                            )
+                        }
+                        true
+                    } catch (e: WaitForConditionTimeoutException) {
+                        false
+                    }
+                }
+            }
+
             sleep(2_000)
 
             idea {
                 ifTipOfTheDayDialogPresent() {
                     close()
                 }
-                waitForNoTasks()
+                commonSteps.waitForSmartMode(1)
             }
         }
     }
 
+    private fun RemoteRobot.cancelModalIfNeeded() {
+        try {
+            find<JButtonFixture>(JButtonFixture.byText("Cancel")).clickWhenEnabled()
+        } catch (e: WaitForConditionTimeoutException) {
+            // no-op
+        }
+    }
+
     @AfterEach
-    fun closeTestProject(): Unit = with(remoteRobot) {
+    fun closeTestProject(testInfo: TestInfo): Unit = with(remoteRobot) {
+        takeAndWriteScreenshot(testInfo)
+
         commonSteps.invokeAction("CloseProject")
         sleep(3_000) // wait until invokeAction is executed
+    }
+
+    private fun RemoteRobot.takeAndWriteScreenshot(testInfo: TestInfo) {
+        val screenshotDir = File("screenshot").apply {
+            mkdirs()
+        }
+        val baseName = testInfo.testMethod
+            .map { it.name }
+            .orElse(testInfo.displayName)
+            .replace(Regex("\\W"), "_")
+        ImageIO.write(getScreenshot(), "png", File(screenshotDir, "$baseName.png"))
     }
 
     private fun extractResourceRecursively(

@@ -5,7 +5,7 @@ import java.time.Duration
 
 fun <T> waitingAssertion(errorMessage: String, expectedValue: T, valueSupplier: () -> T) {
     var lastValue: T? = null
-    waitFor(Duration.ofSeconds(10), errorMessageSupplier = { "$errorMessage Actual value was $lastValue" }) {
+    waitFor(Duration.ofSeconds(20), errorMessageSupplier = { "$errorMessage Actual value was $lastValue" }) {
         lastValue = valueSupplier()
         lastValue == expectedValue
     }

@@ -161,6 +161,7 @@ tasks {
                 }
         )*/
         systemProperty("robot-server.port", "8082")
+        systemProperty("ide.mac.file.chooser.native", "false")
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("ide.show.tips.on.startup.default.value", false)
         systemProperty("idea.trust.all.projects", "true")

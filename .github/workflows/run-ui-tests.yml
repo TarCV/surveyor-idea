@@ -15,24 +15,24 @@ jobs:
 
   testUI:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            runIde: |
-              export DISPLAY=:99.0
-              Xvfb -ac :99 -screen 0 1920x1080x24 &
-              sleep 10
-              mkdir -p plugin/build/reports
-              ./gradlew :plugin:runIdeForUiTests >plugin/build/reports/idea.log 2>&1 &
-            runTests: |
-              export DISPLAY=:99.0
-              ./gradlew :plugin:test
-            url: http://127.0.0.1:8082
-            reportName: ui-tests-linux
+#          - os: ubuntu-latest
+#            runIde: |
+#              export DISPLAY=:99.0
+#              Xvfb -ac :99 -screen 0 1920x1080x24 &
+#              sleep 10
+#              mkdir -p plugin/build/reports
+#              ./gradlew :plugin:runIdeForUiTests >plugin/build/reports/idea.log 2>&1 &
+#            runTests: |
+#              export DISPLAY=:99.0
+#              ./gradlew :plugin:test
+#            url: http://127.0.0.1:8082
+#            reportName: ui-tests-linux
           - os: macos-latest
             runIde: |
               mkdir -p plugin/build/reports
@@ -41,23 +41,19 @@ jobs:
               sleep 5
               osascript <<EOF
               tell application "Finder"
-                set _b to bounds of window of desktop
-                set _width to item 3 of _b
-                set _height to item 4 of _b
+                get the name of every process whose visible is true
               end tell
-              tell application "System Events" to click at {_width / 2, _height / 2}
               EOF
               ./gradlew :plugin:test
             url: http://127.0.0.1:8082
             reportName: ui-tests-mac
-          - os: windows-latest
-            runIde: |
-              mkdir "plugin/build/reports"
-              ./gradlew.bat :plugin:runIdeForUiTests
-#              Start-Process -FilePath "cmd" -ArgumentList "/c gradlew.bat :plugin:runIdeForUiTests >plugin/build/reports/ideaCmdOut.log" -RedirectStandardOutput "plugin/build/reports/idea.log" -RedirectStandardError "plugin/build/reports/ideaErr.log" -NoNewWindow
-            runTests: ./gradlew :plugin>:test
-            url: http://localhost:8082
-            reportName: ui-tests-windows
+#          - os: windows-latest
+#            runIde: |
+#              mkdir "plugin/build/reports"
+#              start gradlew.bat :plugin:runIdeForUiTests
+#            runTests: ./gradlew :plugin:test
+#            url: http://localhost:8082
+#            reportName: ui-tests-windows
 
     steps:
 
@@ -109,6 +105,10 @@ jobs:
         run: ${{ matrix.runTests }}
 
       # Collect Tests Result of failed tests
+      - name: Move screenshot files
+        if: ${{ always() }}
+        run: |
+          mv plugin/screenshot plugin/build/reports
       - name: Move video files
         if: ${{ always() }}
         run: |

@@ -89,7 +89,7 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
                     run: function () {
                         const project = ProjectManagerEx.getInstance().openProjects[0]
                         const textEditor = local.get('$editorKey')
-                        IdeFocusManager.getInstance(project).requestFocus(textEditor.getContentComponent(), true);
+                        IdeFocusManager.getInstance(project).requestFocus(textEditor.editor.contentComponent, true);
                     }
                 }))
                 """.trimIndent()
