@@ -25,6 +25,9 @@ import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.ActionPlaces
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.CustomShortcutSet
 import com.intellij.openapi.application.invokeLater
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.module.ModuleManager
@@ -36,19 +39,18 @@ import com.intellij.openapi.roots.ModuleRootModificationUtil
 import com.intellij.openapi.roots.OrderRootType
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.playback.commands.ActionCommand
+import com.intellij.openapi.util.SystemInfo
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.psi.JavaCodeFragment
 import com.intellij.psi.JavaCodeFragmentFactory
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
 import com.intellij.ui.EditorTextField
-import java.awt.event.ActionEvent
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
 import java.net.URI
 import java.nio.file.Path
 import java.nio.file.Paths
-import javax.swing.AbstractAction
 import javax.swing.JComponent
 import javax.swing.JPanel
 import javax.swing.KeyStroke
@@ -81,24 +83,27 @@ class LocateToolWindow(private val project: Project) {
         }
 
         val editorField = EditorTextField("new UiSelector()", project, JavaFileType.INSTANCE)
-        editorField.registerKeyboardAction(
-            object : AbstractAction() {
-                override fun actionPerformed(e: ActionEvent?) {
-                    val actionManager = ActionManager.getInstance()
-                    val actionId = LocateAction::class.java.name
-                    val action = actionManager.getAction(actionId) ?: return // TODO
-                    actionManager.tryToExecute(
-                        action,
-                        ActionCommand.getInputEvent(actionId),
-                        null,
-                        ActionPlaces.TOOLWINDOW_CONTENT,
-                        true
-                    )
-                }
-            },
-            "evaluate",
-            KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.CTRL_DOWN_MASK, true),
-            JComponent.WHEN_IN_FOCUSED_WINDOW
+        val locateFromKeyboardAction = object : AnAction("Evaluate") {
+            override fun actionPerformed(e: AnActionEvent) {
+                val actionManager = ActionManager.getInstance()
+                val actionId = LocateAction::class.java.name
+                val action = actionManager.getAction(actionId) ?: return // TODO
+                actionManager.tryToExecute(
+                    action,
+                    ActionCommand.getInputEvent(actionId),
+                    null,
+                    ActionPlaces.TOOLWINDOW_CONTENT,
+                    true
+                )
+            }
+        }
+        locateFromKeyboardAction.registerCustomShortcutSet(
+            CustomShortcutSet(KeyStroke.getKeyStroke(
+                KeyEvent.VK_ENTER,
+                if (SystemInfo.isMac) { InputEvent.META_DOWN_MASK } else { InputEvent.CTRL_DOWN_MASK },
+                true
+            )),
+            editorField
         )
 
         invokeLater {
