@@ -37,6 +37,7 @@
                 description="Locate element in the currently active editor using a locator in the tool window"
                 icon="AllIcons.Actions.Find">
             <override-text place="MainMenu" text="Locate _Element" />
+            <override-text place="ToolwindowContent" text="Locate _Element" />
             <synonym text="Find Element" />
 
             <add-to-group group-id="FindMenuGroup" anchor="last"/>
@@ -45,6 +46,8 @@
         <action id="com.github.tarcv.testingteam.surveyoridea.gui.ShowNoticeAction"
                 class="com.github.tarcv.testingteam.surveyoridea.gui.ShowNoticeAction" text="UI Surveyor: Show Licenses and Notices"
                 icon="AllIcons.General.ShowInfos">
+            <override-text place="ToolwindowContent" text="Show Licenses and Notices" />
+
             <add-to-group group-id="HelpMenu" relative-to-action="About" anchor="before" />
             <add-to-group group-id="com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar" />
         </action>
