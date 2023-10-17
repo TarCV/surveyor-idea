@@ -21,35 +21,55 @@ jobs:
       fail-fast: false
       matrix:
         os: [ macos-latest, ubuntu-latest, windows-latest ]
+        ideDate: [ IC-2022.2, IC-2022.3, IC-2023.1, IC-2023.2 ]
         include:
+#          - ideDate: IC-EAP # TODO: Run this variant weekly
+#            ide: IC
+#            version: LATEST_EAP
+          - ideDate: IC-2023.2
+            ide: IC
+            version: 2023.2.3 # released on 11.10.2023, major from 26.07.2023
+          - ideDate: IC-2023.1
+            ide: IC
+            version: 2023.1.5 # released on 25.07.2023, major from 28.03.2023
+          - ideDate: IC-2022.3
+            ide: IC
+            version: 2022.3.3 # released on 8.03.2023, major from 30.11.2022
+          - ideDate: IC-2022.2
+            ide: IC
+            version: 2022.2.5 # released on 15.03.2023, major from 26.07.2022
+
+          # Versions should match https://jb.gg/android-studio-releases-list.xml
+# TODO:
+#          - ideDate: AI-2023
+#            ide: AI
+#            version: 2023.1.1 # released on 27.09.2023
+#          - ideDate: AI-2022
+#            ide: AI
+#            version: 2022.3.1 # released on 28.09.2023
+#          - ideDate: AI-2021
+#            ide: AI
+#            version: 2021.3.1.17 # released on 13.10.2022
+
           - os: ubuntu-latest
-            runIde: |
+            runTests: |
               export DISPLAY=:99.0
               Xvfb -ac :99 -screen 0 1920x1080x24 &
               sleep 10
-              mkdir -p plugin/build/reports
-              ./gradlew :plugin:runIdeForUiTests >plugin/build/reports/idea.log 2>&1 &
-            runTests: |
-              export DISPLAY=:99.0
               ./gradlew :plugin:test
-            url: http://127.0.0.1:8082
             reportName: ui-tests-linux
           - os: macos-latest
-            runIde: |
-              mkdir -p plugin/build/reports
-              ./gradlew :plugin:runIdeForUiTests >plugin/build/reports/idea.log 2>&1 &
             runTests: |
               ./gradlew :plugin:test
-            url: http://127.0.0.1:8082
             reportName: ui-tests-mac
           - os: windows-latest
-            runIde: |
-              mkdir "plugin/build/reports"
-              start gradlew.bat :plugin:runIdeForUiTests
             runTests: ./gradlew :plugin:test
-            url: http://localhost:8082
             reportName: ui-tests-windows
 
+    env:
+      IDE_CODE: ${{ matrix.ide }}
+      IDE_VERSION: ${{ matrix.version }}
+      PLUGIN_PATH: "./build/distributions/UI Surveyor-1.0.1.zip"
     steps:
 
       # Check out current repository
@@ -80,19 +100,7 @@ jobs:
         run: rm gradle/verification-metadata.xml
 
       - name: Build plugin & tests
-        run: ./gradlew :plugin:clean :plugin:jar :plugin:testClasses
-
-      # Run IDEA prepared for UI testing
-      - name: Run IDE
-        run: ${{ matrix.runIde }}
-
-      # Wait for IDEA to be started
-      - name: Health Check
-        uses: jtalk//url-health-check-action@v3
-        with:
-          url: ${{ matrix.url }}
-          max-attempts: 8
-          retry-delay: 30s
+        run: ./gradlew :plugin:clean :plugin:buildPlugin :plugin:testClasses
 
       # Run tests
       - name: Tests
@@ -111,6 +119,6 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.reportName }}
+          name: ${{ matrix.reportName }}-${{ matrix.ideDate }}
           path: |
             plugin/build/reports

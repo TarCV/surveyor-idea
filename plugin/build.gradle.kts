@@ -1,6 +1,5 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
-import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
@@ -45,6 +44,9 @@ dependencies {
         exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
     }
     testImplementation("com.intellij.remoterobot:remote-fixtures:$remoteRobotVersion") {
+        exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
+    }
+    testImplementation("com.intellij.remoterobot:ide-launcher:$remoteRobotVersion") {
         exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
     }
     testImplementation("com.automation-remarks:video-recorder-junit5:2.0")
@@ -125,39 +127,6 @@ tasks {
                 )
             }
         }
-    }
-
-    prepareUiTestingSandbox {
-        finalizedBy("finalizeUiTestingSandbox")
-    }
-    register("finalizeUiTestingSandbox") {
-        val disablePluginPathProperty = prepareUiTestingSandbox.get()
-            .configDir.map { file(it).resolve("disabled_plugins.txt") }
-        outputs.file(disablePluginPathProperty)
-        doLast {
-            val disablePluginPath = disablePluginPathProperty.get()
-            disablePluginPath.ensureParentDirsCreated()
-            disablePluginPath.writeText(buildString {
-                // Disable 'Code with Me' tooltip:
-                appendLine("com.jetbrains.codeWithMe")
-            })
-        }
-    }
-
-    // Configure UI tests plugin
-    // Read more: https://github.com/JetBrains/intellij-ui-test-robot
-    runIdeForUiTests {
-        systemProperty("robot-server.port", "8082")
-        systemProperty("ide.mac.file.chooser.native", "false")
-        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
-        systemProperty("ide.show.tips.on.startup.default.value", false)
-        systemProperty("idea.trust.all.projects", "true")
-        systemProperty("jb.consents.confirmation.enabled", "false")
-        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
-
-        // Disable native menus on Mac:
-        systemProperty("apple.laf.useScreenMenuBar", false)
-        systemProperty("jbScreenMenuBar.enabled", false)
     }
 
     signPlugin {
