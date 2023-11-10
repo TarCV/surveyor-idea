@@ -74,13 +74,14 @@ class LocateToolWindow(private val project: Project) {
     }
 
     fun createUIComponents() {
-        toolbar = with(ActionManager.getInstance()) {
+        val actionToolbar = with(ActionManager.getInstance()) {
             createActionToolbar(
                 ActionPlaces.TOOLWINDOW_CONTENT,
                 getAction("com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow.toolbar") as ActionGroup,
                 false
-            ).component
+            )
         }
+        toolbar = actionToolbar.component
 
         val editorField = EditorTextField("new UiSelector()", project, JavaFileType.INSTANCE)
         val locateFromKeyboardAction = object : AnAction("Evaluate") {
@@ -128,6 +129,7 @@ class LocateToolWindow(private val project: Project) {
         }
 
         project.getService(LocateToolHoldingService::class.java).registerToolWindow(this)
+        actionToolbar.setTargetComponent(editorField)
         locatorField = editorField
     }
 
