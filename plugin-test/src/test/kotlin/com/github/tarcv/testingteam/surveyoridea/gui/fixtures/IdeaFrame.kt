@@ -11,7 +11,7 @@ import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.stepsProcessing.step
 import com.intellij.remoterobot.utils.attempt
 import com.intellij.remoterobot.utils.waitForIgnoringError
-import org.apache.commons.lang.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 import java.io.Serializable
 import java.time.Duration
 
@@ -45,7 +45,7 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
     }
 
     fun actionButtonByName(name: String): ActionButtonFixture {
-        val escapedName = StringEscapeUtils.escapeJavaScript(name)
+        val escapedName = StringEscapeUtils.escapeEcmaScript(name)
         return actionButton(
             byXpath("//div[@accessiblename='$escapedName']"),
             Duration.ofSeconds(10)
@@ -53,7 +53,7 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
     }
 
     fun openFileInTestProject(filePath: String, editorKey: String) {
-        val jsEscapedFilePath = StringEscapeUtils.escapeJavaScript(filePath)
+        val jsEscapedFilePath = StringEscapeUtils.escapeEcmaScript(filePath)
         println("Opening '$jsEscapedFilePath'")
         runJs(
             runInEdt = true, script =

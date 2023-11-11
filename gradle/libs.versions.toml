@@ -11,6 +11,8 @@ qodana = "0.1.13"
 
 # libraries
 beanshell = "5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c"
+junitVideo = "2.0"
+remoteRobot = "0.11.20"
 uiautomator = "2.2.0"
 
 [plugins]
@@ -25,4 +27,11 @@ qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
 beanshell = { group = "com.github.TarCV.beanshell", name = "bsh", version.ref = "beanshell" }
 jqwik = { group = "net.jqwik", name = "jqwik", version.ref = "jqwik" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
+junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine"}
+junitLauncher = { group =  "org.junit.platform", name =  "junit-platform-launcher"}
+junitVideo = { group = "com.automation-remarks", name = "video-recorder-junit5", version.ref = "junitVideo" }
+remoteRobot = { group = "com.intellij.remoterobot", name = "remote-robot", version.ref = "remoteRobot" }
+remoteRobotFixtures = { group = "com.intellij.remoterobot", name = "remote-fixtures", version.ref = "remoteRobot" }
+remoteRobotLauncher = { group = "com.intellij.remoterobot", name = "ide-launcher", version.ref = "remoteRobot" }
 uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }

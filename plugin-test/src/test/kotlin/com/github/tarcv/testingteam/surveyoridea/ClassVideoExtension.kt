@@ -3,7 +3,6 @@ package com.github.tarcv.testingteam.surveyoridea
 import com.automation.remarks.video.RecorderFactory
 import com.automation.remarks.video.recorder.IVideoRecorder
 import com.automation.remarks.video.recorder.VideoRecorder
-import com.intellij.util.containers.orNull
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -19,7 +18,7 @@ class ClassVideoExtension : BeforeAllCallback, AfterAllCallback {
     }
 
     override fun afterAll(context: ExtensionContext) {
-        val fileName = context.testClass.orNull()
+        val fileName = context.testClass.orElse(null)
             ?.simpleName
             ?: "Unknown${System.currentTimeMillis()}"
         recorder.stopAndSave(fileName)

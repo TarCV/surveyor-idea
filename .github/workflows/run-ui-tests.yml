@@ -78,14 +78,14 @@ jobs:
               export DISPLAY=:99.0
               Xvfb -ac :99 -screen 0 1920x1080x24 &
               sleep 10
-              ./gradlew :plugin:test
+              ./gradlew :plugin-test:test
             reportName: ui-tests-linux
           - os: macos-latest
             runTests: |
-              ./gradlew :plugin:test
+              ./gradlew :plugin-test:test
             reportName: ui-tests-mac
           - os: windows-latest
-            runTests: ./gradlew :plugin:test
+            runTests: ./gradlew :plugin-test:test
             reportName: ui-tests-windows
 
     env:
@@ -134,15 +134,15 @@ jobs:
       - name: Move screenshot files
         if: ${{ always() }}
         run: |
-          mv plugin/screenshot plugin/build/reports
+          mv plugin-test/screenshot plugin-test/build/reports
       - name: Move video files
         if: ${{ always() }}
         run: |
-          mv plugin/video plugin/build/reports
+          mv plugin-test/video plugin-test/build/reports
       - name: Collect Tests Result
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.reportName }}-${{ matrix.ideDate }}
           path: |
-            plugin/build/reports
+            plugin-test/build/reports

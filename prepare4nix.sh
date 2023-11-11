@@ -1,8 +1,8 @@
 #!/bin/sh
 set -exu
 
-./gradlew check buildPlugin -x :plugin:test --write-verification-metadata sha256
-./gradlew check buildPlugin -x :plugin:test --info --refresh-dependencies | grep -P -o 'http[^,\]\s]+' | grep -v 'Resource missing' >artifacts.lst
+./gradlew check buildPlugin -x :plugin-test:test --write-verification-metadata sha256
+./gradlew check buildPlugin -x :plugin-test:test --info --refresh-dependencies | grep -P -o 'http[^,\]\s]+' | grep -v 'Resource missing' >artifacts.lst
 
 # TODO: Only keep the last download URL for each artifact
 

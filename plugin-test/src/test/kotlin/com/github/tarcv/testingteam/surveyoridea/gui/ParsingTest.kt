@@ -5,7 +5,7 @@ import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.locateElementToolW
 import com.intellij.remoterobot.client.IdeaSideException
 import com.intellij.remoterobot.utils.keyboard
 import com.intellij.remoterobot.utils.waitFor
-import org.apache.commons.lang.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 import org.junit.jupiter.api.Test
 import java.awt.Point
 import java.lang.Thread.sleep
@@ -50,7 +50,7 @@ class ParsingTest : BaseTestProjectTests() {
 
                         // Escaping is required due to how enterText is implemented
                         enterText(
-                            StringEscapeUtils.escapeJavaScript("""new UiSelector().""")
+                            StringEscapeUtils.escapeEcmaScript("""new UiSelector().""")
                                 .replace("\\\"", "\"")
                         )
                     }

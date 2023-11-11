@@ -6,8 +6,6 @@ import com.intellij.remoterobot.launcher.IdeDownloader
 import com.intellij.remoterobot.launcher.IdeLauncher.launchIde
 import com.intellij.remoterobot.launcher.Os
 import com.intellij.remoterobot.steps.CommonSteps
-import com.intellij.util.io.createDirectories
-import com.intellij.util.io.delete
 import okhttp3.OkHttpClient
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -42,7 +40,7 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
         val ideDownloader = IdeDownloader(OkHttpClient())
         val cacheDir = getCacheRoot(tempDir)
             .resolve("surveyor-idea-test")
-            .apply { createDirectories() }
+            .apply { Files.createDirectories(this) }
         println("Caching downloaded files at $cacheDir")
 
         val pathToIde: Path = with(requestedIdeCode) {
@@ -76,7 +74,7 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
                 ideDownloader.getRobotPlugin(cacheDir),
                 pluginPath
             ),
-            ideSandboxDir = tempDir.resolve("sandbox").apply { createDirectories() }
+            ideSandboxDir = tempDir.resolve("sandbox").apply { Files.createDirectories(this) }
         )
 
         started = true
@@ -101,7 +99,7 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
             // Only ProcessHandle correctly terminates a process on Win
             process.toHandle().destroyForcibly()
         } finally {
-            tempDir.delete(recursively = true)
+            tempDir.toFile().deleteRecursively()
         }
     }
 
@@ -122,7 +120,7 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
     private fun IdeDownloader.getIde(ide: Ide, requestedIdeVersion: String, cacheDir: Path): Path {
         val ideCacheDir = cacheDir
             .resolve("${ide.code}-$requestedIdeVersion")
-            .apply { createDirectories() }
+            .apply { Files.createDirectories(this) }
         val previousArchive = ideCacheDir.toFile().listFiles { f: File -> f.isFile && !f.isHidden }?.singleOrNull()
         val previousExtractedDir = ideCacheDir.toFile().listFiles { f: File -> f.isDirectory }?.singleOrNull()
         return try {

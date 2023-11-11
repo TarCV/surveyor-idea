@@ -4,8 +4,6 @@ import org.jetbrains.changelog.markdownToHTML
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
-val remoteRobotVersion = "0.11.20"
-
 plugins {
     kotlin("jvm")
     id("com.github.TarCV.aar2jar")
@@ -36,20 +34,6 @@ dependencies {
 
         isTransitive = false
     }
-
-    testImplementation(platform("org.junit:junit-bom:5.7.1"))
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
-
-    testImplementation("com.intellij.remoterobot:remote-robot:$remoteRobotVersion") {
-        exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
-    }
-    testImplementation("com.intellij.remoterobot:remote-fixtures:$remoteRobotVersion") {
-        exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
-    }
-    testImplementation("com.intellij.remoterobot:ide-launcher:$remoteRobotVersion") {
-        exclude(group = "junit", module = "junit") // exclude JUnit 4 not used in the project
-    }
-    testImplementation("com.automation-remarks:video-recorder-junit5:2.0")
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
@@ -71,20 +55,12 @@ changelog {
     repositoryUrl = properties("pluginRepositoryUrl")
 }
 
+// Prevent downloading IDE jars as there is no unit/integration tests in this module:
+gradle.startParameter.excludedTaskNames.add(":plugin:test")
 
 tasks {
-    test {
-        doNotTrackState("UI tests should always run")
-        systemProperty("idea.split.test.logs", true)
-
-        useJUnitPlatform()
-        testLogging {
-            events("passed", "skipped", "failed")
-        }
-    }
-
     downloadRobotServerPlugin {
-        version.set(remoteRobotVersion) // otherwise the current latest version is used which is bad for reproducibility
+        version.set(libs.versions.remoteRobot) // otherwise the current latest version is used which is bad for reproducibility
     }
 
     buildSearchableOptions {

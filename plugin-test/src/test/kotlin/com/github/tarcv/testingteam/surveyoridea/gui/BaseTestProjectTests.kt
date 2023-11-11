@@ -8,16 +8,14 @@ import com.intellij.remoterobot.RemoteRobot
 import com.intellij.remoterobot.steps.CommonSteps
 import com.intellij.remoterobot.utils.DefaultHttpClient
 import com.intellij.remoterobot.utils.waitForIgnoringError
-import com.intellij.util.TimeoutUtil.sleep
 import org.apache.commons.io.file.PathUtils
-import org.junit.Assume
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInfo
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
-import java.net.ConnectException
+import java.lang.Thread.sleep
 import java.nio.file.Files
 import java.nio.file.Path
 import java.time.Duration
@@ -33,21 +31,16 @@ open class BaseTestProjectTests {
     protected val droidAutomatorSnapshotFile by lazy { """$projectPath/demo/snapshots/dump.uix""" }
 
     protected val remoteRobot: RemoteRobot by lazy {
-        try {
-            val httpClient = DefaultHttpClient.client.newBuilder()
-                .readTimeout(Duration.ofMinutes(1)) // prevent timing out on Macs when entering paths in Open dialogs
-                .build()
-            RemoteRobot(
-                "http://127.0.0.1:8082",
-                httpClient
-            ).apply {
-                waitForIgnoringError(Duration.ofMinutes(1), Duration.ofSeconds(5)) {
-                    callJs("true")
-                }
+        val httpClient = DefaultHttpClient.client.newBuilder()
+            .readTimeout(Duration.ofMinutes(1)) // prevent timing out on Macs when entering paths in Open dialogs
+            .build()
+        RemoteRobot(
+            "http://127.0.0.1:8082",
+            httpClient
+        ).apply {
+            waitForIgnoringError(Duration.ofMinutes(1), Duration.ofSeconds(5)) {
+                callJs("true")
             }
-        } catch (e: ConnectException) {
-            Assume.assumeNoException("IDE should be running in UI tests mode", e)
-            throw e
         }
     }
     protected val commonSteps by lazy { CommonSteps(remoteRobot) }

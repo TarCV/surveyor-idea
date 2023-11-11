@@ -6,7 +6,7 @@ import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.locateElementToolW
 import com.github.tarcv.testingteam.surveyoridea.trimAllIndent
 import com.github.tarcv.testingteam.surveyoridea.waitingAssertion
 import com.intellij.remoterobot.utils.keyboard
-import org.apache.commons.lang.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 import org.junit.jupiter.api.Test
 import java.awt.Point
 import java.awt.event.KeyEvent
@@ -73,7 +73,7 @@ class LocateActionUiTests : BaseTestProjectTests() {
 
                         // Escaping is required due to how enterText is implemented
                         enterText(
-                            StringEscapeUtils.escapeJavaScript("""new UiSelector().resourceIdMatches(".+/celsiusText")""")
+                            StringEscapeUtils.escapeEcmaScript("""new UiSelector().resourceIdMatches(".+/celsiusText")""")
                                 .replace("\\\"", "\"")
                         )
                     }
