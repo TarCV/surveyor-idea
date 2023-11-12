@@ -12,11 +12,33 @@ on:
   workflow_dispatch
 
 jobs:
+  getPlugin:
+    name: Download the plugin
+    outputs:
+      path: ${{ steps.path.outputs.path }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yml
+          commit: ${{ env.GITHUB_SHA }}
+          name: ".+[Ss]urveyor-\\d.+"
+          name_is_regexp: true
+          path: plugin-artifact
+      - name: Get full path
+        id: path
+        run: |
+          echo "path=$(find plugin-artifact/*/*.zip)" >> $GITHUB_OUTPUT
+      - name: Upload artifact for testUI
+        uses: actions/upload-artifact@v3
+        with:
+          name: plugin
+          path: plugin-artifact/*/*.zip
 
   testUI:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
-
+    needs: getPlugin
     strategy:
       fail-fast: false
       matrix:
@@ -69,12 +91,8 @@ jobs:
     env:
       IDE_CODE: ${{ matrix.ide }}
       IDE_VERSION: ${{ matrix.version }}
-      PLUGIN_PATH: "./build/distributions/UI Surveyor-1.0.1.zip"
+      PLUGIN_PATH: "${{ github.workspace }}/${{ needs.getPlugin.outputs.path }}"
     steps:
-
-      # Check out current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v4
 
       - name: Setup FFmpeg
         uses: FedericoCarboni/setup-ffmpeg@v2
@@ -96,11 +114,17 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
       - name: Disable artifact verification
         run: rm gradle/verification-metadata.xml
 
-      - name: Build plugin & tests
-        run: ./gradlew :plugin:clean :plugin:buildPlugin :plugin:testClasses
+      - uses: actions/download-artifact@v3
+        with:
+          name: plugin
+          path: plugin-artifact
 
       # Run tests
       - name: Tests
