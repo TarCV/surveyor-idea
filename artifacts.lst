@@ -44,10 +44,7 @@ https://plugins.gradle.org/m2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2
 https://plugins.gradle.org/m2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.pom
 https://plugins.gradle.org/m2/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar
 https://plugins.gradle.org/m2/com/google/code/gson/gson/2.8.6/gson-2.8.6.pom
-https://plugins.gradle.org/m2/com/google/code/gson/gson/2.9.1/gson-2.9.1.jar
-https://plugins.gradle.org/m2/com/google/code/gson/gson/2.9.1/gson-2.9.1.pom
 https://plugins.gradle.org/m2/com/google/code/gson/gson-parent/2.8.6/gson-parent-2.8.6.pom
-https://plugins.gradle.org/m2/com/google/code/gson/gson-parent/2.9.1/gson-parent-2.9.1.pom
 https://plugins.gradle.org/m2/com/googlecode/plist/dd-plist/1.27/dd-plist-1.27.jar
 https://plugins.gradle.org/m2/com/googlecode/plist/dd-plist/1.27/dd-plist-1.27.pom
 https://plugins.gradle.org/m2/com/google/errorprone/error_prone_annotations/2.3.4/error_prone_annotations-2.3.4.jar
@@ -126,10 +123,6 @@ https://plugins.gradle.org/m2/org/glassfish/jaxb/jaxb-runtime/2.3.1/jaxb-runtime
 https://plugins.gradle.org/m2/org/glassfish/jaxb/jaxb-runtime/2.3.1/jaxb-runtime-2.3.1.pom
 https://plugins.gradle.org/m2/org/glassfish/jaxb/txw2/2.3.1/txw2-2.3.1.jar
 https://plugins.gradle.org/m2/org/glassfish/jaxb/txw2/2.3.1/txw2-2.3.1.pom
-https://plugins.gradle.org/m2/org/gradle/toolchains/foojay-resolver/0.6.0/foojay-resolver-0.6.0.jar
-https://plugins.gradle.org/m2/org/gradle/toolchains/foojay-resolver/0.6.0/foojay-resolver-0.6.0.module
-https://plugins.gradle.org/m2/org/gradle/toolchains/foojay-resolver/0.6.0/foojay-resolver-0.6.0.pom
-https://plugins.gradle.org/m2/org/gradle/toolchains/foojay-resolver-convention/org.gradle.toolchains.foojay-resolver-convention.gradle.plugin/0.6.0/org.gradle.toolchains.foojay-resolver-convention.gradle.plugin-0.6.0.pom
 https://plugins.gradle.org/m2/org/jdom/jdom2/2.0.6.1/jdom2-2.0.6.1.jar
 https://plugins.gradle.org/m2/org/jdom/jdom2/2.0.6.1/jdom2-2.0.6.1.pom
 https://plugins.gradle.org/m2/org/jetbrains/annotations/13.0/annotations-13.0.jar
@@ -198,6 +191,8 @@ https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-native-utils/1.9.10/ko
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-native-utils/1.9.10/kotlin-native-utils-1.9.10.pom
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-project-model/1.9.10/kotlin-project-model-1.9.10.jar
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-project-model/1.9.10/kotlin-project-model-1.9.10.pom
+https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.jar
+https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.pom
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-scripting-common/1.9.10/kotlin-scripting-common-1.9.10.jar
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-scripting-common/1.9.10/kotlin-scripting-common-1.9.10.pom
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-scripting-compiler-embeddable/1.9.10/kotlin-scripting-compiler-embeddable-1.9.10.jar
@@ -206,6 +201,8 @@ https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-scripting-compiler-imp
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-scripting-compiler-impl-embeddable/1.9.10/kotlin-scripting-compiler-impl-embeddable-1.9.10.pom
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-scripting-jvm/1.9.10/kotlin-scripting-jvm-1.9.10.jar
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-scripting-jvm/1.9.10/kotlin-scripting-jvm-1.9.10.pom
+https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-script-runtime/1.9.10/kotlin-script-runtime-1.9.10.jar
+https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-script-runtime/1.9.10/kotlin-script-runtime-1.9.10.pom
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-stdlib/1.9.0/kotlin-stdlib-1.9.0.jar
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-stdlib/1.9.0/kotlin-stdlib-1.9.0.pom
 https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-stdlib/1.9.10/kotlin-stdlib-1.9.10.jar
@@ -269,7 +266,3 @@ https://plugins.gradle.org/m2/software/amazon/awssdk/aws-sdk-java-pom/2.17.188/a
 https://plugins.gradle.org/m2/software/amazon/awssdk/bom/2.17.188/bom-2.17.188.pom
 https://repo.maven.apache.org/maven2/com/jgoodies/forms/1.1-preview/forms-1.1-preview.jar
 https://repo.maven.apache.org/maven2/com/jgoodies/forms/1.1-preview/forms-1.1-preview.pom
-https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.jar
-https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.pom
-https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-script-runtime/1.9.10/kotlin-script-runtime-1.9.10.jar
-https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-script-runtime/1.9.10/kotlin-script-runtime-1.9.10.pom

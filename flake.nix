@@ -165,7 +165,7 @@
                        -PNIX_GRADLE_DEPS_1=$out/gradleDeps \
                        --no-build-cache --no-configuration-cache \
                        --info --stacktrace \
-                       --init-script ${gradleInit} buildPlugin
+                       --init-script ${gradleInit} buildPlugin -x :plugin-test:test
 
                    cp -v plugin/build/distributions/*.zip $out
                    popd

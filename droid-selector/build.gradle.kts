@@ -20,8 +20,8 @@ dependencies {
     }
 
     testImplementation(libs.junitApi)
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly(libs.junitEngine)
+    testRuntimeOnly(libs.junitLauncher)
     testImplementation(libs.jqwik)
     testImplementation(kotlin("reflect"))
 }

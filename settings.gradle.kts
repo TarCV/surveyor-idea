@@ -33,6 +33,7 @@ plugins {
 
 rootProject.name = "surveyor-idea"
 include("plugin")
+include("plugin-test")
 
 include("droid-selector")
 include("droid-stubs")

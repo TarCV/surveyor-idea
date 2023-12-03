@@ -55,8 +55,14 @@ changelog {
     repositoryUrl = properties("pluginRepositoryUrl")
 }
 
+// Prevent downloading IDE jars as there is no unit/integration tests in this module:
+gradle.startParameter.excludedTaskNames.add(":plugin:test")
 
 tasks {
+    downloadRobotServerPlugin {
+        version.set(libs.versions.remoteRobot) // otherwise the current latest version is used which is bad for reproducibility
+    }
+
     buildSearchableOptions {
         // Remove once some settings are added
         enabled = false
@@ -97,15 +103,6 @@ tasks {
                 )
             }
         }
-    }
-
-    // Configure UI tests plugin
-    // Read more: https://github.com/JetBrains/intellij-ui-test-robot
-    runIdeForUiTests {
-        systemProperty("robot-server.port", "8082")
-        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
-        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
-        systemProperty("jb.consents.confirmation.enabled", "false")
     }
 
     signPlugin {

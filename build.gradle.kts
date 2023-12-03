@@ -36,6 +36,13 @@ allprojects {
     repositories {
         mavenCentral()
         maven {
+            url = uri("https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
+            content {
+                // Download only these groups from the repository
+                includeGroup("com.intellij.remoterobot")
+            }
+        }
+        maven {
             url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
             content {
                 // Download only these groups from the repository

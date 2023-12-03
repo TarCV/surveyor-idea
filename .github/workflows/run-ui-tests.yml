@@ -12,28 +12,94 @@ on:
   workflow_dispatch
 
 jobs:
+  getPlugin:
+    name: Download the plugin
+    outputs:
+      path: ${{ steps.path.outputs.path }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yml
+          commit: ${{ env.GITHUB_SHA }}
+          name: ".+[Ss]urveyor-\\d.+"
+          name_is_regexp: true
+          path: plugin-artifact
+      - name: Get full path
+        id: path
+        run: |
+          echo "path=$(find plugin-artifact/*/*.zip)" >> $GITHUB_OUTPUT
+      - name: Upload artifact for testUI
+        uses: actions/upload-artifact@v3
+        with:
+          name: plugin
+          path: plugin-artifact/*/*.zip
 
   testUI:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    needs: getPlugin
     strategy:
       fail-fast: false
       matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        ideDate: [ IC-2022.2, IC-2022.3, IC-2023.1, IC-2023.2 ]
         include:
-          - os: ubuntu-latest
-            runIde: |
-              export DISPLAY=:99.0
-              Xvfb -ac :99 -screen 0 1920x1080x16 &
-              gradle runIdeForUiTests &
-          - os: windows-latest
-            runIde: start gradlew.bat runIdeForUiTests
-          - os: macos-latest
-            runIde: ./gradlew runIdeForUiTests &
+#          - ideDate: IC-EAP # TODO: Run this variant weekly
+#            ide: IC
+#            version: LATEST_EAP
+          - ideDate: IC-2023.2
+            ide: IC
+            version: 2023.2.3 # released on 11.10.2023, major from 26.07.2023
+          - ideDate: IC-2023.1
+            ide: IC
+            version: 2023.1.5 # released on 25.07.2023, major from 28.03.2023
+          - ideDate: IC-2022.3
+            ide: IC
+            version: 2022.3.3 # released on 8.03.2023, major from 30.11.2022
+          - ideDate: IC-2022.2
+            ide: IC
+            version: 2022.2.5 # released on 15.03.2023, major from 26.07.2022
 
+          # Versions should match https://jb.gg/android-studio-releases-list.xml
+# TODO:
+#          - ideDate: AI-2023
+#            ide: AI
+#            version: 2023.1.1 # released on 27.09.2023
+#          - ideDate: AI-2022
+#            ide: AI
+#            version: 2022.3.1 # released on 28.09.2023
+#          - ideDate: AI-2021
+#            ide: AI
+#            version: 2021.3.1.17 # released on 13.10.2022
+
+          - os: ubuntu-latest
+            runTests: |
+              export DISPLAY=:99.0
+              Xvfb -ac :99 -screen 0 1920x1080x24 &
+              sleep 10
+              ./gradlew :plugin-test:test
+            reportName: ui-tests-linux
+          - os: macos-latest
+            runTests: |
+              ./gradlew :plugin-test:test
+            reportName: ui-tests-mac
+          - os: windows-latest
+            runTests: ./gradlew :plugin-test:test
+            reportName: ui-tests-windows
+
+    env:
+      IDE_CODE: ${{ matrix.ide }}
+      IDE_VERSION: ${{ matrix.version }}
+      PLUGIN_PATH: "${{ github.workspace }}/${{ needs.getPlugin.outputs.path }}"
     steps:
 
-      # Check out current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v4
+      - name: Setup FFmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v2
+        with:
+          # Not strictly necessary, but it may prevent rate limit
+          # errors especially on GitHub-hosted macos machines.
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Setup Java environment for the next steps
       - name: Setup Java
@@ -48,18 +114,35 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
-      # Run IDEA prepared for UI testing
-      - name: Run IDE
-        run: ${{ matrix.runIde }}
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v4
 
-      # Wait for IDEA to be started
-      - name: Health Check
-        uses: jtalk//url-health-check-action@v3
+      - name: Disable artifact verification
+        run: rm gradle/verification-metadata.xml
+
+      - uses: actions/download-artifact@v3
         with:
-          url: http://127.0.0.1:8082
-          max-attempts: 15
-          retry-delay: 30s
+          name: plugin
+          path: plugin-artifact
 
       # Run tests
       - name: Tests
-        run: ./gradlew test
+        run: ${{ matrix.runTests }}
+
+      # Collect Tests Result of failed tests
+      - name: Move screenshot files
+        if: ${{ always() }}
+        run: |
+          mv plugin-test/screenshot plugin-test/build/reports
+      - name: Move video files
+        if: ${{ always() }}
+        run: |
+          mv plugin-test/video plugin-test/build/reports
+      - name: Collect Tests Result
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.reportName }}-${{ matrix.ideDate }}
+          path: |
+            plugin-test/build/reports
