@@ -9,12 +9,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.tarcv.testingteam.surveyoridea</groupId>
   <artifactId>plugin</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <dependencies>
     <dependency>
       <groupId>com.github.tarcv.testingteam.surveyoridea</groupId>
       <artifactId>droid-selector</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -26,7 +26,7 @@
     <dependency>
       <groupId>com.github.tarcv.testingteam.surveyoridea</groupId>
       <artifactId>library</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
