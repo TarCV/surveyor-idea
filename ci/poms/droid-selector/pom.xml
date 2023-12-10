@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.tarcv.testingteam.surveyoridea</groupId>
   <artifactId>droid-selector</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
@@ -20,13 +20,13 @@
     <dependency>
       <groupId>com.github.tarcv.testingteam.surveyoridea</groupId>
       <artifactId>library</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>com.github.tarcv.testingteam.surveyoridea</groupId>
       <artifactId>droid-stubs</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
