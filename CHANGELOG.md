@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### Fixed
+- Keyboard shortcut for locating an element is now Cmd+Enter on Mac. Previously it seems to require double Ctrl+Enter
+- Toolwindow buttons might have been disabled under very rare conditions
+- Remove "UI Surveyor" prefixes from main menu items where it looked redundant
+
 ## [1.0.1] - 2023-05-25
 
 ### Fixed
