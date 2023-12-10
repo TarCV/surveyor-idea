@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.0.2] - 2023-12-10
+
 ### Fixed
 - Keyboard shortcut for locating an element is now Cmd+Enter on Mac. Previously it seems to require double Ctrl+Enter
 - Toolwindow buttons might have been disabled under very rare conditions
@@ -26,6 +28,7 @@ the plugin tool window is opened. But only as long as they still contain just on
 - Selector autocomplete & highlighting as Java code
 - Structure navigation for UI snapshots
 
-[Unreleased]: https://github.com/TarCV/surveyor-idea/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/TarCV/surveyor-idea/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/TarCV/surveyor-idea/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/TarCV/surveyor-idea/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/TarCV/surveyor-idea/commits/v1.0.0
