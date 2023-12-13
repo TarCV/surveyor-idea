@@ -2,10 +2,12 @@ package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.locateElementToolWindow
+import com.github.tarcv.testingteam.surveyoridea.hasJavaSupport
 import com.intellij.remoterobot.client.IdeaSideException
 import com.intellij.remoterobot.utils.keyboard
 import com.intellij.remoterobot.utils.waitFor
 import org.apache.commons.text.StringEscapeUtils
+import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.Test
 import java.awt.Point
 import java.lang.Thread.sleep
@@ -15,6 +17,8 @@ import kotlin.test.assertEquals
 class ParsingTest : BaseTestProjectTests() {
     @Test
     fun testDroidSelectorParsing() = with(remoteRobot) {
+        Assumptions.assumeTrue(hasJavaSupport, "This feature requires an IDE with Java support")
+
         idea {
             openFileInTestProject(droidAutomatorSnapshotFile, "editorWithSnapshot")
 

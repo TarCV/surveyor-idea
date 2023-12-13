@@ -26,6 +26,12 @@ private fun getEnvValue(key: String) = requireNotNull(System.getenv(key)) {
     "$key environment variable should be set"
 }
 
+val hasJavaSupport: Boolean
+    get() = when (requestedIdeCode) {
+        "AI", "AQ", "IC", "IU" -> true
+        else -> false
+    }
+
 class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableResource {
     private lateinit var process: Process
     private lateinit var tempDir: Path
