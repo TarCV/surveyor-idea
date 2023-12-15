@@ -121,7 +121,7 @@ jobs:
       - name: Disable artifact verification
         run: rm gradle/verification-metadata.xml
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: plugin
           path: plugin-artifact
