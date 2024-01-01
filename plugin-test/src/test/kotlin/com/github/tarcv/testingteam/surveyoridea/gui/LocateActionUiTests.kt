@@ -4,7 +4,7 @@ import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.IdeaFrame
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.locateElementToolWindow
 import com.github.tarcv.testingteam.surveyoridea.trimAllIndent
-import com.github.tarcv.testingteam.surveyoridea.waitingAssertion
+import com.github.tarcv.testingteam.surveyoridea.waitingAssertEquals
 import com.intellij.remoterobot.utils.keyboard
 import org.apache.commons.text.StringEscapeUtils
 import org.junit.jupiter.api.Test
@@ -81,7 +81,7 @@ class LocateActionUiTests : BaseTestProjectTests() {
             }
             triggerActionWithBlock()
 
-            waitingAssertion(
+            waitingAssertEquals(
                 "Correct node should be selected.",
                 """
                     <node index="4" text="-0.00" resource-id="com.github.tarcv.converter:id/celsiusText"
