@@ -19,6 +19,13 @@ import java.nio.file.Paths
 
 private var started = false
 
+private val requestedIdeCode: String
+    get() = getEnvValue("IDE_CODE")
+
+private fun getEnvValue(key: String) = requireNotNull(System.getenv(key)) {
+    "$key environment variable should be set"
+}
+
 class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableResource {
     private lateinit var process: Process
     private lateinit var tempDir: Path
@@ -30,12 +37,8 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
 
         tempDir = Files.createTempDirectory("junit")
 
-        val requestedIdeCode = requireNotNull(System.getenv("IDE_CODE")) {
-            "IDE_CODE environment variable should be set"
-        }
-        val requestedIdeVersion = requireNotNull(System.getenv("IDE_VERSION")) {
-            "IDE_CODE environment variable should be set"
-        }
+        val requestedIdeCode = requestedIdeCode
+        val requestedIdeVersion = getEnvValue("IDE_VERSION")
 
         val ideDownloader = IdeDownloader(OkHttpClient())
         val cacheDir = getCacheRoot(tempDir)
@@ -122,7 +125,13 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
             .resolve("${ide.code}-$requestedIdeVersion")
             .apply { Files.createDirectories(this) }
         val previousArchive = ideCacheDir.toFile().listFiles { f: File -> f.isFile && !f.isHidden }?.singleOrNull()
-        val previousExtractedDir = ideCacheDir.toFile().listFiles { f: File -> f.isDirectory }?.singleOrNull()
+
+        val previousExtractedDir = getExtractedIdeDir(ideCacheDir)
+        if (previousExtractedDir != null) {
+            println("File was already downloaded and extracted, so using $previousExtractedDir")
+            return previousExtractedDir.toPath()
+        }
+
         return try {
             val extractedPath = when (requestedIdeVersion) {
                 "LATEST_EAP" -> downloadAndExtractLatestEap(ide, ideCacheDir)
@@ -131,22 +140,29 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
                     Ide.BuildType.RELEASE, requestedIdeVersion
                 )
             }
-            if (previousArchive != null || previousExtractedDir != null) {
-                println("Found stale files from the previous download, deleting...")
-                previousArchive?.delete()
-                previousExtractedDir?.deleteRecursively()
+            if (previousArchive != null) {
+                println("Found a stale archive from the previous download, deleting...")
+                previousArchive.delete()
                 println("Deleted")
             }
 
             extractedPath
         } catch (e: FileAlreadyExistsException) {
-            val extractedDir = ideCacheDir.toFile()
-                .listFiles { f: File -> f.isDirectory }
-                ?.single()
+            val extractedDir = getExtractedIdeDir(ideCacheDir)
                 ?.toPath()
-                ?: error("Archive is already download, but extracted dir wasn't found. Please fix the cache.")
+                ?: error("Archive was already downloaded, but extracted dir wasn't found. Please fix the cache.")
             println("File was already downloaded, so using $extractedDir")
             extractedDir
+        }
+    }
+
+    private fun getExtractedIdeDir(ideCacheDir: Path): File? {
+        val candidateDirs = ideCacheDir.toFile().listFiles { f: File -> f.isDirectory }
+            ?: error("$ideCacheDir should be a directory")
+        return when(candidateDirs.size) {
+            0 -> null
+            1 -> candidateDirs.single()
+            else -> error("Found multiple extracted directories under $ideCacheDir, but expected no more then one")
         }
     }
 
