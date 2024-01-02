@@ -17,6 +17,10 @@
  */
 package com.github.tarcv.testingteam.surveyoridea.gui
 
+import com.github.tarcv.testingteam.surveyoridea.data.DroidUiSelectorLocatorType
+import com.github.tarcv.testingteam.surveyoridea.data.IClassChainLocatorType
+import com.github.tarcv.testingteam.surveyoridea.data.IPredicateLocatorType
+import com.github.tarcv.testingteam.surveyoridea.data.LocatorType
 import com.github.tarcv.testingteam.surveyoridea.services.LocateToolHoldingService
 import com.github.tarcv.testingteam.surveyoridea.services.LocatorTypeChangedListener
 import com.intellij.openapi.actionSystem.ActionGroup
@@ -25,10 +29,14 @@ import com.intellij.openapi.actionSystem.ActionPlaces
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CustomShortcutSet
+import com.intellij.openapi.application.invokeLater
+import com.intellij.openapi.editor.EditorFactory
+import com.intellij.openapi.fileTypes.FileTypes
 import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.playback.commands.ActionCommand
 import com.intellij.openapi.util.SystemInfo
+import com.intellij.openapi.util.text.StringUtil
 import com.intellij.ui.EditorTextField
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
@@ -81,16 +89,31 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
             editorField
         )
 
-        initSelectorField(editorField)
-
         with(project.getService(LocateToolHoldingService::class.java)) {
             onLocatorTypeChanged(locatorType)
             registerToolWindow(this@LocateToolWindow)
         }
+        actionToolbar.setTargetComponent(editorField)
         locatorField = editorField
     }
 
-    protected abstract fun initSelectorField(editorField: EditorTextField)
+    override fun onLocatorTypeChanged(newType: LocatorType?): Unit = invokeLater {
+        val editorField = locatorField as EditorTextField
+        editorField.isEnabled = false
+        try {
+            when (newType) {
+                DroidUiSelectorLocatorType -> switchToDroidUiAutomator(editorField)
+                IClassChainLocatorType, IPredicateLocatorType, null -> with(editorField) {
+                    document = EditorFactory.getInstance().createDocument(StringUtil.convertLineSeparators(text))
+                    fileType = FileTypes.PLAIN_TEXT
+                }
+            }
+        } finally {
+            editorField.isEnabled = true
+        }
+    }
+
+    abstract fun switchToDroidUiAutomator(editorField: EditorTextField)
 
     fun getContent(): JPanel = content
 
