@@ -55,6 +55,24 @@ class StringCompareProperties {
         assertEquals(expectedReverse, gsReverseResult)
     }
 
+    @Property
+    fun regexIsIcuCompatible(
+        @ForAll("nsString") string1: NSString,
+        @ForAll("nsValidSRegexes") string2: NSString,
+        @ForAll("optionSet") options: Set<StringCompareOption>
+    ) {
+        val icuResult = kotlin.runCatching { GSICUStringMatchesRegex(string1, string2, options) }
+        val jvmResult = kotlin.runCatching {
+            staticPredicate.GSICUStringMatchesRegex(string1, string2, options.toMutableSet())
+        }
+        if (icuResult.isFailure) {
+            assertEquals(icuResult.isFailure, jvmResult.isFailure,
+                "Test if it's error to check '$string1' against /$string2/")
+        } else {
+            assertEquals(icuResult, jvmResult, "Test if '$string1' matching /$string2/")
+        }
+    }
+
     @Provide
     fun nsString(): Arbitrary<NSString> {
         return Arbitraries
@@ -116,7 +134,10 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
 
         println("java.library.path=${System.getProperty("java.library.path")}")
         val regexObj = uregex_open_70(regexStr, regexLength, flags, parseError, errorCode)
-        require(U_SUCCESS(errorCode.get(JAVA_INT, 0))) { "Got error: ${errorCode.get(JAVA_INT, 0)}" }
+        require(U_SUCCESS(errorCode.get(JAVA_INT, 0))) {
+            "Got error: ${errorCode.get(JAVA_INT, 0)} (${u_errorName_70(errorCode.get(JAVA_INT, 0)).getUtf8String(0)})\n" +
+                    regex
+        }
 
         try {
             val textStr = string.getCharacters(NSMakeRange(string.startIndex, stringLength))
