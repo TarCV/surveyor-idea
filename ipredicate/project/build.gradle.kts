@@ -28,6 +28,7 @@ tasks.compileTestKotlin {
     compilerOptions.freeCompilerArgs.add("-Xjvm-enable-preview")
 }
 tasks.test {
+    doNotTrackState("JQwik tests should always run")
     javaLauncher.set(javaToolchains.launcherFor {
         languageVersion.set(JavaLanguageVersion.of(21))
     })
@@ -38,7 +39,6 @@ tasks.test {
     jvmArgs(
         "--enable-preview",
         providers.environmentVariable("ICU_HOME")
-            .orElse("/nix/store/cxw0yh9fa41wzhhm51dv97annri01lid-icu4c-70.1")
             .map { "-Djava.library.path=$it/lib" }
             .get()
     )
