@@ -3,7 +3,7 @@ import org.jetbrains.changelog.markdownToHTML
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
-
+sourceSets
 plugins {
     kotlin("jvm")
     id("com.github.TarCV.aar2jar")
@@ -66,6 +66,7 @@ tasks {
     buildSearchableOptions {
         // Remove once some settings are added
         enabled = false
+        notCompatibleWithConfigurationCache("Configuration cache for this task is broken on NixOS")
     }
 
     runPluginVerifier {

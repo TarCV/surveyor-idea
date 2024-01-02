@@ -43,36 +43,18 @@ jobs:
       fail-fast: false
       matrix:
         os: [ macos-latest, ubuntu-latest, windows-latest ]
-        ideDate: [ IC-2022.2, IC-2022.3, IC-2023.1, IC-2023.2 ]
-        include:
-#          - ideDate: IC-EAP # TODO: Run this variant weekly
-#            ide: IC
-#            version: LATEST_EAP
-          - ideDate: IC-2023.2
-            ide: IC
-            version: 2023.2.3 # released on 11.10.2023, major from 26.07.2023
-          - ideDate: IC-2023.1
-            ide: IC
-            version: 2023.1.5 # released on 25.07.2023, major from 28.03.2023
-          - ideDate: IC-2022.3
-            ide: IC
-            version: 2022.3.3 # released on 8.03.2023, major from 30.11.2022
-          - ideDate: IC-2022.2
-            ide: IC
-            version: 2022.2.5 # released on 15.03.2023, major from 26.07.2022
-
+        ideDate: # Up to 2 versions per year, initial major ver release date should be not older than a year
+          #          - IC-LATEST_EAP # TODO: Run this variant weekly
+          - IC-2023.3.2 # released on 20.12.2023, major from 06.12.2023
+          - IC-2023.1.5 # released on 25.07.2023, major from 28.03.2023
+          - IC-2022.3.3 # released on 8.03.2023, major from 30.11.2022
+          #          - PC-LATEST_EAP # TODO: Run this variant weekly
+          - PC-2023.3.2 # released on 20.12.2023, major from 06.12.2023
+          - PC-2023.1.4 # released on 13.07.2023, major from 30.03.2023
+          - PC-2022.3.3 # released on 10.03.2023, major from 01.12.2022
           # Versions should match https://jb.gg/android-studio-releases-list.xml
-# TODO:
-#          - ideDate: AI-2023
-#            ide: AI
-#            version: 2023.1.1 # released on 27.09.2023
-#          - ideDate: AI-2022
-#            ide: AI
-#            version: 2022.3.1 # released on 28.09.2023
-#          - ideDate: AI-2021
-#            ide: AI
-#            version: 2021.3.1.17 # released on 13.10.2022
 
+        include:
           - os: ubuntu-latest
             runTests: |
               export DISPLAY=:99.0
@@ -89,11 +71,18 @@ jobs:
             reportName: ui-tests-windows
 
     env:
-      IDE_CODE: ${{ matrix.ide }}
-      IDE_VERSION: ${{ matrix.version }}
       PLUGIN_PATH: "${{ github.workspace }}/${{ needs.getPlugin.outputs.path }}"
     steps:
-
+      - uses: actions/github-script@v7
+        id: prepare-IDE_CODE
+        with:
+          script: return "${{ matrix.ideDate }}".split("-", 2)[0]
+          result-encoding: string
+      - uses: actions/github-script@v7
+        id: prepare-IDE_VERSION
+        with:
+          script: return "${{ matrix.ideDate }}".split("-", 2)[1]
+          result-encoding: string
       - name: Setup FFmpeg
         uses: FedericoCarboni/setup-ffmpeg@v2
         with:
@@ -104,6 +93,9 @@ jobs:
       # Setup Java environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v3
+        env:
+          IDE_CODE: ${{ steps.prepare-IDE_CODE.outputs.result }}
+          IDE_VERSION: ${{ steps.prepare-IDE_VERSION.outputs.result }}
         with:
           distribution: zulu
           java-version: 11
@@ -111,6 +103,9 @@ jobs:
       # Setup Gradle
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
+        env:
+          IDE_CODE: ${{ steps.prepare-IDE_CODE.outputs.result }}
+          IDE_VERSION: ${{ steps.prepare-IDE_VERSION.outputs.result }}
         with:
           gradle-home-cache-cleanup: true
 
@@ -128,6 +123,9 @@ jobs:
 
       # Run tests
       - name: Tests
+        env:
+          IDE_CODE: ${{ steps.prepare-IDE_CODE.outputs.result }}
+          IDE_VERSION: ${{ steps.prepare-IDE_VERSION.outputs.result }}
         run: ${{ matrix.runTests }}
 
       # Collect Tests Result of failed tests

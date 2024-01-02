@@ -2,7 +2,7 @@ package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.trimAllIndent
-import com.github.tarcv.testingteam.surveyoridea.waitingAssertion
+import com.github.tarcv.testingteam.surveyoridea.waitingAssertEquals
 import com.intellij.remoterobot.fixtures.ActionButtonFixture.PopState.PUSHED
 import com.intellij.remoterobot.fixtures.ActionButtonFixture.PopState.SELECTED
 import com.intellij.remoterobot.utils.waitForIgnoringError
@@ -37,7 +37,7 @@ class StructureTest : BaseTestProjectTests() {
                 true
             }
 
-            waitingAssertion(
+            waitingAssertEquals(
                 "Correct node should be selected",
                 """
                     <node index="6" text="32.00" resource-id="com.github.tarcv.converter:id/fahrenheitText"
@@ -71,7 +71,7 @@ class StructureTest : BaseTestProjectTests() {
 
             textEditor().editor.clickOnOffset(6750)
 
-            waitingAssertion(
+            waitingAssertEquals(
                 "Correct node should be selected.",
                 listOf(
                     "dump.uix",
