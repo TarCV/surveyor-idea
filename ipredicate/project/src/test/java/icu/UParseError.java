@@ -8,73 +8,73 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * struct UParseError {
- *     int32_t line;
- *     int32_t offset;
- *     UChar preContext[16];
- *     UChar postContext[16];
+ *     int line;
+ *     int offset;
+ *     unsigned short preContext[16];
+ *     unsigned short postContext[16];
  * };
  * }
  */
 public class UParseError {
 
     public static MemoryLayout $LAYOUT() {
-        return constants$33.const$2;
+        return constants$35.const$2;
     }
     public static VarHandle line$VH() {
-        return constants$33.const$3;
+        return constants$35.const$3;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t line;
+     * {@snippet lang=c :
+     * int line;
      * }
      */
     public static int line$get(MemorySegment seg) {
-        return (int)constants$33.const$3.get(seg);
+        return (int)constants$35.const$3.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t line;
+     * {@snippet lang=c :
+     * int line;
      * }
      */
     public static void line$set(MemorySegment seg, int x) {
-        constants$33.const$3.set(seg, x);
+        constants$35.const$3.set(seg, x);
     }
     public static int line$get(MemorySegment seg, long index) {
-        return (int)constants$33.const$3.get(seg.asSlice(index*sizeof()));
+        return (int)constants$35.const$3.get(seg.asSlice(index*sizeof()));
     }
     public static void line$set(MemorySegment seg, long index, int x) {
-        constants$33.const$3.set(seg.asSlice(index*sizeof()), x);
+        constants$35.const$3.set(seg.asSlice(index*sizeof()), x);
     }
     public static VarHandle offset$VH() {
-        return constants$33.const$4;
+        return constants$35.const$4;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t offset;
+     * {@snippet lang=c :
+     * int offset;
      * }
      */
     public static int offset$get(MemorySegment seg) {
-        return (int)constants$33.const$4.get(seg);
+        return (int)constants$35.const$4.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t offset;
+     * {@snippet lang=c :
+     * int offset;
      * }
      */
     public static void offset$set(MemorySegment seg, int x) {
-        constants$33.const$4.set(seg, x);
+        constants$35.const$4.set(seg, x);
     }
     public static int offset$get(MemorySegment seg, long index) {
-        return (int)constants$33.const$4.get(seg.asSlice(index*sizeof()));
+        return (int)constants$35.const$4.get(seg.asSlice(index*sizeof()));
     }
     public static void offset$set(MemorySegment seg, long index, int x) {
-        constants$33.const$4.set(seg.asSlice(index*sizeof()), x);
+        constants$35.const$4.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment preContext$slice(MemorySegment seg) {
         return seg.asSlice(8, 32);
@@ -87,7 +87,7 @@ public class UParseError {
     public static MemorySegment allocateArray(long len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemorySegment addr, SegmentScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemorySegment addr, Arena arena) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, arena); }
 }
 
 

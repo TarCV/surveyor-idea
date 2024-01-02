@@ -22,7 +22,8 @@ final class constants$13 {
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
         constants$13.const$0
     );
-    static final FunctionDescriptor const$3 = FunctionDescriptor.ofVoid(
+    static final MethodHandle const$3 = RuntimeHelper.upcallHandle(u_enumCharNames_70$fn.class, "apply", constants$13.const$0);
+    static final FunctionDescriptor const$4 = FunctionDescriptor.ofVoid(
         JAVA_INT,
         JAVA_INT,
         RuntimeHelper.POINTER,
@@ -30,17 +31,9 @@ final class constants$13 {
         JAVA_INT,
         RuntimeHelper.POINTER
     );
-    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
+    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
         "u_enumCharNames_70",
-        constants$13.const$3
-    );
-    static final FunctionDescriptor const$5 = FunctionDescriptor.of(RuntimeHelper.POINTER,
-        JAVA_INT,
-        JAVA_INT
-    );
-    static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "u_getPropertyName_70",
-        constants$13.const$5
+        constants$13.const$4
     );
 }
 

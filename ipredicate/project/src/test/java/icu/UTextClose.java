@@ -8,18 +8,18 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * void (*UTextClose)(struct UText* ut);
  * }
  */
 public interface UTextClose {
 
     void apply(java.lang.foreign.MemorySegment ut);
-    static MemorySegment allocate(UTextClose fi, SegmentScope scope) {
+    static MemorySegment allocate(UTextClose fi, Arena scope) {
         return RuntimeHelper.upcallStub(constants$25.const$4, fi, constants$1.const$0, scope);
     }
-    static UTextClose ofAddress(MemorySegment addr, SegmentScope scope) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr.address(), 0, scope);
+    static UTextClose ofAddress(MemorySegment addr, Arena arena) {
+        MemorySegment symbol = addr.reinterpret(arena, null);
         return (java.lang.foreign.MemorySegment _ut) -> {
             try {
                 constants$25.const$5.invokeExact(symbol, _ut);

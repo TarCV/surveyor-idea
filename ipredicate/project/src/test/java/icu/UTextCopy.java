@@ -8,18 +8,18 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * void (*UTextCopy)(struct UText* ut,long nativeStart,long nativeLimit,long nativeDest,signed char move,enum UErrorCode* status);
  * }
  */
 public interface UTextCopy {
 
     void apply(java.lang.foreign.MemorySegment ut, long nativeStart, long nativeLimit, long nativeDest, byte move, java.lang.foreign.MemorySegment status);
-    static MemorySegment allocate(UTextCopy fi, SegmentScope scope) {
+    static MemorySegment allocate(UTextCopy fi, Arena scope) {
         return RuntimeHelper.upcallStub(constants$24.const$5, fi, constants$22.const$3, scope);
     }
-    static UTextCopy ofAddress(MemorySegment addr, SegmentScope scope) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr.address(), 0, scope);
+    static UTextCopy ofAddress(MemorySegment addr, Arena arena) {
+        MemorySegment symbol = addr.reinterpret(arena, null);
         return (java.lang.foreign.MemorySegment _ut, long _nativeStart, long _nativeLimit, long _nativeDest, byte _move, java.lang.foreign.MemorySegment _status) -> {
             try {
                 constants$25.const$0.invokeExact(symbol, _ut, _nativeStart, _nativeLimit, _nativeDest, _move, _status);

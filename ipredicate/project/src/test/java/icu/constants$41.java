@@ -11,35 +11,33 @@ final class constants$41 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$41() {}
-    static final FunctionDescriptor const$0 = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor const$0 = FunctionDescriptor.of(RuntimeHelper.POINTER,
         RuntimeHelper.POINTER,
         JAVA_INT,
-        JAVA_INT,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_setRegion_70",
+        "uregex_groupUText_70",
         constants$41.const$0
     );
-    static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_INT,
         RuntimeHelper.POINTER,
-        JAVA_LONG,
-        JAVA_LONG,
+        JAVA_INT,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_setRegion64_70",
+        "uregex_start_70",
         constants$41.const$2
     );
-    static final FunctionDescriptor const$4 = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor const$4 = FunctionDescriptor.of(JAVA_LONG,
         RuntimeHelper.POINTER,
-        JAVA_LONG,
-        JAVA_LONG,
-        JAVA_LONG,
+        JAVA_INT,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_setRegionAndStart_70",
+        "uregex_start64_70",
         constants$41.const$4
     );
 }

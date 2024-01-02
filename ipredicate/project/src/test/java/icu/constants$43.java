@@ -13,28 +13,34 @@ final class constants$43 {
     private constants$43() {}
     static final FunctionDescriptor const$0 = FunctionDescriptor.ofVoid(
         RuntimeHelper.POINTER,
-        JAVA_BYTE,
+        JAVA_INT,
+        JAVA_INT,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_useTransparentBounds_70",
+        "uregex_setRegion_70",
         constants$43.const$0
     );
-    static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_hasAnchoringBounds_70",
-        constants$18.const$5
+    static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
+        RuntimeHelper.POINTER,
+        JAVA_LONG,
+        JAVA_LONG,
+        RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_useAnchoringBounds_70",
-        constants$43.const$0
+        "uregex_setRegion64_70",
+        constants$43.const$2
     );
-    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_hitEnd_70",
-        constants$18.const$5
+    static final FunctionDescriptor const$4 = FunctionDescriptor.ofVoid(
+        RuntimeHelper.POINTER,
+        JAVA_LONG,
+        JAVA_LONG,
+        JAVA_LONG,
+        RuntimeHelper.POINTER
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_requireEnd_70",
-        constants$18.const$5
+        "uregex_setRegionAndStart_70",
+        constants$43.const$4
     );
 }
 

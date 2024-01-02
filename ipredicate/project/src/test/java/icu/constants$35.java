@@ -13,33 +13,30 @@ final class constants$35 {
     private constants$35() {}
     static final FunctionDescriptor const$0 = FunctionDescriptor.of(RuntimeHelper.POINTER,
         RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER
-    );
-    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_pattern_70",
-        constants$35.const$0
-    );
-    static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_patternUText_70",
-        constants$34.const$4
-    );
-    static final FunctionDescriptor const$3 = FunctionDescriptor.of(JAVA_INT,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER
-    );
-    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_flags_70",
-        constants$35.const$3
-    );
-    static final FunctionDescriptor const$5 = FunctionDescriptor.ofVoid(
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
         JAVA_INT,
         RuntimeHelper.POINTER
     );
+    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
+        "utext_setup_70",
+        constants$35.const$0
+    );
+    static final StructLayout const$2 = MemoryLayout.structLayout(
+        JAVA_INT.withName("line"),
+        JAVA_INT.withName("offset"),
+        MemoryLayout.sequenceLayout(16, JAVA_SHORT).withName("preContext"),
+        MemoryLayout.sequenceLayout(16, JAVA_SHORT).withName("postContext")
+    ).withName("UParseError");
+    static final VarHandle const$3 = constants$35.const$2.varHandle(MemoryLayout.PathElement.groupElement("line"));
+    static final VarHandle const$4 = constants$35.const$2.varHandle(MemoryLayout.PathElement.groupElement("offset"));
+    static final FunctionDescriptor const$5 = FunctionDescriptor.of(RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        JAVA_INT,
+        JAVA_INT,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER
+    );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "uregex_setText_70",
+        "uregex_open_70",
         constants$35.const$5
     );
 }

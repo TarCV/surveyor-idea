@@ -11,29 +11,29 @@ final class constants$15 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$15() {}
-    static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
+    static final FunctionDescriptor const$0 = FunctionDescriptor.of(JAVA_INT,
+        JAVA_INT,
+        RuntimeHelper.POINTER
+    );
+    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
+        "u_getPropertyValueEnum_70",
+        constants$15.const$0
+    );
+    static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
         "u_isIDStart_70",
         constants$5.const$0
     );
-    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
+    static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
         "u_isIDPart_70",
         constants$5.const$0
     );
-    static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
+    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
         "u_isIDIgnorable_70",
         constants$5.const$0
     );
-    static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
+    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
         "u_isJavaIDStart_70",
         constants$5.const$0
-    );
-    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_isJavaIDPart_70",
-        constants$5.const$0
-    );
-    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_tolower_70",
-        constants$6.const$0
     );
 }
 

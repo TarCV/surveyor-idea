@@ -8,18 +8,18 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * struct UText* (*UTextClone)(struct UText* dest,struct UText* src,signed char deep,enum UErrorCode* status);
  * }
  */
 public interface UTextClone {
 
     java.lang.foreign.MemorySegment apply(java.lang.foreign.MemorySegment dest, java.lang.foreign.MemorySegment src, byte deep, java.lang.foreign.MemorySegment status);
-    static MemorySegment allocate(UTextClone fi, SegmentScope scope) {
+    static MemorySegment allocate(UTextClone fi, Arena scope) {
         return RuntimeHelper.upcallStub(constants$23.const$1, fi, constants$23.const$0, scope);
     }
-    static UTextClone ofAddress(MemorySegment addr, SegmentScope scope) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr.address(), 0, scope);
+    static UTextClone ofAddress(MemorySegment addr, Arena arena) {
+        MemorySegment symbol = addr.reinterpret(arena, null);
         return (java.lang.foreign.MemorySegment _dest, java.lang.foreign.MemorySegment _src, byte _deep, java.lang.foreign.MemorySegment _status) -> {
             try {
                 return (java.lang.foreign.MemorySegment)constants$23.const$2.invokeExact(symbol, _dest, _src, _deep, _status);

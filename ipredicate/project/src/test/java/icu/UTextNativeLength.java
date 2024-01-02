@@ -8,18 +8,18 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * long (*UTextNativeLength)(struct UText* ut);
  * }
  */
 public interface UTextNativeLength {
 
     long apply(java.lang.foreign.MemorySegment ut);
-    static MemorySegment allocate(UTextNativeLength fi, SegmentScope scope) {
+    static MemorySegment allocate(UTextNativeLength fi, Arena scope) {
         return RuntimeHelper.upcallStub(constants$23.const$3, fi, constants$19.const$0, scope);
     }
-    static UTextNativeLength ofAddress(MemorySegment addr, SegmentScope scope) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr.address(), 0, scope);
+    static UTextNativeLength ofAddress(MemorySegment addr, Arena arena) {
+        MemorySegment symbol = addr.reinterpret(arena, null);
         return (java.lang.foreign.MemorySegment _ut) -> {
             try {
                 return (long)constants$23.const$4.invokeExact(symbol, _ut);

@@ -12,30 +12,37 @@ final class constants$40 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$40() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "uregex_end_70",
-        constants$39.const$2
+        "uregex_findNext_70",
+        constants$18.const$5
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_end64_70",
-        constants$39.const$4
+        "uregex_groupCount_70",
+        constants$37.const$3
     );
-    static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_INT,
+        RuntimeHelper.POINTER,
         RuntimeHelper.POINTER,
         JAVA_INT,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_reset_70",
+        "uregex_groupNumberFromName_70",
         constants$40.const$2
     );
-    static final FunctionDescriptor const$4 = FunctionDescriptor.ofVoid(
+    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
+        "uregex_groupNumberFromCName_70",
+        constants$40.const$2
+    );
+    static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_INT,
         RuntimeHelper.POINTER,
-        JAVA_LONG,
+        JAVA_INT,
+        RuntimeHelper.POINTER,
+        JAVA_INT,
         RuntimeHelper.POINTER
     );
-    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_reset64_70",
-        constants$40.const$4
+    static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
+        "uregex_group_70",
+        constants$40.const$5
     );
 }
 

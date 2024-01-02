@@ -8,8 +8,8 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
- * struct {
+ * {@snippet lang=c :
+ * struct max_align_t {
  *     long long __clang_max_align_nonce1;
  *     long double __clang_max_align_nonce2;
  * };
@@ -25,7 +25,7 @@ public class max_align_t {
     }
     /**
      * Getter for field:
-     * {@snippet :
+     * {@snippet lang=c :
      * long long __clang_max_align_nonce1;
      * }
      */
@@ -34,7 +34,7 @@ public class max_align_t {
     }
     /**
      * Setter for field:
-     * {@snippet :
+     * {@snippet lang=c :
      * long long __clang_max_align_nonce1;
      * }
      */
@@ -52,7 +52,7 @@ public class max_align_t {
     public static MemorySegment allocateArray(long len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemorySegment addr, SegmentScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemorySegment addr, Arena arena) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, arena); }
 }
 
 

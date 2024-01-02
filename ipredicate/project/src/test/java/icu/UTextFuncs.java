@@ -8,24 +8,24 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * struct UTextFuncs {
- *     int32_t tableSize;
- *     int32_t reserved1;
- *     int32_t reserved2;
- *     int32_t reserved3;
- *     UTextClone* clone;
- *     UTextNativeLength* nativeLength;
- *     UTextAccess* access;
- *     UTextExtract* extract;
- *     UTextReplace* replace;
- *     UTextCopy* copy;
- *     UTextMapOffsetToNative* mapOffsetToNative;
- *     UTextMapNativeIndexToUTF16* mapNativeIndexToUTF16;
- *     UTextClose* close;
- *     UTextClose* spare1;
- *     UTextClose* spare2;
- *     UTextClose* spare3;
+ *     int tableSize;
+ *     int reserved1;
+ *     int reserved2;
+ *     int reserved3;
+ *     struct UText* (*clone)(struct UText*,struct UText*,signed char,enum UErrorCode*);
+ *     long (*nativeLength)(struct UText*);
+ *     signed char (*access)(struct UText*,long,signed char);
+ *     int (*extract)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
+ *     int (*replace)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
+ *     void (*copy)(struct UText*,long,long,long,signed char,enum UErrorCode*);
+ *     long (*mapOffsetToNative)(struct UText*);
+ *     int (*mapNativeIndexToUTF16)(struct UText*,long);
+ *     void (*close)(struct UText*);
+ *     void (*spare1)(struct UText*);
+ *     void (*spare2)(struct UText*);
+ *     void (*spare3)(struct UText*);
  * };
  * }
  */
@@ -39,8 +39,8 @@ public class UTextFuncs {
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t tableSize;
+     * {@snippet lang=c :
+     * int tableSize;
      * }
      */
     public static int tableSize$get(MemorySegment seg) {
@@ -48,8 +48,8 @@ public class UTextFuncs {
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t tableSize;
+     * {@snippet lang=c :
+     * int tableSize;
      * }
      */
     public static void tableSize$set(MemorySegment seg, int x) {
@@ -66,8 +66,8 @@ public class UTextFuncs {
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t reserved1;
+     * {@snippet lang=c :
+     * int reserved1;
      * }
      */
     public static int reserved1$get(MemorySegment seg) {
@@ -75,8 +75,8 @@ public class UTextFuncs {
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t reserved1;
+     * {@snippet lang=c :
+     * int reserved1;
      * }
      */
     public static void reserved1$set(MemorySegment seg, int x) {
@@ -93,8 +93,8 @@ public class UTextFuncs {
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t reserved2;
+     * {@snippet lang=c :
+     * int reserved2;
      * }
      */
     public static int reserved2$get(MemorySegment seg) {
@@ -102,8 +102,8 @@ public class UTextFuncs {
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t reserved2;
+     * {@snippet lang=c :
+     * int reserved2;
      * }
      */
     public static void reserved2$set(MemorySegment seg, int x) {
@@ -120,8 +120,8 @@ public class UTextFuncs {
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t reserved3;
+     * {@snippet lang=c :
+     * int reserved3;
      * }
      */
     public static int reserved3$get(MemorySegment seg) {
@@ -129,8 +129,8 @@ public class UTextFuncs {
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t reserved3;
+     * {@snippet lang=c :
+     * int reserved3;
      * }
      */
     public static void reserved3$set(MemorySegment seg, int x) {
@@ -142,336 +142,648 @@ public class UTextFuncs {
     public static void reserved3$set(MemorySegment seg, long index, int x) {
         constants$26.const$4.set(seg.asSlice(index*sizeof()), x);
     }
+    /**
+     * {@snippet lang=c :
+ * struct UText* (*clone)(struct UText*,struct UText*,signed char,enum UErrorCode*);
+     * }
+     */
+    public interface clone {
+
+        java.lang.foreign.MemorySegment apply(java.lang.foreign.MemorySegment dest, java.lang.foreign.MemorySegment src, byte deep, java.lang.foreign.MemorySegment status);
+        static MemorySegment allocate(clone fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$26.const$5, fi, constants$23.const$0, scope);
+        }
+        static clone ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _dest, java.lang.foreign.MemorySegment _src, byte _deep, java.lang.foreign.MemorySegment _status) -> {
+                try {
+                    return (java.lang.foreign.MemorySegment)constants$23.const$2.invokeExact(symbol, _dest, _src, _deep, _status);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
     public static VarHandle clone$VH() {
-        return constants$26.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * UTextClone* clone;
-     * }
-     */
-    public static MemorySegment clone$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$26.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * UTextClone* clone;
-     * }
-     */
-    public static void clone$set(MemorySegment seg, MemorySegment x) {
-        constants$26.const$5.set(seg, x);
-    }
-    public static MemorySegment clone$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$26.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void clone$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$26.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle nativeLength$VH() {
         return constants$27.const$0;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * UTextNativeLength* nativeLength;
+     * {@snippet lang=c :
+     * struct UText* (*clone)(struct UText*,struct UText*,signed char,enum UErrorCode*);
      * }
      */
-    public static MemorySegment nativeLength$get(MemorySegment seg) {
+    public static MemorySegment clone$get(MemorySegment seg) {
         return (java.lang.foreign.MemorySegment)constants$27.const$0.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * UTextNativeLength* nativeLength;
+     * {@snippet lang=c :
+     * struct UText* (*clone)(struct UText*,struct UText*,signed char,enum UErrorCode*);
      * }
      */
-    public static void nativeLength$set(MemorySegment seg, MemorySegment x) {
+    public static void clone$set(MemorySegment seg, MemorySegment x) {
         constants$27.const$0.set(seg, x);
     }
-    public static MemorySegment nativeLength$get(MemorySegment seg, long index) {
+    public static MemorySegment clone$get(MemorySegment seg, long index) {
         return (java.lang.foreign.MemorySegment)constants$27.const$0.get(seg.asSlice(index*sizeof()));
     }
-    public static void nativeLength$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void clone$set(MemorySegment seg, long index, MemorySegment x) {
         constants$27.const$0.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle access$VH() {
-        return constants$27.const$1;
+    public static clone clone(MemorySegment segment, Arena scope) {
+        return clone.ofAddress(clone$get(segment), scope);
     }
     /**
-     * Getter for field:
-     * {@snippet :
-     * UTextAccess* access;
+     * {@snippet lang=c :
+ * long (*nativeLength)(struct UText*);
      * }
      */
-    public static MemorySegment access$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$27.const$1.get(seg);
+    public interface nativeLength {
+
+        long apply(java.lang.foreign.MemorySegment ut);
+        static MemorySegment allocate(nativeLength fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$27.const$1, fi, constants$19.const$0, scope);
+        }
+        static nativeLength ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut) -> {
+                try {
+                    return (long)constants$23.const$4.invokeExact(symbol, _ut);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
     }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * UTextAccess* access;
-     * }
-     */
-    public static void access$set(MemorySegment seg, MemorySegment x) {
-        constants$27.const$1.set(seg, x);
-    }
-    public static MemorySegment access$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$27.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void access$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$27.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle extract$VH() {
+
+    public static VarHandle nativeLength$VH() {
         return constants$27.const$2;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * UTextExtract* extract;
+     * {@snippet lang=c :
+     * long (*nativeLength)(struct UText*);
      * }
      */
-    public static MemorySegment extract$get(MemorySegment seg) {
+    public static MemorySegment nativeLength$get(MemorySegment seg) {
         return (java.lang.foreign.MemorySegment)constants$27.const$2.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * UTextExtract* extract;
+     * {@snippet lang=c :
+     * long (*nativeLength)(struct UText*);
      * }
      */
-    public static void extract$set(MemorySegment seg, MemorySegment x) {
+    public static void nativeLength$set(MemorySegment seg, MemorySegment x) {
         constants$27.const$2.set(seg, x);
     }
-    public static MemorySegment extract$get(MemorySegment seg, long index) {
+    public static MemorySegment nativeLength$get(MemorySegment seg, long index) {
         return (java.lang.foreign.MemorySegment)constants$27.const$2.get(seg.asSlice(index*sizeof()));
     }
-    public static void extract$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void nativeLength$set(MemorySegment seg, long index, MemorySegment x) {
         constants$27.const$2.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle replace$VH() {
-        return constants$27.const$3;
+    public static nativeLength nativeLength(MemorySegment segment, Arena scope) {
+        return nativeLength.ofAddress(nativeLength$get(segment), scope);
     }
     /**
-     * Getter for field:
-     * {@snippet :
-     * UTextReplace* replace;
+     * {@snippet lang=c :
+ * signed char (*access)(struct UText*,long,signed char);
      * }
      */
-    public static MemorySegment replace$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$27.const$3.get(seg);
+    public interface access {
+
+        byte apply(java.lang.foreign.MemorySegment ut, long nativeIndex, byte forward);
+        static MemorySegment allocate(access fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$27.const$3, fi, constants$23.const$5, scope);
+        }
+        static access ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut, long _nativeIndex, byte _forward) -> {
+                try {
+                    return (byte)constants$24.const$1.invokeExact(symbol, _ut, _nativeIndex, _forward);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
     }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * UTextReplace* replace;
-     * }
-     */
-    public static void replace$set(MemorySegment seg, MemorySegment x) {
-        constants$27.const$3.set(seg, x);
-    }
-    public static MemorySegment replace$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$27.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void replace$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$27.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle copy$VH() {
+
+    public static VarHandle access$VH() {
         return constants$27.const$4;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * UTextCopy* copy;
+     * {@snippet lang=c :
+     * signed char (*access)(struct UText*,long,signed char);
      * }
      */
-    public static MemorySegment copy$get(MemorySegment seg) {
+    public static MemorySegment access$get(MemorySegment seg) {
         return (java.lang.foreign.MemorySegment)constants$27.const$4.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * UTextCopy* copy;
+     * {@snippet lang=c :
+     * signed char (*access)(struct UText*,long,signed char);
      * }
      */
-    public static void copy$set(MemorySegment seg, MemorySegment x) {
+    public static void access$set(MemorySegment seg, MemorySegment x) {
         constants$27.const$4.set(seg, x);
     }
-    public static MemorySegment copy$get(MemorySegment seg, long index) {
+    public static MemorySegment access$get(MemorySegment seg, long index) {
         return (java.lang.foreign.MemorySegment)constants$27.const$4.get(seg.asSlice(index*sizeof()));
     }
-    public static void copy$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void access$set(MemorySegment seg, long index, MemorySegment x) {
         constants$27.const$4.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle mapOffsetToNative$VH() {
-        return constants$27.const$5;
+    public static access access(MemorySegment segment, Arena scope) {
+        return access.ofAddress(access$get(segment), scope);
     }
     /**
-     * Getter for field:
-     * {@snippet :
-     * UTextMapOffsetToNative* mapOffsetToNative;
+     * {@snippet lang=c :
+ * int (*extract)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
      * }
      */
-    public static MemorySegment mapOffsetToNative$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$27.const$5.get(seg);
+    public interface extract {
+
+        int apply(java.lang.foreign.MemorySegment ut, long nativeStart, long nativeLimit, java.lang.foreign.MemorySegment replacementText, int replacmentLength, java.lang.foreign.MemorySegment status);
+        static MemorySegment allocate(extract fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$27.const$5, fi, constants$21.const$5, scope);
+        }
+        static extract ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut, long _nativeStart, long _nativeLimit, java.lang.foreign.MemorySegment _replacementText, int _replacmentLength, java.lang.foreign.MemorySegment _status) -> {
+                try {
+                    return (int)constants$24.const$3.invokeExact(symbol, _ut, _nativeStart, _nativeLimit, _replacementText, _replacmentLength, _status);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
     }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * UTextMapOffsetToNative* mapOffsetToNative;
-     * }
-     */
-    public static void mapOffsetToNative$set(MemorySegment seg, MemorySegment x) {
-        constants$27.const$5.set(seg, x);
-    }
-    public static MemorySegment mapOffsetToNative$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$27.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void mapOffsetToNative$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$27.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle mapNativeIndexToUTF16$VH() {
+
+    public static VarHandle extract$VH() {
         return constants$28.const$0;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * UTextMapNativeIndexToUTF16* mapNativeIndexToUTF16;
+     * {@snippet lang=c :
+     * int (*extract)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
      * }
      */
-    public static MemorySegment mapNativeIndexToUTF16$get(MemorySegment seg) {
+    public static MemorySegment extract$get(MemorySegment seg) {
         return (java.lang.foreign.MemorySegment)constants$28.const$0.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * UTextMapNativeIndexToUTF16* mapNativeIndexToUTF16;
+     * {@snippet lang=c :
+     * int (*extract)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
      * }
      */
-    public static void mapNativeIndexToUTF16$set(MemorySegment seg, MemorySegment x) {
+    public static void extract$set(MemorySegment seg, MemorySegment x) {
         constants$28.const$0.set(seg, x);
     }
-    public static MemorySegment mapNativeIndexToUTF16$get(MemorySegment seg, long index) {
+    public static MemorySegment extract$get(MemorySegment seg, long index) {
         return (java.lang.foreign.MemorySegment)constants$28.const$0.get(seg.asSlice(index*sizeof()));
     }
-    public static void mapNativeIndexToUTF16$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void extract$set(MemorySegment seg, long index, MemorySegment x) {
         constants$28.const$0.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle close$VH() {
-        return constants$28.const$1;
+    public static extract extract(MemorySegment segment, Arena scope) {
+        return extract.ofAddress(extract$get(segment), scope);
     }
     /**
-     * Getter for field:
-     * {@snippet :
-     * UTextClose* close;
+     * {@snippet lang=c :
+ * int (*replace)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
      * }
      */
-    public static MemorySegment close$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$28.const$1.get(seg);
+    public interface replace {
+
+        int apply(java.lang.foreign.MemorySegment ut, long nativeStart, long nativeLimit, java.lang.foreign.MemorySegment replacementText, int replacmentLength, java.lang.foreign.MemorySegment status);
+        static MemorySegment allocate(replace fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$28.const$1, fi, constants$21.const$5, scope);
+        }
+        static replace ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut, long _nativeStart, long _nativeLimit, java.lang.foreign.MemorySegment _replacementText, int _replacmentLength, java.lang.foreign.MemorySegment _status) -> {
+                try {
+                    return (int)constants$24.const$3.invokeExact(symbol, _ut, _nativeStart, _nativeLimit, _replacementText, _replacmentLength, _status);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
     }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * UTextClose* close;
-     * }
-     */
-    public static void close$set(MemorySegment seg, MemorySegment x) {
-        constants$28.const$1.set(seg, x);
-    }
-    public static MemorySegment close$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$28.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void close$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$28.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle spare1$VH() {
+
+    public static VarHandle replace$VH() {
         return constants$28.const$2;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * UTextClose* spare1;
+     * {@snippet lang=c :
+     * int (*replace)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
      * }
      */
-    public static MemorySegment spare1$get(MemorySegment seg) {
+    public static MemorySegment replace$get(MemorySegment seg) {
         return (java.lang.foreign.MemorySegment)constants$28.const$2.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * UTextClose* spare1;
+     * {@snippet lang=c :
+     * int (*replace)(struct UText*,long,long,unsigned short*,int,enum UErrorCode*);
      * }
      */
-    public static void spare1$set(MemorySegment seg, MemorySegment x) {
+    public static void replace$set(MemorySegment seg, MemorySegment x) {
         constants$28.const$2.set(seg, x);
     }
-    public static MemorySegment spare1$get(MemorySegment seg, long index) {
+    public static MemorySegment replace$get(MemorySegment seg, long index) {
         return (java.lang.foreign.MemorySegment)constants$28.const$2.get(seg.asSlice(index*sizeof()));
     }
-    public static void spare1$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void replace$set(MemorySegment seg, long index, MemorySegment x) {
         constants$28.const$2.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle spare2$VH() {
-        return constants$28.const$3;
+    public static replace replace(MemorySegment segment, Arena scope) {
+        return replace.ofAddress(replace$get(segment), scope);
     }
     /**
-     * Getter for field:
-     * {@snippet :
-     * UTextClose* spare2;
+     * {@snippet lang=c :
+ * void (*copy)(struct UText*,long,long,long,signed char,enum UErrorCode*);
      * }
      */
-    public static MemorySegment spare2$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$28.const$3.get(seg);
+    public interface copy {
+
+        void apply(java.lang.foreign.MemorySegment ut, long nativeStart, long nativeLimit, long nativeDest, byte move, java.lang.foreign.MemorySegment status);
+        static MemorySegment allocate(copy fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$28.const$3, fi, constants$22.const$3, scope);
+        }
+        static copy ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut, long _nativeStart, long _nativeLimit, long _nativeDest, byte _move, java.lang.foreign.MemorySegment _status) -> {
+                try {
+                    constants$25.const$0.invokeExact(symbol, _ut, _nativeStart, _nativeLimit, _nativeDest, _move, _status);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
     }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * UTextClose* spare2;
-     * }
-     */
-    public static void spare2$set(MemorySegment seg, MemorySegment x) {
-        constants$28.const$3.set(seg, x);
-    }
-    public static MemorySegment spare2$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$28.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void spare2$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$28.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle spare3$VH() {
+
+    public static VarHandle copy$VH() {
         return constants$28.const$4;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * UTextClose* spare3;
+     * {@snippet lang=c :
+     * void (*copy)(struct UText*,long,long,long,signed char,enum UErrorCode*);
      * }
      */
-    public static MemorySegment spare3$get(MemorySegment seg) {
+    public static MemorySegment copy$get(MemorySegment seg) {
         return (java.lang.foreign.MemorySegment)constants$28.const$4.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * UTextClose* spare3;
+     * {@snippet lang=c :
+     * void (*copy)(struct UText*,long,long,long,signed char,enum UErrorCode*);
+     * }
+     */
+    public static void copy$set(MemorySegment seg, MemorySegment x) {
+        constants$28.const$4.set(seg, x);
+    }
+    public static MemorySegment copy$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$28.const$4.get(seg.asSlice(index*sizeof()));
+    }
+    public static void copy$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$28.const$4.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static copy copy(MemorySegment segment, Arena scope) {
+        return copy.ofAddress(copy$get(segment), scope);
+    }
+    /**
+     * {@snippet lang=c :
+ * long (*mapOffsetToNative)(struct UText*);
+     * }
+     */
+    public interface mapOffsetToNative {
+
+        long apply(java.lang.foreign.MemorySegment ut);
+        static MemorySegment allocate(mapOffsetToNative fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$28.const$5, fi, constants$19.const$0, scope);
+        }
+        static mapOffsetToNative ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut) -> {
+                try {
+                    return (long)constants$23.const$4.invokeExact(symbol, _ut);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
+    public static VarHandle mapOffsetToNative$VH() {
+        return constants$29.const$0;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * long (*mapOffsetToNative)(struct UText*);
+     * }
+     */
+    public static MemorySegment mapOffsetToNative$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$29.const$0.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * long (*mapOffsetToNative)(struct UText*);
+     * }
+     */
+    public static void mapOffsetToNative$set(MemorySegment seg, MemorySegment x) {
+        constants$29.const$0.set(seg, x);
+    }
+    public static MemorySegment mapOffsetToNative$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$29.const$0.get(seg.asSlice(index*sizeof()));
+    }
+    public static void mapOffsetToNative$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$29.const$0.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static mapOffsetToNative mapOffsetToNative(MemorySegment segment, Arena scope) {
+        return mapOffsetToNative.ofAddress(mapOffsetToNative$get(segment), scope);
+    }
+    /**
+     * {@snippet lang=c :
+ * int (*mapNativeIndexToUTF16)(struct UText*,long);
+     * }
+     */
+    public interface mapNativeIndexToUTF16 {
+
+        int apply(java.lang.foreign.MemorySegment ut, long nativeIndex);
+        static MemorySegment allocate(mapNativeIndexToUTF16 fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$29.const$1, fi, constants$19.const$4, scope);
+        }
+        static mapNativeIndexToUTF16 ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut, long _nativeIndex) -> {
+                try {
+                    return (int)constants$25.const$3.invokeExact(symbol, _ut, _nativeIndex);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
+    public static VarHandle mapNativeIndexToUTF16$VH() {
+        return constants$29.const$2;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int (*mapNativeIndexToUTF16)(struct UText*,long);
+     * }
+     */
+    public static MemorySegment mapNativeIndexToUTF16$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$29.const$2.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int (*mapNativeIndexToUTF16)(struct UText*,long);
+     * }
+     */
+    public static void mapNativeIndexToUTF16$set(MemorySegment seg, MemorySegment x) {
+        constants$29.const$2.set(seg, x);
+    }
+    public static MemorySegment mapNativeIndexToUTF16$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$29.const$2.get(seg.asSlice(index*sizeof()));
+    }
+    public static void mapNativeIndexToUTF16$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$29.const$2.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static mapNativeIndexToUTF16 mapNativeIndexToUTF16(MemorySegment segment, Arena scope) {
+        return mapNativeIndexToUTF16.ofAddress(mapNativeIndexToUTF16$get(segment), scope);
+    }
+    /**
+     * {@snippet lang=c :
+ * void (*close)(struct UText*);
+     * }
+     */
+    public interface close {
+
+        void apply(java.lang.foreign.MemorySegment ut);
+        static MemorySegment allocate(close fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$29.const$3, fi, constants$1.const$0, scope);
+        }
+        static close ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut) -> {
+                try {
+                    constants$25.const$5.invokeExact(symbol, _ut);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
+    public static VarHandle close$VH() {
+        return constants$29.const$4;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*close)(struct UText*);
+     * }
+     */
+    public static MemorySegment close$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$29.const$4.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*close)(struct UText*);
+     * }
+     */
+    public static void close$set(MemorySegment seg, MemorySegment x) {
+        constants$29.const$4.set(seg, x);
+    }
+    public static MemorySegment close$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$29.const$4.get(seg.asSlice(index*sizeof()));
+    }
+    public static void close$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$29.const$4.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static close close(MemorySegment segment, Arena scope) {
+        return close.ofAddress(close$get(segment), scope);
+    }
+    /**
+     * {@snippet lang=c :
+ * void (*spare1)(struct UText*);
+     * }
+     */
+    public interface spare1 {
+
+        void apply(java.lang.foreign.MemorySegment ut);
+        static MemorySegment allocate(spare1 fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$29.const$5, fi, constants$1.const$0, scope);
+        }
+        static spare1 ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut) -> {
+                try {
+                    constants$25.const$5.invokeExact(symbol, _ut);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
+    public static VarHandle spare1$VH() {
+        return constants$30.const$0;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*spare1)(struct UText*);
+     * }
+     */
+    public static MemorySegment spare1$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$30.const$0.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*spare1)(struct UText*);
+     * }
+     */
+    public static void spare1$set(MemorySegment seg, MemorySegment x) {
+        constants$30.const$0.set(seg, x);
+    }
+    public static MemorySegment spare1$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$30.const$0.get(seg.asSlice(index*sizeof()));
+    }
+    public static void spare1$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$30.const$0.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static spare1 spare1(MemorySegment segment, Arena scope) {
+        return spare1.ofAddress(spare1$get(segment), scope);
+    }
+    /**
+     * {@snippet lang=c :
+ * void (*spare2)(struct UText*);
+     * }
+     */
+    public interface spare2 {
+
+        void apply(java.lang.foreign.MemorySegment ut);
+        static MemorySegment allocate(spare2 fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$30.const$1, fi, constants$1.const$0, scope);
+        }
+        static spare2 ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut) -> {
+                try {
+                    constants$25.const$5.invokeExact(symbol, _ut);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
+    public static VarHandle spare2$VH() {
+        return constants$30.const$2;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*spare2)(struct UText*);
+     * }
+     */
+    public static MemorySegment spare2$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$30.const$2.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*spare2)(struct UText*);
+     * }
+     */
+    public static void spare2$set(MemorySegment seg, MemorySegment x) {
+        constants$30.const$2.set(seg, x);
+    }
+    public static MemorySegment spare2$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$30.const$2.get(seg.asSlice(index*sizeof()));
+    }
+    public static void spare2$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$30.const$2.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static spare2 spare2(MemorySegment segment, Arena scope) {
+        return spare2.ofAddress(spare2$get(segment), scope);
+    }
+    /**
+     * {@snippet lang=c :
+ * void (*spare3)(struct UText*);
+     * }
+     */
+    public interface spare3 {
+
+        void apply(java.lang.foreign.MemorySegment ut);
+        static MemorySegment allocate(spare3 fi, Arena scope) {
+            return RuntimeHelper.upcallStub(constants$30.const$3, fi, constants$1.const$0, scope);
+        }
+        static spare3 ofAddress(MemorySegment addr, Arena arena) {
+            MemorySegment symbol = addr.reinterpret(arena, null);
+            return (java.lang.foreign.MemorySegment _ut) -> {
+                try {
+                    constants$25.const$5.invokeExact(symbol, _ut);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
+    public static VarHandle spare3$VH() {
+        return constants$30.const$4;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*spare3)(struct UText*);
+     * }
+     */
+    public static MemorySegment spare3$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$30.const$4.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*spare3)(struct UText*);
      * }
      */
     public static void spare3$set(MemorySegment seg, MemorySegment x) {
-        constants$28.const$4.set(seg, x);
+        constants$30.const$4.set(seg, x);
     }
     public static MemorySegment spare3$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$28.const$4.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemorySegment)constants$30.const$4.get(seg.asSlice(index*sizeof()));
     }
     public static void spare3$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$28.const$4.set(seg.asSlice(index*sizeof()), x);
+        constants$30.const$4.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static spare3 spare3(MemorySegment segment, Arena scope) {
+        return spare3.ofAddress(spare3$get(segment), scope);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
     public static MemorySegment allocateArray(long len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemorySegment addr, SegmentScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemorySegment addr, Arena arena) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, arena); }
 }
 
 

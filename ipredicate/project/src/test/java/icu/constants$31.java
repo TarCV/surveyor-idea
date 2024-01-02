@@ -11,12 +11,12 @@ final class constants$31 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$31() {}
-    static final VarHandle const$0 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("pExtra"));
-    static final VarHandle const$1 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("context"));
-    static final VarHandle const$2 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("p"));
-    static final VarHandle const$3 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("q"));
-    static final VarHandle const$4 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("r"));
-    static final VarHandle const$5 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("privP"));
+    static final VarHandle const$0 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("magic"));
+    static final VarHandle const$1 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("flags"));
+    static final VarHandle const$2 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("providerProperties"));
+    static final VarHandle const$3 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("sizeOfStruct"));
+    static final VarHandle const$4 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkNativeLimit"));
+    static final VarHandle const$5 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("extraSize"));
 }
 
 

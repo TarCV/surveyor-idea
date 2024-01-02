@@ -9,16 +9,16 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
  * {@snippet lang=c :
- * unsigned int (*UCPMapValueFilter)(void* context,unsigned int value);
+ * unsigned int (*ucpmap_getRange_70$filter)(void*,unsigned int);
  * }
  */
-public interface UCPMapValueFilter {
+public interface ucpmap_getRange_70$filter {
 
     int apply(java.lang.foreign.MemorySegment context, int value);
-    static MemorySegment allocate(UCPMapValueFilter fi, Arena scope) {
-        return RuntimeHelper.upcallStub(constants$3.const$2, fi, constants$3.const$0, scope);
+    static MemorySegment allocate(ucpmap_getRange_70$filter fi, Arena scope) {
+        return RuntimeHelper.upcallStub(constants$3.const$4, fi, constants$3.const$0, scope);
     }
-    static UCPMapValueFilter ofAddress(MemorySegment addr, Arena arena) {
+    static ucpmap_getRange_70$filter ofAddress(MemorySegment addr, Arena arena) {
         MemorySegment symbol = addr.reinterpret(arena, null);
         return (java.lang.foreign.MemorySegment _context, int _value) -> {
             try {

@@ -20,7 +20,7 @@ package com.github.tarcv.testingteam.surveyor.ipredicate
 import com.github.tarcv.testingteam.surveyor.ipredicate.NSString.Companion.toNSString
 import com.github.tarcv.testingteam.surveyor.ipredicate.StringCompareProperties.Companion.library
 import icu.UParseError
-import icu.uregex_h_1.*
+import icu.uregex_h.*
 import net.jqwik.api.Arbitraries
 import net.jqwik.api.Arbitrary
 import net.jqwik.api.ForAll
@@ -98,7 +98,7 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
     val stringLength: Int = string.length
     val regexLength: Int = regex.length
 
-    Arena.openConfined().use { arena ->
+    Arena.ofConfined().use { arena ->
         val regexStr = regex.getCharacters(NSMakeRange(regex.startIndex, regexLength))
             .map { it.toShort() }
             .plus(0)

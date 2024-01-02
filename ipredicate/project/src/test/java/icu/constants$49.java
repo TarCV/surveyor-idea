@@ -11,12 +11,23 @@ final class constants$49 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$49() {}
-    static final MemorySegment const$0 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("");
-    static final MemorySegment const$1 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String(" Copyright (C) 2016 and later: Unicode, Inc. and others. License & terms of use: http://www.unicode.org/copyright.html ");
-    static final MemorySegment const$2 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("70.1");
-    static final MemorySegment const$3 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("70");
-    static final MemorySegment const$4 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String(" 000000000000\u001000");
-    static final MemorySegment const$5 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("l");
+    static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
+        "uregex_setStackLimit_70",
+        constants$42.const$2
+    );
+    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
+        "uregex_getStackLimit_70",
+        constants$37.const$3
+    );
+    static final MethodHandle const$2 = RuntimeHelper.upcallHandle(URegexMatchCallback.class, "apply", constants$21.const$2);
+    static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
+        constants$21.const$2
+    );
+    static final MethodHandle const$4 = RuntimeHelper.upcallHandle(uregex_setMatchCallback_70$callback.class, "apply", constants$21.const$2);
+    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
+        "uregex_setMatchCallback_70",
+        constants$47.const$2
+    );
 }
 
 

@@ -11,25 +11,37 @@ final class constants$47 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$47() {}
-    static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "uregex_setStackLimit_70",
-        constants$40.const$2
+    static final FunctionDescriptor const$0 = FunctionDescriptor.of(JAVA_INT,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        JAVA_INT,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_getStackLimit_70",
-        constants$35.const$3
+        "uregex_appendReplacement_70",
+        constants$47.const$0
     );
-    static final MethodHandle const$2 = RuntimeHelper.upcallHandle(URegexMatchCallback.class, "apply", constants$21.const$2);
+    static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER
+    );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        constants$21.const$2
+        "uregex_appendReplacementUText_70",
+        constants$47.const$2
     );
-    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_setMatchCallback_70",
-        constants$45.const$2
+    static final FunctionDescriptor const$4 = FunctionDescriptor.of(JAVA_INT,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_getMatchCallback_70",
-        constants$45.const$2
+        "uregex_appendTail_70",
+        constants$47.const$4
     );
 }
 

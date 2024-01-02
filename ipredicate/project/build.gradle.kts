@@ -17,19 +17,19 @@ sourceSets.main {
 }
 tasks.compileTestJava {
     javaCompiler.set(javaToolchains.compilerFor {
-        languageVersion.set(JavaLanguageVersion.of(20))
+        languageVersion.set(JavaLanguageVersion.of(21))
     })
     options.compilerArgs.add("--enable-preview")
 }
 tasks.compileTestKotlin {
     kotlinJavaToolchain.toolchain.use(javaToolchains.launcherFor {
-        languageVersion.set(JavaLanguageVersion.of(20))
+        languageVersion.set(JavaLanguageVersion.of(21))
     })
     compilerOptions.freeCompilerArgs.add("-Xjvm-enable-preview")
 }
 tasks.test {
     javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion.set(JavaLanguageVersion.of(20))
+        languageVersion.set(JavaLanguageVersion.of(21))
     })
     useJUnitPlatform {
         includeEngines.add("junit-jupiter")

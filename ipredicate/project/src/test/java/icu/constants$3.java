@@ -23,7 +23,8 @@ final class constants$3 {
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
         constants$3.const$0
     );
-    static final FunctionDescriptor const$4 = FunctionDescriptor.of(JAVA_INT,
+    static final MethodHandle const$4 = RuntimeHelper.upcallHandle(ucpmap_getRange_70$filter.class, "apply", constants$3.const$0);
+    static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_INT,
         RuntimeHelper.POINTER,
         JAVA_INT,
         JAVA_INT,
@@ -32,9 +33,9 @@ final class constants$3 {
         RuntimeHelper.POINTER,
         RuntimeHelper.POINTER
     );
-    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
+    static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
         "ucpmap_getRange_70",
-        constants$3.const$4
+        constants$3.const$5
     );
 }
 

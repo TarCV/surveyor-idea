@@ -11,23 +11,35 @@ final class constants$48 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$48() {}
-    static final FunctionDescriptor const$0 = FunctionDescriptor.of(JAVA_BYTE,
-        RuntimeHelper.POINTER,
-        JAVA_LONG
+    static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
+        "uregex_appendTailUText_70",
+        constants$37.const$0
     );
-    static final MethodHandle const$1 = RuntimeHelper.upcallHandle(URegexFindProgressCallback.class, "apply", constants$48.const$0);
+    static final FunctionDescriptor const$1 = FunctionDescriptor.of(JAVA_INT,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        JAVA_INT,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        JAVA_INT,
+        RuntimeHelper.POINTER
+    );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        constants$48.const$0
+        "uregex_split_70",
+        constants$48.const$1
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_setFindProgressCallback_70",
-        constants$45.const$2
+        "uregex_splitUText_70",
+        constants$40.const$2
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_getFindProgressCallback_70",
-        constants$45.const$2
+        "uregex_setTimeLimit_70",
+        constants$42.const$2
     );
-    static final MemorySegment const$5 = MemorySegment.ofAddress(0L);
+    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
+        "uregex_getTimeLimit_70",
+        constants$37.const$3
+    );
 }
 
 

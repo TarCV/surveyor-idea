@@ -33,7 +33,7 @@ final class constants$26 {
     static final VarHandle const$2 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("reserved1"));
     static final VarHandle const$3 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("reserved2"));
     static final VarHandle const$4 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("reserved3"));
-    static final VarHandle const$5 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("clone"));
+    static final MethodHandle const$5 = RuntimeHelper.upcallHandle(UTextFuncs.clone.class, "apply", constants$23.const$0);
 }
 
 

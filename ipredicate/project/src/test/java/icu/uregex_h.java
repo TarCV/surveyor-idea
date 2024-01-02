@@ -16,9 +16,9 @@ public class uregex_h extends uregex_h_1 {
     public static final OfLong C_LONG_LONG = JAVA_LONG;
     public static final OfFloat C_FLOAT = JAVA_FLOAT;
     public static final OfDouble C_DOUBLE = JAVA_DOUBLE;
-    public static final OfAddress C_POINTER = RuntimeHelper.POINTER;
+    public static final AddressLayout C_POINTER = RuntimeHelper.POINTER;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_DEBUG 0
      * }
      */
@@ -26,7 +26,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCLN_NO_AUTO_CLEANUP 1
      * }
      */
@@ -34,7 +34,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_DISABLE_RENAMING 0
      * }
      */
@@ -42,7 +42,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_NO_DEFAULT_INCLUDE_UTF_HEADERS 0
      * }
      */
@@ -50,7 +50,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_OVERRIDE_CXX_ALLOCATION 1
      * }
      */
@@ -58,7 +58,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ENABLE_TRACING 0
      * }
      */
@@ -66,7 +66,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_ENABLE_PLUGINS 0
      * }
      */
@@ -74,7 +74,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ENABLE_DYLOAD 1
      * }
      */
@@ -82,7 +82,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_CHECK_DYLOAD 1
      * }
      */
@@ -90,7 +90,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_DEFAULT_SHOW_DRAFT 1
      * }
      */
@@ -98,7 +98,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_ONLY_COLLATION 0
      * }
      */
@@ -106,7 +106,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_FILE_IO 0
      * }
      */
@@ -114,7 +114,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_CONVERSION 0
      * }
      */
@@ -122,7 +122,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_ONLY_HTML_CONVERSION 0
      * }
      */
@@ -130,7 +130,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_LEGACY_CONVERSION 0
      * }
      */
@@ -138,7 +138,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_NORMALIZATION 0
      * }
      */
@@ -146,7 +146,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_BREAK_ITERATION 0
      * }
      */
@@ -154,7 +154,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_IDNA 0
      * }
      */
@@ -162,7 +162,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_USE_WINDOWS_LCID_MAPPING_API 1
      * }
      */
@@ -170,7 +170,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_COLLATION 0
      * }
      */
@@ -178,7 +178,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_FORMATTING 0
      * }
      */
@@ -186,7 +186,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_TRANSLITERATION 0
      * }
      */
@@ -194,7 +194,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_REGULAR_EXPRESSIONS 0
      * }
      */
@@ -202,7 +202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_SERVICE 0
      * }
      */
@@ -210,7 +210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_HAVE_PARSEALLINPUT 1
      * }
      */
@@ -218,7 +218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCONFIG_NO_FILTERED_BREAK_ITERATION 0
      * }
      */
@@ -226,7 +226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICU_VERSION_MAJOR_NUM 70
      * }
      */
@@ -234,7 +234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)70L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICU_VERSION_MINOR_NUM 1
      * }
      */
@@ -242,7 +242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICU_VERSION_PATCHLEVEL_NUM 0
      * }
      */
@@ -250,7 +250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICU_VERSION_BUILDLEVEL_NUM 0
      * }
      */
@@ -258,7 +258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_DISABLE_VERSION_SUFFIX 0
      * }
      */
@@ -266,7 +266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCOL_RUNTIME_VERSION 9
      * }
      */
@@ -274,7 +274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCOL_BUILDER_VERSION 9
      * }
      */
@@ -282,7 +282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCOL_TAILORINGS_VERSION 1
      * }
      */
@@ -290,7 +290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_UNKNOWN 0
      * }
      */
@@ -298,7 +298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_WINDOWS 1000
      * }
      */
@@ -306,7 +306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_MINGW 1800
      * }
      */
@@ -314,7 +314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1800L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_CYGWIN 1900
      * }
      */
@@ -322,7 +322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1900L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_HPUX 2100
      * }
      */
@@ -330,7 +330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2100L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_SOLARIS 2600
      * }
      */
@@ -338,7 +338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2600L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_BSD 3000
      * }
      */
@@ -346,7 +346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_AIX 3100
      * }
      */
@@ -354,7 +354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3100L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_IRIX 3200
      * }
      */
@@ -362,7 +362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3200L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_DARWIN 3500
      * }
      */
@@ -370,7 +370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3500L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_IPHONE 3550
      * }
      */
@@ -378,7 +378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3550L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_QNX 3700
      * }
      */
@@ -386,7 +386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3700L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_LINUX 4000
      * }
      */
@@ -394,7 +394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_BROWSER_NATIVE_CLIENT 4020
      * }
      */
@@ -402,7 +402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4020L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_ANDROID 4050
      * }
      */
@@ -410,7 +410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4050L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_FUCHSIA 4100
      * }
      */
@@ -418,7 +418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4100L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_EMSCRIPTEN 5010
      * }
      */
@@ -426,7 +426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5010L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_OS390 9000
      * }
      */
@@ -434,7 +434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PF_OS400 9400
      * }
      */
@@ -442,7 +442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9400L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PLATFORM_USES_ONLY_WIN32_API 0
      * }
      */
@@ -450,7 +450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PLATFORM_HAS_WIN32_API 0
      * }
      */
@@ -458,7 +458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PLATFORM_HAS_WINUWP_API 0
      * }
      */
@@ -466,7 +466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PLATFORM_IMPLEMENTS_POSIX 1
      * }
      */
@@ -474,7 +474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PLATFORM_IS_LINUX_BASED 1
      * }
      */
@@ -482,7 +482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PLATFORM_IS_DARWIN_BASED 0
      * }
      */
@@ -490,7 +490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HAVE_STDINT_H 1
      * }
      */
@@ -498,7 +498,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HAVE_PLACEMENT_NEW 1
      * }
      */
@@ -506,7 +506,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HAVE_DEBUG_LOCATION_NEW 0
      * }
      */
@@ -514,7 +514,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_CPLUSPLUS_VERSION 0
      * }
      */
@@ -522,7 +522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ASCII_FAMILY 0
      * }
      */
@@ -530,7 +530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_EBCDIC_FAMILY 1
      * }
      */
@@ -538,7 +538,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_CHARSET_IS_UTF8 1
      * }
      */
@@ -546,7 +546,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HAVE_WCHAR_H 1
      * }
      */
@@ -554,7 +554,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_SIZEOF_WCHAR_T 4
      * }
      */
@@ -562,7 +562,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HAVE_CHAR16_T 1
      * }
      */
@@ -570,23 +570,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
-     * #define true 1
-     * }
-     */
-    public static int true_() {
-        return (int)1L;
-    }
-    /**
-     * {@snippet :
-     * #define false 0
-     * }
-     */
-    public static int false_() {
-        return (int)0L;
-    }
-    /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __bool_true_false_are_defined 1
      * }
      */
@@ -594,7 +578,23 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
+     * #define true 1
+     * }
+     */
+    public static int true_() {
+        return (int)1L;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define false 0
+     * }
+     */
+    public static int false_() {
+        return (int)0L;
+    }
+    /**
+     * {@snippet lang=c :
      * #define U_DEFINE_FALSE_AND_TRUE 0
      * }
      */
@@ -602,7 +602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_SIZEOF_UCHAR 2
      * }
      */
@@ -610,7 +610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_CHAR16_IS_TYPEDEF 0
      * }
      */
@@ -618,7 +618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_COPYRIGHT_STRING_LENGTH 128
      * }
      */
@@ -626,7 +626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_MAX_VERSION_LENGTH 4
      * }
      */
@@ -634,7 +634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_MAX_VERSION_STRING_LENGTH 20
      * }
      */
@@ -642,7 +642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U8_MAX_LENGTH 4
      * }
      */
@@ -650,7 +650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U16_MAX_LENGTH 2
      * }
      */
@@ -658,7 +658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HIDE_OBSOLETE_UTF_OLD_H 0
      * }
      */
@@ -666,7 +666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF_SIZE 16
      * }
      */
@@ -674,7 +674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF8_ERROR_VALUE_1 21
      * }
      */
@@ -682,7 +682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF8_ERROR_VALUE_2 159
      * }
      */
@@ -690,7 +690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)159L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF_ERROR_VALUE 65535
      * }
      */
@@ -698,7 +698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65535L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF8_MAX_CHAR_LENGTH 4
      * }
      */
@@ -706,7 +706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF16_MAX_CHAR_LENGTH 2
      * }
      */
@@ -714,7 +714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF32_MAX_CHAR_LENGTH 1
      * }
      */
@@ -722,7 +722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_SHOW_CPLUSPLUS_API 0
      * }
      */
@@ -730,7 +730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_USE_USRDATA 0
      * }
      */
@@ -738,7 +738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_FOLD_CASE_DEFAULT 0
      * }
      */
@@ -746,7 +746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_FOLD_CASE_EXCLUDE_SPECIAL_I 1
      * }
      */
@@ -754,7 +754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_TITLECASE_WHOLE_STRING 32
      * }
      */
@@ -762,7 +762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_TITLECASE_SENTENCES 64
      * }
      */
@@ -770,7 +770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)64L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_TITLECASE_NO_LOWERCASE 256
      * }
      */
@@ -778,7 +778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)256L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_TITLECASE_NO_BREAK_ADJUSTMENT 512
      * }
      */
@@ -786,7 +786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)512L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_TITLECASE_ADJUST_TO_CASED 1024
      * }
      */
@@ -794,7 +794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1024L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_EDITS_NO_RESET 8192
      * }
      */
@@ -802,7 +802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8192L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_OMIT_UNCHANGED_TEXT 16384
      * }
      */
@@ -810,7 +810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16384L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_COMPARE_CODE_POINT_ORDER 32768
      * }
      */
@@ -818,7 +818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)32768L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_COMPARE_IGNORE_CASE 65536
      * }
      */
@@ -826,7 +826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65536L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UNORM_INPUT_IS_FCD 131072
      * }
      */
@@ -834,7 +834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)131072L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCHAR_MIN_VALUE 0
      * }
      */
@@ -842,7 +842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UCHAR_MAX_VALUE 1114111
      * }
      */
@@ -850,211 +850,211 @@ public class uregex_h extends uregex_h_1 {
         return (int)1114111L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef long ptrdiff_t;
      * }
      */
     public static final OfLong ptrdiff_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned long size_t;
      * }
      */
     public static final OfLong size_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef int wchar_t;
      * }
      */
     public static final OfInt wchar_t = JAVA_INT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef long int64_t;
      * }
      */
     public static final OfLong int64_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned long uint64_t;
      * }
      */
     public static final OfLong uint64_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef long int_least64_t;
      * }
      */
     public static final OfLong int_least64_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned long uint_least64_t;
      * }
      */
     public static final OfLong uint_least64_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef long int_fast64_t;
      * }
      */
     public static final OfLong int_fast64_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned long uint_fast64_t;
      * }
      */
     public static final OfLong uint_fast64_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef int int32_t;
      * }
      */
     public static final OfInt int32_t = JAVA_INT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned int uint32_t;
      * }
      */
     public static final OfInt uint32_t = JAVA_INT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef int int_least32_t;
      * }
      */
     public static final OfInt int_least32_t = JAVA_INT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned int uint_least32_t;
      * }
      */
     public static final OfInt uint_least32_t = JAVA_INT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef int int_fast32_t;
      * }
      */
     public static final OfInt int_fast32_t = JAVA_INT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned int uint_fast32_t;
      * }
      */
     public static final OfInt uint_fast32_t = JAVA_INT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef short int16_t;
      * }
      */
     public static final OfShort int16_t = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned short uint16_t;
      * }
      */
     public static final OfShort uint16_t = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef short int_least16_t;
      * }
      */
     public static final OfShort int_least16_t = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned short uint_least16_t;
      * }
      */
     public static final OfShort uint_least16_t = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef short int_fast16_t;
      * }
      */
     public static final OfShort int_fast16_t = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned short uint_fast16_t;
      * }
      */
     public static final OfShort uint_fast16_t = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef signed char int8_t;
      * }
      */
     public static final OfByte int8_t = JAVA_BYTE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned char uint8_t;
      * }
      */
     public static final OfByte uint8_t = JAVA_BYTE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef signed char int_least8_t;
      * }
      */
     public static final OfByte int_least8_t = JAVA_BYTE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned char uint_least8_t;
      * }
      */
     public static final OfByte uint_least8_t = JAVA_BYTE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef signed char int_fast8_t;
      * }
      */
     public static final OfByte int_fast8_t = JAVA_BYTE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned char uint_fast8_t;
      * }
      */
     public static final OfByte uint_fast8_t = JAVA_BYTE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef long intptr_t;
      * }
      */
     public static final OfLong intptr_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned long uintptr_t;
      * }
      */
     public static final OfLong uintptr_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef long intmax_t;
      * }
      */
     public static final OfLong intmax_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned long uintmax_t;
      * }
      */
     public static final OfLong uintmax_t = JAVA_LONG;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef signed char UBool;
      * }
      */
     public static final OfByte UBool = JAVA_BYTE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned short UChar;
      * }
      */
     public static final OfShort UChar = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef unsigned short OldUChar;
      * }
      */
     public static final OfShort OldUChar = JAVA_SHORT;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef int UChar32;
      * }
      */
@@ -1063,8 +1063,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$0.const$3,"u_versionFromString_70");
     }
     /**
-     * {@snippet :
-     * void u_versionFromString_70(UVersionInfo versionArray, char* versionString);
+     * {@snippet lang=c :
+     * void u_versionFromString_70(unsigned char versionArray[4], char* versionString);
      * }
      */
     public static void u_versionFromString_70(MemorySegment versionArray, MemorySegment versionString) {
@@ -1079,8 +1079,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$0.const$4,"u_versionFromUString_70");
     }
     /**
-     * {@snippet :
-     * void u_versionFromUString_70(UVersionInfo versionArray, const UChar* versionString);
+     * {@snippet lang=c :
+     * void u_versionFromUString_70(unsigned char versionArray[4], unsigned short* versionString);
      * }
      */
     public static void u_versionFromUString_70(MemorySegment versionArray, MemorySegment versionString) {
@@ -1095,8 +1095,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$0.const$5,"u_versionToString_70");
     }
     /**
-     * {@snippet :
-     * void u_versionToString_70(const UVersionInfo versionArray, char* versionString);
+     * {@snippet lang=c :
+     * void u_versionToString_70(unsigned char versionArray[4], char* versionString);
      * }
      */
     public static void u_versionToString_70(MemorySegment versionArray, MemorySegment versionString) {
@@ -1111,8 +1111,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$1.const$1,"u_getVersion_70");
     }
     /**
-     * {@snippet :
-     * void u_getVersion_70(UVersionInfo versionArray);
+     * {@snippet lang=c :
+     * void u_getVersion_70(unsigned char versionArray[4]);
      * }
      */
     public static void u_getVersion_70(MemorySegment versionArray) {
@@ -1127,8 +1127,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$1.const$3,"utf8_nextCharSafeBody_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utf8_nextCharSafeBody_70(const uint8_t* s, int32_t* pi, int32_t length, UChar32 c, UBool strict);
+     * {@snippet lang=c :
+     * int utf8_nextCharSafeBody_70(unsigned char* s, int* pi, int length, int c, signed char strict);
      * }
      */
     public static int utf8_nextCharSafeBody_70(MemorySegment s, MemorySegment pi, int length, int c, byte strict) {
@@ -1143,8 +1143,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$1.const$5,"utf8_appendCharSafeBody_70");
     }
     /**
-     * {@snippet :
-     * int32_t utf8_appendCharSafeBody_70(uint8_t* s, int32_t i, int32_t length, UChar32 c, UBool* pIsError);
+     * {@snippet lang=c :
+     * int utf8_appendCharSafeBody_70(unsigned char* s, int i, int length, int c, signed char* pIsError);
      * }
      */
     public static int utf8_appendCharSafeBody_70(MemorySegment s, int i, int length, int c, MemorySegment pIsError) {
@@ -1159,8 +1159,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$2.const$1,"utf8_prevCharSafeBody_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utf8_prevCharSafeBody_70(const uint8_t* s, int32_t start, int32_t* pi, UChar32 c, UBool strict);
+     * {@snippet lang=c :
+     * int utf8_prevCharSafeBody_70(unsigned char* s, int start, int* pi, int c, signed char strict);
      * }
      */
     public static int utf8_prevCharSafeBody_70(MemorySegment s, int start, MemorySegment pi, int c, byte strict) {
@@ -1175,8 +1175,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$2.const$3,"utf8_back1SafeBody_70");
     }
     /**
-     * {@snippet :
-     * int32_t utf8_back1SafeBody_70(const uint8_t* s, int32_t start, int32_t i);
+     * {@snippet lang=c :
+     * int utf8_back1SafeBody_70(unsigned char* s, int start, int i);
      * }
      */
     public static int utf8_back1SafeBody_70(MemorySegment s, int start, int i) {
@@ -1188,13 +1188,13 @@ public class uregex_h extends uregex_h_1 {
         }
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * typedef double UDate;
      * }
      */
     public static final OfDouble UDate = JAVA_DOUBLE;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_USING_FALLBACK_WARNING = -128;
      * }
      */
@@ -1202,7 +1202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ERROR_WARNING_START = -128;
      * }
      */
@@ -1210,7 +1210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_USING_DEFAULT_WARNING = -127;
      * }
      */
@@ -1218,7 +1218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-127L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_SAFECLONE_ALLOCATED_WARNING = -126;
      * }
      */
@@ -1226,7 +1226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-126L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_STATE_OLD_WARNING = -125;
      * }
      */
@@ -1234,7 +1234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-125L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_STRING_NOT_TERMINATED_WARNING = -124;
      * }
      */
@@ -1242,7 +1242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-124L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_SORT_KEY_TOO_SHORT_WARNING = -123;
      * }
      */
@@ -1250,7 +1250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-123L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_AMBIGUOUS_ALIAS_WARNING = -122;
      * }
      */
@@ -1258,7 +1258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-122L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_DIFFERENT_UCA_VERSION = -121;
      * }
      */
@@ -1266,7 +1266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-121L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PLUGIN_CHANGED_LEVEL_WARNING = -120;
      * }
      */
@@ -1274,7 +1274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-120L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ERROR_WARNING_LIMIT = -119;
      * }
      */
@@ -1282,7 +1282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-119L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ZERO_ERROR = 0;
      * }
      */
@@ -1290,7 +1290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ILLEGAL_ARGUMENT_ERROR = 1;
      * }
      */
@@ -1298,7 +1298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISSING_RESOURCE_ERROR = 2;
      * }
      */
@@ -1306,7 +1306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_FORMAT_ERROR = 3;
      * }
      */
@@ -1314,7 +1314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_FILE_ACCESS_ERROR = 4;
      * }
      */
@@ -1322,7 +1322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INTERNAL_PROGRAM_ERROR = 5;
      * }
      */
@@ -1330,7 +1330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MESSAGE_PARSE_ERROR = 6;
      * }
      */
@@ -1338,7 +1338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MEMORY_ALLOCATION_ERROR = 7;
      * }
      */
@@ -1346,7 +1346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INDEX_OUTOFBOUNDS_ERROR = 8;
      * }
      */
@@ -1354,7 +1354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PARSE_ERROR = 9;
      * }
      */
@@ -1362,7 +1362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_CHAR_FOUND = 10;
      * }
      */
@@ -1370,7 +1370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_TRUNCATED_CHAR_FOUND = 11;
      * }
      */
@@ -1378,7 +1378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ILLEGAL_CHAR_FOUND = 12;
      * }
      */
@@ -1386,7 +1386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_TABLE_FORMAT = 13;
      * }
      */
@@ -1394,7 +1394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_TABLE_FILE = 14;
      * }
      */
@@ -1402,7 +1402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BUFFER_OVERFLOW_ERROR = 15;
      * }
      */
@@ -1410,7 +1410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNSUPPORTED_ERROR = 16;
      * }
      */
@@ -1418,7 +1418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_RESOURCE_TYPE_MISMATCH = 17;
      * }
      */
@@ -1426,7 +1426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ILLEGAL_ESCAPE_SEQUENCE = 18;
      * }
      */
@@ -1434,7 +1434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNSUPPORTED_ESCAPE_SEQUENCE = 19;
      * }
      */
@@ -1442,7 +1442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_NO_SPACE_AVAILABLE = 20;
      * }
      */
@@ -1450,7 +1450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_CE_NOT_FOUND_ERROR = 21;
      * }
      */
@@ -1458,7 +1458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PRIMARY_TOO_LONG_ERROR = 22;
      * }
      */
@@ -1466,7 +1466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_STATE_TOO_OLD_ERROR = 23;
      * }
      */
@@ -1474,7 +1474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_TOO_MANY_ALIASES_ERROR = 24;
      * }
      */
@@ -1482,7 +1482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ENUM_OUT_OF_SYNC_ERROR = 25;
      * }
      */
@@ -1490,7 +1490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)25L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVARIANT_CONVERSION_ERROR = 26;
      * }
      */
@@ -1498,7 +1498,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)26L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_STATE_ERROR = 27;
      * }
      */
@@ -1506,7 +1506,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)27L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_COLLATOR_VERSION_MISMATCH = 28;
      * }
      */
@@ -1514,7 +1514,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_USELESS_COLLATOR_ERROR = 29;
      * }
      */
@@ -1522,7 +1522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)29L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_NO_WRITE_PERMISSION = 30;
      * }
      */
@@ -1530,7 +1530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)30L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INPUT_TOO_LONG_ERROR = 31;
      * }
      */
@@ -1538,7 +1538,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)31L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_STANDARD_ERROR_LIMIT = 32;
      * }
      */
@@ -1546,7 +1546,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BAD_VARIABLE_DEFINITION = 65536;
      * }
      */
@@ -1554,7 +1554,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65536L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PARSE_ERROR_START = 65536;
      * }
      */
@@ -1562,7 +1562,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65536L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_RULE = 65537;
      * }
      */
@@ -1570,7 +1570,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65537L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_SET = 65538;
      * }
      */
@@ -1578,7 +1578,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65538L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_SYMBOL_REFERENCE = 65539;
      * }
      */
@@ -1586,7 +1586,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65539L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_UNICODE_ESCAPE = 65540;
      * }
      */
@@ -1594,7 +1594,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65540L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_VARIABLE_DEFINITION = 65541;
      * }
      */
@@ -1602,7 +1602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65541L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_VARIABLE_REFERENCE = 65542;
      * }
      */
@@ -1610,7 +1610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65542L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISMATCHED_SEGMENT_DELIMITERS = 65543;
      * }
      */
@@ -1618,7 +1618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65543L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISPLACED_ANCHOR_START = 65544;
      * }
      */
@@ -1626,7 +1626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65544L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISPLACED_CURSOR_OFFSET = 65545;
      * }
      */
@@ -1634,7 +1634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65545L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISPLACED_QUANTIFIER = 65546;
      * }
      */
@@ -1642,7 +1642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65546L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISSING_OPERATOR = 65547;
      * }
      */
@@ -1650,7 +1650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65547L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISSING_SEGMENT_CLOSE = 65548;
      * }
      */
@@ -1658,7 +1658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65548L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_ANTE_CONTEXTS = 65549;
      * }
      */
@@ -1666,7 +1666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65549L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_CURSORS = 65550;
      * }
      */
@@ -1674,7 +1674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65550L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_POST_CONTEXTS = 65551;
      * }
      */
@@ -1682,7 +1682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65551L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_TRAILING_BACKSLASH = 65552;
      * }
      */
@@ -1690,7 +1690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65552L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNDEFINED_SEGMENT_REFERENCE = 65553;
      * }
      */
@@ -1698,7 +1698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65553L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNDEFINED_VARIABLE = 65554;
      * }
      */
@@ -1706,7 +1706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65554L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNQUOTED_SPECIAL = 65555;
      * }
      */
@@ -1714,7 +1714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65555L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNTERMINATED_QUOTE = 65556;
      * }
      */
@@ -1722,7 +1722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65556L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_RULE_MASK_ERROR = 65557;
      * }
      */
@@ -1730,7 +1730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65557L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MISPLACED_COMPOUND_FILTER = 65558;
      * }
      */
@@ -1738,7 +1738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65558L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_COMPOUND_FILTERS = 65559;
      * }
      */
@@ -1746,7 +1746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65559L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_RBT_SYNTAX = 65560;
      * }
      */
@@ -1754,7 +1754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65560L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_PROPERTY_PATTERN = 65561;
      * }
      */
@@ -1762,7 +1762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65561L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_PRAGMA = 65562;
      * }
      */
@@ -1770,7 +1770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65562L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNCLOSED_SEGMENT = 65563;
      * }
      */
@@ -1778,7 +1778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65563L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ILLEGAL_CHAR_IN_SEGMENT = 65564;
      * }
      */
@@ -1786,7 +1786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65564L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_VARIABLE_RANGE_EXHAUSTED = 65565;
      * }
      */
@@ -1794,7 +1794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65565L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_VARIABLE_RANGE_OVERLAP = 65566;
      * }
      */
@@ -1802,7 +1802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65566L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ILLEGAL_CHARACTER = 65567;
      * }
      */
@@ -1810,7 +1810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65567L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INTERNAL_TRANSLITERATOR_ERROR = 65568;
      * }
      */
@@ -1818,7 +1818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65568L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_ID = 65569;
      * }
      */
@@ -1826,7 +1826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65569L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_INVALID_FUNCTION = 65570;
      * }
      */
@@ -1834,7 +1834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65570L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PARSE_ERROR_LIMIT = 65571;
      * }
      */
@@ -1842,7 +1842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65571L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNEXPECTED_TOKEN = 65792;
      * }
      */
@@ -1850,7 +1850,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65792L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_FMT_PARSE_ERROR_START = 65792;
      * }
      */
@@ -1858,7 +1858,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65792L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_DECIMAL_SEPARATORS = 65793;
      * }
      */
@@ -1866,7 +1866,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65793L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_DECIMAL_SEPERATORS = 65793;
      * }
      */
@@ -1874,7 +1874,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65793L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_EXPONENTIAL_SYMBOLS = 65794;
      * }
      */
@@ -1882,7 +1882,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65794L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MALFORMED_EXPONENTIAL_PATTERN = 65795;
      * }
      */
@@ -1890,7 +1890,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65795L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_PERCENT_SYMBOLS = 65796;
      * }
      */
@@ -1898,7 +1898,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65796L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_PERMILL_SYMBOLS = 65797;
      * }
      */
@@ -1906,7 +1906,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65797L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_MULTIPLE_PAD_SPECIFIERS = 65798;
      * }
      */
@@ -1914,7 +1914,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65798L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PATTERN_SYNTAX_ERROR = 65799;
      * }
      */
@@ -1922,7 +1922,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65799L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ILLEGAL_PAD_POSITION = 65800;
      * }
      */
@@ -1930,7 +1930,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65800L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNMATCHED_BRACES = 65801;
      * }
      */
@@ -1938,7 +1938,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65801L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNSUPPORTED_PROPERTY = 65802;
      * }
      */
@@ -1946,7 +1946,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65802L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNSUPPORTED_ATTRIBUTE = 65803;
      * }
      */
@@ -1954,7 +1954,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65803L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ARGUMENT_TYPE_MISMATCH = 65804;
      * }
      */
@@ -1962,7 +1962,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65804L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_DUPLICATE_KEYWORD = 65805;
      * }
      */
@@ -1970,7 +1970,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65805L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_UNDEFINED_KEYWORD = 65806;
      * }
      */
@@ -1978,7 +1978,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65806L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_DEFAULT_KEYWORD_MISSING = 65807;
      * }
      */
@@ -1986,7 +1986,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_DECIMAL_NUMBER_SYNTAX_ERROR = 65808;
      * }
      */
@@ -1994,7 +1994,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_FORMAT_INEXACT_ERROR = 65809;
      * }
      */
@@ -2002,7 +2002,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65809L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_NUMBER_ARG_OUTOFBOUNDS_ERROR = 65810;
      * }
      */
@@ -2010,7 +2010,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65810L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_NUMBER_SKELETON_SYNTAX_ERROR = 65811;
      * }
      */
@@ -2018,7 +2018,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65811L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_FMT_PARSE_ERROR_LIMIT = 65812;
      * }
      */
@@ -2026,7 +2026,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65812L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_INTERNAL_ERROR = 66048;
      * }
      */
@@ -2034,7 +2034,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66048L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_ERROR_START = 66048;
      * }
      */
@@ -2042,7 +2042,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66048L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_HEX_DIGITS_EXPECTED = 66049;
      * }
      */
@@ -2050,7 +2050,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66049L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_SEMICOLON_EXPECTED = 66050;
      * }
      */
@@ -2058,7 +2058,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66050L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_RULE_SYNTAX = 66051;
      * }
      */
@@ -2066,7 +2066,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66051L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_UNCLOSED_SET = 66052;
      * }
      */
@@ -2074,7 +2074,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66052L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_ASSIGN_ERROR = 66053;
      * }
      */
@@ -2082,7 +2082,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66053L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_VARIABLE_REDFINITION = 66054;
      * }
      */
@@ -2090,7 +2090,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66054L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_MISMATCHED_PAREN = 66055;
      * }
      */
@@ -2098,7 +2098,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66055L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_NEW_LINE_IN_QUOTED_STRING = 66056;
      * }
      */
@@ -2106,7 +2106,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66056L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_UNDEFINED_VARIABLE = 66057;
      * }
      */
@@ -2114,7 +2114,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66057L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_INIT_ERROR = 66058;
      * }
      */
@@ -2122,7 +2122,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66058L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_RULE_EMPTY_SET = 66059;
      * }
      */
@@ -2130,7 +2130,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66059L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_UNRECOGNIZED_OPTION = 66060;
      * }
      */
@@ -2138,7 +2138,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66060L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_MALFORMED_RULE_TAG = 66061;
      * }
      */
@@ -2146,7 +2146,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66061L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_BRK_ERROR_LIMIT = 66062;
      * }
      */
@@ -2154,7 +2154,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66062L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_INTERNAL_ERROR = 66304;
      * }
      */
@@ -2162,7 +2162,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66304L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_ERROR_START = 66304;
      * }
      */
@@ -2170,7 +2170,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66304L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_RULE_SYNTAX = 66305;
      * }
      */
@@ -2178,7 +2178,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66305L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_INVALID_STATE = 66306;
      * }
      */
@@ -2186,7 +2186,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66306L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_BAD_ESCAPE_SEQUENCE = 66307;
      * }
      */
@@ -2194,7 +2194,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66307L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_PROPERTY_SYNTAX = 66308;
      * }
      */
@@ -2202,7 +2202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66308L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_UNIMPLEMENTED = 66309;
      * }
      */
@@ -2210,7 +2210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66309L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_MISMATCHED_PAREN = 66310;
      * }
      */
@@ -2218,7 +2218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66310L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_NUMBER_TOO_BIG = 66311;
      * }
      */
@@ -2226,7 +2226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66311L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_BAD_INTERVAL = 66312;
      * }
      */
@@ -2234,7 +2234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66312L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_MAX_LT_MIN = 66313;
      * }
      */
@@ -2242,7 +2242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66313L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_INVALID_BACK_REF = 66314;
      * }
      */
@@ -2250,7 +2250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66314L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_INVALID_FLAG = 66315;
      * }
      */
@@ -2258,7 +2258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66315L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_LOOK_BEHIND_LIMIT = 66316;
      * }
      */
@@ -2266,7 +2266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66316L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_SET_CONTAINS_STRING = 66317;
      * }
      */
@@ -2274,7 +2274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66317L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_OCTAL_TOO_BIG = 66318;
      * }
      */
@@ -2282,7 +2282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66318L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_MISSING_CLOSE_BRACKET = 66319;
      * }
      */
@@ -2290,7 +2290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66319L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_INVALID_RANGE = 66320;
      * }
      */
@@ -2298,7 +2298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66320L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_STACK_OVERFLOW = 66321;
      * }
      */
@@ -2306,7 +2306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66321L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_TIME_OUT = 66322;
      * }
      */
@@ -2314,7 +2314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66322L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_STOPPED_BY_CALLER = 66323;
      * }
      */
@@ -2322,7 +2322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66323L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_PATTERN_TOO_BIG = 66324;
      * }
      */
@@ -2330,7 +2330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66324L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_INVALID_CAPTURE_GROUP_NAME = 66325;
      * }
      */
@@ -2338,7 +2338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66325L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_REGEX_ERROR_LIMIT = 66326;
      * }
      */
@@ -2346,7 +2346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66326L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_PROHIBITED_ERROR = 66560;
      * }
      */
@@ -2354,7 +2354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66560L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_ERROR_START = 66560;
      * }
      */
@@ -2362,7 +2362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66560L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_UNASSIGNED_ERROR = 66561;
      * }
      */
@@ -2370,7 +2370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66561L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_CHECK_BIDI_ERROR = 66562;
      * }
      */
@@ -2378,7 +2378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66562L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_STD3_ASCII_RULES_ERROR = 66563;
      * }
      */
@@ -2386,7 +2386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66563L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_ACE_PREFIX_ERROR = 66564;
      * }
      */
@@ -2394,7 +2394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66564L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_VERIFICATION_ERROR = 66565;
      * }
      */
@@ -2402,7 +2402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66565L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_LABEL_TOO_LONG_ERROR = 66566;
      * }
      */
@@ -2410,7 +2410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66566L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_ZERO_LENGTH_LABEL_ERROR = 66567;
      * }
      */
@@ -2418,7 +2418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66567L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_DOMAIN_NAME_TOO_LONG_ERROR = 66568;
      * }
      */
@@ -2426,7 +2426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66568L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_IDNA_ERROR_LIMIT = 66569;
      * }
      */
@@ -2434,7 +2434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66569L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_STRINGPREP_PROHIBITED_ERROR = 66560;
      * }
      */
@@ -2442,7 +2442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66560L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_STRINGPREP_UNASSIGNED_ERROR = 66561;
      * }
      */
@@ -2450,7 +2450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66561L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_STRINGPREP_CHECK_BIDI_ERROR = 66562;
      * }
      */
@@ -2458,7 +2458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66562L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PLUGIN_ERROR_START = 66816;
      * }
      */
@@ -2466,7 +2466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66816L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PLUGIN_TOO_HIGH = 66816;
      * }
      */
@@ -2474,7 +2474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66816L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PLUGIN_DIDNT_SET_LEVEL = 66817;
      * }
      */
@@ -2482,7 +2482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66817L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_PLUGIN_ERROR_LIMIT = 66818;
      * }
      */
@@ -2490,7 +2490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66818L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UErrorCode.U_ERROR_LIMIT = 66818;
      * }
      */
@@ -2501,8 +2501,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$2.const$5,"u_errorName_70");
     }
     /**
-     * {@snippet :
-     * char* u_errorName_70(UErrorCode code);
+     * {@snippet lang=c :
+     * char* u_errorName_70(enum UErrorCode code);
      * }
      */
     public static MemorySegment u_errorName_70(int code) {
@@ -2514,7 +2514,7 @@ public class uregex_h extends uregex_h_1 {
         }
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCPMapRangeOption.UCPMAP_RANGE_NORMAL = 0;
      * }
      */
@@ -2522,7 +2522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCPMapRangeOption.UCPMAP_RANGE_FIXED_LEAD_SURROGATES = 1;
      * }
      */
@@ -2530,7 +2530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCPMapRangeOption.UCPMAP_RANGE_FIXED_ALL_SURROGATES = 2;
      * }
      */
@@ -2541,8 +2541,8 @@ public class uregex_h extends uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$3.const$1,"ucpmap_get_70");
     }
     /**
-     * {@snippet :
-     * uint32_t ucpmap_get_70(const UCPMap* map, UChar32 c);
+     * {@snippet lang=c :
+     * unsigned int ucpmap_get_70(struct UCPMap* map, int c);
      * }
      */
     public static int ucpmap_get_70(MemorySegment map, int c) {
@@ -2554,11 +2554,11 @@ public class uregex_h extends uregex_h_1 {
         }
     }
     public static MethodHandle ucpmap_getRange_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.const$5,"ucpmap_getRange_70");
+        return RuntimeHelper.requireNonNull(constants$3.const$6,"ucpmap_getRange_70");
     }
     /**
-     * {@snippet :
-     * UChar32 ucpmap_getRange_70(const UCPMap* map, UChar32 start, UCPMapRangeOption option, uint32_t surrogateValue, UCPMapValueFilter* filter, void* context, uint32_t* pValue);
+     * {@snippet lang=c :
+     * int ucpmap_getRange_70(struct UCPMap* map, int start, enum UCPMapRangeOption option, unsigned int surrogateValue, unsigned int (*filter)(void*,unsigned int), void* context, unsigned int* pValue);
      * }
      */
     public static int ucpmap_getRange_70(MemorySegment map, int start, int option, int surrogateValue, MemorySegment filter, MemorySegment context, MemorySegment pValue) {
@@ -2570,7 +2570,7 @@ public class uregex_h extends uregex_h_1 {
         }
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_ALPHABETIC = 0;
      * }
      */
@@ -2578,7 +2578,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BINARY_START = 0;
      * }
      */
@@ -2586,7 +2586,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_ASCII_HEX_DIGIT = 1;
      * }
      */
@@ -2594,7 +2594,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BIDI_CONTROL = 2;
      * }
      */
@@ -2602,7 +2602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BIDI_MIRRORED = 3;
      * }
      */
@@ -2610,7 +2610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_DASH = 4;
      * }
      */
@@ -2618,7 +2618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_DEFAULT_IGNORABLE_CODE_POINT = 5;
      * }
      */
@@ -2626,7 +2626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_DEPRECATED = 6;
      * }
      */
@@ -2634,7 +2634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_DIACRITIC = 7;
      * }
      */
@@ -2642,7 +2642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EXTENDER = 8;
      * }
      */
@@ -2650,7 +2650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_FULL_COMPOSITION_EXCLUSION = 9;
      * }
      */
@@ -2658,7 +2658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_GRAPHEME_BASE = 10;
      * }
      */
@@ -2666,7 +2666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_GRAPHEME_EXTEND = 11;
      * }
      */
@@ -2674,7 +2674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_GRAPHEME_LINK = 12;
      * }
      */
@@ -2682,7 +2682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_HEX_DIGIT = 13;
      * }
      */
@@ -2690,7 +2690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_HYPHEN = 14;
      * }
      */
@@ -2698,7 +2698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_ID_CONTINUE = 15;
      * }
      */
@@ -2706,7 +2706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_ID_START = 16;
      * }
      */
@@ -2714,7 +2714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_IDEOGRAPHIC = 17;
      * }
      */
@@ -2722,7 +2722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_IDS_BINARY_OPERATOR = 18;
      * }
      */
@@ -2730,7 +2730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_IDS_TRINARY_OPERATOR = 19;
      * }
      */
@@ -2738,7 +2738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_JOIN_CONTROL = 20;
      * }
      */
@@ -2746,7 +2746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_LOGICAL_ORDER_EXCEPTION = 21;
      * }
      */
@@ -2754,7 +2754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_LOWERCASE = 22;
      * }
      */
@@ -2762,7 +2762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_MATH = 23;
      * }
      */
@@ -2770,7 +2770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NONCHARACTER_CODE_POINT = 24;
      * }
      */
@@ -2778,7 +2778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_QUOTATION_MARK = 25;
      * }
      */
@@ -2786,7 +2786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)25L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_RADICAL = 26;
      * }
      */
@@ -2794,7 +2794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)26L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SOFT_DOTTED = 27;
      * }
      */
@@ -2802,7 +2802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)27L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_TERMINAL_PUNCTUATION = 28;
      * }
      */
@@ -2810,7 +2810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_UNIFIED_IDEOGRAPH = 29;
      * }
      */
@@ -2818,7 +2818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)29L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_UPPERCASE = 30;
      * }
      */
@@ -2826,7 +2826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)30L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_WHITE_SPACE = 31;
      * }
      */
@@ -2834,7 +2834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)31L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_XID_CONTINUE = 32;
      * }
      */
@@ -2842,7 +2842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_XID_START = 33;
      * }
      */
@@ -2850,7 +2850,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)33L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CASE_SENSITIVE = 34;
      * }
      */
@@ -2858,7 +2858,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)34L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_S_TERM = 35;
      * }
      */
@@ -2866,7 +2866,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)35L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_VARIATION_SELECTOR = 36;
      * }
      */
@@ -2874,7 +2874,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)36L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFD_INERT = 37;
      * }
      */
@@ -2882,7 +2882,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)37L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFKD_INERT = 38;
      * }
      */
@@ -2890,7 +2890,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)38L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFC_INERT = 39;
      * }
      */
@@ -2898,7 +2898,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)39L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFKC_INERT = 40;
      * }
      */
@@ -2906,7 +2906,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)40L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SEGMENT_STARTER = 41;
      * }
      */
@@ -2914,7 +2914,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)41L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_PATTERN_SYNTAX = 42;
      * }
      */
@@ -2922,7 +2922,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)42L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_PATTERN_WHITE_SPACE = 43;
      * }
      */
@@ -2930,7 +2930,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)43L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_POSIX_ALNUM = 44;
      * }
      */
@@ -2938,7 +2938,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)44L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_POSIX_BLANK = 45;
      * }
      */
@@ -2946,7 +2946,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)45L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_POSIX_GRAPH = 46;
      * }
      */
@@ -2954,7 +2954,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)46L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_POSIX_PRINT = 47;
      * }
      */
@@ -2962,7 +2962,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)47L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_POSIX_XDIGIT = 48;
      * }
      */
@@ -2970,7 +2970,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)48L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CASED = 49;
      * }
      */
@@ -2978,7 +2978,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)49L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CASE_IGNORABLE = 50;
      * }
      */
@@ -2986,7 +2986,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)50L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CHANGES_WHEN_LOWERCASED = 51;
      * }
      */
@@ -2994,7 +2994,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)51L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CHANGES_WHEN_UPPERCASED = 52;
      * }
      */
@@ -3002,7 +3002,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)52L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CHANGES_WHEN_TITLECASED = 53;
      * }
      */
@@ -3010,7 +3010,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)53L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CHANGES_WHEN_CASEFOLDED = 54;
      * }
      */
@@ -3018,7 +3018,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)54L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CHANGES_WHEN_CASEMAPPED = 55;
      * }
      */
@@ -3026,7 +3026,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)55L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CHANGES_WHEN_NFKC_CASEFOLDED = 56;
      * }
      */
@@ -3034,7 +3034,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)56L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EMOJI = 57;
      * }
      */
@@ -3042,7 +3042,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)57L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EMOJI_PRESENTATION = 58;
      * }
      */
@@ -3050,7 +3050,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)58L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EMOJI_MODIFIER = 59;
      * }
      */
@@ -3058,7 +3058,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)59L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EMOJI_MODIFIER_BASE = 60;
      * }
      */
@@ -3066,7 +3066,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)60L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EMOJI_COMPONENT = 61;
      * }
      */
@@ -3074,7 +3074,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)61L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_REGIONAL_INDICATOR = 62;
      * }
      */
@@ -3082,7 +3082,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)62L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_PREPENDED_CONCATENATION_MARK = 63;
      * }
      */
@@ -3090,7 +3090,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)63L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EXTENDED_PICTOGRAPHIC = 64;
      * }
      */
@@ -3098,7 +3098,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)64L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BASIC_EMOJI = 65;
      * }
      */
@@ -3106,7 +3106,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EMOJI_KEYCAP_SEQUENCE = 66;
      * }
      */
@@ -3114,7 +3114,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_RGI_EMOJI_MODIFIER_SEQUENCE = 67;
      * }
      */
@@ -3122,7 +3122,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)67L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_RGI_EMOJI_FLAG_SEQUENCE = 68;
      * }
      */
@@ -3130,7 +3130,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)68L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_RGI_EMOJI_TAG_SEQUENCE = 69;
      * }
      */
@@ -3138,7 +3138,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)69L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_RGI_EMOJI_ZWJ_SEQUENCE = 70;
      * }
      */
@@ -3146,7 +3146,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)70L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_RGI_EMOJI = 71;
      * }
      */
@@ -3154,7 +3154,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)71L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BINARY_LIMIT = 72;
      * }
      */
@@ -3162,7 +3162,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)72L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BIDI_CLASS = 4096;
      * }
      */
@@ -3170,7 +3170,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4096L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_INT_START = 4096;
      * }
      */
@@ -3178,7 +3178,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4096L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BLOCK = 4097;
      * }
      */
@@ -3186,7 +3186,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4097L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CANONICAL_COMBINING_CLASS = 4098;
      * }
      */
@@ -3194,7 +3194,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4098L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_DECOMPOSITION_TYPE = 4099;
      * }
      */
@@ -3202,7 +3202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4099L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_EAST_ASIAN_WIDTH = 4100;
      * }
      */
@@ -3210,7 +3210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4100L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_GENERAL_CATEGORY = 4101;
      * }
      */
@@ -3218,7 +3218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4101L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_JOINING_GROUP = 4102;
      * }
      */
@@ -3226,7 +3226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4102L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_JOINING_TYPE = 4103;
      * }
      */
@@ -3234,7 +3234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4103L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_LINE_BREAK = 4104;
      * }
      */
@@ -3242,7 +3242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4104L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NUMERIC_TYPE = 4105;
      * }
      */
@@ -3250,7 +3250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4105L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SCRIPT = 4106;
      * }
      */
@@ -3258,7 +3258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4106L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_HANGUL_SYLLABLE_TYPE = 4107;
      * }
      */
@@ -3266,7 +3266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4107L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFD_QUICK_CHECK = 4108;
      * }
      */
@@ -3274,7 +3274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4108L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFKD_QUICK_CHECK = 4109;
      * }
      */
@@ -3282,7 +3282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4109L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFC_QUICK_CHECK = 4110;
      * }
      */
@@ -3290,7 +3290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4110L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NFKC_QUICK_CHECK = 4111;
      * }
      */
@@ -3298,7 +3298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4111L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_LEAD_CANONICAL_COMBINING_CLASS = 4112;
      * }
      */
@@ -3306,7 +3306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4112L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_TRAIL_CANONICAL_COMBINING_CLASS = 4113;
      * }
      */
@@ -3314,7 +3314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4113L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_GRAPHEME_CLUSTER_BREAK = 4114;
      * }
      */
@@ -3322,7 +3322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4114L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SENTENCE_BREAK = 4115;
      * }
      */
@@ -3330,7 +3330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4115L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_WORD_BREAK = 4116;
      * }
      */
@@ -3338,7 +3338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4116L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BIDI_PAIRED_BRACKET_TYPE = 4117;
      * }
      */
@@ -3346,7 +3346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4117L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_INDIC_POSITIONAL_CATEGORY = 4118;
      * }
      */
@@ -3354,7 +3354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4118L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_INDIC_SYLLABIC_CATEGORY = 4119;
      * }
      */
@@ -3362,7 +3362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4119L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_VERTICAL_ORIENTATION = 4120;
      * }
      */
@@ -3370,7 +3370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4120L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_INT_LIMIT = 4121;
      * }
      */
@@ -3378,7 +3378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4121L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_GENERAL_CATEGORY_MASK = 8192;
      * }
      */
@@ -3386,7 +3386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8192L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_MASK_START = 8192;
      * }
      */
@@ -3394,7 +3394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8192L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_MASK_LIMIT = 8193;
      * }
      */
@@ -3402,7 +3402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8193L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NUMERIC_VALUE = 12288;
      * }
      */
@@ -3410,7 +3410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12288L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_DOUBLE_START = 12288;
      * }
      */
@@ -3418,7 +3418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12288L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_DOUBLE_LIMIT = 12289;
      * }
      */
@@ -3426,7 +3426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12289L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_AGE = 16384;
      * }
      */
@@ -3434,7 +3434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16384L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_STRING_START = 16384;
      * }
      */
@@ -3442,7 +3442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16384L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BIDI_MIRRORING_GLYPH = 16385;
      * }
      */
@@ -3450,7 +3450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16385L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_CASE_FOLDING = 16386;
      * }
      */
@@ -3458,7 +3458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16386L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_ISO_COMMENT = 16387;
      * }
      */
@@ -3466,7 +3466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16387L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_LOWERCASE_MAPPING = 16388;
      * }
      */
@@ -3474,7 +3474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16388L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_NAME = 16389;
      * }
      */
@@ -3482,7 +3482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16389L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SIMPLE_CASE_FOLDING = 16390;
      * }
      */
@@ -3490,7 +3490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16390L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SIMPLE_LOWERCASE_MAPPING = 16391;
      * }
      */
@@ -3498,7 +3498,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16391L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SIMPLE_TITLECASE_MAPPING = 16392;
      * }
      */
@@ -3506,7 +3506,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16392L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SIMPLE_UPPERCASE_MAPPING = 16393;
      * }
      */
@@ -3514,7 +3514,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16393L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_TITLECASE_MAPPING = 16394;
      * }
      */
@@ -3522,7 +3522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16394L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_UNICODE_1_NAME = 16395;
      * }
      */
@@ -3530,7 +3530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16395L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_UPPERCASE_MAPPING = 16396;
      * }
      */
@@ -3538,7 +3538,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16396L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_BIDI_PAIRED_BRACKET = 16397;
      * }
      */
@@ -3546,7 +3546,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16397L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_STRING_LIMIT = 16398;
      * }
      */
@@ -3554,7 +3554,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16398L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_SCRIPT_EXTENSIONS = 28672;
      * }
      */
@@ -3562,7 +3562,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28672L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_OTHER_PROPERTY_START = 28672;
      * }
      */
@@ -3570,7 +3570,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28672L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_OTHER_PROPERTY_LIMIT = 28673;
      * }
      */
@@ -3578,7 +3578,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28673L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UProperty.UCHAR_INVALID_CODE = -1;
      * }
      */
@@ -3586,7 +3586,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_UNASSIGNED = 0;
      * }
      */
@@ -3594,7 +3594,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_GENERAL_OTHER_TYPES = 0;
      * }
      */
@@ -3602,7 +3602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_UPPERCASE_LETTER = 1;
      * }
      */
@@ -3610,7 +3610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_LOWERCASE_LETTER = 2;
      * }
      */
@@ -3618,7 +3618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_TITLECASE_LETTER = 3;
      * }
      */
@@ -3626,7 +3626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_MODIFIER_LETTER = 4;
      * }
      */
@@ -3634,7 +3634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_OTHER_LETTER = 5;
      * }
      */
@@ -3642,7 +3642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_NON_SPACING_MARK = 6;
      * }
      */
@@ -3650,7 +3650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_ENCLOSING_MARK = 7;
      * }
      */
@@ -3658,7 +3658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_COMBINING_SPACING_MARK = 8;
      * }
      */
@@ -3666,7 +3666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_DECIMAL_DIGIT_NUMBER = 9;
      * }
      */
@@ -3674,7 +3674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_LETTER_NUMBER = 10;
      * }
      */
@@ -3682,7 +3682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_OTHER_NUMBER = 11;
      * }
      */
@@ -3690,7 +3690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_SPACE_SEPARATOR = 12;
      * }
      */
@@ -3698,7 +3698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_LINE_SEPARATOR = 13;
      * }
      */
@@ -3706,7 +3706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_PARAGRAPH_SEPARATOR = 14;
      * }
      */
@@ -3714,7 +3714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_CONTROL_CHAR = 15;
      * }
      */
@@ -3722,7 +3722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_FORMAT_CHAR = 16;
      * }
      */
@@ -3730,7 +3730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_PRIVATE_USE_CHAR = 17;
      * }
      */
@@ -3738,7 +3738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_SURROGATE = 18;
      * }
      */
@@ -3746,7 +3746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_DASH_PUNCTUATION = 19;
      * }
      */
@@ -3754,7 +3754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_START_PUNCTUATION = 20;
      * }
      */
@@ -3762,7 +3762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_END_PUNCTUATION = 21;
      * }
      */
@@ -3770,7 +3770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_CONNECTOR_PUNCTUATION = 22;
      * }
      */
@@ -3778,7 +3778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_OTHER_PUNCTUATION = 23;
      * }
      */
@@ -3786,7 +3786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_MATH_SYMBOL = 24;
      * }
      */
@@ -3794,7 +3794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_CURRENCY_SYMBOL = 25;
      * }
      */
@@ -3802,7 +3802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)25L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_MODIFIER_SYMBOL = 26;
      * }
      */
@@ -3810,7 +3810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)26L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_OTHER_SYMBOL = 27;
      * }
      */
@@ -3818,7 +3818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)27L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_INITIAL_PUNCTUATION = 28;
      * }
      */
@@ -3826,7 +3826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_FINAL_PUNCTUATION = 29;
      * }
      */
@@ -3834,7 +3834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)29L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharCategory.U_CHAR_CATEGORY_COUNT = 30;
      * }
      */
@@ -3842,7 +3842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)30L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_LEFT_TO_RIGHT = 0;
      * }
      */
@@ -3850,7 +3850,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_RIGHT_TO_LEFT = 1;
      * }
      */
@@ -3858,7 +3858,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_EUROPEAN_NUMBER = 2;
      * }
      */
@@ -3866,7 +3866,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_EUROPEAN_NUMBER_SEPARATOR = 3;
      * }
      */
@@ -3874,7 +3874,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_EUROPEAN_NUMBER_TERMINATOR = 4;
      * }
      */
@@ -3882,7 +3882,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_ARABIC_NUMBER = 5;
      * }
      */
@@ -3890,7 +3890,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_COMMON_NUMBER_SEPARATOR = 6;
      * }
      */
@@ -3898,7 +3898,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_BLOCK_SEPARATOR = 7;
      * }
      */
@@ -3906,7 +3906,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_SEGMENT_SEPARATOR = 8;
      * }
      */
@@ -3914,7 +3914,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_WHITE_SPACE_NEUTRAL = 9;
      * }
      */
@@ -3922,7 +3922,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_OTHER_NEUTRAL = 10;
      * }
      */
@@ -3930,7 +3930,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_LEFT_TO_RIGHT_EMBEDDING = 11;
      * }
      */
@@ -3938,7 +3938,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_LEFT_TO_RIGHT_OVERRIDE = 12;
      * }
      */
@@ -3946,7 +3946,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_RIGHT_TO_LEFT_ARABIC = 13;
      * }
      */
@@ -3954,7 +3954,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_RIGHT_TO_LEFT_EMBEDDING = 14;
      * }
      */
@@ -3962,7 +3962,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_RIGHT_TO_LEFT_OVERRIDE = 15;
      * }
      */
@@ -3970,7 +3970,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_POP_DIRECTIONAL_FORMAT = 16;
      * }
      */
@@ -3978,7 +3978,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_DIR_NON_SPACING_MARK = 17;
      * }
      */
@@ -3986,7 +3986,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_BOUNDARY_NEUTRAL = 18;
      * }
      */
@@ -3994,7 +3994,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_FIRST_STRONG_ISOLATE = 19;
      * }
      */
@@ -4002,7 +4002,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_LEFT_TO_RIGHT_ISOLATE = 20;
      * }
      */
@@ -4010,7 +4010,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_RIGHT_TO_LEFT_ISOLATE = 21;
      * }
      */
@@ -4018,7 +4018,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_POP_DIRECTIONAL_ISOLATE = 22;
      * }
      */
@@ -4026,7 +4026,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharDirection.U_CHAR_DIRECTION_COUNT = 23;
      * }
      */
@@ -4034,7 +4034,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBidiPairedBracketType.U_BPT_NONE = 0;
      * }
      */
@@ -4042,7 +4042,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBidiPairedBracketType.U_BPT_OPEN = 1;
      * }
      */
@@ -4050,7 +4050,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBidiPairedBracketType.U_BPT_CLOSE = 2;
      * }
      */
@@ -4058,7 +4058,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBidiPairedBracketType.U_BPT_COUNT = 3;
      * }
      */
@@ -4066,7 +4066,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NO_BLOCK = 0;
      * }
      */
@@ -4074,7 +4074,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BASIC_LATIN = 1;
      * }
      */
@@ -4082,7 +4082,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_1_SUPPLEMENT = 2;
      * }
      */
@@ -4090,7 +4090,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_A = 3;
      * }
      */
@@ -4098,7 +4098,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_B = 4;
      * }
      */
@@ -4106,7 +4106,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_IPA_EXTENSIONS = 5;
      * }
      */
@@ -4114,7 +4114,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SPACING_MODIFIER_LETTERS = 6;
      * }
      */
@@ -4122,7 +4122,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COMBINING_DIACRITICAL_MARKS = 7;
      * }
      */
@@ -4130,7 +4130,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GREEK = 8;
      * }
      */
@@ -4138,7 +4138,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYRILLIC = 9;
      * }
      */
@@ -4146,7 +4146,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARMENIAN = 10;
      * }
      */
@@ -4154,7 +4154,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HEBREW = 11;
      * }
      */
@@ -4162,7 +4162,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARABIC = 12;
      * }
      */
@@ -4170,7 +4170,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SYRIAC = 13;
      * }
      */
@@ -4178,7 +4178,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_THAANA = 14;
      * }
      */
@@ -4186,7 +4186,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DEVANAGARI = 15;
      * }
      */
@@ -4194,7 +4194,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BENGALI = 16;
      * }
      */
@@ -4202,7 +4202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GURMUKHI = 17;
      * }
      */
@@ -4210,7 +4210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GUJARATI = 18;
      * }
      */
@@ -4218,7 +4218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ORIYA = 19;
      * }
      */
@@ -4226,7 +4226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAMIL = 20;
      * }
      */
@@ -4234,7 +4234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TELUGU = 21;
      * }
      */
@@ -4242,7 +4242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KANNADA = 22;
      * }
      */
@@ -4250,7 +4250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MALAYALAM = 23;
      * }
      */
@@ -4258,7 +4258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SINHALA = 24;
      * }
      */
@@ -4266,7 +4266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_THAI = 25;
      * }
      */
@@ -4274,7 +4274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)25L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LAO = 26;
      * }
      */
@@ -4282,7 +4282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)26L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TIBETAN = 27;
      * }
      */
@@ -4290,7 +4290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)27L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MYANMAR = 28;
      * }
      */
@@ -4298,7 +4298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GEORGIAN = 29;
      * }
      */
@@ -4306,7 +4306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)29L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HANGUL_JAMO = 30;
      * }
      */
@@ -4314,7 +4314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)30L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ETHIOPIC = 31;
      * }
      */
@@ -4322,7 +4322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)31L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CHEROKEE = 32;
      * }
      */
@@ -4330,7 +4330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS = 33;
      * }
      */
@@ -4338,7 +4338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)33L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OGHAM = 34;
      * }
      */
@@ -4346,7 +4346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)34L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_RUNIC = 35;
      * }
      */
@@ -4354,7 +4354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)35L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KHMER = 36;
      * }
      */
@@ -4362,7 +4362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)36L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MONGOLIAN = 37;
      * }
      */
@@ -4370,7 +4370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)37L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_ADDITIONAL = 38;
      * }
      */
@@ -4378,7 +4378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)38L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GREEK_EXTENDED = 39;
      * }
      */
@@ -4386,7 +4386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)39L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GENERAL_PUNCTUATION = 40;
      * }
      */
@@ -4394,7 +4394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)40L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPERSCRIPTS_AND_SUBSCRIPTS = 41;
      * }
      */
@@ -4402,7 +4402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)41L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CURRENCY_SYMBOLS = 42;
      * }
      */
@@ -4410,7 +4410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)42L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COMBINING_MARKS_FOR_SYMBOLS = 43;
      * }
      */
@@ -4418,7 +4418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)43L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LETTERLIKE_SYMBOLS = 44;
      * }
      */
@@ -4426,7 +4426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)44L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NUMBER_FORMS = 45;
      * }
      */
@@ -4434,7 +4434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)45L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARROWS = 46;
      * }
      */
@@ -4442,7 +4442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)46L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MATHEMATICAL_OPERATORS = 47;
      * }
      */
@@ -4450,7 +4450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)47L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MISCELLANEOUS_TECHNICAL = 48;
      * }
      */
@@ -4458,7 +4458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)48L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CONTROL_PICTURES = 49;
      * }
      */
@@ -4466,7 +4466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)49L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OPTICAL_CHARACTER_RECOGNITION = 50;
      * }
      */
@@ -4474,7 +4474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)50L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ENCLOSED_ALPHANUMERICS = 51;
      * }
      */
@@ -4482,7 +4482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)51L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BOX_DRAWING = 52;
      * }
      */
@@ -4490,7 +4490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)52L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BLOCK_ELEMENTS = 53;
      * }
      */
@@ -4498,7 +4498,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)53L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GEOMETRIC_SHAPES = 54;
      * }
      */
@@ -4506,7 +4506,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)54L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MISCELLANEOUS_SYMBOLS = 55;
      * }
      */
@@ -4514,7 +4514,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)55L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DINGBATS = 56;
      * }
      */
@@ -4522,7 +4522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)56L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BRAILLE_PATTERNS = 57;
      * }
      */
@@ -4530,7 +4530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)57L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_RADICALS_SUPPLEMENT = 58;
      * }
      */
@@ -4538,7 +4538,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)58L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KANGXI_RADICALS = 59;
      * }
      */
@@ -4546,7 +4546,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)59L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_IDEOGRAPHIC_DESCRIPTION_CHARACTERS = 60;
      * }
      */
@@ -4554,7 +4554,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)60L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_SYMBOLS_AND_PUNCTUATION = 61;
      * }
      */
@@ -4562,7 +4562,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)61L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HIRAGANA = 62;
      * }
      */
@@ -4570,7 +4570,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)62L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KATAKANA = 63;
      * }
      */
@@ -4578,7 +4578,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)63L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BOPOMOFO = 64;
      * }
      */
@@ -4586,7 +4586,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)64L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HANGUL_COMPATIBILITY_JAMO = 65;
      * }
      */
@@ -4594,7 +4594,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KANBUN = 66;
      * }
      */
@@ -4602,7 +4602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BOPOMOFO_EXTENDED = 67;
      * }
      */
@@ -4610,7 +4610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)67L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ENCLOSED_CJK_LETTERS_AND_MONTHS = 68;
      * }
      */
@@ -4618,7 +4618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)68L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_COMPATIBILITY = 69;
      * }
      */
@@ -4626,7 +4626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)69L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A = 70;
      * }
      */
@@ -4634,7 +4634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)70L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS = 71;
      * }
      */
@@ -4642,7 +4642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)71L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_YI_SYLLABLES = 72;
      * }
      */
@@ -4650,7 +4650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)72L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_YI_RADICALS = 73;
      * }
      */
@@ -4658,7 +4658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)73L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HANGUL_SYLLABLES = 74;
      * }
      */
@@ -4666,7 +4666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)74L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HIGH_SURROGATES = 75;
      * }
      */
@@ -4674,7 +4674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)75L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HIGH_PRIVATE_USE_SURROGATES = 76;
      * }
      */
@@ -4682,7 +4682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)76L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LOW_SURROGATES = 77;
      * }
      */
@@ -4690,7 +4690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)77L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PRIVATE_USE_AREA = 78;
      * }
      */
@@ -4698,7 +4698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)78L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PRIVATE_USE = 78;
      * }
      */
@@ -4706,7 +4706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)78L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_COMPATIBILITY_IDEOGRAPHS = 79;
      * }
      */
@@ -4714,7 +4714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)79L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ALPHABETIC_PRESENTATION_FORMS = 80;
      * }
      */
@@ -4722,7 +4722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)80L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARABIC_PRESENTATION_FORMS_A = 81;
      * }
      */
@@ -4730,7 +4730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)81L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COMBINING_HALF_MARKS = 82;
      * }
      */
@@ -4738,7 +4738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)82L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_COMPATIBILITY_FORMS = 83;
      * }
      */
@@ -4746,7 +4746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)83L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SMALL_FORM_VARIANTS = 84;
      * }
      */
@@ -4754,7 +4754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)84L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARABIC_PRESENTATION_FORMS_B = 85;
      * }
      */
@@ -4762,7 +4762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)85L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SPECIALS = 86;
      * }
      */
@@ -4770,7 +4770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)86L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HALFWIDTH_AND_FULLWIDTH_FORMS = 87;
      * }
      */
@@ -4778,7 +4778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)87L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_ITALIC = 88;
      * }
      */
@@ -4786,7 +4786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)88L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GOTHIC = 89;
      * }
      */
@@ -4794,7 +4794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)89L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DESERET = 90;
      * }
      */
@@ -4802,7 +4802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)90L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BYZANTINE_MUSICAL_SYMBOLS = 91;
      * }
      */
@@ -4810,7 +4810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)91L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MUSICAL_SYMBOLS = 92;
      * }
      */
@@ -4818,7 +4818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)92L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MATHEMATICAL_ALPHANUMERIC_SYMBOLS = 93;
      * }
      */
@@ -4826,7 +4826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)93L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B = 94;
      * }
      */
@@ -4834,7 +4834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)94L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT = 95;
      * }
      */
@@ -4842,7 +4842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)95L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAGS = 96;
      * }
      */
@@ -4850,7 +4850,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)96L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYRILLIC_SUPPLEMENT = 97;
      * }
      */
@@ -4858,7 +4858,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)97L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYRILLIC_SUPPLEMENTARY = 97;
      * }
      */
@@ -4866,7 +4866,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)97L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAGALOG = 98;
      * }
      */
@@ -4874,7 +4874,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)98L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HANUNOO = 99;
      * }
      */
@@ -4882,7 +4882,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)99L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BUHID = 100;
      * }
      */
@@ -4890,7 +4890,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)100L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAGBANWA = 101;
      * }
      */
@@ -4898,7 +4898,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)101L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A = 102;
      * }
      */
@@ -4906,7 +4906,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)102L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTAL_ARROWS_A = 103;
      * }
      */
@@ -4914,7 +4914,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)103L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTAL_ARROWS_B = 104;
      * }
      */
@@ -4922,7 +4922,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)104L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B = 105;
      * }
      */
@@ -4930,7 +4930,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)105L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTAL_MATHEMATICAL_OPERATORS = 106;
      * }
      */
@@ -4938,7 +4938,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)106L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KATAKANA_PHONETIC_EXTENSIONS = 107;
      * }
      */
@@ -4946,7 +4946,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)107L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_VARIATION_SELECTORS = 108;
      * }
      */
@@ -4954,7 +4954,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)108L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTARY_PRIVATE_USE_AREA_A = 109;
      * }
      */
@@ -4962,7 +4962,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)109L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTARY_PRIVATE_USE_AREA_B = 110;
      * }
      */
@@ -4970,7 +4970,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)110L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LIMBU = 111;
      * }
      */
@@ -4978,7 +4978,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)111L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAI_LE = 112;
      * }
      */
@@ -4986,7 +4986,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)112L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KHMER_SYMBOLS = 113;
      * }
      */
@@ -4994,7 +4994,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)113L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PHONETIC_EXTENSIONS = 114;
      * }
      */
@@ -5002,7 +5002,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)114L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MISCELLANEOUS_SYMBOLS_AND_ARROWS = 115;
      * }
      */
@@ -5010,7 +5010,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)115L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_YIJING_HEXAGRAM_SYMBOLS = 116;
      * }
      */
@@ -5018,7 +5018,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)116L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LINEAR_B_SYLLABARY = 117;
      * }
      */
@@ -5026,7 +5026,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)117L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LINEAR_B_IDEOGRAMS = 118;
      * }
      */
@@ -5034,7 +5034,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)118L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_AEGEAN_NUMBERS = 119;
      * }
      */
@@ -5042,7 +5042,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)119L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_UGARITIC = 120;
      * }
      */
@@ -5050,7 +5050,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)120L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SHAVIAN = 121;
      * }
      */
@@ -5058,7 +5058,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)121L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OSMANYA = 122;
      * }
      */
@@ -5066,7 +5066,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)122L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYPRIOT_SYLLABARY = 123;
      * }
      */
@@ -5074,7 +5074,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)123L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAI_XUAN_JING_SYMBOLS = 124;
      * }
      */
@@ -5082,7 +5082,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)124L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_VARIATION_SELECTORS_SUPPLEMENT = 125;
      * }
      */
@@ -5090,7 +5090,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)125L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ANCIENT_GREEK_MUSICAL_NOTATION = 126;
      * }
      */
@@ -5098,7 +5098,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)126L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ANCIENT_GREEK_NUMBERS = 127;
      * }
      */
@@ -5106,7 +5106,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)127L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARABIC_SUPPLEMENT = 128;
      * }
      */
@@ -5114,7 +5114,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BUGINESE = 129;
      * }
      */
@@ -5122,7 +5122,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)129L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_STROKES = 130;
      * }
      */
@@ -5130,7 +5130,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)130L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COMBINING_DIACRITICAL_MARKS_SUPPLEMENT = 131;
      * }
      */
@@ -5138,7 +5138,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)131L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COPTIC = 132;
      * }
      */
@@ -5146,7 +5146,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)132L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ETHIOPIC_EXTENDED = 133;
      * }
      */
@@ -5154,7 +5154,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)133L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ETHIOPIC_SUPPLEMENT = 134;
      * }
      */
@@ -5162,7 +5162,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)134L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GEORGIAN_SUPPLEMENT = 135;
      * }
      */
@@ -5170,7 +5170,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)135L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GLAGOLITIC = 136;
      * }
      */
@@ -5178,7 +5178,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)136L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KHAROSHTHI = 137;
      * }
      */
@@ -5186,7 +5186,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)137L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MODIFIER_TONE_LETTERS = 138;
      * }
      */
@@ -5194,7 +5194,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)138L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NEW_TAI_LUE = 139;
      * }
      */
@@ -5202,7 +5202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)139L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_PERSIAN = 140;
      * }
      */
@@ -5210,7 +5210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)140L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PHONETIC_EXTENSIONS_SUPPLEMENT = 141;
      * }
      */
@@ -5218,7 +5218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)141L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTAL_PUNCTUATION = 142;
      * }
      */
@@ -5226,7 +5226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)142L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SYLOTI_NAGRI = 143;
      * }
      */
@@ -5234,7 +5234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)143L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TIFINAGH = 144;
      * }
      */
@@ -5242,7 +5242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)144L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_VERTICAL_FORMS = 145;
      * }
      */
@@ -5250,7 +5250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)145L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NKO = 146;
      * }
      */
@@ -5258,7 +5258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)146L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BALINESE = 147;
      * }
      */
@@ -5266,7 +5266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)147L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_C = 148;
      * }
      */
@@ -5274,7 +5274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)148L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_D = 149;
      * }
      */
@@ -5282,7 +5282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)149L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PHAGS_PA = 150;
      * }
      */
@@ -5290,7 +5290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)150L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PHOENICIAN = 151;
      * }
      */
@@ -5298,7 +5298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)151L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CUNEIFORM = 152;
      * }
      */
@@ -5306,7 +5306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)152L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CUNEIFORM_NUMBERS_AND_PUNCTUATION = 153;
      * }
      */
@@ -5314,7 +5314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)153L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COUNTING_ROD_NUMERALS = 154;
      * }
      */
@@ -5322,7 +5322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)154L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUNDANESE = 155;
      * }
      */
@@ -5330,7 +5330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)155L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LEPCHA = 156;
      * }
      */
@@ -5338,7 +5338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)156L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OL_CHIKI = 157;
      * }
      */
@@ -5346,7 +5346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)157L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYRILLIC_EXTENDED_A = 158;
      * }
      */
@@ -5354,7 +5354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)158L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_VAI = 159;
      * }
      */
@@ -5362,7 +5362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)159L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYRILLIC_EXTENDED_B = 160;
      * }
      */
@@ -5370,7 +5370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)160L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SAURASHTRA = 161;
      * }
      */
@@ -5378,7 +5378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)161L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KAYAH_LI = 162;
      * }
      */
@@ -5386,7 +5386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)162L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_REJANG = 163;
      * }
      */
@@ -5394,7 +5394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)163L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CHAM = 164;
      * }
      */
@@ -5402,7 +5402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)164L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ANCIENT_SYMBOLS = 165;
      * }
      */
@@ -5410,7 +5410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)165L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PHAISTOS_DISC = 166;
      * }
      */
@@ -5418,7 +5418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)166L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LYCIAN = 167;
      * }
      */
@@ -5426,7 +5426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)167L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CARIAN = 168;
      * }
      */
@@ -5434,7 +5434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)168L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LYDIAN = 169;
      * }
      */
@@ -5442,7 +5442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)169L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MAHJONG_TILES = 170;
      * }
      */
@@ -5450,7 +5450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)170L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DOMINO_TILES = 171;
      * }
      */
@@ -5458,7 +5458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)171L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SAMARITAN = 172;
      * }
      */
@@ -5466,7 +5466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)172L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED = 173;
      * }
      */
@@ -5474,7 +5474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)173L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAI_THAM = 174;
      * }
      */
@@ -5482,7 +5482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)174L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_VEDIC_EXTENSIONS = 175;
      * }
      */
@@ -5490,7 +5490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)175L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LISU = 176;
      * }
      */
@@ -5498,7 +5498,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)176L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BAMUM = 177;
      * }
      */
@@ -5506,7 +5506,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)177L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COMMON_INDIC_NUMBER_FORMS = 178;
      * }
      */
@@ -5514,7 +5514,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)178L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DEVANAGARI_EXTENDED = 179;
      * }
      */
@@ -5522,7 +5522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)179L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HANGUL_JAMO_EXTENDED_A = 180;
      * }
      */
@@ -5530,7 +5530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)180L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_JAVANESE = 181;
      * }
      */
@@ -5538,7 +5538,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)181L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MYANMAR_EXTENDED_A = 182;
      * }
      */
@@ -5546,7 +5546,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)182L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAI_VIET = 183;
      * }
      */
@@ -5554,7 +5554,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)183L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MEETEI_MAYEK = 184;
      * }
      */
@@ -5562,7 +5562,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)184L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HANGUL_JAMO_EXTENDED_B = 185;
      * }
      */
@@ -5570,7 +5570,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)185L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_IMPERIAL_ARAMAIC = 186;
      * }
      */
@@ -5578,7 +5578,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)186L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_SOUTH_ARABIAN = 187;
      * }
      */
@@ -5586,7 +5586,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)187L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_AVESTAN = 188;
      * }
      */
@@ -5594,7 +5594,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)188L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_INSCRIPTIONAL_PARTHIAN = 189;
      * }
      */
@@ -5602,7 +5602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)189L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_INSCRIPTIONAL_PAHLAVI = 190;
      * }
      */
@@ -5610,7 +5610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)190L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_TURKIC = 191;
      * }
      */
@@ -5618,7 +5618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)191L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_RUMI_NUMERAL_SYMBOLS = 192;
      * }
      */
@@ -5626,7 +5626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)192L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KAITHI = 193;
      * }
      */
@@ -5634,7 +5634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)193L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_EGYPTIAN_HIEROGLYPHS = 194;
      * }
      */
@@ -5642,7 +5642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)194L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ENCLOSED_ALPHANUMERIC_SUPPLEMENT = 195;
      * }
      */
@@ -5650,7 +5650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)195L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ENCLOSED_IDEOGRAPHIC_SUPPLEMENT = 196;
      * }
      */
@@ -5658,7 +5658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)196L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C = 197;
      * }
      */
@@ -5666,7 +5666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)197L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MANDAIC = 198;
      * }
      */
@@ -5674,7 +5674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)198L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BATAK = 199;
      * }
      */
@@ -5682,7 +5682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)199L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ETHIOPIC_EXTENDED_A = 200;
      * }
      */
@@ -5690,7 +5690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)200L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BRAHMI = 201;
      * }
      */
@@ -5698,7 +5698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)201L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BAMUM_SUPPLEMENT = 202;
      * }
      */
@@ -5706,7 +5706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)202L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KANA_SUPPLEMENT = 203;
      * }
      */
@@ -5714,7 +5714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)203L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PLAYING_CARDS = 204;
      * }
      */
@@ -5722,7 +5722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)204L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS = 205;
      * }
      */
@@ -5730,7 +5730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)205L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_EMOTICONS = 206;
      * }
      */
@@ -5738,7 +5738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)206L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TRANSPORT_AND_MAP_SYMBOLS = 207;
      * }
      */
@@ -5746,7 +5746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)207L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ALCHEMICAL_SYMBOLS = 208;
      * }
      */
@@ -5754,7 +5754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)208L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D = 209;
      * }
      */
@@ -5762,7 +5762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)209L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARABIC_EXTENDED_A = 210;
      * }
      */
@@ -5770,7 +5770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)210L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS = 211;
      * }
      */
@@ -5778,7 +5778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)211L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CHAKMA = 212;
      * }
      */
@@ -5786,7 +5786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)212L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MEETEI_MAYEK_EXTENSIONS = 213;
      * }
      */
@@ -5794,7 +5794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)213L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MEROITIC_CURSIVE = 214;
      * }
      */
@@ -5802,7 +5802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)214L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MEROITIC_HIEROGLYPHS = 215;
      * }
      */
@@ -5810,7 +5810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)215L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MIAO = 216;
      * }
      */
@@ -5818,7 +5818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)216L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SHARADA = 217;
      * }
      */
@@ -5826,7 +5826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)217L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SORA_SOMPENG = 218;
      * }
      */
@@ -5834,7 +5834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)218L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUNDANESE_SUPPLEMENT = 219;
      * }
      */
@@ -5842,7 +5842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)219L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAKRI = 220;
      * }
      */
@@ -5850,7 +5850,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)220L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BASSA_VAH = 221;
      * }
      */
@@ -5858,7 +5858,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)221L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CAUCASIAN_ALBANIAN = 222;
      * }
      */
@@ -5866,7 +5866,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)222L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COPTIC_EPACT_NUMBERS = 223;
      * }
      */
@@ -5874,7 +5874,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)223L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COMBINING_DIACRITICAL_MARKS_EXTENDED = 224;
      * }
      */
@@ -5882,7 +5882,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)224L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DUPLOYAN = 225;
      * }
      */
@@ -5890,7 +5890,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)225L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ELBASAN = 226;
      * }
      */
@@ -5898,7 +5898,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)226L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GEOMETRIC_SHAPES_EXTENDED = 227;
      * }
      */
@@ -5906,7 +5906,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)227L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GRANTHA = 228;
      * }
      */
@@ -5914,7 +5914,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)228L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KHOJKI = 229;
      * }
      */
@@ -5922,7 +5922,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)229L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KHUDAWADI = 230;
      * }
      */
@@ -5930,7 +5930,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)230L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_E = 231;
      * }
      */
@@ -5938,7 +5938,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)231L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LINEAR_A = 232;
      * }
      */
@@ -5946,7 +5946,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)232L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MAHAJANI = 233;
      * }
      */
@@ -5954,7 +5954,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)233L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MANICHAEAN = 234;
      * }
      */
@@ -5962,7 +5962,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)234L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MENDE_KIKAKUI = 235;
      * }
      */
@@ -5970,7 +5970,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)235L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MODI = 236;
      * }
      */
@@ -5978,7 +5978,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)236L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MRO = 237;
      * }
      */
@@ -5986,7 +5986,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)237L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MYANMAR_EXTENDED_B = 238;
      * }
      */
@@ -5994,7 +5994,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)238L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NABATAEAN = 239;
      * }
      */
@@ -6002,7 +6002,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)239L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_NORTH_ARABIAN = 240;
      * }
      */
@@ -6010,7 +6010,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)240L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_PERMIC = 241;
      * }
      */
@@ -6018,7 +6018,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)241L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ORNAMENTAL_DINGBATS = 242;
      * }
      */
@@ -6026,7 +6026,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)242L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PAHAWH_HMONG = 243;
      * }
      */
@@ -6034,7 +6034,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)243L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PALMYRENE = 244;
      * }
      */
@@ -6042,7 +6042,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)244L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PAU_CIN_HAU = 245;
      * }
      */
@@ -6050,7 +6050,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)245L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_PSALTER_PAHLAVI = 246;
      * }
      */
@@ -6058,7 +6058,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)246L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SHORTHAND_FORMAT_CONTROLS = 247;
      * }
      */
@@ -6066,7 +6066,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)247L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SIDDHAM = 248;
      * }
      */
@@ -6074,7 +6074,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)248L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SINHALA_ARCHAIC_NUMBERS = 249;
      * }
      */
@@ -6082,7 +6082,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)249L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTAL_ARROWS_C = 250;
      * }
      */
@@ -6090,7 +6090,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)250L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TIRHUTA = 251;
      * }
      */
@@ -6098,7 +6098,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)251L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_WARANG_CITI = 252;
      * }
      */
@@ -6106,7 +6106,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)252L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_AHOM = 253;
      * }
      */
@@ -6114,7 +6114,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)253L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ANATOLIAN_HIEROGLYPHS = 254;
      * }
      */
@@ -6122,7 +6122,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)254L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CHEROKEE_SUPPLEMENT = 255;
      * }
      */
@@ -6130,7 +6130,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)255L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E = 256;
      * }
      */
@@ -6138,7 +6138,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)256L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_EARLY_DYNASTIC_CUNEIFORM = 257;
      * }
      */
@@ -6146,7 +6146,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)257L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HATRAN = 258;
      * }
      */
@@ -6154,7 +6154,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)258L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MULTANI = 259;
      * }
      */
@@ -6162,7 +6162,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)259L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_HUNGARIAN = 260;
      * }
      */
@@ -6170,7 +6170,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)260L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS = 261;
      * }
      */
@@ -6178,7 +6178,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)261L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SUTTON_SIGNWRITING = 262;
      * }
      */
@@ -6186,7 +6186,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)262L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ADLAM = 263;
      * }
      */
@@ -6194,7 +6194,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)263L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_BHAIKSUKI = 264;
      * }
      */
@@ -6202,7 +6202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)264L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYRILLIC_EXTENDED_C = 265;
      * }
      */
@@ -6210,7 +6210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)265L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GLAGOLITIC_SUPPLEMENT = 266;
      * }
      */
@@ -6218,7 +6218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)266L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION = 267;
      * }
      */
@@ -6226,7 +6226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)267L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MARCHEN = 268;
      * }
      */
@@ -6234,7 +6234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)268L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MONGOLIAN_SUPPLEMENT = 269;
      * }
      */
@@ -6242,7 +6242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)269L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NEWA = 270;
      * }
      */
@@ -6250,7 +6250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)270L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OSAGE = 271;
      * }
      */
@@ -6258,7 +6258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)271L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TANGUT = 272;
      * }
      */
@@ -6266,7 +6266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)272L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TANGUT_COMPONENTS = 273;
      * }
      */
@@ -6274,7 +6274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)273L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_F = 274;
      * }
      */
@@ -6282,7 +6282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)274L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KANA_EXTENDED_A = 275;
      * }
      */
@@ -6290,7 +6290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)275L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MASARAM_GONDI = 276;
      * }
      */
@@ -6298,7 +6298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)276L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NUSHU = 277;
      * }
      */
@@ -6306,7 +6306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)277L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SOYOMBO = 278;
      * }
      */
@@ -6314,7 +6314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)278L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SYRIAC_SUPPLEMENT = 279;
      * }
      */
@@ -6322,7 +6322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)279L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ZANABAZAR_SQUARE = 280;
      * }
      */
@@ -6330,7 +6330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)280L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CHESS_SYMBOLS = 281;
      * }
      */
@@ -6338,7 +6338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)281L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DOGRA = 282;
      * }
      */
@@ -6346,7 +6346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)282L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GEORGIAN_EXTENDED = 283;
      * }
      */
@@ -6354,7 +6354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)283L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_GUNJALA_GONDI = 284;
      * }
      */
@@ -6362,7 +6362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)284L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_HANIFI_ROHINGYA = 285;
      * }
      */
@@ -6370,7 +6370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)285L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_INDIC_SIYAQ_NUMBERS = 286;
      * }
      */
@@ -6378,7 +6378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)286L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MAKASAR = 287;
      * }
      */
@@ -6386,7 +6386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)287L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MAYAN_NUMERALS = 288;
      * }
      */
@@ -6394,7 +6394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)288L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_MEDEFAIDRIN = 289;
      * }
      */
@@ -6402,7 +6402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)289L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_SOGDIAN = 290;
      * }
      */
@@ -6410,7 +6410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)290L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SOGDIAN = 291;
      * }
      */
@@ -6418,7 +6418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)291L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_EGYPTIAN_HIEROGLYPH_FORMAT_CONTROLS = 292;
      * }
      */
@@ -6426,7 +6426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)292L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ELYMAIC = 293;
      * }
      */
@@ -6434,7 +6434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)293L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NANDINAGARI = 294;
      * }
      */
@@ -6442,7 +6442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)294L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_NYIAKENG_PUACHUE_HMONG = 295;
      * }
      */
@@ -6450,7 +6450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)295L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OTTOMAN_SIYAQ_NUMBERS = 296;
      * }
      */
@@ -6458,7 +6458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)296L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SMALL_KANA_EXTENSION = 297;
      * }
      */
@@ -6466,7 +6466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)297L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SYMBOLS_AND_PICTOGRAPHS_EXTENDED_A = 298;
      * }
      */
@@ -6474,7 +6474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)298L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TAMIL_SUPPLEMENT = 299;
      * }
      */
@@ -6482,7 +6482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)299L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_WANCHO = 300;
      * }
      */
@@ -6490,7 +6490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)300L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CHORASMIAN = 301;
      * }
      */
@@ -6498,7 +6498,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)301L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G = 302;
      * }
      */
@@ -6506,7 +6506,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)302L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_DIVES_AKURU = 303;
      * }
      */
@@ -6514,7 +6514,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)303L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KHITAN_SMALL_SCRIPT = 304;
      * }
      */
@@ -6522,7 +6522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)304L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LISU_SUPPLEMENT = 305;
      * }
      */
@@ -6530,7 +6530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)305L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_SYMBOLS_FOR_LEGACY_COMPUTING = 306;
      * }
      */
@@ -6538,7 +6538,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)306L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TANGUT_SUPPLEMENT = 307;
      * }
      */
@@ -6546,7 +6546,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)307L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_YEZIDI = 308;
      * }
      */
@@ -6554,7 +6554,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)308L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ARABIC_EXTENDED_B = 309;
      * }
      */
@@ -6562,7 +6562,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)309L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_CYPRO_MINOAN = 310;
      * }
      */
@@ -6570,7 +6570,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)310L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ETHIOPIC_EXTENDED_B = 311;
      * }
      */
@@ -6578,7 +6578,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)311L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_KANA_EXTENDED_B = 312;
      * }
      */
@@ -6586,7 +6586,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)312L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_F = 313;
      * }
      */
@@ -6594,7 +6594,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)313L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_LATIN_EXTENDED_G = 314;
      * }
      */
@@ -6602,7 +6602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)314L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_OLD_UYGHUR = 315;
      * }
      */
@@ -6610,7 +6610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)315L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TANGSA = 316;
      * }
      */
@@ -6618,7 +6618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)316L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_TOTO = 317;
      * }
      */
@@ -6626,7 +6626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)317L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A = 318;
      * }
      */
@@ -6634,7 +6634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)318L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_VITHKUQI = 319;
      * }
      */
@@ -6642,7 +6642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)319L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_ZNAMENNY_MUSICAL_NOTATION = 320;
      * }
      */
@@ -6650,7 +6650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)320L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_COUNT = 321;
      * }
      */
@@ -6658,7 +6658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)321L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UBlockCode.UBLOCK_INVALID_CODE = -1;
      * }
      */
@@ -6666,7 +6666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)-1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UEastAsianWidth.U_EA_NEUTRAL = 0;
      * }
      */
@@ -6674,7 +6674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UEastAsianWidth.U_EA_AMBIGUOUS = 1;
      * }
      */
@@ -6682,7 +6682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UEastAsianWidth.U_EA_HALFWIDTH = 2;
      * }
      */
@@ -6690,7 +6690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UEastAsianWidth.U_EA_FULLWIDTH = 3;
      * }
      */
@@ -6698,7 +6698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UEastAsianWidth.U_EA_NARROW = 4;
      * }
      */
@@ -6706,7 +6706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UEastAsianWidth.U_EA_WIDE = 5;
      * }
      */
@@ -6714,7 +6714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UEastAsianWidth.U_EA_COUNT = 6;
      * }
      */
@@ -6722,7 +6722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharNameChoice.U_UNICODE_CHAR_NAME = 0;
      * }
      */
@@ -6730,7 +6730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharNameChoice.U_UNICODE_10_CHAR_NAME = 1;
      * }
      */
@@ -6738,7 +6738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharNameChoice.U_EXTENDED_CHAR_NAME = 2;
      * }
      */
@@ -6746,7 +6746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharNameChoice.U_CHAR_NAME_ALIAS = 3;
      * }
      */
@@ -6754,7 +6754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UCharNameChoice.U_CHAR_NAME_CHOICE_COUNT = 4;
      * }
      */
@@ -6762,7 +6762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UPropertyNameChoice.U_SHORT_PROPERTY_NAME = 0;
      * }
      */
@@ -6770,7 +6770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UPropertyNameChoice.U_LONG_PROPERTY_NAME = 1;
      * }
      */
@@ -6778,7 +6778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UPropertyNameChoice.U_PROPERTY_NAME_CHOICE_COUNT = 2;
      * }
      */
@@ -6786,7 +6786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_NONE = 0;
      * }
      */
@@ -6794,7 +6794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_CANONICAL = 1;
      * }
      */
@@ -6802,7 +6802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_COMPAT = 2;
      * }
      */
@@ -6810,7 +6810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_CIRCLE = 3;
      * }
      */
@@ -6818,7 +6818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_FINAL = 4;
      * }
      */
@@ -6826,7 +6826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_FONT = 5;
      * }
      */
@@ -6834,7 +6834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_FRACTION = 6;
      * }
      */
@@ -6842,7 +6842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_INITIAL = 7;
      * }
      */
@@ -6850,7 +6850,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_ISOLATED = 8;
      * }
      */
@@ -6858,7 +6858,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_MEDIAL = 9;
      * }
      */
@@ -6866,7 +6866,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_NARROW = 10;
      * }
      */
@@ -6874,7 +6874,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_NOBREAK = 11;
      * }
      */
@@ -6882,7 +6882,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_SMALL = 12;
      * }
      */
@@ -6890,7 +6890,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_SQUARE = 13;
      * }
      */
@@ -6898,7 +6898,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_SUB = 14;
      * }
      */
@@ -6906,7 +6906,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_SUPER = 15;
      * }
      */
@@ -6914,7 +6914,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_VERTICAL = 16;
      * }
      */
@@ -6922,7 +6922,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_WIDE = 17;
      * }
      */
@@ -6930,7 +6930,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UDecompositionType.U_DT_COUNT = 18;
      * }
      */
@@ -6938,7 +6938,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningType.U_JT_NON_JOINING = 0;
      * }
      */
@@ -6946,7 +6946,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningType.U_JT_JOIN_CAUSING = 1;
      * }
      */
@@ -6954,7 +6954,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningType.U_JT_DUAL_JOINING = 2;
      * }
      */
@@ -6962,7 +6962,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningType.U_JT_LEFT_JOINING = 3;
      * }
      */
@@ -6970,7 +6970,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningType.U_JT_RIGHT_JOINING = 4;
      * }
      */
@@ -6978,7 +6978,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningType.U_JT_TRANSPARENT = 5;
      * }
      */
@@ -6986,7 +6986,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningType.U_JT_COUNT = 6;
      * }
      */
@@ -6994,7 +6994,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_NO_JOINING_GROUP = 0;
      * }
      */
@@ -7002,7 +7002,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_AIN = 1;
      * }
      */
@@ -7010,7 +7010,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_ALAPH = 2;
      * }
      */
@@ -7018,7 +7018,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_ALEF = 3;
      * }
      */
@@ -7026,7 +7026,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_BEH = 4;
      * }
      */
@@ -7034,7 +7034,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_BETH = 5;
      * }
      */
@@ -7042,7 +7042,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_DAL = 6;
      * }
      */
@@ -7050,7 +7050,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_DALATH_RISH = 7;
      * }
      */
@@ -7058,7 +7058,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_E = 8;
      * }
      */
@@ -7066,7 +7066,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_FEH = 9;
      * }
      */
@@ -7074,7 +7074,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_FINAL_SEMKATH = 10;
      * }
      */
@@ -7082,7 +7082,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_GAF = 11;
      * }
      */
@@ -7090,7 +7090,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_GAMAL = 12;
      * }
      */
@@ -7098,7 +7098,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HAH = 13;
      * }
      */
@@ -7106,7 +7106,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_TEH_MARBUTA_GOAL = 14;
      * }
      */
@@ -7114,7 +7114,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HAMZA_ON_HEH_GOAL = 14;
      * }
      */
@@ -7122,7 +7122,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HE = 15;
      * }
      */
@@ -7130,7 +7130,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HEH = 16;
      * }
      */
@@ -7138,7 +7138,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HEH_GOAL = 17;
      * }
      */
@@ -7146,7 +7146,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HETH = 18;
      * }
      */
@@ -7154,7 +7154,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_KAF = 19;
      * }
      */
@@ -7162,7 +7162,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_KAPH = 20;
      * }
      */
@@ -7170,7 +7170,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_KNOTTED_HEH = 21;
      * }
      */
@@ -7178,7 +7178,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_LAM = 22;
      * }
      */
@@ -7186,7 +7186,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_LAMADH = 23;
      * }
      */
@@ -7194,7 +7194,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MEEM = 24;
      * }
      */
@@ -7202,7 +7202,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MIM = 25;
      * }
      */
@@ -7210,7 +7210,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)25L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_NOON = 26;
      * }
      */
@@ -7218,7 +7218,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)26L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_NUN = 27;
      * }
      */
@@ -7226,7 +7226,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)27L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_PE = 28;
      * }
      */
@@ -7234,7 +7234,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)28L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_QAF = 29;
      * }
      */
@@ -7242,7 +7242,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)29L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_QAPH = 30;
      * }
      */
@@ -7250,7 +7250,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)30L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_REH = 31;
      * }
      */
@@ -7258,7 +7258,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)31L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_REVERSED_PE = 32;
      * }
      */
@@ -7266,7 +7266,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_SAD = 33;
      * }
      */
@@ -7274,7 +7274,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)33L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_SADHE = 34;
      * }
      */
@@ -7282,7 +7282,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)34L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_SEEN = 35;
      * }
      */
@@ -7290,7 +7290,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)35L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_SEMKATH = 36;
      * }
      */
@@ -7298,7 +7298,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)36L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_SHIN = 37;
      * }
      */
@@ -7306,7 +7306,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)37L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_SWASH_KAF = 38;
      * }
      */
@@ -7314,7 +7314,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)38L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_SYRIAC_WAW = 39;
      * }
      */
@@ -7322,7 +7322,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)39L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_TAH = 40;
      * }
      */
@@ -7330,7 +7330,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)40L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_TAW = 41;
      * }
      */
@@ -7338,7 +7338,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)41L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_TEH_MARBUTA = 42;
      * }
      */
@@ -7346,7 +7346,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)42L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_TETH = 43;
      * }
      */
@@ -7354,7 +7354,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)43L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_WAW = 44;
      * }
      */
@@ -7362,7 +7362,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)44L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_YEH = 45;
      * }
      */
@@ -7370,7 +7370,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)45L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_YEH_BARREE = 46;
      * }
      */
@@ -7378,7 +7378,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)46L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_YEH_WITH_TAIL = 47;
      * }
      */
@@ -7386,7 +7386,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)47L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_YUDH = 48;
      * }
      */
@@ -7394,7 +7394,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)48L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_YUDH_HE = 49;
      * }
      */
@@ -7402,7 +7402,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)49L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_ZAIN = 50;
      * }
      */
@@ -7410,7 +7410,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)50L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_FE = 51;
      * }
      */
@@ -7418,7 +7418,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)51L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_KHAPH = 52;
      * }
      */
@@ -7426,7 +7426,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)52L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_ZHAIN = 53;
      * }
      */
@@ -7434,7 +7434,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)53L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_BURUSHASKI_YEH_BARREE = 54;
      * }
      */
@@ -7442,7 +7442,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)54L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_FARSI_YEH = 55;
      * }
      */
@@ -7450,7 +7450,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)55L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_NYA = 56;
      * }
      */
@@ -7458,7 +7458,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)56L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_ROHINGYA_YEH = 57;
      * }
      */
@@ -7466,7 +7466,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)57L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_ALEPH = 58;
      * }
      */
@@ -7474,7 +7474,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)58L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_AYIN = 59;
      * }
      */
@@ -7482,7 +7482,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)59L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_BETH = 60;
      * }
      */
@@ -7490,7 +7490,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)60L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_DALETH = 61;
      * }
      */
@@ -7498,7 +7498,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)61L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_DHAMEDH = 62;
      * }
      */
@@ -7506,7 +7506,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)62L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_FIVE = 63;
      * }
      */
@@ -7514,7 +7514,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)63L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_GIMEL = 64;
      * }
      */
@@ -7522,7 +7522,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)64L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_HETH = 65;
      * }
      */
@@ -7530,7 +7530,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)65L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_HUNDRED = 66;
      * }
      */
@@ -7538,7 +7538,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)66L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_KAPH = 67;
      * }
      */
@@ -7546,7 +7546,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)67L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_LAMEDH = 68;
      * }
      */
@@ -7554,7 +7554,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)68L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_MEM = 69;
      * }
      */
@@ -7562,7 +7562,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)69L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_NUN = 70;
      * }
      */
@@ -7570,7 +7570,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)70L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_ONE = 71;
      * }
      */
@@ -7578,7 +7578,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)71L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_PE = 72;
      * }
      */
@@ -7586,7 +7586,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)72L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_QOPH = 73;
      * }
      */
@@ -7594,7 +7594,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)73L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_RESH = 74;
      * }
      */
@@ -7602,7 +7602,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)74L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_SADHE = 75;
      * }
      */
@@ -7610,7 +7610,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)75L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_SAMEKH = 76;
      * }
      */
@@ -7618,7 +7618,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)76L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_TAW = 77;
      * }
      */
@@ -7626,7 +7626,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)77L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_TEN = 78;
      * }
      */
@@ -7634,7 +7634,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)78L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_TETH = 79;
      * }
      */
@@ -7642,7 +7642,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)79L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_THAMEDH = 80;
      * }
      */
@@ -7650,7 +7650,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)80L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_TWENTY = 81;
      * }
      */
@@ -7658,7 +7658,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)81L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_WAW = 82;
      * }
      */
@@ -7666,7 +7666,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)82L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_YODH = 83;
      * }
      */
@@ -7674,7 +7674,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)83L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MANICHAEAN_ZAYIN = 84;
      * }
      */
@@ -7682,7 +7682,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)84L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_STRAIGHT_WAW = 85;
      * }
      */
@@ -7690,7 +7690,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)85L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_AFRICAN_FEH = 86;
      * }
      */
@@ -7698,7 +7698,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)86L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_AFRICAN_NOON = 87;
      * }
      */
@@ -7706,7 +7706,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)87L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_AFRICAN_QAF = 88;
      * }
      */
@@ -7714,7 +7714,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)88L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_BHA = 89;
      * }
      */
@@ -7722,7 +7722,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)89L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_JA = 90;
      * }
      */
@@ -7730,7 +7730,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)90L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_LLA = 91;
      * }
      */
@@ -7738,7 +7738,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)91L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_LLLA = 92;
      * }
      */
@@ -7746,7 +7746,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)92L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_NGA = 93;
      * }
      */
@@ -7754,7 +7754,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)93L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_NNA = 94;
      * }
      */
@@ -7762,7 +7762,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)94L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_NNNA = 95;
      * }
      */
@@ -7770,7 +7770,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)95L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_NYA = 96;
      * }
      */
@@ -7778,7 +7778,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)96L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_RA = 97;
      * }
      */
@@ -7786,7 +7786,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)97L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_SSA = 98;
      * }
      */
@@ -7794,7 +7794,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)98L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_MALAYALAM_TTA = 99;
      * }
      */
@@ -7802,7 +7802,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)99L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HANIFI_ROHINGYA_KINNA_YA = 100;
      * }
      */
@@ -7810,7 +7810,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)100L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_HANIFI_ROHINGYA_PA = 101;
      * }
      */
@@ -7818,7 +7818,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)101L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_THIN_YEH = 102;
      * }
      */
@@ -7826,7 +7826,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)102L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_VERTICAL_TAIL = 103;
      * }
      */
@@ -7834,7 +7834,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)103L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UJoiningGroup.U_JG_COUNT = 104;
      * }
      */
@@ -7842,7 +7842,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)104L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_OTHER = 0;
      * }
      */
@@ -7850,7 +7850,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_CONTROL = 1;
      * }
      */
@@ -7858,7 +7858,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_CR = 2;
      * }
      */
@@ -7866,7 +7866,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_EXTEND = 3;
      * }
      */
@@ -7874,7 +7874,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_L = 4;
      * }
      */
@@ -7882,7 +7882,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_LF = 5;
      * }
      */
@@ -7890,7 +7890,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_LV = 6;
      * }
      */
@@ -7898,7 +7898,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_LVT = 7;
      * }
      */
@@ -7906,7 +7906,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_T = 8;
      * }
      */
@@ -7914,7 +7914,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_V = 9;
      * }
      */
@@ -7922,7 +7922,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_SPACING_MARK = 10;
      * }
      */
@@ -7930,7 +7930,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_PREPEND = 11;
      * }
      */
@@ -7938,7 +7938,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_REGIONAL_INDICATOR = 12;
      * }
      */
@@ -7946,7 +7946,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_E_BASE = 13;
      * }
      */
@@ -7954,7 +7954,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_E_BASE_GAZ = 14;
      * }
      */
@@ -7962,7 +7962,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_E_MODIFIER = 15;
      * }
      */
@@ -7970,7 +7970,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_GLUE_AFTER_ZWJ = 16;
      * }
      */
@@ -7978,7 +7978,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_ZWJ = 17;
      * }
      */
@@ -7986,7 +7986,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UGraphemeClusterBreak.U_GCB_COUNT = 18;
      * }
      */
@@ -7994,7 +7994,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_OTHER = 0;
      * }
      */
@@ -8002,7 +8002,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_ALETTER = 1;
      * }
      */
@@ -8010,7 +8010,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_FORMAT = 2;
      * }
      */
@@ -8018,7 +8018,7 @@ public class uregex_h extends uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_KATAKANA = 3;
      * }
      */

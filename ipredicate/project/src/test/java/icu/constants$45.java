@@ -11,37 +11,30 @@ final class constants$45 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$45() {}
-    static final FunctionDescriptor const$0 = FunctionDescriptor.of(JAVA_INT,
+    static final FunctionDescriptor const$0 = FunctionDescriptor.ofVoid(
         RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        JAVA_INT,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
+        JAVA_BYTE,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_appendReplacement_70",
+        "uregex_useTransparentBounds_70",
         constants$45.const$0
     );
-    static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER
+    static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
+        "uregex_hasAnchoringBounds_70",
+        constants$18.const$5
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_appendReplacementUText_70",
-        constants$45.const$2
+        "uregex_useAnchoringBounds_70",
+        constants$45.const$0
     );
-    static final FunctionDescriptor const$4 = FunctionDescriptor.of(JAVA_INT,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER
+    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
+        "uregex_hitEnd_70",
+        constants$18.const$5
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_appendTail_70",
-        constants$45.const$4
+        "uregex_requireEnd_70",
+        constants$18.const$5
     );
 }
 

@@ -11,12 +11,37 @@ final class constants$30 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$30() {}
-    static final VarHandle const$0 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("nativeIndexingLimit"));
-    static final VarHandle const$1 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkNativeStart"));
-    static final VarHandle const$2 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkOffset"));
-    static final VarHandle const$3 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkLength"));
-    static final VarHandle const$4 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkContents"));
-    static final VarHandle const$5 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("pFuncs"));
+    static final VarHandle const$0 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("spare1"));
+    static final MethodHandle const$1 = RuntimeHelper.upcallHandle(UTextFuncs.spare2.class, "apply", constants$1.const$0);
+    static final VarHandle const$2 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("spare2"));
+    static final MethodHandle const$3 = RuntimeHelper.upcallHandle(UTextFuncs.spare3.class, "apply", constants$1.const$0);
+    static final VarHandle const$4 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("spare3"));
+    static final StructLayout const$5 = MemoryLayout.structLayout(
+        JAVA_INT.withName("magic"),
+        JAVA_INT.withName("flags"),
+        JAVA_INT.withName("providerProperties"),
+        JAVA_INT.withName("sizeOfStruct"),
+        JAVA_LONG.withName("chunkNativeLimit"),
+        JAVA_INT.withName("extraSize"),
+        JAVA_INT.withName("nativeIndexingLimit"),
+        JAVA_LONG.withName("chunkNativeStart"),
+        JAVA_INT.withName("chunkOffset"),
+        JAVA_INT.withName("chunkLength"),
+        RuntimeHelper.POINTER.withName("chunkContents"),
+        RuntimeHelper.POINTER.withName("pFuncs"),
+        RuntimeHelper.POINTER.withName("pExtra"),
+        RuntimeHelper.POINTER.withName("context"),
+        RuntimeHelper.POINTER.withName("p"),
+        RuntimeHelper.POINTER.withName("q"),
+        RuntimeHelper.POINTER.withName("r"),
+        RuntimeHelper.POINTER.withName("privP"),
+        JAVA_LONG.withName("a"),
+        JAVA_INT.withName("b"),
+        JAVA_INT.withName("c"),
+        JAVA_LONG.withName("privA"),
+        JAVA_INT.withName("privB"),
+        JAVA_INT.withName("privC")
+    ).withName("UText");
 }
 
 

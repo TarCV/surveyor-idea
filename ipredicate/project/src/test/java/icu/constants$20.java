@@ -13,15 +13,15 @@ final class constants$20 {
     private constants$20() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
         "utext_current32_70",
-        constants$14.const$0
+        constants$14.const$2
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
         "utext_next32_70",
-        constants$14.const$0
+        constants$14.const$2
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
         "utext_previous32_70",
-        constants$14.const$0
+        constants$14.const$2
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
         "utext_next32From_70",

@@ -11,12 +11,12 @@ final class constants$27 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$27() {}
-    static final VarHandle const$0 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("nativeLength"));
-    static final VarHandle const$1 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("access"));
-    static final VarHandle const$2 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("extract"));
-    static final VarHandle const$3 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("replace"));
-    static final VarHandle const$4 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("copy"));
-    static final VarHandle const$5 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("mapOffsetToNative"));
+    static final VarHandle const$0 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("clone"));
+    static final MethodHandle const$1 = RuntimeHelper.upcallHandle(UTextFuncs.nativeLength.class, "apply", constants$19.const$0);
+    static final VarHandle const$2 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("nativeLength"));
+    static final MethodHandle const$3 = RuntimeHelper.upcallHandle(UTextFuncs.access.class, "apply", constants$23.const$5);
+    static final VarHandle const$4 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("access"));
+    static final MethodHandle const$5 = RuntimeHelper.upcallHandle(UTextFuncs.extract.class, "apply", constants$21.const$5);
 }
 
 

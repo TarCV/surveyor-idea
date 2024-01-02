@@ -11,34 +11,35 @@ final class constants$46 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$46() {}
-    static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "uregex_appendTailUText_70",
-        constants$35.const$0
-    );
-    static final FunctionDescriptor const$1 = FunctionDescriptor.of(JAVA_INT,
+    static final FunctionDescriptor const$0 = FunctionDescriptor.of(JAVA_INT,
         RuntimeHelper.POINTER,
         RuntimeHelper.POINTER,
         JAVA_INT,
-        RuntimeHelper.POINTER,
         RuntimeHelper.POINTER,
         JAVA_INT,
         RuntimeHelper.POINTER
     );
-    static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_split_70",
-        constants$46.const$1
+    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
+        "uregex_replaceAll_70",
+        constants$46.const$0
+    );
+    static final FunctionDescriptor const$2 = FunctionDescriptor.of(RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER,
+        RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_splitUText_70",
-        constants$38.const$2
+        "uregex_replaceAllUText_70",
+        constants$46.const$2
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_setTimeLimit_70",
-        constants$40.const$2
+        "uregex_replaceFirst_70",
+        constants$46.const$0
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_getTimeLimit_70",
-        constants$35.const$3
+        "uregex_replaceFirstUText_70",
+        constants$46.const$2
     );
 }
 

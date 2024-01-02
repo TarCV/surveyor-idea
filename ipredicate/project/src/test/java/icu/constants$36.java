@@ -11,35 +11,31 @@ final class constants$36 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$36() {}
-    static final FunctionDescriptor const$0 = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor const$0 = FunctionDescriptor.of(RuntimeHelper.POINTER,
         RuntimeHelper.POINTER,
+        JAVA_INT,
         RuntimeHelper.POINTER,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_setUText_70",
+        "uregex_openUText_70",
         constants$36.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_getText_70",
-        constants$35.const$0
-    );
-    static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_getUText_70",
-        constants$35.const$0
-    );
-    static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_refreshUText_70",
+        "uregex_openC_70",
         constants$36.const$0
     );
-    static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_BYTE,
+    static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
+        "uregex_close_70",
+        constants$1.const$0
+    );
+    static final FunctionDescriptor const$4 = FunctionDescriptor.of(RuntimeHelper.POINTER,
         RuntimeHelper.POINTER,
-        JAVA_INT,
         RuntimeHelper.POINTER
     );
-    static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "uregex_matches_70",
-        constants$36.const$5
+    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
+        "uregex_clone_70",
+        constants$36.const$4
     );
 }
 

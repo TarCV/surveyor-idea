@@ -11,37 +11,12 @@ final class constants$28 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$28() {}
-    static final VarHandle const$0 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("mapNativeIndexToUTF16"));
-    static final VarHandle const$1 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("close"));
-    static final VarHandle const$2 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("spare1"));
-    static final VarHandle const$3 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("spare2"));
-    static final VarHandle const$4 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("spare3"));
-    static final StructLayout const$5 = MemoryLayout.structLayout(
-        JAVA_INT.withName("magic"),
-        JAVA_INT.withName("flags"),
-        JAVA_INT.withName("providerProperties"),
-        JAVA_INT.withName("sizeOfStruct"),
-        JAVA_LONG.withName("chunkNativeLimit"),
-        JAVA_INT.withName("extraSize"),
-        JAVA_INT.withName("nativeIndexingLimit"),
-        JAVA_LONG.withName("chunkNativeStart"),
-        JAVA_INT.withName("chunkOffset"),
-        JAVA_INT.withName("chunkLength"),
-        RuntimeHelper.POINTER.withName("chunkContents"),
-        RuntimeHelper.POINTER.withName("pFuncs"),
-        RuntimeHelper.POINTER.withName("pExtra"),
-        RuntimeHelper.POINTER.withName("context"),
-        RuntimeHelper.POINTER.withName("p"),
-        RuntimeHelper.POINTER.withName("q"),
-        RuntimeHelper.POINTER.withName("r"),
-        RuntimeHelper.POINTER.withName("privP"),
-        JAVA_LONG.withName("a"),
-        JAVA_INT.withName("b"),
-        JAVA_INT.withName("c"),
-        JAVA_LONG.withName("privA"),
-        JAVA_INT.withName("privB"),
-        JAVA_INT.withName("privC")
-    ).withName("UText");
+    static final VarHandle const$0 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("extract"));
+    static final MethodHandle const$1 = RuntimeHelper.upcallHandle(UTextFuncs.replace.class, "apply", constants$21.const$5);
+    static final VarHandle const$2 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("replace"));
+    static final MethodHandle const$3 = RuntimeHelper.upcallHandle(UTextFuncs.copy.class, "apply", constants$22.const$3);
+    static final VarHandle const$4 = constants$26.const$0.varHandle(MemoryLayout.PathElement.groupElement("copy"));
+    static final MethodHandle const$5 = RuntimeHelper.upcallHandle(UTextFuncs.mapOffsetToNative.class, "apply", constants$19.const$0);
 }
 
 

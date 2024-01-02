@@ -10,7 +10,7 @@ import static java.lang.foreign.ValueLayout.*;
 public class uregex_h_1 {
 
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_MIDLETTER = 4;
      * }
      */
@@ -18,7 +18,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_MIDNUM = 5;
      * }
      */
@@ -26,7 +26,7 @@ public class uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_NUMERIC = 6;
      * }
      */
@@ -34,7 +34,7 @@ public class uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_EXTENDNUMLET = 7;
      * }
      */
@@ -42,7 +42,7 @@ public class uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_CR = 8;
      * }
      */
@@ -50,7 +50,7 @@ public class uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_EXTEND = 9;
      * }
      */
@@ -58,7 +58,7 @@ public class uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_LF = 10;
      * }
      */
@@ -66,7 +66,7 @@ public class uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_MIDNUMLET = 11;
      * }
      */
@@ -74,7 +74,7 @@ public class uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_NEWLINE = 12;
      * }
      */
@@ -82,7 +82,7 @@ public class uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_REGIONAL_INDICATOR = 13;
      * }
      */
@@ -90,7 +90,7 @@ public class uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_HEBREW_LETTER = 14;
      * }
      */
@@ -98,7 +98,7 @@ public class uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_SINGLE_QUOTE = 15;
      * }
      */
@@ -106,7 +106,7 @@ public class uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_DOUBLE_QUOTE = 16;
      * }
      */
@@ -114,7 +114,7 @@ public class uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_E_BASE = 17;
      * }
      */
@@ -122,7 +122,7 @@ public class uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_E_BASE_GAZ = 18;
      * }
      */
@@ -130,7 +130,7 @@ public class uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_E_MODIFIER = 19;
      * }
      */
@@ -138,7 +138,7 @@ public class uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_GLUE_AFTER_ZWJ = 20;
      * }
      */
@@ -146,7 +146,7 @@ public class uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_ZWJ = 21;
      * }
      */
@@ -154,7 +154,7 @@ public class uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_WSEGSPACE = 22;
      * }
      */
@@ -162,7 +162,7 @@ public class uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_COUNT = 23;
      * }
      */
@@ -170,7 +170,7 @@ public class uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_OTHER = 0;
      * }
      */
@@ -178,7 +178,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_ATERM = 1;
      * }
      */
@@ -186,7 +186,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_CLOSE = 2;
      * }
      */
@@ -194,7 +194,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_FORMAT = 3;
      * }
      */
@@ -202,7 +202,7 @@ public class uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_LOWER = 4;
      * }
      */
@@ -210,7 +210,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_NUMERIC = 5;
      * }
      */
@@ -218,7 +218,7 @@ public class uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_OLETTER = 6;
      * }
      */
@@ -226,7 +226,7 @@ public class uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_SEP = 7;
      * }
      */
@@ -234,7 +234,7 @@ public class uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_SP = 8;
      * }
      */
@@ -242,7 +242,7 @@ public class uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_STERM = 9;
      * }
      */
@@ -250,7 +250,7 @@ public class uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_UPPER = 10;
      * }
      */
@@ -258,7 +258,7 @@ public class uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_CR = 11;
      * }
      */
@@ -266,7 +266,7 @@ public class uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_EXTEND = 12;
      * }
      */
@@ -274,7 +274,7 @@ public class uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_LF = 13;
      * }
      */
@@ -282,7 +282,7 @@ public class uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_SCONTINUE = 14;
      * }
      */
@@ -290,7 +290,7 @@ public class uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum USentenceBreak.U_SB_COUNT = 15;
      * }
      */
@@ -298,7 +298,7 @@ public class uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_UNKNOWN = 0;
      * }
      */
@@ -306,7 +306,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_AMBIGUOUS = 1;
      * }
      */
@@ -314,7 +314,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_ALPHABETIC = 2;
      * }
      */
@@ -322,7 +322,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_BREAK_BOTH = 3;
      * }
      */
@@ -330,7 +330,7 @@ public class uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_BREAK_AFTER = 4;
      * }
      */
@@ -338,7 +338,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_BREAK_BEFORE = 5;
      * }
      */
@@ -346,7 +346,7 @@ public class uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_MANDATORY_BREAK = 6;
      * }
      */
@@ -354,7 +354,7 @@ public class uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_CONTINGENT_BREAK = 7;
      * }
      */
@@ -362,7 +362,7 @@ public class uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_CLOSE_PUNCTUATION = 8;
      * }
      */
@@ -370,7 +370,7 @@ public class uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_COMBINING_MARK = 9;
      * }
      */
@@ -378,7 +378,7 @@ public class uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_CARRIAGE_RETURN = 10;
      * }
      */
@@ -386,7 +386,7 @@ public class uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_EXCLAMATION = 11;
      * }
      */
@@ -394,7 +394,7 @@ public class uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_GLUE = 12;
      * }
      */
@@ -402,7 +402,7 @@ public class uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_HYPHEN = 13;
      * }
      */
@@ -410,7 +410,7 @@ public class uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_IDEOGRAPHIC = 14;
      * }
      */
@@ -418,7 +418,7 @@ public class uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_INSEPARABLE = 15;
      * }
      */
@@ -426,7 +426,7 @@ public class uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_INSEPERABLE = 15;
      * }
      */
@@ -434,7 +434,7 @@ public class uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_INFIX_NUMERIC = 16;
      * }
      */
@@ -442,7 +442,7 @@ public class uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_LINE_FEED = 17;
      * }
      */
@@ -450,7 +450,7 @@ public class uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_NONSTARTER = 18;
      * }
      */
@@ -458,7 +458,7 @@ public class uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_NUMERIC = 19;
      * }
      */
@@ -466,7 +466,7 @@ public class uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_OPEN_PUNCTUATION = 20;
      * }
      */
@@ -474,7 +474,7 @@ public class uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_POSTFIX_NUMERIC = 21;
      * }
      */
@@ -482,7 +482,7 @@ public class uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_PREFIX_NUMERIC = 22;
      * }
      */
@@ -490,7 +490,7 @@ public class uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_QUOTATION = 23;
      * }
      */
@@ -498,7 +498,7 @@ public class uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_COMPLEX_CONTEXT = 24;
      * }
      */
@@ -506,7 +506,7 @@ public class uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_SURROGATE = 25;
      * }
      */
@@ -514,7 +514,7 @@ public class uregex_h_1 {
         return (int)25L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_SPACE = 26;
      * }
      */
@@ -522,7 +522,7 @@ public class uregex_h_1 {
         return (int)26L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_BREAK_SYMBOLS = 27;
      * }
      */
@@ -530,7 +530,7 @@ public class uregex_h_1 {
         return (int)27L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_ZWSPACE = 28;
      * }
      */
@@ -538,7 +538,7 @@ public class uregex_h_1 {
         return (int)28L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_NEXT_LINE = 29;
      * }
      */
@@ -546,7 +546,7 @@ public class uregex_h_1 {
         return (int)29L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_WORD_JOINER = 30;
      * }
      */
@@ -554,7 +554,7 @@ public class uregex_h_1 {
         return (int)30L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_H2 = 31;
      * }
      */
@@ -562,7 +562,7 @@ public class uregex_h_1 {
         return (int)31L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_H3 = 32;
      * }
      */
@@ -570,7 +570,7 @@ public class uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_JL = 33;
      * }
      */
@@ -578,7 +578,7 @@ public class uregex_h_1 {
         return (int)33L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_JT = 34;
      * }
      */
@@ -586,7 +586,7 @@ public class uregex_h_1 {
         return (int)34L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_JV = 35;
      * }
      */
@@ -594,7 +594,7 @@ public class uregex_h_1 {
         return (int)35L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_CLOSE_PARENTHESIS = 36;
      * }
      */
@@ -602,7 +602,7 @@ public class uregex_h_1 {
         return (int)36L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_CONDITIONAL_JAPANESE_STARTER = 37;
      * }
      */
@@ -610,7 +610,7 @@ public class uregex_h_1 {
         return (int)37L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_HEBREW_LETTER = 38;
      * }
      */
@@ -618,7 +618,7 @@ public class uregex_h_1 {
         return (int)38L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_REGIONAL_INDICATOR = 39;
      * }
      */
@@ -626,7 +626,7 @@ public class uregex_h_1 {
         return (int)39L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_E_BASE = 40;
      * }
      */
@@ -634,7 +634,7 @@ public class uregex_h_1 {
         return (int)40L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_E_MODIFIER = 41;
      * }
      */
@@ -642,7 +642,7 @@ public class uregex_h_1 {
         return (int)41L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_ZWJ = 42;
      * }
      */
@@ -650,7 +650,7 @@ public class uregex_h_1 {
         return (int)42L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum ULineBreak.U_LB_COUNT = 43;
      * }
      */
@@ -658,7 +658,7 @@ public class uregex_h_1 {
         return (int)43L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UNumericType.U_NT_NONE = 0;
      * }
      */
@@ -666,7 +666,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UNumericType.U_NT_DECIMAL = 1;
      * }
      */
@@ -674,7 +674,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UNumericType.U_NT_DIGIT = 2;
      * }
      */
@@ -682,7 +682,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UNumericType.U_NT_NUMERIC = 3;
      * }
      */
@@ -690,7 +690,7 @@ public class uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UNumericType.U_NT_COUNT = 4;
      * }
      */
@@ -698,7 +698,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UHangulSyllableType.U_HST_NOT_APPLICABLE = 0;
      * }
      */
@@ -706,7 +706,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UHangulSyllableType.U_HST_LEADING_JAMO = 1;
      * }
      */
@@ -714,7 +714,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UHangulSyllableType.U_HST_VOWEL_JAMO = 2;
      * }
      */
@@ -722,7 +722,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UHangulSyllableType.U_HST_TRAILING_JAMO = 3;
      * }
      */
@@ -730,7 +730,7 @@ public class uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UHangulSyllableType.U_HST_LV_SYLLABLE = 4;
      * }
      */
@@ -738,7 +738,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UHangulSyllableType.U_HST_LVT_SYLLABLE = 5;
      * }
      */
@@ -746,7 +746,7 @@ public class uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UHangulSyllableType.U_HST_COUNT = 6;
      * }
      */
@@ -754,7 +754,7 @@ public class uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_NA = 0;
      * }
      */
@@ -762,7 +762,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_BOTTOM = 1;
      * }
      */
@@ -770,7 +770,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_BOTTOM_AND_LEFT = 2;
      * }
      */
@@ -778,7 +778,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_BOTTOM_AND_RIGHT = 3;
      * }
      */
@@ -786,7 +786,7 @@ public class uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_LEFT = 4;
      * }
      */
@@ -794,7 +794,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_LEFT_AND_RIGHT = 5;
      * }
      */
@@ -802,7 +802,7 @@ public class uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_OVERSTRUCK = 6;
      * }
      */
@@ -810,7 +810,7 @@ public class uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_RIGHT = 7;
      * }
      */
@@ -818,7 +818,7 @@ public class uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_TOP = 8;
      * }
      */
@@ -826,7 +826,7 @@ public class uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_TOP_AND_BOTTOM = 9;
      * }
      */
@@ -834,7 +834,7 @@ public class uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_TOP_AND_BOTTOM_AND_RIGHT = 10;
      * }
      */
@@ -842,7 +842,7 @@ public class uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_TOP_AND_LEFT = 11;
      * }
      */
@@ -850,7 +850,7 @@ public class uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_TOP_AND_LEFT_AND_RIGHT = 12;
      * }
      */
@@ -858,7 +858,7 @@ public class uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_TOP_AND_RIGHT = 13;
      * }
      */
@@ -866,7 +866,7 @@ public class uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_VISUAL_ORDER_LEFT = 14;
      * }
      */
@@ -874,7 +874,7 @@ public class uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicPositionalCategory.U_INPC_TOP_AND_BOTTOM_AND_LEFT = 15;
      * }
      */
@@ -882,7 +882,7 @@ public class uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_OTHER = 0;
      * }
      */
@@ -890,7 +890,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_AVAGRAHA = 1;
      * }
      */
@@ -898,7 +898,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_BINDU = 2;
      * }
      */
@@ -906,7 +906,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_BRAHMI_JOINING_NUMBER = 3;
      * }
      */
@@ -914,7 +914,7 @@ public class uregex_h_1 {
         return (int)3L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CANTILLATION_MARK = 4;
      * }
      */
@@ -922,7 +922,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT = 5;
      * }
      */
@@ -930,7 +930,7 @@ public class uregex_h_1 {
         return (int)5L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_DEAD = 6;
      * }
      */
@@ -938,7 +938,7 @@ public class uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_FINAL = 7;
      * }
      */
@@ -946,7 +946,7 @@ public class uregex_h_1 {
         return (int)7L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_HEAD_LETTER = 8;
      * }
      */
@@ -954,7 +954,7 @@ public class uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_INITIAL_POSTFIXED = 9;
      * }
      */
@@ -962,7 +962,7 @@ public class uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_KILLER = 10;
      * }
      */
@@ -970,7 +970,7 @@ public class uregex_h_1 {
         return (int)10L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_MEDIAL = 11;
      * }
      */
@@ -978,7 +978,7 @@ public class uregex_h_1 {
         return (int)11L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_PLACEHOLDER = 12;
      * }
      */
@@ -986,7 +986,7 @@ public class uregex_h_1 {
         return (int)12L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_PRECEDING_REPHA = 13;
      * }
      */
@@ -994,7 +994,7 @@ public class uregex_h_1 {
         return (int)13L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_PREFIXED = 14;
      * }
      */
@@ -1002,7 +1002,7 @@ public class uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_SUBJOINED = 15;
      * }
      */
@@ -1010,7 +1010,7 @@ public class uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_SUCCEEDING_REPHA = 16;
      * }
      */
@@ -1018,7 +1018,7 @@ public class uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_CONSONANT_WITH_STACKER = 17;
      * }
      */
@@ -1026,7 +1026,7 @@ public class uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_GEMINATION_MARK = 18;
      * }
      */
@@ -1034,7 +1034,7 @@ public class uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_INVISIBLE_STACKER = 19;
      * }
      */
@@ -1042,7 +1042,7 @@ public class uregex_h_1 {
         return (int)19L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_JOINER = 20;
      * }
      */
@@ -1050,7 +1050,7 @@ public class uregex_h_1 {
         return (int)20L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_MODIFYING_LETTER = 21;
      * }
      */
@@ -1058,7 +1058,7 @@ public class uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_NON_JOINER = 22;
      * }
      */
@@ -1066,7 +1066,7 @@ public class uregex_h_1 {
         return (int)22L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_NUKTA = 23;
      * }
      */
@@ -1074,7 +1074,7 @@ public class uregex_h_1 {
         return (int)23L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_NUMBER = 24;
      * }
      */
@@ -1082,7 +1082,7 @@ public class uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_NUMBER_JOINER = 25;
      * }
      */
@@ -1090,7 +1090,7 @@ public class uregex_h_1 {
         return (int)25L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_PURE_KILLER = 26;
      * }
      */
@@ -1098,7 +1098,7 @@ public class uregex_h_1 {
         return (int)26L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_REGISTER_SHIFTER = 27;
      * }
      */
@@ -1106,7 +1106,7 @@ public class uregex_h_1 {
         return (int)27L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_SYLLABLE_MODIFIER = 28;
      * }
      */
@@ -1114,7 +1114,7 @@ public class uregex_h_1 {
         return (int)28L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_TONE_LETTER = 29;
      * }
      */
@@ -1122,7 +1122,7 @@ public class uregex_h_1 {
         return (int)29L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_TONE_MARK = 30;
      * }
      */
@@ -1130,7 +1130,7 @@ public class uregex_h_1 {
         return (int)30L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_VIRAMA = 31;
      * }
      */
@@ -1138,7 +1138,7 @@ public class uregex_h_1 {
         return (int)31L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_VISARGA = 32;
      * }
      */
@@ -1146,7 +1146,7 @@ public class uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_VOWEL = 33;
      * }
      */
@@ -1154,7 +1154,7 @@ public class uregex_h_1 {
         return (int)33L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_VOWEL_DEPENDENT = 34;
      * }
      */
@@ -1162,7 +1162,7 @@ public class uregex_h_1 {
         return (int)34L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UIndicSyllabicCategory.U_INSC_VOWEL_INDEPENDENT = 35;
      * }
      */
@@ -1170,7 +1170,7 @@ public class uregex_h_1 {
         return (int)35L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UVerticalOrientation.U_VO_ROTATED = 0;
      * }
      */
@@ -1178,7 +1178,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UVerticalOrientation.U_VO_TRANSFORMED_ROTATED = 1;
      * }
      */
@@ -1186,7 +1186,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UVerticalOrientation.U_VO_TRANSFORMED_UPRIGHT = 2;
      * }
      */
@@ -1194,7 +1194,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum UVerticalOrientation.U_VO_UPRIGHT = 3;
      * }
      */
@@ -1205,8 +1205,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$4.const$1,"u_hasBinaryProperty_70");
     }
     /**
-     * {@snippet :
-     * UBool u_hasBinaryProperty_70(UChar32 c, UProperty which);
+     * {@snippet lang=c :
+     * signed char u_hasBinaryProperty_70(int c, enum UProperty which);
      * }
      */
     public static byte u_hasBinaryProperty_70(int c, int which) {
@@ -1221,8 +1221,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$4.const$3,"u_stringHasBinaryProperty_70");
     }
     /**
-     * {@snippet :
-     * UBool u_stringHasBinaryProperty_70(const UChar* s, int32_t length, UProperty which);
+     * {@snippet lang=c :
+     * signed char u_stringHasBinaryProperty_70(unsigned short* s, int length, enum UProperty which);
      * }
      */
     public static byte u_stringHasBinaryProperty_70(MemorySegment s, int length, int which) {
@@ -1237,8 +1237,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$4.const$5,"u_getBinaryPropertySet_70");
     }
     /**
-     * {@snippet :
-     * const USet* u_getBinaryPropertySet_70(UProperty property, UErrorCode* pErrorCode);
+     * {@snippet lang=c :
+     * struct USet* u_getBinaryPropertySet_70(enum UProperty property, enum UErrorCode* pErrorCode);
      * }
      */
     public static MemorySegment u_getBinaryPropertySet_70(int property, MemorySegment pErrorCode) {
@@ -1253,8 +1253,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$5.const$1,"u_isUAlphabetic_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isUAlphabetic_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isUAlphabetic_70(int c);
      * }
      */
     public static byte u_isUAlphabetic_70(int c) {
@@ -1269,8 +1269,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$5.const$2,"u_isULowercase_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isULowercase_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isULowercase_70(int c);
      * }
      */
     public static byte u_isULowercase_70(int c) {
@@ -1285,8 +1285,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$5.const$3,"u_isUUppercase_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isUUppercase_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isUUppercase_70(int c);
      * }
      */
     public static byte u_isUUppercase_70(int c) {
@@ -1301,8 +1301,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$5.const$4,"u_isUWhiteSpace_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isUWhiteSpace_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isUWhiteSpace_70(int c);
      * }
      */
     public static byte u_isUWhiteSpace_70(int c) {
@@ -1317,8 +1317,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$5.const$6,"u_getIntPropertyValue_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_getIntPropertyValue_70(UChar32 c, UProperty which);
+     * {@snippet lang=c :
+     * int u_getIntPropertyValue_70(int c, enum UProperty which);
      * }
      */
     public static int u_getIntPropertyValue_70(int c, int which) {
@@ -1333,8 +1333,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$6.const$1,"u_getIntPropertyMinValue_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_getIntPropertyMinValue_70(UProperty which);
+     * {@snippet lang=c :
+     * int u_getIntPropertyMinValue_70(enum UProperty which);
      * }
      */
     public static int u_getIntPropertyMinValue_70(int which) {
@@ -1349,8 +1349,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$6.const$2,"u_getIntPropertyMaxValue_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_getIntPropertyMaxValue_70(UProperty which);
+     * {@snippet lang=c :
+     * int u_getIntPropertyMaxValue_70(enum UProperty which);
      * }
      */
     public static int u_getIntPropertyMaxValue_70(int which) {
@@ -1365,8 +1365,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$6.const$3,"u_getIntPropertyMap_70");
     }
     /**
-     * {@snippet :
-     * const UCPMap* u_getIntPropertyMap_70(UProperty property, UErrorCode* pErrorCode);
+     * {@snippet lang=c :
+     * struct UCPMap* u_getIntPropertyMap_70(enum UProperty property, enum UErrorCode* pErrorCode);
      * }
      */
     public static MemorySegment u_getIntPropertyMap_70(int property, MemorySegment pErrorCode) {
@@ -1381,8 +1381,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$6.const$5,"u_getNumericValue_70");
     }
     /**
-     * {@snippet :
-     * double u_getNumericValue_70(UChar32 c);
+     * {@snippet lang=c :
+     * double u_getNumericValue_70(int c);
      * }
      */
     public static double u_getNumericValue_70(int c) {
@@ -1397,8 +1397,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$7.const$0,"u_islower_70");
     }
     /**
-     * {@snippet :
-     * UBool u_islower_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_islower_70(int c);
      * }
      */
     public static byte u_islower_70(int c) {
@@ -1413,8 +1413,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$7.const$1,"u_isupper_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isupper_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isupper_70(int c);
      * }
      */
     public static byte u_isupper_70(int c) {
@@ -1429,8 +1429,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$7.const$2,"u_istitle_70");
     }
     /**
-     * {@snippet :
-     * UBool u_istitle_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_istitle_70(int c);
      * }
      */
     public static byte u_istitle_70(int c) {
@@ -1445,8 +1445,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$7.const$3,"u_isdigit_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isdigit_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isdigit_70(int c);
      * }
      */
     public static byte u_isdigit_70(int c) {
@@ -1461,8 +1461,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$7.const$4,"u_isalpha_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isalpha_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isalpha_70(int c);
      * }
      */
     public static byte u_isalpha_70(int c) {
@@ -1477,8 +1477,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$7.const$5,"u_isalnum_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isalnum_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isalnum_70(int c);
      * }
      */
     public static byte u_isalnum_70(int c) {
@@ -1493,8 +1493,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$8.const$0,"u_isxdigit_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isxdigit_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isxdigit_70(int c);
      * }
      */
     public static byte u_isxdigit_70(int c) {
@@ -1509,8 +1509,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$8.const$1,"u_ispunct_70");
     }
     /**
-     * {@snippet :
-     * UBool u_ispunct_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_ispunct_70(int c);
      * }
      */
     public static byte u_ispunct_70(int c) {
@@ -1525,8 +1525,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$8.const$2,"u_isgraph_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isgraph_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isgraph_70(int c);
      * }
      */
     public static byte u_isgraph_70(int c) {
@@ -1541,8 +1541,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$8.const$3,"u_isblank_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isblank_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isblank_70(int c);
      * }
      */
     public static byte u_isblank_70(int c) {
@@ -1557,8 +1557,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$8.const$4,"u_isdefined_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isdefined_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isdefined_70(int c);
      * }
      */
     public static byte u_isdefined_70(int c) {
@@ -1573,8 +1573,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$8.const$5,"u_isspace_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isspace_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isspace_70(int c);
      * }
      */
     public static byte u_isspace_70(int c) {
@@ -1589,8 +1589,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$9.const$0,"u_isJavaSpaceChar_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isJavaSpaceChar_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isJavaSpaceChar_70(int c);
      * }
      */
     public static byte u_isJavaSpaceChar_70(int c) {
@@ -1605,8 +1605,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$9.const$1,"u_isWhitespace_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isWhitespace_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isWhitespace_70(int c);
      * }
      */
     public static byte u_isWhitespace_70(int c) {
@@ -1621,8 +1621,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$9.const$2,"u_iscntrl_70");
     }
     /**
-     * {@snippet :
-     * UBool u_iscntrl_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_iscntrl_70(int c);
      * }
      */
     public static byte u_iscntrl_70(int c) {
@@ -1637,8 +1637,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$9.const$3,"u_isISOControl_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isISOControl_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isISOControl_70(int c);
      * }
      */
     public static byte u_isISOControl_70(int c) {
@@ -1653,8 +1653,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$9.const$4,"u_isprint_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isprint_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isprint_70(int c);
      * }
      */
     public static byte u_isprint_70(int c) {
@@ -1669,8 +1669,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$9.const$5,"u_isbase_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isbase_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isbase_70(int c);
      * }
      */
     public static byte u_isbase_70(int c) {
@@ -1685,8 +1685,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$10.const$0,"u_charDirection_70");
     }
     /**
-     * {@snippet :
-     * UCharDirection u_charDirection_70(UChar32 c);
+     * {@snippet lang=c :
+     * enum UCharDirection u_charDirection_70(int c);
      * }
      */
     public static int u_charDirection_70(int c) {
@@ -1701,8 +1701,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$10.const$1,"u_isMirrored_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isMirrored_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isMirrored_70(int c);
      * }
      */
     public static byte u_isMirrored_70(int c) {
@@ -1717,8 +1717,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$10.const$2,"u_charMirror_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_charMirror_70(UChar32 c);
+     * {@snippet lang=c :
+     * int u_charMirror_70(int c);
      * }
      */
     public static int u_charMirror_70(int c) {
@@ -1733,8 +1733,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$10.const$3,"u_getBidiPairedBracket_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_getBidiPairedBracket_70(UChar32 c);
+     * {@snippet lang=c :
+     * int u_getBidiPairedBracket_70(int c);
      * }
      */
     public static int u_getBidiPairedBracket_70(int c) {
@@ -1749,8 +1749,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$10.const$4,"u_charType_70");
     }
     /**
-     * {@snippet :
-     * int8_t u_charType_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_charType_70(int c);
      * }
      */
     public static byte u_charType_70(int c) {
@@ -1762,11 +1762,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_enumCharTypes_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.const$2,"u_enumCharTypes_70");
+        return RuntimeHelper.requireNonNull(constants$11.const$3,"u_enumCharTypes_70");
     }
     /**
-     * {@snippet :
-     * void u_enumCharTypes_70(UCharEnumTypeRange* enumRange, void* context);
+     * {@snippet lang=c :
+     * void u_enumCharTypes_70(signed char (*enumRange)(void*,int,int,enum UCharCategory), void* context);
      * }
      */
     public static void u_enumCharTypes_70(MemorySegment enumRange, MemorySegment context) {
@@ -1778,11 +1778,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getCombiningClass_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.const$3,"u_getCombiningClass_70");
+        return RuntimeHelper.requireNonNull(constants$11.const$4,"u_getCombiningClass_70");
     }
     /**
-     * {@snippet :
-     * uint8_t u_getCombiningClass_70(UChar32 c);
+     * {@snippet lang=c :
+     * unsigned char u_getCombiningClass_70(int c);
      * }
      */
     public static byte u_getCombiningClass_70(int c) {
@@ -1794,11 +1794,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_charDigitValue_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.const$4,"u_charDigitValue_70");
+        return RuntimeHelper.requireNonNull(constants$11.const$5,"u_charDigitValue_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_charDigitValue_70(UChar32 c);
+     * {@snippet lang=c :
+     * int u_charDigitValue_70(int c);
      * }
      */
     public static int u_charDigitValue_70(int c) {
@@ -1810,11 +1810,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle ublock_getCode_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.const$5,"ublock_getCode_70");
+        return RuntimeHelper.requireNonNull(constants$12.const$0,"ublock_getCode_70");
     }
     /**
-     * {@snippet :
-     * UBlockCode ublock_getCode_70(UChar32 c);
+     * {@snippet lang=c :
+     * enum UBlockCode ublock_getCode_70(int c);
      * }
      */
     public static int ublock_getCode_70(int c) {
@@ -1826,11 +1826,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_charName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.const$1,"u_charName_70");
+        return RuntimeHelper.requireNonNull(constants$12.const$2,"u_charName_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_charName_70(UChar32 code, UCharNameChoice nameChoice, char* buffer, int32_t bufferLength, UErrorCode* pErrorCode);
+     * {@snippet lang=c :
+     * int u_charName_70(int code, enum UCharNameChoice nameChoice, char* buffer, int bufferLength, enum UErrorCode* pErrorCode);
      * }
      */
     public static int u_charName_70(int code, int nameChoice, MemorySegment buffer, int bufferLength, MemorySegment pErrorCode) {
@@ -1842,11 +1842,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getISOComment_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.const$3,"u_getISOComment_70");
+        return RuntimeHelper.requireNonNull(constants$12.const$4,"u_getISOComment_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_getISOComment_70(UChar32 c, char* dest, int32_t destCapacity, UErrorCode* pErrorCode);
+     * {@snippet lang=c :
+     * int u_getISOComment_70(int c, char* dest, int destCapacity, enum UErrorCode* pErrorCode);
      * }
      */
     public static int u_getISOComment_70(int c, MemorySegment dest, int destCapacity, MemorySegment pErrorCode) {
@@ -1858,11 +1858,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_charFromName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.const$5,"u_charFromName_70");
+        return RuntimeHelper.requireNonNull(constants$12.const$6,"u_charFromName_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_charFromName_70(UCharNameChoice nameChoice, char* name, UErrorCode* pErrorCode);
+     * {@snippet lang=c :
+     * int u_charFromName_70(enum UCharNameChoice nameChoice, char* name, enum UErrorCode* pErrorCode);
      * }
      */
     public static int u_charFromName_70(int nameChoice, MemorySegment name, MemorySegment pErrorCode) {
@@ -1874,11 +1874,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_enumCharNames_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.const$4,"u_enumCharNames_70");
+        return RuntimeHelper.requireNonNull(constants$13.const$5,"u_enumCharNames_70");
     }
     /**
-     * {@snippet :
-     * void u_enumCharNames_70(UChar32 start, UChar32 limit, UEnumCharNamesFn* fn, void* context, UCharNameChoice nameChoice, UErrorCode* pErrorCode);
+     * {@snippet lang=c :
+     * void u_enumCharNames_70(int start, int limit, signed char (*fn)(void*,int,enum UCharNameChoice,char*,int), void* context, enum UCharNameChoice nameChoice, enum UErrorCode* pErrorCode);
      * }
      */
     public static void u_enumCharNames_70(int start, int limit, MemorySegment fn, MemorySegment context, int nameChoice, MemorySegment pErrorCode) {
@@ -1890,11 +1890,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getPropertyName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.const$6,"u_getPropertyName_70");
+        return RuntimeHelper.requireNonNull(constants$14.const$1,"u_getPropertyName_70");
     }
     /**
-     * {@snippet :
-     * char* u_getPropertyName_70(UProperty property, UPropertyNameChoice nameChoice);
+     * {@snippet lang=c :
+     * char* u_getPropertyName_70(enum UProperty property, enum UPropertyNameChoice nameChoice);
      * }
      */
     public static MemorySegment u_getPropertyName_70(int property, int nameChoice) {
@@ -1906,11 +1906,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getPropertyEnum_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.const$1,"u_getPropertyEnum_70");
+        return RuntimeHelper.requireNonNull(constants$14.const$3,"u_getPropertyEnum_70");
     }
     /**
-     * {@snippet :
-     * UProperty u_getPropertyEnum_70(char* alias);
+     * {@snippet lang=c :
+     * enum UProperty u_getPropertyEnum_70(char* alias);
      * }
      */
     public static int u_getPropertyEnum_70(MemorySegment alias) {
@@ -1922,11 +1922,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getPropertyValueName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.const$3,"u_getPropertyValueName_70");
+        return RuntimeHelper.requireNonNull(constants$14.const$5,"u_getPropertyValueName_70");
     }
     /**
-     * {@snippet :
-     * char* u_getPropertyValueName_70(UProperty property, int32_t value, UPropertyNameChoice nameChoice);
+     * {@snippet lang=c :
+     * char* u_getPropertyValueName_70(enum UProperty property, int value, enum UPropertyNameChoice nameChoice);
      * }
      */
     public static MemorySegment u_getPropertyValueName_70(int property, int value, int nameChoice) {
@@ -1938,11 +1938,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getPropertyValueEnum_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.const$5,"u_getPropertyValueEnum_70");
+        return RuntimeHelper.requireNonNull(constants$15.const$1,"u_getPropertyValueEnum_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_getPropertyValueEnum_70(UProperty property, char* alias);
+     * {@snippet lang=c :
+     * int u_getPropertyValueEnum_70(enum UProperty property, char* alias);
      * }
      */
     public static int u_getPropertyValueEnum_70(int property, MemorySegment alias) {
@@ -1954,11 +1954,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_isIDStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$0,"u_isIDStart_70");
+        return RuntimeHelper.requireNonNull(constants$15.const$2,"u_isIDStart_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isIDStart_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isIDStart_70(int c);
      * }
      */
     public static byte u_isIDStart_70(int c) {
@@ -1970,11 +1970,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_isIDPart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$1,"u_isIDPart_70");
+        return RuntimeHelper.requireNonNull(constants$15.const$3,"u_isIDPart_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isIDPart_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isIDPart_70(int c);
      * }
      */
     public static byte u_isIDPart_70(int c) {
@@ -1986,11 +1986,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_isIDIgnorable_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$2,"u_isIDIgnorable_70");
+        return RuntimeHelper.requireNonNull(constants$15.const$4,"u_isIDIgnorable_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isIDIgnorable_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isIDIgnorable_70(int c);
      * }
      */
     public static byte u_isIDIgnorable_70(int c) {
@@ -2002,11 +2002,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_isJavaIDStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$3,"u_isJavaIDStart_70");
+        return RuntimeHelper.requireNonNull(constants$15.const$5,"u_isJavaIDStart_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isJavaIDStart_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isJavaIDStart_70(int c);
      * }
      */
     public static byte u_isJavaIDStart_70(int c) {
@@ -2018,11 +2018,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_isJavaIDPart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$4,"u_isJavaIDPart_70");
+        return RuntimeHelper.requireNonNull(constants$16.const$0,"u_isJavaIDPart_70");
     }
     /**
-     * {@snippet :
-     * UBool u_isJavaIDPart_70(UChar32 c);
+     * {@snippet lang=c :
+     * signed char u_isJavaIDPart_70(int c);
      * }
      */
     public static byte u_isJavaIDPart_70(int c) {
@@ -2034,11 +2034,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_tolower_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$5,"u_tolower_70");
+        return RuntimeHelper.requireNonNull(constants$16.const$1,"u_tolower_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_tolower_70(UChar32 c);
+     * {@snippet lang=c :
+     * int u_tolower_70(int c);
      * }
      */
     public static int u_tolower_70(int c) {
@@ -2050,11 +2050,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_toupper_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$0,"u_toupper_70");
+        return RuntimeHelper.requireNonNull(constants$16.const$2,"u_toupper_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_toupper_70(UChar32 c);
+     * {@snippet lang=c :
+     * int u_toupper_70(int c);
      * }
      */
     public static int u_toupper_70(int c) {
@@ -2066,11 +2066,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_totitle_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$1,"u_totitle_70");
+        return RuntimeHelper.requireNonNull(constants$16.const$3,"u_totitle_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_totitle_70(UChar32 c);
+     * {@snippet lang=c :
+     * int u_totitle_70(int c);
      * }
      */
     public static int u_totitle_70(int c) {
@@ -2082,11 +2082,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_foldCase_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$2,"u_foldCase_70");
+        return RuntimeHelper.requireNonNull(constants$16.const$4,"u_foldCase_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_foldCase_70(UChar32 c, uint32_t options);
+     * {@snippet lang=c :
+     * int u_foldCase_70(int c, unsigned int options);
      * }
      */
     public static int u_foldCase_70(int c, int options) {
@@ -2098,11 +2098,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_digit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$4,"u_digit_70");
+        return RuntimeHelper.requireNonNull(constants$16.const$6,"u_digit_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_digit_70(UChar32 ch, int8_t radix);
+     * {@snippet lang=c :
+     * int u_digit_70(int ch, signed char radix);
      * }
      */
     public static int u_digit_70(int ch, byte radix) {
@@ -2114,11 +2114,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_forDigit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$5,"u_forDigit_70");
+        return RuntimeHelper.requireNonNull(constants$17.const$0,"u_forDigit_70");
     }
     /**
-     * {@snippet :
-     * UChar32 u_forDigit_70(int32_t digit, int8_t radix);
+     * {@snippet lang=c :
+     * int u_forDigit_70(int digit, signed char radix);
      * }
      */
     public static int u_forDigit_70(int digit, byte radix) {
@@ -2130,11 +2130,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_charAge_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$1,"u_charAge_70");
+        return RuntimeHelper.requireNonNull(constants$17.const$2,"u_charAge_70");
     }
     /**
-     * {@snippet :
-     * void u_charAge_70(UChar32 c, UVersionInfo versionArray);
+     * {@snippet lang=c :
+     * void u_charAge_70(int c, unsigned char versionArray[4]);
      * }
      */
     public static void u_charAge_70(int c, MemorySegment versionArray) {
@@ -2146,11 +2146,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getUnicodeVersion_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$2,"u_getUnicodeVersion_70");
+        return RuntimeHelper.requireNonNull(constants$17.const$3,"u_getUnicodeVersion_70");
     }
     /**
-     * {@snippet :
-     * void u_getUnicodeVersion_70(UVersionInfo versionArray);
+     * {@snippet lang=c :
+     * void u_getUnicodeVersion_70(unsigned char versionArray[4]);
      * }
      */
     public static void u_getUnicodeVersion_70(MemorySegment versionArray) {
@@ -2162,11 +2162,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle u_getFC_NFKC_Closure_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$3,"u_getFC_NFKC_Closure_70");
+        return RuntimeHelper.requireNonNull(constants$17.const$4,"u_getFC_NFKC_Closure_70");
     }
     /**
-     * {@snippet :
-     * int32_t u_getFC_NFKC_Closure_70(UChar32 c, UChar* dest, int32_t destCapacity, UErrorCode* pErrorCode);
+     * {@snippet lang=c :
+     * int u_getFC_NFKC_Closure_70(int c, unsigned short* dest, int destCapacity, enum UErrorCode* pErrorCode);
      * }
      */
     public static int u_getFC_NFKC_Closure_70(int c, MemorySegment dest, int destCapacity, MemorySegment pErrorCode) {
@@ -2178,11 +2178,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle utext_close_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$5,"utext_close_70");
+        return RuntimeHelper.requireNonNull(constants$17.const$6,"utext_close_70");
     }
     /**
-     * {@snippet :
-     * UText* utext_close_70(UText* ut);
+     * {@snippet lang=c :
+     * struct UText* utext_close_70(struct UText* ut);
      * }
      */
     public static MemorySegment utext_close_70(MemorySegment ut) {
@@ -2197,8 +2197,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$18.const$1,"utext_openUTF8_70");
     }
     /**
-     * {@snippet :
-     * UText* utext_openUTF8_70(UText* ut, char* s, int64_t length, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* utext_openUTF8_70(struct UText* ut, char* s, long length, enum UErrorCode* status);
      * }
      */
     public static MemorySegment utext_openUTF8_70(MemorySegment ut, MemorySegment s, long length, MemorySegment status) {
@@ -2213,8 +2213,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$18.const$2,"utext_openUChars_70");
     }
     /**
-     * {@snippet :
-     * UText* utext_openUChars_70(UText* ut, const UChar* s, int64_t length, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* utext_openUChars_70(struct UText* ut, unsigned short* s, long length, enum UErrorCode* status);
      * }
      */
     public static MemorySegment utext_openUChars_70(MemorySegment ut, MemorySegment s, long length, MemorySegment status) {
@@ -2229,8 +2229,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$18.const$4,"utext_clone_70");
     }
     /**
-     * {@snippet :
-     * UText* utext_clone_70(UText* dest, const UText* src, UBool deep, UBool readOnly, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* utext_clone_70(struct UText* dest, struct UText* src, signed char deep, signed char readOnly, enum UErrorCode* status);
      * }
      */
     public static MemorySegment utext_clone_70(MemorySegment dest, MemorySegment src, byte deep, byte readOnly, MemorySegment status) {
@@ -2245,8 +2245,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$18.const$6,"utext_equals_70");
     }
     /**
-     * {@snippet :
-     * UBool utext_equals_70(const UText* a, const UText* b);
+     * {@snippet lang=c :
+     * signed char utext_equals_70(struct UText* a, struct UText* b);
      * }
      */
     public static byte utext_equals_70(MemorySegment a, MemorySegment b) {
@@ -2261,8 +2261,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$19.const$1,"utext_nativeLength_70");
     }
     /**
-     * {@snippet :
-     * int64_t utext_nativeLength_70(UText* ut);
+     * {@snippet lang=c :
+     * long utext_nativeLength_70(struct UText* ut);
      * }
      */
     public static long utext_nativeLength_70(MemorySegment ut) {
@@ -2277,8 +2277,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$19.const$3,"utext_isLengthExpensive_70");
     }
     /**
-     * {@snippet :
-     * UBool utext_isLengthExpensive_70(const UText* ut);
+     * {@snippet lang=c :
+     * signed char utext_isLengthExpensive_70(struct UText* ut);
      * }
      */
     public static byte utext_isLengthExpensive_70(MemorySegment ut) {
@@ -2293,8 +2293,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$19.const$5,"utext_char32At_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utext_char32At_70(UText* ut, int64_t nativeIndex);
+     * {@snippet lang=c :
+     * int utext_char32At_70(struct UText* ut, long nativeIndex);
      * }
      */
     public static int utext_char32At_70(MemorySegment ut, long nativeIndex) {
@@ -2309,8 +2309,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$20.const$0,"utext_current32_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utext_current32_70(UText* ut);
+     * {@snippet lang=c :
+     * int utext_current32_70(struct UText* ut);
      * }
      */
     public static int utext_current32_70(MemorySegment ut) {
@@ -2325,8 +2325,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$20.const$1,"utext_next32_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utext_next32_70(UText* ut);
+     * {@snippet lang=c :
+     * int utext_next32_70(struct UText* ut);
      * }
      */
     public static int utext_next32_70(MemorySegment ut) {
@@ -2341,8 +2341,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$20.const$2,"utext_previous32_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utext_previous32_70(UText* ut);
+     * {@snippet lang=c :
+     * int utext_previous32_70(struct UText* ut);
      * }
      */
     public static int utext_previous32_70(MemorySegment ut) {
@@ -2357,8 +2357,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$20.const$3,"utext_next32From_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utext_next32From_70(UText* ut, int64_t nativeIndex);
+     * {@snippet lang=c :
+     * int utext_next32From_70(struct UText* ut, long nativeIndex);
      * }
      */
     public static int utext_next32From_70(MemorySegment ut, long nativeIndex) {
@@ -2373,8 +2373,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$20.const$4,"utext_previous32From_70");
     }
     /**
-     * {@snippet :
-     * UChar32 utext_previous32From_70(UText* ut, int64_t nativeIndex);
+     * {@snippet lang=c :
+     * int utext_previous32From_70(struct UText* ut, long nativeIndex);
      * }
      */
     public static int utext_previous32From_70(MemorySegment ut, long nativeIndex) {
@@ -2389,8 +2389,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$20.const$5,"utext_getNativeIndex_70");
     }
     /**
-     * {@snippet :
-     * int64_t utext_getNativeIndex_70(const UText* ut);
+     * {@snippet lang=c :
+     * long utext_getNativeIndex_70(struct UText* ut);
      * }
      */
     public static long utext_getNativeIndex_70(MemorySegment ut) {
@@ -2405,8 +2405,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$21.const$1,"utext_setNativeIndex_70");
     }
     /**
-     * {@snippet :
-     * void utext_setNativeIndex_70(UText* ut, int64_t nativeIndex);
+     * {@snippet lang=c :
+     * void utext_setNativeIndex_70(struct UText* ut, long nativeIndex);
      * }
      */
     public static void utext_setNativeIndex_70(MemorySegment ut, long nativeIndex) {
@@ -2421,8 +2421,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$21.const$3,"utext_moveIndex32_70");
     }
     /**
-     * {@snippet :
-     * UBool utext_moveIndex32_70(UText* ut, int32_t delta);
+     * {@snippet lang=c :
+     * signed char utext_moveIndex32_70(struct UText* ut, int delta);
      * }
      */
     public static byte utext_moveIndex32_70(MemorySegment ut, int delta) {
@@ -2437,8 +2437,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$21.const$4,"utext_getPreviousNativeIndex_70");
     }
     /**
-     * {@snippet :
-     * int64_t utext_getPreviousNativeIndex_70(UText* ut);
+     * {@snippet lang=c :
+     * long utext_getPreviousNativeIndex_70(struct UText* ut);
      * }
      */
     public static long utext_getPreviousNativeIndex_70(MemorySegment ut) {
@@ -2453,8 +2453,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$21.const$6,"utext_extract_70");
     }
     /**
-     * {@snippet :
-     * int32_t utext_extract_70(UText* ut, int64_t nativeStart, int64_t nativeLimit, UChar* dest, int32_t destCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int utext_extract_70(struct UText* ut, long nativeStart, long nativeLimit, unsigned short* dest, int destCapacity, enum UErrorCode* status);
      * }
      */
     public static int utext_extract_70(MemorySegment ut, long nativeStart, long nativeLimit, MemorySegment dest, int destCapacity, MemorySegment status) {
@@ -2469,8 +2469,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$22.const$0,"utext_isWritable_70");
     }
     /**
-     * {@snippet :
-     * UBool utext_isWritable_70(const UText* ut);
+     * {@snippet lang=c :
+     * signed char utext_isWritable_70(struct UText* ut);
      * }
      */
     public static byte utext_isWritable_70(MemorySegment ut) {
@@ -2485,8 +2485,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$22.const$1,"utext_hasMetaData_70");
     }
     /**
-     * {@snippet :
-     * UBool utext_hasMetaData_70(const UText* ut);
+     * {@snippet lang=c :
+     * signed char utext_hasMetaData_70(struct UText* ut);
      * }
      */
     public static byte utext_hasMetaData_70(MemorySegment ut) {
@@ -2501,8 +2501,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$22.const$2,"utext_replace_70");
     }
     /**
-     * {@snippet :
-     * int32_t utext_replace_70(UText* ut, int64_t nativeStart, int64_t nativeLimit, const UChar* replacementText, int32_t replacementLength, UErrorCode* status);
+     * {@snippet lang=c :
+     * int utext_replace_70(struct UText* ut, long nativeStart, long nativeLimit, unsigned short* replacementText, int replacementLength, enum UErrorCode* status);
      * }
      */
     public static int utext_replace_70(MemorySegment ut, long nativeStart, long nativeLimit, MemorySegment replacementText, int replacementLength, MemorySegment status) {
@@ -2517,8 +2517,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$22.const$4,"utext_copy_70");
     }
     /**
-     * {@snippet :
-     * void utext_copy_70(UText* ut, int64_t nativeStart, int64_t nativeLimit, int64_t destIndex, UBool move, UErrorCode* status);
+     * {@snippet lang=c :
+     * void utext_copy_70(struct UText* ut, long nativeStart, long nativeLimit, long destIndex, signed char move, enum UErrorCode* status);
      * }
      */
     public static void utext_copy_70(MemorySegment ut, long nativeStart, long nativeLimit, long destIndex, byte move, MemorySegment status) {
@@ -2533,8 +2533,8 @@ public class uregex_h_1 {
         return RuntimeHelper.requireNonNull(constants$22.const$5,"utext_freeze_70");
     }
     /**
-     * {@snippet :
-     * void utext_freeze_70(UText* ut);
+     * {@snippet lang=c :
+     * void utext_freeze_70(struct UText* ut);
      * }
      */
     public static void utext_freeze_70(MemorySegment ut) {
@@ -2546,51 +2546,51 @@ public class uregex_h_1 {
         }
     }
     /**
-     * {@snippet :
-     * enum .UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = 1;
+     * {@snippet lang=c :
+     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = 1;
      * }
      */
     public static int UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE() {
         return (int)1L;
     }
     /**
-     * {@snippet :
-     * enum .UTEXT_PROVIDER_STABLE_CHUNKS = 2;
+     * {@snippet lang=c :
+     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_STABLE_CHUNKS = 2;
      * }
      */
     public static int UTEXT_PROVIDER_STABLE_CHUNKS() {
         return (int)2L;
     }
     /**
-     * {@snippet :
-     * enum .UTEXT_PROVIDER_WRITABLE = 3;
+     * {@snippet lang=c :
+     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_WRITABLE = 3;
      * }
      */
     public static int UTEXT_PROVIDER_WRITABLE() {
         return (int)3L;
     }
     /**
-     * {@snippet :
-     * enum .UTEXT_PROVIDER_HAS_META_DATA = 4;
+     * {@snippet lang=c :
+     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_HAS_META_DATA = 4;
      * }
      */
     public static int UTEXT_PROVIDER_HAS_META_DATA() {
         return (int)4L;
     }
     /**
-     * {@snippet :
-     * enum .UTEXT_PROVIDER_OWNS_TEXT = 5;
+     * {@snippet lang=c :
+     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_OWNS_TEXT = 5;
      * }
      */
     public static int UTEXT_PROVIDER_OWNS_TEXT() {
         return (int)5L;
     }
     public static MethodHandle utext_setup_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.const$1,"utext_setup_70");
+        return RuntimeHelper.requireNonNull(constants$35.const$1,"utext_setup_70");
     }
     /**
-     * {@snippet :
-     * UText* utext_setup_70(UText* ut, int32_t extraSpace, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* utext_setup_70(struct UText* ut, int extraSpace, enum UErrorCode* status);
      * }
      */
     public static MemorySegment utext_setup_70(MemorySegment ut, int extraSpace, MemorySegment status) {
@@ -2602,23 +2602,23 @@ public class uregex_h_1 {
         }
     }
     /**
-     * {@snippet :
-     * enum .UTEXT_MAGIC = 878368812;
+     * {@snippet lang=c :
+     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:1547:1).UTEXT_MAGIC = 878368812;
      * }
      */
     public static int UTEXT_MAGIC() {
         return (int)878368812L;
     }
     /**
-     * {@snippet :
-     * enum .U_PARSE_CONTEXT_LEN = 16;
+     * {@snippet lang=c :
+     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/parseerr.h:27:1).U_PARSE_CONTEXT_LEN = 16;
      * }
      */
     public static int U_PARSE_CONTEXT_LEN() {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_CANON_EQ = 128;
      * }
      */
@@ -2626,7 +2626,7 @@ public class uregex_h_1 {
         return (int)128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_CASE_INSENSITIVE = 2;
      * }
      */
@@ -2634,7 +2634,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_COMMENTS = 4;
      * }
      */
@@ -2642,7 +2642,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_DOTALL = 32;
      * }
      */
@@ -2650,7 +2650,7 @@ public class uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_LITERAL = 16;
      * }
      */
@@ -2658,7 +2658,7 @@ public class uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_MULTILINE = 8;
      * }
      */
@@ -2666,7 +2666,7 @@ public class uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_UNIX_LINES = 1;
      * }
      */
@@ -2674,7 +2674,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_UWORD = 256;
      * }
      */
@@ -2682,7 +2682,7 @@ public class uregex_h_1 {
         return (int)256L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * enum URegexpFlag.UREGEX_ERROR_ON_UNKNOWN_ESCAPES = 512;
      * }
      */
@@ -2690,11 +2690,11 @@ public class uregex_h_1 {
         return (int)512L;
     }
     public static MethodHandle uregex_open_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.const$6,"uregex_open_70");
+        return RuntimeHelper.requireNonNull(constants$35.const$6,"uregex_open_70");
     }
     /**
-     * {@snippet :
-     * URegularExpression* uregex_open_70(const UChar* pattern, int32_t patternLength, uint32_t flags, UParseError* pe, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct URegularExpression* uregex_open_70(unsigned short* pattern, int patternLength, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_open_70(MemorySegment pattern, int patternLength, int flags, MemorySegment pe, MemorySegment status) {
@@ -2706,11 +2706,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_openUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.const$1,"uregex_openUText_70");
+        return RuntimeHelper.requireNonNull(constants$36.const$1,"uregex_openUText_70");
     }
     /**
-     * {@snippet :
-     * URegularExpression* uregex_openUText_70(UText* pattern, uint32_t flags, UParseError* pe, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct URegularExpression* uregex_openUText_70(struct UText* pattern, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_openUText_70(MemorySegment pattern, int flags, MemorySegment pe, MemorySegment status) {
@@ -2722,11 +2722,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_openC_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.const$2,"uregex_openC_70");
+        return RuntimeHelper.requireNonNull(constants$36.const$2,"uregex_openC_70");
     }
     /**
-     * {@snippet :
-     * URegularExpression* uregex_openC_70(char* pattern, uint32_t flags, UParseError* pe, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct URegularExpression* uregex_openC_70(char* pattern, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_openC_70(MemorySegment pattern, int flags, MemorySegment pe, MemorySegment status) {
@@ -2738,11 +2738,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_close_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.const$3,"uregex_close_70");
+        return RuntimeHelper.requireNonNull(constants$36.const$3,"uregex_close_70");
     }
     /**
-     * {@snippet :
-     * void uregex_close_70(URegularExpression* regexp);
+     * {@snippet lang=c :
+     * void uregex_close_70(struct URegularExpression* regexp);
      * }
      */
     public static void uregex_close_70(MemorySegment regexp) {
@@ -2754,11 +2754,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_clone_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.const$5,"uregex_clone_70");
+        return RuntimeHelper.requireNonNull(constants$36.const$5,"uregex_clone_70");
     }
     /**
-     * {@snippet :
-     * URegularExpression* uregex_clone_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct URegularExpression* uregex_clone_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_clone_70(MemorySegment regexp, MemorySegment status) {
@@ -2770,11 +2770,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_pattern_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.const$1,"uregex_pattern_70");
+        return RuntimeHelper.requireNonNull(constants$37.const$1,"uregex_pattern_70");
     }
     /**
-     * {@snippet :
-     * const UChar* uregex_pattern_70(const URegularExpression* regexp, int32_t* patLength, UErrorCode* status);
+     * {@snippet lang=c :
+     * unsigned short* uregex_pattern_70(struct URegularExpression* regexp, int* patLength, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_pattern_70(MemorySegment regexp, MemorySegment patLength, MemorySegment status) {
@@ -2786,11 +2786,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_patternUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.const$2,"uregex_patternUText_70");
+        return RuntimeHelper.requireNonNull(constants$37.const$2,"uregex_patternUText_70");
     }
     /**
-     * {@snippet :
-     * UText* uregex_patternUText_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* uregex_patternUText_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_patternUText_70(MemorySegment regexp, MemorySegment status) {
@@ -2802,11 +2802,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_flags_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.const$4,"uregex_flags_70");
+        return RuntimeHelper.requireNonNull(constants$37.const$4,"uregex_flags_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_flags_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_flags_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static int uregex_flags_70(MemorySegment regexp, MemorySegment status) {
@@ -2818,11 +2818,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.const$6,"uregex_setText_70");
+        return RuntimeHelper.requireNonNull(constants$37.const$6,"uregex_setText_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setText_70(URegularExpression* regexp, const UChar* text, int32_t textLength, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setText_70(struct URegularExpression* regexp, unsigned short* text, int textLength, enum UErrorCode* status);
      * }
      */
     public static void uregex_setText_70(MemorySegment regexp, MemorySegment text, int textLength, MemorySegment status) {
@@ -2834,11 +2834,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$1,"uregex_setUText_70");
+        return RuntimeHelper.requireNonNull(constants$38.const$1,"uregex_setUText_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setUText_70(URegularExpression* regexp, UText* text, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setUText_70(struct URegularExpression* regexp, struct UText* text, enum UErrorCode* status);
      * }
      */
     public static void uregex_setUText_70(MemorySegment regexp, MemorySegment text, MemorySegment status) {
@@ -2850,11 +2850,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_getText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$2,"uregex_getText_70");
+        return RuntimeHelper.requireNonNull(constants$38.const$2,"uregex_getText_70");
     }
     /**
-     * {@snippet :
-     * const UChar* uregex_getText_70(URegularExpression* regexp, int32_t* textLength, UErrorCode* status);
+     * {@snippet lang=c :
+     * unsigned short* uregex_getText_70(struct URegularExpression* regexp, int* textLength, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_getText_70(MemorySegment regexp, MemorySegment textLength, MemorySegment status) {
@@ -2866,11 +2866,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_getUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$3,"uregex_getUText_70");
+        return RuntimeHelper.requireNonNull(constants$38.const$3,"uregex_getUText_70");
     }
     /**
-     * {@snippet :
-     * UText* uregex_getUText_70(URegularExpression* regexp, UText* dest, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* uregex_getUText_70(struct URegularExpression* regexp, struct UText* dest, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_getUText_70(MemorySegment regexp, MemorySegment dest, MemorySegment status) {
@@ -2882,11 +2882,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_refreshUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$4,"uregex_refreshUText_70");
+        return RuntimeHelper.requireNonNull(constants$38.const$4,"uregex_refreshUText_70");
     }
     /**
-     * {@snippet :
-     * void uregex_refreshUText_70(URegularExpression* regexp, UText* text, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_refreshUText_70(struct URegularExpression* regexp, struct UText* text, enum UErrorCode* status);
      * }
      */
     public static void uregex_refreshUText_70(MemorySegment regexp, MemorySegment text, MemorySegment status) {
@@ -2898,11 +2898,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_matches_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$6,"uregex_matches_70");
+        return RuntimeHelper.requireNonNull(constants$38.const$6,"uregex_matches_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_matches_70(URegularExpression* regexp, int32_t startIndex, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_matches_70(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
      * }
      */
     public static byte uregex_matches_70(MemorySegment regexp, int startIndex, MemorySegment status) {
@@ -2914,11 +2914,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_matches64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$1,"uregex_matches64_70");
+        return RuntimeHelper.requireNonNull(constants$39.const$1,"uregex_matches64_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_matches64_70(URegularExpression* regexp, int64_t startIndex, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_matches64_70(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
      * }
      */
     public static byte uregex_matches64_70(MemorySegment regexp, long startIndex, MemorySegment status) {
@@ -2930,11 +2930,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_lookingAt_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$2,"uregex_lookingAt_70");
+        return RuntimeHelper.requireNonNull(constants$39.const$2,"uregex_lookingAt_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_lookingAt_70(URegularExpression* regexp, int32_t startIndex, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_lookingAt_70(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
      * }
      */
     public static byte uregex_lookingAt_70(MemorySegment regexp, int startIndex, MemorySegment status) {
@@ -2946,11 +2946,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_lookingAt64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$3,"uregex_lookingAt64_70");
+        return RuntimeHelper.requireNonNull(constants$39.const$3,"uregex_lookingAt64_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_lookingAt64_70(URegularExpression* regexp, int64_t startIndex, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_lookingAt64_70(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
      * }
      */
     public static byte uregex_lookingAt64_70(MemorySegment regexp, long startIndex, MemorySegment status) {
@@ -2962,11 +2962,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_find_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$4,"uregex_find_70");
+        return RuntimeHelper.requireNonNull(constants$39.const$4,"uregex_find_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_find_70(URegularExpression* regexp, int32_t startIndex, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_find_70(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
      * }
      */
     public static byte uregex_find_70(MemorySegment regexp, int startIndex, MemorySegment status) {
@@ -2978,11 +2978,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_find64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$5,"uregex_find64_70");
+        return RuntimeHelper.requireNonNull(constants$39.const$5,"uregex_find64_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_find64_70(URegularExpression* regexp, int64_t startIndex, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_find64_70(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
      * }
      */
     public static byte uregex_find64_70(MemorySegment regexp, long startIndex, MemorySegment status) {
@@ -2994,11 +2994,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_findNext_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$0,"uregex_findNext_70");
+        return RuntimeHelper.requireNonNull(constants$40.const$0,"uregex_findNext_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_findNext_70(URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_findNext_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static byte uregex_findNext_70(MemorySegment regexp, MemorySegment status) {
@@ -3010,11 +3010,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_groupCount_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$1,"uregex_groupCount_70");
+        return RuntimeHelper.requireNonNull(constants$40.const$1,"uregex_groupCount_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_groupCount_70(URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_groupCount_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static int uregex_groupCount_70(MemorySegment regexp, MemorySegment status) {
@@ -3026,11 +3026,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_groupNumberFromName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$3,"uregex_groupNumberFromName_70");
+        return RuntimeHelper.requireNonNull(constants$40.const$3,"uregex_groupNumberFromName_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_groupNumberFromName_70(URegularExpression* regexp, const UChar* groupName, int32_t nameLength, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_groupNumberFromName_70(struct URegularExpression* regexp, unsigned short* groupName, int nameLength, enum UErrorCode* status);
      * }
      */
     public static int uregex_groupNumberFromName_70(MemorySegment regexp, MemorySegment groupName, int nameLength, MemorySegment status) {
@@ -3042,11 +3042,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_groupNumberFromCName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$4,"uregex_groupNumberFromCName_70");
+        return RuntimeHelper.requireNonNull(constants$40.const$4,"uregex_groupNumberFromCName_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_groupNumberFromCName_70(URegularExpression* regexp, char* groupName, int32_t nameLength, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_groupNumberFromCName_70(struct URegularExpression* regexp, char* groupName, int nameLength, enum UErrorCode* status);
      * }
      */
     public static int uregex_groupNumberFromCName_70(MemorySegment regexp, MemorySegment groupName, int nameLength, MemorySegment status) {
@@ -3058,11 +3058,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_group_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$6,"uregex_group_70");
+        return RuntimeHelper.requireNonNull(constants$40.const$6,"uregex_group_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_group_70(URegularExpression* regexp, int32_t groupNum, UChar* dest, int32_t destCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_group_70(struct URegularExpression* regexp, int groupNum, unsigned short* dest, int destCapacity, enum UErrorCode* status);
      * }
      */
     public static int uregex_group_70(MemorySegment regexp, int groupNum, MemorySegment dest, int destCapacity, MemorySegment status) {
@@ -3074,11 +3074,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_groupUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$1,"uregex_groupUText_70");
+        return RuntimeHelper.requireNonNull(constants$41.const$1,"uregex_groupUText_70");
     }
     /**
-     * {@snippet :
-     * UText* uregex_groupUText_70(URegularExpression* regexp, int32_t groupNum, UText* dest, int64_t* groupLength, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* uregex_groupUText_70(struct URegularExpression* regexp, int groupNum, struct UText* dest, long* groupLength, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_groupUText_70(MemorySegment regexp, int groupNum, MemorySegment dest, MemorySegment groupLength, MemorySegment status) {
@@ -3090,11 +3090,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_start_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$3,"uregex_start_70");
+        return RuntimeHelper.requireNonNull(constants$41.const$3,"uregex_start_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_start_70(URegularExpression* regexp, int32_t groupNum, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_start_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
     public static int uregex_start_70(MemorySegment regexp, int groupNum, MemorySegment status) {
@@ -3106,11 +3106,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_start64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$5,"uregex_start64_70");
+        return RuntimeHelper.requireNonNull(constants$41.const$5,"uregex_start64_70");
     }
     /**
-     * {@snippet :
-     * int64_t uregex_start64_70(URegularExpression* regexp, int32_t groupNum, UErrorCode* status);
+     * {@snippet lang=c :
+     * long uregex_start64_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
     public static long uregex_start64_70(MemorySegment regexp, int groupNum, MemorySegment status) {
@@ -3122,11 +3122,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_end_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$0,"uregex_end_70");
+        return RuntimeHelper.requireNonNull(constants$42.const$0,"uregex_end_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_end_70(URegularExpression* regexp, int32_t groupNum, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_end_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
     public static int uregex_end_70(MemorySegment regexp, int groupNum, MemorySegment status) {
@@ -3138,11 +3138,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_end64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$1,"uregex_end64_70");
+        return RuntimeHelper.requireNonNull(constants$42.const$1,"uregex_end64_70");
     }
     /**
-     * {@snippet :
-     * int64_t uregex_end64_70(URegularExpression* regexp, int32_t groupNum, UErrorCode* status);
+     * {@snippet lang=c :
+     * long uregex_end64_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
     public static long uregex_end64_70(MemorySegment regexp, int groupNum, MemorySegment status) {
@@ -3154,11 +3154,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_reset_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$3,"uregex_reset_70");
+        return RuntimeHelper.requireNonNull(constants$42.const$3,"uregex_reset_70");
     }
     /**
-     * {@snippet :
-     * void uregex_reset_70(URegularExpression* regexp, int32_t index, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_reset_70(struct URegularExpression* regexp, int index, enum UErrorCode* status);
      * }
      */
     public static void uregex_reset_70(MemorySegment regexp, int index, MemorySegment status) {
@@ -3170,11 +3170,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_reset64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$5,"uregex_reset64_70");
+        return RuntimeHelper.requireNonNull(constants$42.const$5,"uregex_reset64_70");
     }
     /**
-     * {@snippet :
-     * void uregex_reset64_70(URegularExpression* regexp, int64_t index, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_reset64_70(struct URegularExpression* regexp, long index, enum UErrorCode* status);
      * }
      */
     public static void uregex_reset64_70(MemorySegment regexp, long index, MemorySegment status) {
@@ -3186,11 +3186,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setRegion_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.const$1,"uregex_setRegion_70");
+        return RuntimeHelper.requireNonNull(constants$43.const$1,"uregex_setRegion_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setRegion_70(URegularExpression* regexp, int32_t regionStart, int32_t regionLimit, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setRegion_70(struct URegularExpression* regexp, int regionStart, int regionLimit, enum UErrorCode* status);
      * }
      */
     public static void uregex_setRegion_70(MemorySegment regexp, int regionStart, int regionLimit, MemorySegment status) {
@@ -3202,11 +3202,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setRegion64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.const$3,"uregex_setRegion64_70");
+        return RuntimeHelper.requireNonNull(constants$43.const$3,"uregex_setRegion64_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setRegion64_70(URegularExpression* regexp, int64_t regionStart, int64_t regionLimit, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setRegion64_70(struct URegularExpression* regexp, long regionStart, long regionLimit, enum UErrorCode* status);
      * }
      */
     public static void uregex_setRegion64_70(MemorySegment regexp, long regionStart, long regionLimit, MemorySegment status) {
@@ -3218,11 +3218,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setRegionAndStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.const$5,"uregex_setRegionAndStart_70");
+        return RuntimeHelper.requireNonNull(constants$43.const$5,"uregex_setRegionAndStart_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setRegionAndStart_70(URegularExpression* regexp, int64_t regionStart, int64_t regionLimit, int64_t startIndex, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setRegionAndStart_70(struct URegularExpression* regexp, long regionStart, long regionLimit, long startIndex, enum UErrorCode* status);
      * }
      */
     public static void uregex_setRegionAndStart_70(MemorySegment regexp, long regionStart, long regionLimit, long startIndex, MemorySegment status) {
@@ -3234,11 +3234,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_regionStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$0,"uregex_regionStart_70");
+        return RuntimeHelper.requireNonNull(constants$44.const$0,"uregex_regionStart_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_regionStart_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_regionStart_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static int uregex_regionStart_70(MemorySegment regexp, MemorySegment status) {
@@ -3250,11 +3250,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_regionStart64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$2,"uregex_regionStart64_70");
+        return RuntimeHelper.requireNonNull(constants$44.const$2,"uregex_regionStart64_70");
     }
     /**
-     * {@snippet :
-     * int64_t uregex_regionStart64_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * long uregex_regionStart64_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static long uregex_regionStart64_70(MemorySegment regexp, MemorySegment status) {
@@ -3266,11 +3266,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_regionEnd_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$3,"uregex_regionEnd_70");
+        return RuntimeHelper.requireNonNull(constants$44.const$3,"uregex_regionEnd_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_regionEnd_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_regionEnd_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static int uregex_regionEnd_70(MemorySegment regexp, MemorySegment status) {
@@ -3282,11 +3282,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_regionEnd64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$4,"uregex_regionEnd64_70");
+        return RuntimeHelper.requireNonNull(constants$44.const$4,"uregex_regionEnd64_70");
     }
     /**
-     * {@snippet :
-     * int64_t uregex_regionEnd64_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * long uregex_regionEnd64_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static long uregex_regionEnd64_70(MemorySegment regexp, MemorySegment status) {
@@ -3298,11 +3298,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_hasTransparentBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$5,"uregex_hasTransparentBounds_70");
+        return RuntimeHelper.requireNonNull(constants$44.const$5,"uregex_hasTransparentBounds_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_hasTransparentBounds_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_hasTransparentBounds_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static byte uregex_hasTransparentBounds_70(MemorySegment regexp, MemorySegment status) {
@@ -3314,11 +3314,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_useTransparentBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$1,"uregex_useTransparentBounds_70");
+        return RuntimeHelper.requireNonNull(constants$45.const$1,"uregex_useTransparentBounds_70");
     }
     /**
-     * {@snippet :
-     * void uregex_useTransparentBounds_70(URegularExpression* regexp, UBool b, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_useTransparentBounds_70(struct URegularExpression* regexp, signed char b, enum UErrorCode* status);
      * }
      */
     public static void uregex_useTransparentBounds_70(MemorySegment regexp, byte b, MemorySegment status) {
@@ -3330,11 +3330,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_hasAnchoringBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$2,"uregex_hasAnchoringBounds_70");
+        return RuntimeHelper.requireNonNull(constants$45.const$2,"uregex_hasAnchoringBounds_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_hasAnchoringBounds_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_hasAnchoringBounds_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static byte uregex_hasAnchoringBounds_70(MemorySegment regexp, MemorySegment status) {
@@ -3346,11 +3346,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_useAnchoringBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$3,"uregex_useAnchoringBounds_70");
+        return RuntimeHelper.requireNonNull(constants$45.const$3,"uregex_useAnchoringBounds_70");
     }
     /**
-     * {@snippet :
-     * void uregex_useAnchoringBounds_70(URegularExpression* regexp, UBool b, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_useAnchoringBounds_70(struct URegularExpression* regexp, signed char b, enum UErrorCode* status);
      * }
      */
     public static void uregex_useAnchoringBounds_70(MemorySegment regexp, byte b, MemorySegment status) {
@@ -3362,11 +3362,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_hitEnd_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$4,"uregex_hitEnd_70");
+        return RuntimeHelper.requireNonNull(constants$45.const$4,"uregex_hitEnd_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_hitEnd_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_hitEnd_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static byte uregex_hitEnd_70(MemorySegment regexp, MemorySegment status) {
@@ -3378,11 +3378,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_requireEnd_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$5,"uregex_requireEnd_70");
+        return RuntimeHelper.requireNonNull(constants$45.const$5,"uregex_requireEnd_70");
     }
     /**
-     * {@snippet :
-     * UBool uregex_requireEnd_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * signed char uregex_requireEnd_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static byte uregex_requireEnd_70(MemorySegment regexp, MemorySegment status) {
@@ -3394,11 +3394,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_replaceAll_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$1,"uregex_replaceAll_70");
+        return RuntimeHelper.requireNonNull(constants$46.const$1,"uregex_replaceAll_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_replaceAll_70(URegularExpression* regexp, const UChar* replacementText, int32_t replacementLength, UChar* destBuf, int32_t destCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_replaceAll_70(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short* destBuf, int destCapacity, enum UErrorCode* status);
      * }
      */
     public static int uregex_replaceAll_70(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, int destCapacity, MemorySegment status) {
@@ -3410,11 +3410,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_replaceAllUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$3,"uregex_replaceAllUText_70");
+        return RuntimeHelper.requireNonNull(constants$46.const$3,"uregex_replaceAllUText_70");
     }
     /**
-     * {@snippet :
-     * UText* uregex_replaceAllUText_70(URegularExpression* regexp, UText* replacement, UText* dest, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* uregex_replaceAllUText_70(struct URegularExpression* regexp, struct UText* replacement, struct UText* dest, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_replaceAllUText_70(MemorySegment regexp, MemorySegment replacement, MemorySegment dest, MemorySegment status) {
@@ -3426,11 +3426,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_replaceFirst_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$4,"uregex_replaceFirst_70");
+        return RuntimeHelper.requireNonNull(constants$46.const$4,"uregex_replaceFirst_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_replaceFirst_70(URegularExpression* regexp, const UChar* replacementText, int32_t replacementLength, UChar* destBuf, int32_t destCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_replaceFirst_70(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short* destBuf, int destCapacity, enum UErrorCode* status);
      * }
      */
     public static int uregex_replaceFirst_70(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, int destCapacity, MemorySegment status) {
@@ -3442,11 +3442,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_replaceFirstUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$5,"uregex_replaceFirstUText_70");
+        return RuntimeHelper.requireNonNull(constants$46.const$5,"uregex_replaceFirstUText_70");
     }
     /**
-     * {@snippet :
-     * UText* uregex_replaceFirstUText_70(URegularExpression* regexp, UText* replacement, UText* dest, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* uregex_replaceFirstUText_70(struct URegularExpression* regexp, struct UText* replacement, struct UText* dest, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_replaceFirstUText_70(MemorySegment regexp, MemorySegment replacement, MemorySegment dest, MemorySegment status) {
@@ -3458,11 +3458,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_appendReplacement_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$1,"uregex_appendReplacement_70");
+        return RuntimeHelper.requireNonNull(constants$47.const$1,"uregex_appendReplacement_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_appendReplacement_70(URegularExpression* regexp, const UChar* replacementText, int32_t replacementLength, UChar** destBuf, int32_t* destCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_appendReplacement_70(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short** destBuf, int* destCapacity, enum UErrorCode* status);
      * }
      */
     public static int uregex_appendReplacement_70(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, MemorySegment destCapacity, MemorySegment status) {
@@ -3474,11 +3474,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_appendReplacementUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$3,"uregex_appendReplacementUText_70");
+        return RuntimeHelper.requireNonNull(constants$47.const$3,"uregex_appendReplacementUText_70");
     }
     /**
-     * {@snippet :
-     * void uregex_appendReplacementUText_70(URegularExpression* regexp, UText* replacementText, UText* dest, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_appendReplacementUText_70(struct URegularExpression* regexp, struct UText* replacementText, struct UText* dest, enum UErrorCode* status);
      * }
      */
     public static void uregex_appendReplacementUText_70(MemorySegment regexp, MemorySegment replacementText, MemorySegment dest, MemorySegment status) {
@@ -3490,11 +3490,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_appendTail_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$5,"uregex_appendTail_70");
+        return RuntimeHelper.requireNonNull(constants$47.const$5,"uregex_appendTail_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_appendTail_70(URegularExpression* regexp, UChar** destBuf, int32_t* destCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_appendTail_70(struct URegularExpression* regexp, unsigned short** destBuf, int* destCapacity, enum UErrorCode* status);
      * }
      */
     public static int uregex_appendTail_70(MemorySegment regexp, MemorySegment destBuf, MemorySegment destCapacity, MemorySegment status) {
@@ -3506,11 +3506,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_appendTailUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$0,"uregex_appendTailUText_70");
+        return RuntimeHelper.requireNonNull(constants$48.const$0,"uregex_appendTailUText_70");
     }
     /**
-     * {@snippet :
-     * UText* uregex_appendTailUText_70(URegularExpression* regexp, UText* dest, UErrorCode* status);
+     * {@snippet lang=c :
+     * struct UText* uregex_appendTailUText_70(struct URegularExpression* regexp, struct UText* dest, enum UErrorCode* status);
      * }
      */
     public static MemorySegment uregex_appendTailUText_70(MemorySegment regexp, MemorySegment dest, MemorySegment status) {
@@ -3522,11 +3522,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_split_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$2,"uregex_split_70");
+        return RuntimeHelper.requireNonNull(constants$48.const$2,"uregex_split_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_split_70(URegularExpression* regexp, UChar* destBuf, int32_t destCapacity, int32_t* requiredCapacity, UChar* destFields[], int32_t destFieldsCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_split_70(struct URegularExpression* regexp, unsigned short* destBuf, int destCapacity, int* requiredCapacity, unsigned short* destFields[], int destFieldsCapacity, enum UErrorCode* status);
      * }
      */
     public static int uregex_split_70(MemorySegment regexp, MemorySegment destBuf, int destCapacity, MemorySegment requiredCapacity, MemorySegment destFields, int destFieldsCapacity, MemorySegment status) {
@@ -3538,11 +3538,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_splitUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$3,"uregex_splitUText_70");
+        return RuntimeHelper.requireNonNull(constants$48.const$3,"uregex_splitUText_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_splitUText_70(URegularExpression* regexp, UText* destFields[], int32_t destFieldsCapacity, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_splitUText_70(struct URegularExpression* regexp, struct UText* destFields[], int destFieldsCapacity, enum UErrorCode* status);
      * }
      */
     public static int uregex_splitUText_70(MemorySegment regexp, MemorySegment destFields, int destFieldsCapacity, MemorySegment status) {
@@ -3554,11 +3554,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setTimeLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$4,"uregex_setTimeLimit_70");
+        return RuntimeHelper.requireNonNull(constants$48.const$4,"uregex_setTimeLimit_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setTimeLimit_70(URegularExpression* regexp, int32_t limit, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setTimeLimit_70(struct URegularExpression* regexp, int limit, enum UErrorCode* status);
      * }
      */
     public static void uregex_setTimeLimit_70(MemorySegment regexp, int limit, MemorySegment status) {
@@ -3570,11 +3570,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_getTimeLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$5,"uregex_getTimeLimit_70");
+        return RuntimeHelper.requireNonNull(constants$48.const$5,"uregex_getTimeLimit_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_getTimeLimit_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_getTimeLimit_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static int uregex_getTimeLimit_70(MemorySegment regexp, MemorySegment status) {
@@ -3586,11 +3586,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setStackLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.const$0,"uregex_setStackLimit_70");
+        return RuntimeHelper.requireNonNull(constants$49.const$0,"uregex_setStackLimit_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setStackLimit_70(URegularExpression* regexp, int32_t limit, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setStackLimit_70(struct URegularExpression* regexp, int limit, enum UErrorCode* status);
      * }
      */
     public static void uregex_setStackLimit_70(MemorySegment regexp, int limit, MemorySegment status) {
@@ -3602,11 +3602,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_getStackLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.const$1,"uregex_getStackLimit_70");
+        return RuntimeHelper.requireNonNull(constants$49.const$1,"uregex_getStackLimit_70");
     }
     /**
-     * {@snippet :
-     * int32_t uregex_getStackLimit_70(const URegularExpression* regexp, UErrorCode* status);
+     * {@snippet lang=c :
+     * int uregex_getStackLimit_70(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
     public static int uregex_getStackLimit_70(MemorySegment regexp, MemorySegment status) {
@@ -3618,11 +3618,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setMatchCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.const$4,"uregex_setMatchCallback_70");
+        return RuntimeHelper.requireNonNull(constants$49.const$5,"uregex_setMatchCallback_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setMatchCallback_70(URegularExpression* regexp, URegexMatchCallback* callback, void* context, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setMatchCallback_70(struct URegularExpression* regexp, signed char (*callback)(void*,int), void* context, enum UErrorCode* status);
      * }
      */
     public static void uregex_setMatchCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
@@ -3634,11 +3634,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_getMatchCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.const$5,"uregex_getMatchCallback_70");
+        return RuntimeHelper.requireNonNull(constants$50.const$1,"uregex_getMatchCallback_70");
     }
     /**
-     * {@snippet :
-     * void uregex_getMatchCallback_70(const URegularExpression* regexp, URegexMatchCallback** callback, void** context, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_getMatchCallback_70(struct URegularExpression* regexp, signed char (**callback)(void*,int), void** context, enum UErrorCode* status);
      * }
      */
     public static void uregex_getMatchCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
@@ -3650,11 +3650,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_setFindProgressCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.const$3,"uregex_setFindProgressCallback_70");
+        return RuntimeHelper.requireNonNull(constants$51.const$0,"uregex_setFindProgressCallback_70");
     }
     /**
-     * {@snippet :
-     * void uregex_setFindProgressCallback_70(URegularExpression* regexp, URegexFindProgressCallback* callback, void* context, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_setFindProgressCallback_70(struct URegularExpression* regexp, signed char (*callback)(void*,long), void* context, enum UErrorCode* status);
      * }
      */
     public static void uregex_setFindProgressCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
@@ -3666,11 +3666,11 @@ public class uregex_h_1 {
         }
     }
     public static MethodHandle uregex_getFindProgressCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.const$4,"uregex_getFindProgressCallback_70");
+        return RuntimeHelper.requireNonNull(constants$51.const$2,"uregex_getFindProgressCallback_70");
     }
     /**
-     * {@snippet :
-     * void uregex_getFindProgressCallback_70(const URegularExpression* regexp, URegexFindProgressCallback** callback, void** context, UErrorCode* status);
+     * {@snippet lang=c :
+     * void uregex_getFindProgressCallback_70(struct URegularExpression* regexp, signed char (**callback)(void*,long), void** context, enum UErrorCode* status);
      * }
      */
     public static void uregex_getFindProgressCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
@@ -3682,55 +3682,55 @@ public class uregex_h_1 {
         }
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define NULL 0
      * }
      */
     public static MemorySegment NULL() {
-        return constants$48.const$5;
+        return constants$51.const$3;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_LIB_SUFFIX_C_NAME_STRING ""
      * }
      */
     public static MemorySegment U_LIB_SUFFIX_C_NAME_STRING() {
-        return constants$49.const$0;
+        return constants$51.const$4;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_COPYRIGHT_STRING " Copyright (C) 2016 and later: Unicode, Inc. and others. License & terms of use: http://www.unicode.org/copyright.html "
      * }
      */
     public static MemorySegment U_COPYRIGHT_STRING() {
-        return constants$49.const$1;
+        return constants$51.const$5;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICU_VERSION "70.1"
      * }
      */
     public static MemorySegment U_ICU_VERSION() {
-        return constants$49.const$2;
+        return constants$52.const$0;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICU_VERSION_SHORT "70"
      * }
      */
     public static MemorySegment U_ICU_VERSION_SHORT() {
-        return constants$49.const$3;
+        return constants$52.const$1;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICU_DATA_VERSION "70.1"
      * }
      */
     public static MemorySegment U_ICU_DATA_VERSION() {
-        return constants$49.const$2;
+        return constants$52.const$0;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_PLATFORM 4000
      * }
      */
@@ -3738,7 +3738,7 @@ public class uregex_h_1 {
         return (int)4000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HAVE_INTTYPES_H 1
      * }
      */
@@ -3746,7 +3746,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GCC_MAJOR_MINOR 402
      * }
      */
@@ -3754,7 +3754,7 @@ public class uregex_h_1 {
         return (int)402L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_IS_BIG_ENDIAN 0
      * }
      */
@@ -3762,7 +3762,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_CHARSET_FAMILY 0
      * }
      */
@@ -3770,7 +3770,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_HAVE_WCSCPY 1
      * }
      */
@@ -3778,7 +3778,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT64_MAX 9223372036854775807
      * }
      */
@@ -3786,7 +3786,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT64_MIN -9223372036854775808
      * }
      */
@@ -3794,7 +3794,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT64_MAX -1
      * }
      */
@@ -3802,7 +3802,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST64_MIN -9223372036854775808
      * }
      */
@@ -3810,7 +3810,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST64_MAX 9223372036854775807
      * }
      */
@@ -3818,7 +3818,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __UINT_LEAST64_MAX -1
      * }
      */
@@ -3826,7 +3826,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST32_MIN -2147483648
      * }
      */
@@ -3834,7 +3834,7 @@ public class uregex_h_1 {
         return (int)-2147483648L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST32_MAX 2147483647
      * }
      */
@@ -3842,7 +3842,7 @@ public class uregex_h_1 {
         return (int)2147483647L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __UINT_LEAST32_MAX 4294967295
      * }
      */
@@ -3850,7 +3850,7 @@ public class uregex_h_1 {
         return (int)4294967295L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST16_MIN -32768
      * }
      */
@@ -3858,7 +3858,7 @@ public class uregex_h_1 {
         return (int)-32768L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST16_MAX 32767
      * }
      */
@@ -3866,7 +3866,7 @@ public class uregex_h_1 {
         return (int)32767L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __UINT_LEAST16_MAX 65535
      * }
      */
@@ -3874,7 +3874,7 @@ public class uregex_h_1 {
         return (int)65535L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST8_MIN -128
      * }
      */
@@ -3882,7 +3882,7 @@ public class uregex_h_1 {
         return (int)-128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INT_LEAST8_MAX 127
      * }
      */
@@ -3890,7 +3890,7 @@ public class uregex_h_1 {
         return (int)127L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __UINT_LEAST8_MAX 255
      * }
      */
@@ -3898,7 +3898,7 @@ public class uregex_h_1 {
         return (int)255L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST64_MIN -9223372036854775808
      * }
      */
@@ -3906,7 +3906,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST64_MAX 9223372036854775807
      * }
      */
@@ -3914,7 +3914,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST64_MAX -1
      * }
      */
@@ -3922,7 +3922,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST64_MIN -9223372036854775808
      * }
      */
@@ -3930,7 +3930,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST64_MAX 9223372036854775807
      * }
      */
@@ -3938,7 +3938,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST64_MAX -1
      * }
      */
@@ -3946,7 +3946,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT32_MAX 2147483647
      * }
      */
@@ -3954,7 +3954,7 @@ public class uregex_h_1 {
         return (int)2147483647L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT32_MIN -2147483648
      * }
      */
@@ -3962,7 +3962,7 @@ public class uregex_h_1 {
         return (int)-2147483648L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT32_MAX 4294967295
      * }
      */
@@ -3970,7 +3970,7 @@ public class uregex_h_1 {
         return (int)4294967295L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST32_MIN -2147483648
      * }
      */
@@ -3978,7 +3978,7 @@ public class uregex_h_1 {
         return (int)-2147483648L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST32_MAX 2147483647
      * }
      */
@@ -3986,7 +3986,7 @@ public class uregex_h_1 {
         return (int)2147483647L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST32_MAX 4294967295
      * }
      */
@@ -3994,7 +3994,7 @@ public class uregex_h_1 {
         return (int)4294967295L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST32_MIN -2147483648
      * }
      */
@@ -4002,7 +4002,7 @@ public class uregex_h_1 {
         return (int)-2147483648L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST32_MAX 2147483647
      * }
      */
@@ -4010,7 +4010,7 @@ public class uregex_h_1 {
         return (int)2147483647L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST32_MAX 4294967295
      * }
      */
@@ -4018,7 +4018,7 @@ public class uregex_h_1 {
         return (int)4294967295L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT16_MAX 32767
      * }
      */
@@ -4026,7 +4026,7 @@ public class uregex_h_1 {
         return (int)32767L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT16_MIN -32768
      * }
      */
@@ -4034,7 +4034,7 @@ public class uregex_h_1 {
         return (int)-32768L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT16_MAX 65535
      * }
      */
@@ -4042,7 +4042,7 @@ public class uregex_h_1 {
         return (int)65535L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST16_MIN -32768
      * }
      */
@@ -4050,7 +4050,7 @@ public class uregex_h_1 {
         return (int)-32768L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST16_MAX 32767
      * }
      */
@@ -4058,7 +4058,7 @@ public class uregex_h_1 {
         return (int)32767L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST16_MAX 65535
      * }
      */
@@ -4066,7 +4066,7 @@ public class uregex_h_1 {
         return (int)65535L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST16_MIN -32768
      * }
      */
@@ -4074,7 +4074,7 @@ public class uregex_h_1 {
         return (int)-32768L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST16_MAX 32767
      * }
      */
@@ -4082,7 +4082,7 @@ public class uregex_h_1 {
         return (int)32767L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST16_MAX 65535
      * }
      */
@@ -4090,7 +4090,7 @@ public class uregex_h_1 {
         return (int)65535L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT8_MAX 127
      * }
      */
@@ -4098,7 +4098,7 @@ public class uregex_h_1 {
         return (int)127L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT8_MIN -128
      * }
      */
@@ -4106,7 +4106,7 @@ public class uregex_h_1 {
         return (int)-128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT8_MAX 255
      * }
      */
@@ -4114,7 +4114,7 @@ public class uregex_h_1 {
         return (int)255L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST8_MIN -128
      * }
      */
@@ -4122,7 +4122,7 @@ public class uregex_h_1 {
         return (int)-128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST8_MAX 127
      * }
      */
@@ -4130,7 +4130,7 @@ public class uregex_h_1 {
         return (int)127L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST8_MAX 255
      * }
      */
@@ -4138,7 +4138,7 @@ public class uregex_h_1 {
         return (int)255L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST8_MIN -128
      * }
      */
@@ -4146,7 +4146,7 @@ public class uregex_h_1 {
         return (int)-128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST8_MAX 127
      * }
      */
@@ -4154,7 +4154,7 @@ public class uregex_h_1 {
         return (int)127L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST8_MAX 255
      * }
      */
@@ -4162,7 +4162,7 @@ public class uregex_h_1 {
         return (int)255L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTPTR_MIN -9223372036854775808
      * }
      */
@@ -4170,7 +4170,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTPTR_MAX 9223372036854775807
      * }
      */
@@ -4178,7 +4178,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINTPTR_MAX -1
      * }
      */
@@ -4186,7 +4186,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define PTRDIFF_MIN -9223372036854775808
      * }
      */
@@ -4194,7 +4194,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define PTRDIFF_MAX 9223372036854775807
      * }
      */
@@ -4202,7 +4202,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define SIZE_MAX -1
      * }
      */
@@ -4210,7 +4210,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTMAX_MIN -9223372036854775808
      * }
      */
@@ -4218,7 +4218,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTMAX_MAX 9223372036854775807
      * }
      */
@@ -4226,7 +4226,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINTMAX_MAX -1
      * }
      */
@@ -4234,7 +4234,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define SIG_ATOMIC_MIN -2147483648
      * }
      */
@@ -4242,7 +4242,7 @@ public class uregex_h_1 {
         return (int)-2147483648L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define SIG_ATOMIC_MAX 2147483647
      * }
      */
@@ -4250,7 +4250,7 @@ public class uregex_h_1 {
         return (int)2147483647L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WINT_MIN 0
      * }
      */
@@ -4258,7 +4258,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WINT_MAX 4294967295
      * }
      */
@@ -4266,7 +4266,7 @@ public class uregex_h_1 {
         return (int)4294967295L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WCHAR_MAX 2147483647
      * }
      */
@@ -4274,7 +4274,7 @@ public class uregex_h_1 {
         return (int)2147483647L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WCHAR_MIN -2147483648
      * }
      */
@@ -4282,7 +4282,7 @@ public class uregex_h_1 {
         return (int)-2147483648L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_INT64_MIN -9223372036854775808
      * }
      */
@@ -4290,7 +4290,7 @@ public class uregex_h_1 {
         return -9223372036854775808L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_INT64_MAX 9223372036854775807
      * }
      */
@@ -4298,7 +4298,7 @@ public class uregex_h_1 {
         return 9223372036854775807L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_UINT64_MAX -1
      * }
      */
@@ -4306,7 +4306,7 @@ public class uregex_h_1 {
         return -1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_SENTINEL -1
      * }
      */
@@ -4314,7 +4314,7 @@ public class uregex_h_1 {
         return (int)-1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_VERSION_DELIMITER 46
      * }
      */
@@ -4322,7 +4322,7 @@ public class uregex_h_1 {
         return (int)46L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_EVAL_METHOD 0
      * }
      */
@@ -4330,7 +4330,7 @@ public class uregex_h_1 {
         return (int)0L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_RADIX 2
      * }
      */
@@ -4338,7 +4338,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_MANT_DIG 24
      * }
      */
@@ -4346,7 +4346,7 @@ public class uregex_h_1 {
         return (int)24L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_MANT_DIG 53
      * }
      */
@@ -4354,7 +4354,7 @@ public class uregex_h_1 {
         return (int)53L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_MANT_DIG 64
      * }
      */
@@ -4362,7 +4362,7 @@ public class uregex_h_1 {
         return (int)64L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DECIMAL_DIG 21
      * }
      */
@@ -4370,7 +4370,7 @@ public class uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_DIG 6
      * }
      */
@@ -4378,7 +4378,7 @@ public class uregex_h_1 {
         return (int)6L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_DIG 15
      * }
      */
@@ -4386,7 +4386,7 @@ public class uregex_h_1 {
         return (int)15L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_DIG 18
      * }
      */
@@ -4394,7 +4394,7 @@ public class uregex_h_1 {
         return (int)18L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_MIN_EXP -125
      * }
      */
@@ -4402,7 +4402,7 @@ public class uregex_h_1 {
         return (int)-125L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_MIN_EXP -1021
      * }
      */
@@ -4410,7 +4410,7 @@ public class uregex_h_1 {
         return (int)-1021L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_MIN_EXP -16381
      * }
      */
@@ -4418,7 +4418,7 @@ public class uregex_h_1 {
         return (int)-16381L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_MIN_10_EXP -37
      * }
      */
@@ -4426,7 +4426,7 @@ public class uregex_h_1 {
         return (int)-37L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_MIN_10_EXP -307
      * }
      */
@@ -4434,7 +4434,7 @@ public class uregex_h_1 {
         return (int)-307L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_MIN_10_EXP -4931
      * }
      */
@@ -4442,7 +4442,7 @@ public class uregex_h_1 {
         return (int)-4931L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_MAX_EXP 128
      * }
      */
@@ -4450,7 +4450,7 @@ public class uregex_h_1 {
         return (int)128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_MAX_EXP 1024
      * }
      */
@@ -4458,7 +4458,7 @@ public class uregex_h_1 {
         return (int)1024L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_MAX_EXP 16384
      * }
      */
@@ -4466,7 +4466,7 @@ public class uregex_h_1 {
         return (int)16384L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_MAX_10_EXP 38
      * }
      */
@@ -4474,7 +4474,7 @@ public class uregex_h_1 {
         return (int)38L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_MAX_10_EXP 308
      * }
      */
@@ -4482,7 +4482,7 @@ public class uregex_h_1 {
         return (int)308L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_MAX_10_EXP 4932
      * }
      */
@@ -4490,7 +4490,7 @@ public class uregex_h_1 {
         return (int)4932L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_MAX 3.4028234663852886E38
      * }
      */
@@ -4498,7 +4498,7 @@ public class uregex_h_1 {
         return 3.4028234663852886E38f;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_MAX 1.7976931348623157E308
      * }
      */
@@ -4506,7 +4506,7 @@ public class uregex_h_1 {
         return 1.7976931348623157E308d;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_EPSILON 1.1920928955078125E-7
      * }
      */
@@ -4514,7 +4514,7 @@ public class uregex_h_1 {
         return 1.1920928955078125E-7f;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_EPSILON 2.220446049250313E-16
      * }
      */
@@ -4522,7 +4522,7 @@ public class uregex_h_1 {
         return 2.220446049250313E-16d;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_MIN 1.1754943508222875E-38
      * }
      */
@@ -4530,7 +4530,7 @@ public class uregex_h_1 {
         return 1.1754943508222875E-38f;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_MIN 2.2250738585072014E-308
      * }
      */
@@ -4538,7 +4538,7 @@ public class uregex_h_1 {
         return 2.2250738585072014E-308d;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_TRUE_MIN 1.401298464324817E-45
      * }
      */
@@ -4546,7 +4546,7 @@ public class uregex_h_1 {
         return 1.401298464324817E-45f;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_TRUE_MIN 4.9E-324
      * }
      */
@@ -4554,7 +4554,7 @@ public class uregex_h_1 {
         return 4.9E-324d;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_DECIMAL_DIG 9
      * }
      */
@@ -4562,7 +4562,7 @@ public class uregex_h_1 {
         return (int)9L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_DECIMAL_DIG 17
      * }
      */
@@ -4570,7 +4570,7 @@ public class uregex_h_1 {
         return (int)17L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_DECIMAL_DIG 21
      * }
      */
@@ -4578,7 +4578,7 @@ public class uregex_h_1 {
         return (int)21L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define FLT_HAS_SUBNORM 1
      * }
      */
@@ -4586,7 +4586,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define DBL_HAS_SUBNORM 1
      * }
      */
@@ -4594,7 +4594,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define LDBL_HAS_SUBNORM 1
      * }
      */
@@ -4602,23 +4602,23 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U8_LEAD3_T1_BITS " 000000000000\u001000"
      * }
      */
     public static MemorySegment U8_LEAD3_T1_BITS() {
-        return constants$49.const$4;
+        return constants$52.const$2;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U8_LEAD4_T1_BITS ""
      * }
      */
     public static MemorySegment U8_LEAD4_T1_BITS() {
-        return constants$49.const$0;
+        return constants$51.const$4;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U16_SURROGATE_OFFSET 56613888
      * }
      */
@@ -4626,7 +4626,7 @@ public class uregex_h_1 {
         return (int)56613888L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF_SURROGATE_OFFSET 56613888
      * }
      */
@@ -4634,7 +4634,7 @@ public class uregex_h_1 {
         return (int)56613888L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UTF_MAX_CHAR_LENGTH 2
      * }
      */
@@ -4642,31 +4642,31 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICUDATA_TYPE_LETTER "l"
      * }
      */
     public static MemorySegment U_ICUDATA_TYPE_LETTER() {
-        return constants$49.const$5;
+        return constants$52.const$3;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_ICUDATA_NAME "icudt70l"
      * }
      */
     public static MemorySegment U_ICUDATA_NAME() {
-        return constants$50.const$0;
+        return constants$52.const$4;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_USRDATA_NAME "usrdt70l"
      * }
      */
     public static MemorySegment U_USRDATA_NAME() {
-        return constants$50.const$1;
+        return constants$52.const$5;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_MILLIS_PER_SECOND 1000
      * }
      */
@@ -4674,7 +4674,7 @@ public class uregex_h_1 {
         return (int)1000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_MILLIS_PER_MINUTE 60000
      * }
      */
@@ -4682,7 +4682,7 @@ public class uregex_h_1 {
         return (int)60000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_MILLIS_PER_HOUR 3600000
      * }
      */
@@ -4690,7 +4690,7 @@ public class uregex_h_1 {
         return (int)3600000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_MILLIS_PER_DAY 86400000
      * }
      */
@@ -4698,7 +4698,7 @@ public class uregex_h_1 {
         return (int)86400000L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_DATE_MAX 1.7976931348623157E308
      * }
      */
@@ -4706,7 +4706,7 @@ public class uregex_h_1 {
         return 1.7976931348623157E308d;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_DATE_MIN -1.7976931348623157E308
      * }
      */
@@ -4714,15 +4714,15 @@ public class uregex_h_1 {
         return -1.7976931348623157E308d;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_UNICODE_VERSION "14.0"
      * }
      */
     public static MemorySegment U_UNICODE_VERSION() {
-        return constants$50.const$2;
+        return constants$53.const$0;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_CN_MASK 1
      * }
      */
@@ -4730,7 +4730,7 @@ public class uregex_h_1 {
         return (int)1L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_LU_MASK 2
      * }
      */
@@ -4738,7 +4738,7 @@ public class uregex_h_1 {
         return (int)2L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_LL_MASK 4
      * }
      */
@@ -4746,7 +4746,7 @@ public class uregex_h_1 {
         return (int)4L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_LT_MASK 8
      * }
      */
@@ -4754,7 +4754,7 @@ public class uregex_h_1 {
         return (int)8L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_LM_MASK 16
      * }
      */
@@ -4762,7 +4762,7 @@ public class uregex_h_1 {
         return (int)16L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_LO_MASK 32
      * }
      */
@@ -4770,7 +4770,7 @@ public class uregex_h_1 {
         return (int)32L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_MN_MASK 64
      * }
      */
@@ -4778,7 +4778,7 @@ public class uregex_h_1 {
         return (int)64L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_ME_MASK 128
      * }
      */
@@ -4786,7 +4786,7 @@ public class uregex_h_1 {
         return (int)128L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_MC_MASK 256
      * }
      */
@@ -4794,7 +4794,7 @@ public class uregex_h_1 {
         return (int)256L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_ND_MASK 512
      * }
      */
@@ -4802,7 +4802,7 @@ public class uregex_h_1 {
         return (int)512L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_NL_MASK 1024
      * }
      */
@@ -4810,7 +4810,7 @@ public class uregex_h_1 {
         return (int)1024L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_NO_MASK 2048
      * }
      */
@@ -4818,7 +4818,7 @@ public class uregex_h_1 {
         return (int)2048L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_ZS_MASK 4096
      * }
      */
@@ -4826,7 +4826,7 @@ public class uregex_h_1 {
         return (int)4096L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_ZL_MASK 8192
      * }
      */
@@ -4834,7 +4834,7 @@ public class uregex_h_1 {
         return (int)8192L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_ZP_MASK 16384
      * }
      */
@@ -4842,7 +4842,7 @@ public class uregex_h_1 {
         return (int)16384L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_CC_MASK 32768
      * }
      */
@@ -4850,7 +4850,7 @@ public class uregex_h_1 {
         return (int)32768L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_CF_MASK 65536
      * }
      */
@@ -4858,7 +4858,7 @@ public class uregex_h_1 {
         return (int)65536L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_CO_MASK 131072
      * }
      */
@@ -4866,7 +4866,7 @@ public class uregex_h_1 {
         return (int)131072L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_CS_MASK 262144
      * }
      */
@@ -4874,7 +4874,7 @@ public class uregex_h_1 {
         return (int)262144L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_PD_MASK 524288
      * }
      */
@@ -4882,7 +4882,7 @@ public class uregex_h_1 {
         return (int)524288L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_PS_MASK 1048576
      * }
      */
@@ -4890,7 +4890,7 @@ public class uregex_h_1 {
         return (int)1048576L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_PE_MASK 2097152
      * }
      */
@@ -4898,7 +4898,7 @@ public class uregex_h_1 {
         return (int)2097152L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_PC_MASK 4194304
      * }
      */
@@ -4906,7 +4906,7 @@ public class uregex_h_1 {
         return (int)4194304L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_PO_MASK 8388608
      * }
      */
@@ -4914,7 +4914,7 @@ public class uregex_h_1 {
         return (int)8388608L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_SM_MASK 16777216
      * }
      */
@@ -4922,7 +4922,7 @@ public class uregex_h_1 {
         return (int)16777216L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_SC_MASK 33554432
      * }
      */
@@ -4930,7 +4930,7 @@ public class uregex_h_1 {
         return (int)33554432L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_SK_MASK 67108864
      * }
      */
@@ -4938,7 +4938,7 @@ public class uregex_h_1 {
         return (int)67108864L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_SO_MASK 134217728
      * }
      */
@@ -4946,7 +4946,7 @@ public class uregex_h_1 {
         return (int)134217728L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_PI_MASK 268435456
      * }
      */
@@ -4954,7 +4954,7 @@ public class uregex_h_1 {
         return (int)268435456L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_PF_MASK 536870912
      * }
      */
@@ -4962,7 +4962,7 @@ public class uregex_h_1 {
         return (int)536870912L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_L_MASK 62
      * }
      */
@@ -4970,7 +4970,7 @@ public class uregex_h_1 {
         return (int)62L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_LC_MASK 14
      * }
      */
@@ -4978,7 +4978,7 @@ public class uregex_h_1 {
         return (int)14L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_M_MASK 448
      * }
      */
@@ -4986,7 +4986,7 @@ public class uregex_h_1 {
         return (int)448L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_N_MASK 3584
      * }
      */
@@ -4994,7 +4994,7 @@ public class uregex_h_1 {
         return (int)3584L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_Z_MASK 28672
      * }
      */
@@ -5002,7 +5002,7 @@ public class uregex_h_1 {
         return (int)28672L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_C_MASK 491521
      * }
      */
@@ -5010,7 +5010,7 @@ public class uregex_h_1 {
         return (int)491521L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_P_MASK 821559296
      * }
      */
@@ -5018,7 +5018,7 @@ public class uregex_h_1 {
         return (int)821559296L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_GC_S_MASK 251658240
      * }
      */
@@ -5026,7 +5026,7 @@ public class uregex_h_1 {
         return (int)251658240L;
     }
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define U_NO_NUMERIC_VALUE -1.23456789E8
      * }
      */

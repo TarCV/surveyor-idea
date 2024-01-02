@@ -13,9 +13,9 @@ final class constants$0 {
     private constants$0() {}
     static final StructLayout const$0 = MemoryLayout.structLayout(
         JAVA_LONG.withName("__clang_max_align_nonce1"),
-        MemoryLayout.paddingLayout(64),
-        MemoryLayout.paddingLayout(128).withName("__clang_max_align_nonce2")
-    );
+        MemoryLayout.paddingLayout(8),
+        MemoryLayout.paddingLayout(16).withName("__clang_max_align_nonce2")
+    ).withName("max_align_t");
     static final VarHandle const$1 = constants$0.const$0.varHandle(MemoryLayout.PathElement.groupElement("__clang_max_align_nonce1"));
     static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
         RuntimeHelper.POINTER,

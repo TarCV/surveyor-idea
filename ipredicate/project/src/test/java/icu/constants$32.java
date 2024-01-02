@@ -11,12 +11,12 @@ final class constants$32 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$32() {}
-    static final VarHandle const$0 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("a"));
-    static final VarHandle const$1 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("b"));
-    static final VarHandle const$2 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("c"));
-    static final VarHandle const$3 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("privA"));
-    static final VarHandle const$4 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("privB"));
-    static final VarHandle const$5 = constants$28.const$5.varHandle(MemoryLayout.PathElement.groupElement("privC"));
+    static final VarHandle const$0 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("nativeIndexingLimit"));
+    static final VarHandle const$1 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkNativeStart"));
+    static final VarHandle const$2 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkOffset"));
+    static final VarHandle const$3 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkLength"));
+    static final VarHandle const$4 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("chunkContents"));
+    static final VarHandle const$5 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("pFuncs"));
 }
 
 

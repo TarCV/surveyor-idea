@@ -11,34 +11,12 @@ final class constants$33 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$33() {}
-    static final FunctionDescriptor const$0 = FunctionDescriptor.of(RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        JAVA_INT,
-        RuntimeHelper.POINTER
-    );
-    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utext_setup_70",
-        constants$33.const$0
-    );
-    static final StructLayout const$2 = MemoryLayout.structLayout(
-        JAVA_INT.withName("line"),
-        JAVA_INT.withName("offset"),
-        MemoryLayout.sequenceLayout(16, JAVA_SHORT).withName("preContext"),
-        MemoryLayout.sequenceLayout(16, JAVA_SHORT).withName("postContext")
-    ).withName("UParseError");
-    static final VarHandle const$3 = constants$33.const$2.varHandle(MemoryLayout.PathElement.groupElement("line"));
-    static final VarHandle const$4 = constants$33.const$2.varHandle(MemoryLayout.PathElement.groupElement("offset"));
-    static final FunctionDescriptor const$5 = FunctionDescriptor.of(RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        JAVA_INT,
-        JAVA_INT,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER
-    );
-    static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "uregex_open_70",
-        constants$33.const$5
-    );
+    static final VarHandle const$0 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("pExtra"));
+    static final VarHandle const$1 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("context"));
+    static final VarHandle const$2 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("p"));
+    static final VarHandle const$3 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("q"));
+    static final VarHandle const$4 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("r"));
+    static final VarHandle const$5 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("privP"));
 }
 
 

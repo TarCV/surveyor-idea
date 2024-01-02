@@ -8,694 +8,694 @@ import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * struct UText {
- *     uint32_t magic;
- *     int32_t flags;
- *     int32_t providerProperties;
- *     int32_t sizeOfStruct;
- *     int64_t chunkNativeLimit;
- *     int32_t extraSize;
- *     int32_t nativeIndexingLimit;
- *     int64_t chunkNativeStart;
- *     int32_t chunkOffset;
- *     int32_t chunkLength;
- *     const UChar* chunkContents;
- *     const UTextFuncs* pFuncs;
+ *     unsigned int magic;
+ *     int flags;
+ *     int providerProperties;
+ *     int sizeOfStruct;
+ *     long chunkNativeLimit;
+ *     int extraSize;
+ *     int nativeIndexingLimit;
+ *     long chunkNativeStart;
+ *     int chunkOffset;
+ *     int chunkLength;
+ *     unsigned short* chunkContents;
+ *     struct UTextFuncs* pFuncs;
  *     void* pExtra;
  *     void* context;
  *     void* p;
  *     void* q;
  *     void* r;
  *     void* privP;
- *     int64_t a;
- *     int32_t b;
- *     int32_t c;
- *     int64_t privA;
- *     int32_t privB;
- *     int32_t privC;
+ *     long a;
+ *     int b;
+ *     int c;
+ *     long privA;
+ *     int privB;
+ *     int privC;
  * };
  * }
  */
 public class UText {
 
     public static MemoryLayout $LAYOUT() {
-        return constants$28.const$5;
-    }
-    public static VarHandle magic$VH() {
-        return constants$29.const$0;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * uint32_t magic;
-     * }
-     */
-    public static int magic$get(MemorySegment seg) {
-        return (int)constants$29.const$0.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * uint32_t magic;
-     * }
-     */
-    public static void magic$set(MemorySegment seg, int x) {
-        constants$29.const$0.set(seg, x);
-    }
-    public static int magic$get(MemorySegment seg, long index) {
-        return (int)constants$29.const$0.get(seg.asSlice(index*sizeof()));
-    }
-    public static void magic$set(MemorySegment seg, long index, int x) {
-        constants$29.const$0.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle flags$VH() {
-        return constants$29.const$1;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int32_t flags;
-     * }
-     */
-    public static int flags$get(MemorySegment seg) {
-        return (int)constants$29.const$1.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int32_t flags;
-     * }
-     */
-    public static void flags$set(MemorySegment seg, int x) {
-        constants$29.const$1.set(seg, x);
-    }
-    public static int flags$get(MemorySegment seg, long index) {
-        return (int)constants$29.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void flags$set(MemorySegment seg, long index, int x) {
-        constants$29.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle providerProperties$VH() {
-        return constants$29.const$2;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int32_t providerProperties;
-     * }
-     */
-    public static int providerProperties$get(MemorySegment seg) {
-        return (int)constants$29.const$2.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int32_t providerProperties;
-     * }
-     */
-    public static void providerProperties$set(MemorySegment seg, int x) {
-        constants$29.const$2.set(seg, x);
-    }
-    public static int providerProperties$get(MemorySegment seg, long index) {
-        return (int)constants$29.const$2.get(seg.asSlice(index*sizeof()));
-    }
-    public static void providerProperties$set(MemorySegment seg, long index, int x) {
-        constants$29.const$2.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle sizeOfStruct$VH() {
-        return constants$29.const$3;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int32_t sizeOfStruct;
-     * }
-     */
-    public static int sizeOfStruct$get(MemorySegment seg) {
-        return (int)constants$29.const$3.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int32_t sizeOfStruct;
-     * }
-     */
-    public static void sizeOfStruct$set(MemorySegment seg, int x) {
-        constants$29.const$3.set(seg, x);
-    }
-    public static int sizeOfStruct$get(MemorySegment seg, long index) {
-        return (int)constants$29.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void sizeOfStruct$set(MemorySegment seg, long index, int x) {
-        constants$29.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle chunkNativeLimit$VH() {
-        return constants$29.const$4;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int64_t chunkNativeLimit;
-     * }
-     */
-    public static long chunkNativeLimit$get(MemorySegment seg) {
-        return (long)constants$29.const$4.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int64_t chunkNativeLimit;
-     * }
-     */
-    public static void chunkNativeLimit$set(MemorySegment seg, long x) {
-        constants$29.const$4.set(seg, x);
-    }
-    public static long chunkNativeLimit$get(MemorySegment seg, long index) {
-        return (long)constants$29.const$4.get(seg.asSlice(index*sizeof()));
-    }
-    public static void chunkNativeLimit$set(MemorySegment seg, long index, long x) {
-        constants$29.const$4.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle extraSize$VH() {
-        return constants$29.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int32_t extraSize;
-     * }
-     */
-    public static int extraSize$get(MemorySegment seg) {
-        return (int)constants$29.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int32_t extraSize;
-     * }
-     */
-    public static void extraSize$set(MemorySegment seg, int x) {
-        constants$29.const$5.set(seg, x);
-    }
-    public static int extraSize$get(MemorySegment seg, long index) {
-        return (int)constants$29.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void extraSize$set(MemorySegment seg, long index, int x) {
-        constants$29.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle nativeIndexingLimit$VH() {
-        return constants$30.const$0;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int32_t nativeIndexingLimit;
-     * }
-     */
-    public static int nativeIndexingLimit$get(MemorySegment seg) {
-        return (int)constants$30.const$0.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int32_t nativeIndexingLimit;
-     * }
-     */
-    public static void nativeIndexingLimit$set(MemorySegment seg, int x) {
-        constants$30.const$0.set(seg, x);
-    }
-    public static int nativeIndexingLimit$get(MemorySegment seg, long index) {
-        return (int)constants$30.const$0.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nativeIndexingLimit$set(MemorySegment seg, long index, int x) {
-        constants$30.const$0.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle chunkNativeStart$VH() {
-        return constants$30.const$1;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int64_t chunkNativeStart;
-     * }
-     */
-    public static long chunkNativeStart$get(MemorySegment seg) {
-        return (long)constants$30.const$1.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int64_t chunkNativeStart;
-     * }
-     */
-    public static void chunkNativeStart$set(MemorySegment seg, long x) {
-        constants$30.const$1.set(seg, x);
-    }
-    public static long chunkNativeStart$get(MemorySegment seg, long index) {
-        return (long)constants$30.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void chunkNativeStart$set(MemorySegment seg, long index, long x) {
-        constants$30.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle chunkOffset$VH() {
-        return constants$30.const$2;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int32_t chunkOffset;
-     * }
-     */
-    public static int chunkOffset$get(MemorySegment seg) {
-        return (int)constants$30.const$2.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int32_t chunkOffset;
-     * }
-     */
-    public static void chunkOffset$set(MemorySegment seg, int x) {
-        constants$30.const$2.set(seg, x);
-    }
-    public static int chunkOffset$get(MemorySegment seg, long index) {
-        return (int)constants$30.const$2.get(seg.asSlice(index*sizeof()));
-    }
-    public static void chunkOffset$set(MemorySegment seg, long index, int x) {
-        constants$30.const$2.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle chunkLength$VH() {
-        return constants$30.const$3;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * int32_t chunkLength;
-     * }
-     */
-    public static int chunkLength$get(MemorySegment seg) {
-        return (int)constants$30.const$3.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * int32_t chunkLength;
-     * }
-     */
-    public static void chunkLength$set(MemorySegment seg, int x) {
-        constants$30.const$3.set(seg, x);
-    }
-    public static int chunkLength$get(MemorySegment seg, long index) {
-        return (int)constants$30.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void chunkLength$set(MemorySegment seg, long index, int x) {
-        constants$30.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle chunkContents$VH() {
-        return constants$30.const$4;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * const UChar* chunkContents;
-     * }
-     */
-    public static MemorySegment chunkContents$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$30.const$4.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * const UChar* chunkContents;
-     * }
-     */
-    public static void chunkContents$set(MemorySegment seg, MemorySegment x) {
-        constants$30.const$4.set(seg, x);
-    }
-    public static MemorySegment chunkContents$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$30.const$4.get(seg.asSlice(index*sizeof()));
-    }
-    public static void chunkContents$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$30.const$4.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle pFuncs$VH() {
         return constants$30.const$5;
     }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * const UTextFuncs* pFuncs;
-     * }
-     */
-    public static MemorySegment pFuncs$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$30.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * const UTextFuncs* pFuncs;
-     * }
-     */
-    public static void pFuncs$set(MemorySegment seg, MemorySegment x) {
-        constants$30.const$5.set(seg, x);
-    }
-    public static MemorySegment pFuncs$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$30.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pFuncs$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$30.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static VarHandle pExtra$VH() {
+    public static VarHandle magic$VH() {
         return constants$31.const$0;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * void* pExtra;
+     * {@snippet lang=c :
+     * unsigned int magic;
      * }
      */
-    public static MemorySegment pExtra$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$0.get(seg);
+    public static int magic$get(MemorySegment seg) {
+        return (int)constants$31.const$0.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * void* pExtra;
+     * {@snippet lang=c :
+     * unsigned int magic;
      * }
      */
-    public static void pExtra$set(MemorySegment seg, MemorySegment x) {
+    public static void magic$set(MemorySegment seg, int x) {
         constants$31.const$0.set(seg, x);
     }
-    public static MemorySegment pExtra$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$0.get(seg.asSlice(index*sizeof()));
+    public static int magic$get(MemorySegment seg, long index) {
+        return (int)constants$31.const$0.get(seg.asSlice(index*sizeof()));
     }
-    public static void pExtra$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void magic$set(MemorySegment seg, long index, int x) {
         constants$31.const$0.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle context$VH() {
+    public static VarHandle flags$VH() {
         return constants$31.const$1;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * void* context;
+     * {@snippet lang=c :
+     * int flags;
      * }
      */
-    public static MemorySegment context$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$1.get(seg);
+    public static int flags$get(MemorySegment seg) {
+        return (int)constants$31.const$1.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * void* context;
+     * {@snippet lang=c :
+     * int flags;
      * }
      */
-    public static void context$set(MemorySegment seg, MemorySegment x) {
+    public static void flags$set(MemorySegment seg, int x) {
         constants$31.const$1.set(seg, x);
     }
-    public static MemorySegment context$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$1.get(seg.asSlice(index*sizeof()));
+    public static int flags$get(MemorySegment seg, long index) {
+        return (int)constants$31.const$1.get(seg.asSlice(index*sizeof()));
     }
-    public static void context$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void flags$set(MemorySegment seg, long index, int x) {
         constants$31.const$1.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle p$VH() {
+    public static VarHandle providerProperties$VH() {
         return constants$31.const$2;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * void* p;
+     * {@snippet lang=c :
+     * int providerProperties;
      * }
      */
-    public static MemorySegment p$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$2.get(seg);
+    public static int providerProperties$get(MemorySegment seg) {
+        return (int)constants$31.const$2.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * void* p;
+     * {@snippet lang=c :
+     * int providerProperties;
      * }
      */
-    public static void p$set(MemorySegment seg, MemorySegment x) {
+    public static void providerProperties$set(MemorySegment seg, int x) {
         constants$31.const$2.set(seg, x);
     }
-    public static MemorySegment p$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$2.get(seg.asSlice(index*sizeof()));
+    public static int providerProperties$get(MemorySegment seg, long index) {
+        return (int)constants$31.const$2.get(seg.asSlice(index*sizeof()));
     }
-    public static void p$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void providerProperties$set(MemorySegment seg, long index, int x) {
         constants$31.const$2.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle q$VH() {
+    public static VarHandle sizeOfStruct$VH() {
         return constants$31.const$3;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * void* q;
+     * {@snippet lang=c :
+     * int sizeOfStruct;
      * }
      */
-    public static MemorySegment q$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$3.get(seg);
+    public static int sizeOfStruct$get(MemorySegment seg) {
+        return (int)constants$31.const$3.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * void* q;
+     * {@snippet lang=c :
+     * int sizeOfStruct;
      * }
      */
-    public static void q$set(MemorySegment seg, MemorySegment x) {
+    public static void sizeOfStruct$set(MemorySegment seg, int x) {
         constants$31.const$3.set(seg, x);
     }
-    public static MemorySegment q$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$3.get(seg.asSlice(index*sizeof()));
+    public static int sizeOfStruct$get(MemorySegment seg, long index) {
+        return (int)constants$31.const$3.get(seg.asSlice(index*sizeof()));
     }
-    public static void q$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void sizeOfStruct$set(MemorySegment seg, long index, int x) {
         constants$31.const$3.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle r$VH() {
+    public static VarHandle chunkNativeLimit$VH() {
         return constants$31.const$4;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * void* r;
+     * {@snippet lang=c :
+     * long chunkNativeLimit;
      * }
      */
-    public static MemorySegment r$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$4.get(seg);
+    public static long chunkNativeLimit$get(MemorySegment seg) {
+        return (long)constants$31.const$4.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * void* r;
+     * {@snippet lang=c :
+     * long chunkNativeLimit;
      * }
      */
-    public static void r$set(MemorySegment seg, MemorySegment x) {
+    public static void chunkNativeLimit$set(MemorySegment seg, long x) {
         constants$31.const$4.set(seg, x);
     }
-    public static MemorySegment r$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$4.get(seg.asSlice(index*sizeof()));
+    public static long chunkNativeLimit$get(MemorySegment seg, long index) {
+        return (long)constants$31.const$4.get(seg.asSlice(index*sizeof()));
     }
-    public static void r$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void chunkNativeLimit$set(MemorySegment seg, long index, long x) {
         constants$31.const$4.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle privP$VH() {
+    public static VarHandle extraSize$VH() {
         return constants$31.const$5;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * void* privP;
+     * {@snippet lang=c :
+     * int extraSize;
      * }
      */
-    public static MemorySegment privP$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$5.get(seg);
+    public static int extraSize$get(MemorySegment seg) {
+        return (int)constants$31.const$5.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * void* privP;
+     * {@snippet lang=c :
+     * int extraSize;
      * }
      */
-    public static void privP$set(MemorySegment seg, MemorySegment x) {
+    public static void extraSize$set(MemorySegment seg, int x) {
         constants$31.const$5.set(seg, x);
     }
-    public static MemorySegment privP$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$31.const$5.get(seg.asSlice(index*sizeof()));
+    public static int extraSize$get(MemorySegment seg, long index) {
+        return (int)constants$31.const$5.get(seg.asSlice(index*sizeof()));
     }
-    public static void privP$set(MemorySegment seg, long index, MemorySegment x) {
+    public static void extraSize$set(MemorySegment seg, long index, int x) {
         constants$31.const$5.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle a$VH() {
+    public static VarHandle nativeIndexingLimit$VH() {
         return constants$32.const$0;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int64_t a;
+     * {@snippet lang=c :
+     * int nativeIndexingLimit;
      * }
      */
-    public static long a$get(MemorySegment seg) {
-        return (long)constants$32.const$0.get(seg);
+    public static int nativeIndexingLimit$get(MemorySegment seg) {
+        return (int)constants$32.const$0.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int64_t a;
+     * {@snippet lang=c :
+     * int nativeIndexingLimit;
      * }
      */
-    public static void a$set(MemorySegment seg, long x) {
+    public static void nativeIndexingLimit$set(MemorySegment seg, int x) {
         constants$32.const$0.set(seg, x);
     }
-    public static long a$get(MemorySegment seg, long index) {
-        return (long)constants$32.const$0.get(seg.asSlice(index*sizeof()));
+    public static int nativeIndexingLimit$get(MemorySegment seg, long index) {
+        return (int)constants$32.const$0.get(seg.asSlice(index*sizeof()));
     }
-    public static void a$set(MemorySegment seg, long index, long x) {
+    public static void nativeIndexingLimit$set(MemorySegment seg, long index, int x) {
         constants$32.const$0.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle b$VH() {
+    public static VarHandle chunkNativeStart$VH() {
         return constants$32.const$1;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t b;
+     * {@snippet lang=c :
+     * long chunkNativeStart;
      * }
      */
-    public static int b$get(MemorySegment seg) {
-        return (int)constants$32.const$1.get(seg);
+    public static long chunkNativeStart$get(MemorySegment seg) {
+        return (long)constants$32.const$1.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t b;
+     * {@snippet lang=c :
+     * long chunkNativeStart;
      * }
      */
-    public static void b$set(MemorySegment seg, int x) {
+    public static void chunkNativeStart$set(MemorySegment seg, long x) {
         constants$32.const$1.set(seg, x);
     }
-    public static int b$get(MemorySegment seg, long index) {
-        return (int)constants$32.const$1.get(seg.asSlice(index*sizeof()));
+    public static long chunkNativeStart$get(MemorySegment seg, long index) {
+        return (long)constants$32.const$1.get(seg.asSlice(index*sizeof()));
     }
-    public static void b$set(MemorySegment seg, long index, int x) {
+    public static void chunkNativeStart$set(MemorySegment seg, long index, long x) {
         constants$32.const$1.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle c$VH() {
+    public static VarHandle chunkOffset$VH() {
         return constants$32.const$2;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t c;
+     * {@snippet lang=c :
+     * int chunkOffset;
      * }
      */
-    public static int c$get(MemorySegment seg) {
+    public static int chunkOffset$get(MemorySegment seg) {
         return (int)constants$32.const$2.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t c;
+     * {@snippet lang=c :
+     * int chunkOffset;
      * }
      */
-    public static void c$set(MemorySegment seg, int x) {
+    public static void chunkOffset$set(MemorySegment seg, int x) {
         constants$32.const$2.set(seg, x);
     }
-    public static int c$get(MemorySegment seg, long index) {
+    public static int chunkOffset$get(MemorySegment seg, long index) {
         return (int)constants$32.const$2.get(seg.asSlice(index*sizeof()));
     }
-    public static void c$set(MemorySegment seg, long index, int x) {
+    public static void chunkOffset$set(MemorySegment seg, long index, int x) {
         constants$32.const$2.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle privA$VH() {
+    public static VarHandle chunkLength$VH() {
         return constants$32.const$3;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int64_t privA;
+     * {@snippet lang=c :
+     * int chunkLength;
      * }
      */
-    public static long privA$get(MemorySegment seg) {
-        return (long)constants$32.const$3.get(seg);
+    public static int chunkLength$get(MemorySegment seg) {
+        return (int)constants$32.const$3.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int64_t privA;
+     * {@snippet lang=c :
+     * int chunkLength;
      * }
      */
-    public static void privA$set(MemorySegment seg, long x) {
+    public static void chunkLength$set(MemorySegment seg, int x) {
         constants$32.const$3.set(seg, x);
     }
-    public static long privA$get(MemorySegment seg, long index) {
-        return (long)constants$32.const$3.get(seg.asSlice(index*sizeof()));
+    public static int chunkLength$get(MemorySegment seg, long index) {
+        return (int)constants$32.const$3.get(seg.asSlice(index*sizeof()));
     }
-    public static void privA$set(MemorySegment seg, long index, long x) {
+    public static void chunkLength$set(MemorySegment seg, long index, int x) {
         constants$32.const$3.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle privB$VH() {
+    public static VarHandle chunkContents$VH() {
         return constants$32.const$4;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t privB;
+     * {@snippet lang=c :
+     * unsigned short* chunkContents;
      * }
      */
-    public static int privB$get(MemorySegment seg) {
-        return (int)constants$32.const$4.get(seg);
+    public static MemorySegment chunkContents$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$32.const$4.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t privB;
+     * {@snippet lang=c :
+     * unsigned short* chunkContents;
      * }
      */
-    public static void privB$set(MemorySegment seg, int x) {
+    public static void chunkContents$set(MemorySegment seg, MemorySegment x) {
         constants$32.const$4.set(seg, x);
     }
-    public static int privB$get(MemorySegment seg, long index) {
-        return (int)constants$32.const$4.get(seg.asSlice(index*sizeof()));
+    public static MemorySegment chunkContents$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$32.const$4.get(seg.asSlice(index*sizeof()));
     }
-    public static void privB$set(MemorySegment seg, long index, int x) {
+    public static void chunkContents$set(MemorySegment seg, long index, MemorySegment x) {
         constants$32.const$4.set(seg.asSlice(index*sizeof()), x);
     }
-    public static VarHandle privC$VH() {
+    public static VarHandle pFuncs$VH() {
         return constants$32.const$5;
     }
     /**
      * Getter for field:
-     * {@snippet :
-     * int32_t privC;
+     * {@snippet lang=c :
+     * struct UTextFuncs* pFuncs;
      * }
      */
-    public static int privC$get(MemorySegment seg) {
-        return (int)constants$32.const$5.get(seg);
+    public static MemorySegment pFuncs$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$32.const$5.get(seg);
     }
     /**
      * Setter for field:
-     * {@snippet :
-     * int32_t privC;
+     * {@snippet lang=c :
+     * struct UTextFuncs* pFuncs;
+     * }
+     */
+    public static void pFuncs$set(MemorySegment seg, MemorySegment x) {
+        constants$32.const$5.set(seg, x);
+    }
+    public static MemorySegment pFuncs$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$32.const$5.get(seg.asSlice(index*sizeof()));
+    }
+    public static void pFuncs$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$32.const$5.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle pExtra$VH() {
+        return constants$33.const$0;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void* pExtra;
+     * }
+     */
+    public static MemorySegment pExtra$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$0.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void* pExtra;
+     * }
+     */
+    public static void pExtra$set(MemorySegment seg, MemorySegment x) {
+        constants$33.const$0.set(seg, x);
+    }
+    public static MemorySegment pExtra$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$0.get(seg.asSlice(index*sizeof()));
+    }
+    public static void pExtra$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$33.const$0.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle context$VH() {
+        return constants$33.const$1;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void* context;
+     * }
+     */
+    public static MemorySegment context$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$1.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void* context;
+     * }
+     */
+    public static void context$set(MemorySegment seg, MemorySegment x) {
+        constants$33.const$1.set(seg, x);
+    }
+    public static MemorySegment context$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$1.get(seg.asSlice(index*sizeof()));
+    }
+    public static void context$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$33.const$1.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle p$VH() {
+        return constants$33.const$2;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void* p;
+     * }
+     */
+    public static MemorySegment p$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$2.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void* p;
+     * }
+     */
+    public static void p$set(MemorySegment seg, MemorySegment x) {
+        constants$33.const$2.set(seg, x);
+    }
+    public static MemorySegment p$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$2.get(seg.asSlice(index*sizeof()));
+    }
+    public static void p$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$33.const$2.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle q$VH() {
+        return constants$33.const$3;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void* q;
+     * }
+     */
+    public static MemorySegment q$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$3.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void* q;
+     * }
+     */
+    public static void q$set(MemorySegment seg, MemorySegment x) {
+        constants$33.const$3.set(seg, x);
+    }
+    public static MemorySegment q$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$3.get(seg.asSlice(index*sizeof()));
+    }
+    public static void q$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$33.const$3.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle r$VH() {
+        return constants$33.const$4;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void* r;
+     * }
+     */
+    public static MemorySegment r$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$4.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void* r;
+     * }
+     */
+    public static void r$set(MemorySegment seg, MemorySegment x) {
+        constants$33.const$4.set(seg, x);
+    }
+    public static MemorySegment r$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$4.get(seg.asSlice(index*sizeof()));
+    }
+    public static void r$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$33.const$4.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle privP$VH() {
+        return constants$33.const$5;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void* privP;
+     * }
+     */
+    public static MemorySegment privP$get(MemorySegment seg) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$5.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void* privP;
+     * }
+     */
+    public static void privP$set(MemorySegment seg, MemorySegment x) {
+        constants$33.const$5.set(seg, x);
+    }
+    public static MemorySegment privP$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemorySegment)constants$33.const$5.get(seg.asSlice(index*sizeof()));
+    }
+    public static void privP$set(MemorySegment seg, long index, MemorySegment x) {
+        constants$33.const$5.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle a$VH() {
+        return constants$34.const$0;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * long a;
+     * }
+     */
+    public static long a$get(MemorySegment seg) {
+        return (long)constants$34.const$0.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * long a;
+     * }
+     */
+    public static void a$set(MemorySegment seg, long x) {
+        constants$34.const$0.set(seg, x);
+    }
+    public static long a$get(MemorySegment seg, long index) {
+        return (long)constants$34.const$0.get(seg.asSlice(index*sizeof()));
+    }
+    public static void a$set(MemorySegment seg, long index, long x) {
+        constants$34.const$0.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle b$VH() {
+        return constants$34.const$1;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int b;
+     * }
+     */
+    public static int b$get(MemorySegment seg) {
+        return (int)constants$34.const$1.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int b;
+     * }
+     */
+    public static void b$set(MemorySegment seg, int x) {
+        constants$34.const$1.set(seg, x);
+    }
+    public static int b$get(MemorySegment seg, long index) {
+        return (int)constants$34.const$1.get(seg.asSlice(index*sizeof()));
+    }
+    public static void b$set(MemorySegment seg, long index, int x) {
+        constants$34.const$1.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle c$VH() {
+        return constants$34.const$2;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int c;
+     * }
+     */
+    public static int c$get(MemorySegment seg) {
+        return (int)constants$34.const$2.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int c;
+     * }
+     */
+    public static void c$set(MemorySegment seg, int x) {
+        constants$34.const$2.set(seg, x);
+    }
+    public static int c$get(MemorySegment seg, long index) {
+        return (int)constants$34.const$2.get(seg.asSlice(index*sizeof()));
+    }
+    public static void c$set(MemorySegment seg, long index, int x) {
+        constants$34.const$2.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle privA$VH() {
+        return constants$34.const$3;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * long privA;
+     * }
+     */
+    public static long privA$get(MemorySegment seg) {
+        return (long)constants$34.const$3.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * long privA;
+     * }
+     */
+    public static void privA$set(MemorySegment seg, long x) {
+        constants$34.const$3.set(seg, x);
+    }
+    public static long privA$get(MemorySegment seg, long index) {
+        return (long)constants$34.const$3.get(seg.asSlice(index*sizeof()));
+    }
+    public static void privA$set(MemorySegment seg, long index, long x) {
+        constants$34.const$3.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle privB$VH() {
+        return constants$34.const$4;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int privB;
+     * }
+     */
+    public static int privB$get(MemorySegment seg) {
+        return (int)constants$34.const$4.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int privB;
+     * }
+     */
+    public static void privB$set(MemorySegment seg, int x) {
+        constants$34.const$4.set(seg, x);
+    }
+    public static int privB$get(MemorySegment seg, long index) {
+        return (int)constants$34.const$4.get(seg.asSlice(index*sizeof()));
+    }
+    public static void privB$set(MemorySegment seg, long index, int x) {
+        constants$34.const$4.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static VarHandle privC$VH() {
+        return constants$34.const$5;
+    }
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int privC;
+     * }
+     */
+    public static int privC$get(MemorySegment seg) {
+        return (int)constants$34.const$5.get(seg);
+    }
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int privC;
      * }
      */
     public static void privC$set(MemorySegment seg, int x) {
-        constants$32.const$5.set(seg, x);
+        constants$34.const$5.set(seg, x);
     }
     public static int privC$get(MemorySegment seg, long index) {
-        return (int)constants$32.const$5.get(seg.asSlice(index*sizeof()));
+        return (int)constants$34.const$5.get(seg.asSlice(index*sizeof()));
     }
     public static void privC$set(MemorySegment seg, long index, int x) {
-        constants$32.const$5.set(seg.asSlice(index*sizeof()), x);
+        constants$34.const$5.set(seg.asSlice(index*sizeof()), x);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
     public static MemorySegment allocateArray(long len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemorySegment addr, SegmentScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemorySegment addr, Arena arena) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, arena); }
 }
 
 

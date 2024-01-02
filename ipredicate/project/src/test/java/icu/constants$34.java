@@ -11,32 +11,12 @@ final class constants$34 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$34() {}
-    static final FunctionDescriptor const$0 = FunctionDescriptor.of(RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        JAVA_INT,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER
-    );
-    static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_openUText_70",
-        constants$34.const$0
-    );
-    static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_openC_70",
-        constants$34.const$0
-    );
-    static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_close_70",
-        constants$1.const$0
-    );
-    static final FunctionDescriptor const$4 = FunctionDescriptor.of(RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER,
-        RuntimeHelper.POINTER
-    );
-    static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_clone_70",
-        constants$34.const$4
-    );
+    static final VarHandle const$0 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("a"));
+    static final VarHandle const$1 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("b"));
+    static final VarHandle const$2 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("c"));
+    static final VarHandle const$3 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("privA"));
+    static final VarHandle const$4 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("privB"));
+    static final VarHandle const$5 = constants$30.const$5.varHandle(MemoryLayout.PathElement.groupElement("privC"));
 }
 
 
