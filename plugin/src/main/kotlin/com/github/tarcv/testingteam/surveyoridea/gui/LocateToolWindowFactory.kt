@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -23,12 +23,27 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.content.ContentFactory
 
 
-class LocateToolWindowFactory: ToolWindowFactory {
+class LocateToolWindowFactory : ToolWindowFactory {
     private val contentFactory = ContentFactory.SERVICE.getInstance()
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val locateToolWindow = LocateToolWindow(project)
+        val locateToolWindow: LocateToolWindow = if (hasJavaPlugin()) {
+            Class.forName("com.github.tarcv.testingteam.surveyoridea.gui.JvmLocateToolWindow")
+                .getConstructor(Project::class.java)
+                .newInstance(project) as LocateToolWindow
+        } else {
+            SimpleLocateToolWindow(project)
+        }
         val content = contentFactory.createContent(locateToolWindow.getContent(), null, false)
         toolWindow.contentManager.addContent(content)
+    }
+
+    private fun hasJavaPlugin(): Boolean {
+        return try {
+            Class.forName("com.intellij.psi.JavaCodeFragment", false, javaClass.classLoader)
+            true
+        } catch (e: ReflectiveOperationException) {
+            false
+        }
     }
 }

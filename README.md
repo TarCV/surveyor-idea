@@ -10,7 +10,7 @@ UI Surveyor plugin provides tools helping with mobile application automation.
 They provide the following features:
 * **_Evaluating_ element selectors against an XML UI snapshots** <br />
 ![Search](docs/Search.png)
-* **Syntax highlighting and autocomplete for element selectors** <br />
+* **Syntax highlighting and autocomplete for element selectors (Java IDEs only)** <br />
 ![Autocomplete & Highlighting](docs/Autocomplete.png)
 * **Improved structure navigation for XML UI snapshots** <br />
 ![Structure navigation](docs/StructureNavigation.png)
@@ -24,7 +24,7 @@ UI Surveyor plugin provides tools helping work with Android UI Snapshot in XML f
 
 Those tools are:
 * `Locate Element` tool window for **evaluating** element selectors against a currently open XML UI snapshots
-* Basic syntax highlighting and autocomplete for UIAutomator selectors (as Java code)
+* Basic syntax highlighting and autocomplete for UIAutomator selectors (as Java code, supported only for Java IDEs)
 * Improved structure navigation for UI snapshots
 
 All trademarks are the property of their respective owners. All company, product and service names

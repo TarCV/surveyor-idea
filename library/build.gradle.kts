@@ -7,8 +7,8 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     testImplementation(libs.junitApi)
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly(libs.junitEngine)
+    testRuntimeOnly(libs.junitLauncher)
 }
 
 tasks.getByName<Test>("test") {

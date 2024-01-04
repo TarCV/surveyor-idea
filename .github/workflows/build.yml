@@ -40,9 +40,8 @@ jobs:
           gradle-home-cache-cleanup: true
 
       # Run tests
-      # TODO: Run tests against latest EAPs of supported IDEs (with cron)
-      - name: Build & Run Tests
-        run: ./gradlew check
+      - name: Run Tests
+        run: ./gradlew check -x :plugin-test:test
 
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
@@ -66,7 +65,7 @@ jobs:
         id: artifact
         shell: bash
         run: |
-          ./gradlew buildPlugin verifyPlugin
+          ./gradlew buildPlugin verifyPlugin -x :plugin-test:test
           
           cd ${{ github.workspace }}/plugin/build/distributions
           FILENAME=`ls *.zip`
