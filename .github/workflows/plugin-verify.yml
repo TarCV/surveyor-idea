@@ -73,7 +73,7 @@ jobs:
       # Collect Plugin Verifier Result
       - name: Collect Plugin Verifier Result
         if: ${{ always() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pluginVerifier-result
           path: |
@@ -82,7 +82,7 @@ jobs:
 
       - name: Collect Dependency Verification Errors
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.job }}-dependency-verification-errors
           path: |

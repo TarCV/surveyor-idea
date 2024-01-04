@@ -60,7 +60,7 @@ jobs:
           echo 'sha256sum of the artifact built in Garnix:'
           sha256sum -b "$(find artefact/*)"
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: artefact-from-garnix
           path: ./artefact/*
