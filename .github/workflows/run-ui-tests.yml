@@ -92,7 +92,7 @@ jobs:
 
       # Setup Java environment for the next steps
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         env:
           IDE_CODE: ${{ steps.prepare-IDE_CODE.outputs.result }}
           IDE_VERSION: ${{ steps.prepare-IDE_VERSION.outputs.result }}
