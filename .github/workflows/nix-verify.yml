@@ -11,7 +11,7 @@ jobs:
       && contains(github.event.check_run.name, 'default package')
     runs-on: ubuntu-latest
     steps:
-      - uses: lewagon/wait-on-check-action@v1.3.1
+      - uses: lewagon/wait-on-check-action@v1.3.3
         with:
           ref: ${{github.event.check_run.head_sha}}
           check-name: 'Build'
