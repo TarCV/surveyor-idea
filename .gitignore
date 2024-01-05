@@ -2,4 +2,8 @@
 .idea
 .qodana
 build
+
+# Generated with Nix Flakes:
 /result
+/ipredicate/project/src/main/kotlin/com/github/tarcv/testingteam/surveyor/ipredicate/GSPredicate.kt
+/ipredicate/project/src/main/kotlin/com/github/tarcv/testingteam/surveyor/ipredicate/WebDriverAgent.kt

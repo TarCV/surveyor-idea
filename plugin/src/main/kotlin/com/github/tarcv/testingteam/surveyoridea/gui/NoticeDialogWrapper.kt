@@ -18,6 +18,7 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyor.DroidNotices
+import com.github.tarcv.testingteam.surveyor.IPredicateNotices
 import com.github.tarcv.testingteam.surveyor.Notice
 import com.intellij.openapi.application.invokeLater
 import com.intellij.openapi.ui.DialogWrapper
@@ -75,7 +76,10 @@ class NoticeDialogWrapper : DialogWrapper(false) {
                     border = createBorder()
 
                     model = JBList.createDefaultListModel(
-                        DroidNotices.uiAutomatorNotice
+                        DroidNotices.uiAutomatorNotice,
+                        IPredicateNotices.gnuStepNotice,
+                        IPredicateNotices.gnuStepLibNotice,
+                        IPredicateNotices.wdaNotice
                     )
 
                     addListSelectionListener {

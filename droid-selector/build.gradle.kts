@@ -7,9 +7,8 @@ plugins {
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-
     implementation(project(":library"))
+    api(project(":droid-common"))
     implementation(project(":droid-stubs"))
     implementation(libs.beanshell)
     implementationAar(libs.uiautomator) {
@@ -32,6 +31,10 @@ tasks.forEach { task ->
             freeCompilerArgs += listOf("-Xinline-classes")
         }
     }
+}
+
+tasks.compileTestJava {
+    options.compilerArgs.add("--enable-preview")
 }
 
 tasks.test {

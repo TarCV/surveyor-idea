@@ -18,7 +18,7 @@
 package com.github.tarcv.testingteam.surveyor.uiautomator
 
 import com.github.tarcv.testingteam.surveyor.Node
-import com.github.tarcv.testingteam.surveyor.Properties
+import com.github.tarcv.testingteam.surveyor.DroidProperty
 import net.jqwik.api.Arbitraries
 import net.jqwik.api.Arbitrary
 import java.lang.reflect.ParameterizedType
@@ -26,17 +26,17 @@ import java.util.regex.Pattern
 
 val singleRootNode = Node(
     null,
-    Properties::class.nestedClasses
+    DroidProperty::class.nestedClasses
         .associate {
-            val property = it.objectInstance as Properties<*>
+            val property = it.objectInstance as DroidProperty<*>
             property to generateValueForProperty(property)
         },
     emptyList(),
     true
 )
 
-fun generateValueForProperty(it: Properties<*>): Any {
-    val propertiesType = it.javaClass.genericSuperclass as ParameterizedType
+fun generateValueForProperty(it: DroidProperty<*>): Any {
+    val propertiesType = it.javaClass.genericInterfaces.single() as ParameterizedType
     return generateValueFor(propertiesType.actualTypeArguments.single() as Class<*>)
 }
 

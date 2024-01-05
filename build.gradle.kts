@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
@@ -60,10 +58,6 @@ allprojects {
     }
 
     tasks {
-        // Set the JVM compatibility versions
-        withType<KotlinCompile> {
-            kotlinOptions.apiVersion = properties("kotlinApiVersion").get()
-        }
         withType<AbstractArchiveTask>().configureEach {
             // Settings for reproducibility
             isPreserveFileTimestamps = false

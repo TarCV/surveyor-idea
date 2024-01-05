@@ -1,0 +1,4538 @@
+Index: test/NSPredicate1.swift
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/prefix/GSPredicate1.swift b/prefix/GSPredicate2.swift
+--- a/prefix/GSPredicate1.swift	(date 1000000000000)
++++ b/prefix/GSPredicate2.swift	(date 1000000000000)
+@@ -1,203 +1,140 @@
+ import Foundation
+-enum NSComparisonResult
++enum NSComparisonResult: Int
+ {
+-  case NSOrderedAscending = (-1 as! NSInteger) case NSOrderedSame case NSOrderedDescending
++  case NSOrderedAscending = -1
++  case NSOrderedSame
++  case NSOrderedDescending
+ }
+-
+-enum ivars: GSString{case NSNotFound = INTPTR_MAX}
+ 
+-;
+-typealias NSExceptionName = String!
++// TODO: Redeclaration? typealias NSExceptionName = String!
+ 
+ 
+ 
+ 
+-var NSCharacterConversionException:String
++// TODO: Redeclaration? var NSCharacterConversionException:String
+ 
+ 
+-var NSDestinationInvalidException:String
++// TODO: Redeclaration? var NSDestinationInvalidException:String
+ 
+ 
+-var NSGenericException:String
++// TODO: Redeclaration? var NSGenericException:String
+ 
+ 
+-var NSInternalInconsistencyException:String
++// TODO: Redeclaration? var NSInternalInconsistencyException:String
+ 
+ 
+-var NSInvalidArgumentException:String
++// TODO: Redeclaration? var NSInvalidArgumentException:String
+ 
+ 
+-var NSInvalidReceivePortException:String
++// TODO: Redeclaration? var NSInvalidReceivePortException:String
+ 
+ 
+-var NSInvalidSendPortException:String
++// TODO: Redeclaration? var NSInvalidSendPortException:String
+ 
+ 
+-var NSMallocException:String
++// TODO: Redeclaration? var NSMallocException:String
+ 
+ 
+-var NSObjectInaccessibleException:String
++// TODO: Redeclaration? var NSObjectInaccessibleException:String
+ 
+ 
+-var NSObjectNotAvailableException:String
++// TODO: Redeclaration? var NSObjectNotAvailableException:String
+ 
+ 
+-var NSOldStyleException:String
++// TODO: Redeclaration? var NSOldStyleException:String
+ 
+ 
+-var NSParseErrorException:String
++// TODO: Redeclaration? var NSParseErrorException:String
+ 
+ 
+-var NSPortReceiveException:String
++// TODO: Redeclaration? var NSPortReceiveException:String
+ 
+ 
+-var NSPortSendException:String
++// TODO: Redeclaration? var NSPortSendException:String
+-var NSPortTimeoutException:String
++// TODO: Redeclaration? var NSPortTimeoutException:String
+ 
+ 
+-var NSRangeException:String
++// TODO: Redeclaration? var NSRangeException:String
+ 
+ 
+-typealias NSHandler = _NSHandler
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-var NSAssertionHandlerKey:String
++// TODO: Redeclaration? var NSAssertionHandlerKey:String
+ 
+ 
+ 
+ 
+-;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-var NSStringClass:AnyClass
+-var GSCStringClass:AnyClass
+-var GSUnicodeStringClass:AnyClass
+-var GSMutableStringClass:AnyClass
+-var GSPlaceholderStringClass:AnyClass
+-var _holder:AnyObject
+-var _empty:String
+-var defaultSkipSet:NSCharacterSet
+-var memSel:Selector
+-var internalEncoding:NSStringEncoding = NSISOLatin1StringEncoding
+ 
++let defaultSkipSet: NSCharacterSet = NSCharacterSet.whitespacesAndNewlines as NSCharacterSet
+ 
+ let powersOf10:[Double] = [1.0e1, 1.0e2, 1.0e4, 1.0e8, 1.0e16, 1.0e32, 1.0e64, 1.0e128, 1.0e256
+ ]
+ 
+-func myGetC(c:UInt8) -> UniChar
+-{
+-  let size:UInt = 1
+-  let u:UniChar = "\0"
+-  let dst:[UniChar] = [u]
+ 
+ 
+-  (GSToUnicode(&dst, &size, &c, 1, internalEncoding, 0, 0) as! void)
+-  return u
+-}
+ 
+ 
+-!
+-class NSScanner : NSObject, NSCopying {
++class NSScanner {
+ 
+     private var _string:String
+-    private var _charactersToBeSkipped:NSCharacterSet
+-    private var _skipImp:@convention(c) (UnsafeMutablePointer<NSCharacterSet!>,Selector,UniChar)->Bool
+-    private var _locale:NSDictionary
+-    private var _scanLocation:UInt
++    private var _charactersToBeSkipped:NSCharacterSet?
++    private var _locale:Dictionary<String, Any>?
++    private var _scanLocation:Int
+     private var _decimal:UniChar
+     private var _caseSensitive:Bool
+     private var _isUnicode:Bool
+     private var _internal:AnyObject
+-    class func initialize() {
+-      if self == NSScanner.self
+-        {
+-          var externalEncoding:NSStringEncoding
+-
+-          memSel = Selector("characterIsMember:")
+-          defaultSkipSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()
+ 
+-          NSStringClass = String.self
+-          GSCStringClass = GSCString.self
+-          GSUnicodeStringClass = GSUnicodeString.self
+-          GSMutableStringClass = GSMutableString.self
+-          GSPlaceholderStringClass = GSPlaceholderString.self
+-          _holder = (NSAllocateObject(GSPlaceholderStringClass, 0, 0) as! id)
+-          _empty = _holder(string:"")
+-          externalEncoding = String.defaultCStringEncoding()
+-          if GSPrivateIsByteEncoding(externalEncoding) == true
+-     {
+-       internalEncoding = externalEncoding
+-     }
+-        }
++    class func scannerWithString(aString:String) -> NSScanner {
++      return NSScanner(aString:aString)!
+     }
+ 
+ 
+-    class func scannerWithString(aString:String) -> AnyObject {
+-      return (self.allocWithZone(NSDefaultMallocZone())(string:aString))
+-
+-    }
+-
+-
+-    class func localizedScannerWithString(aString:String) -> AnyObject {
+-      let scanner:NSScanner = self.scannerWithString(aString: aString) as! NSScanner
++    class func localizedScannerWithString(aString:String) -> NSScanner {
++      let scanner:NSScanner = self.scannerWithString(aString: aString)
+ 
+-      if scanner != nil
++        if scanner != nil
+         {
+-          var loc:NSDictionary
+-
+-          loc = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
+-          scanner.locale = loc
++          let loc = UserDefaults.standard.dictionaryRepresentation()
++          scanner.setLocale(localeDictionary: loc as Dictionary<String, Any>)
+         }
+       return scanner
+     }
+ 
+-    func _setString(aString:String) {
++    func _setString(aString:String?) {
++      let aString_ = aString ?? ""
+       _scanLocation = 0
+       _isUnicode = false
+-      if nil == aString
+-        {
+-          aString = _empty
+-        }
+-      if aString != _string
++      if aString_ != _string
+         {
+-          var c = (aString)
++          var c = (aString_)
+ 
+-          _string = nil
+-          if (c != nil && c is String) == true
+-     {
+-       _string = _holder(string:aString)
+-     }
+-          else if (c != nil && c is String) == true
+-     {
+-       _string = (aString)
+-     }
+-          else if (c != nil && c is String) == true
++          //_string = nil
++          if (c != nil) == true
+      {
+-       _string = (aString)
+-     }
+-          else if (c != nil && c is String) == true
+-     {
+-       _string = _holder(string:aString)
++       _string = (aString_)
+      }
+           else
+      {
+-       _string = _holder(string:aString.description())
++       _string = aString_.description
+      }
+-          c = (_string)
+-          if (c != nil && c is String) == true
++          c = _string
++          if (c != nil) == true
+      {
+        _isUnicode = true
+      }
+@@ -208,68 +146,59 @@
+     }
+ 
+ 
+-    class func _scanDouble(value:Double, from str:String) -> Bool {
+-      let myLock:gs_mutex_t = GS_MUTEX_INIT_STATIC
+-      var	doubleScanner:NSScanner = nil
++    class func _scanDouble(value:inout Double, from str:String) -> Bool {
++//      let myLock:gs_mutex_t = GS_MUTEX_INIT_STATIC
++      var _doubleScanner:NSScanner? = nil
+       var ok:Bool = false
+ 
+-      GS_MUTEX_LOCK(myLock)
+-      if nil == doubleScanner
+-        {
+-          doubleScanner = self.init(string:_empty)
+-        }
+-      doubleScanner._setString(str)
+-      ok = doubleScanner.scanDouble(value)
+-      doubleScanner._setString(_empty)
+-      GS_MUTEX_UNLOCK(myLock)
++//      GS_MUTEX_LOCK(myLock)
++      let doubleScanner: NSScanner = _doubleScanner ?? NSScanner(aString:"")!
++      _doubleScanner = doubleScanner
++
++      doubleScanner._setString(aString: str)
++      ok = doubleScanner.scanDouble(value: &value)
++      doubleScanner._setString(aString: "")
++//      GS_MUTEX_UNLOCK(myLock)
+       return ok
+     }
+-   init(aString:String) {
+-      if (self = super.init()) != nil
++   init?(aString:String?) {
++      let aString_ = aString ?? ""
++      if true
+         {
+ 
+ 
+           if aString == nil
+      {
+        NSLog("Scanner initialised with nil string")
+-       aString = _empty
+      }
+-          if (aString is NSStringClass) == false
++          if (aString_ is String) == false
+      {
+        NSLog("Scanner initialised with something not a string")
+-       self = nil
++       return nil
+      }
+           else
+      {
+-       self._setString(aString)
+-       self.charactersToBeSkipped = defaultSkipSet
+-       _decimal = '.'
++       self._setString(aString: aString_)
++       self._charactersToBeSkipped = defaultSkipSet
++       _decimal = ".".utf16.first!
+      }
+         }
+-      return self
+-    }
+-
+-
+-    func dealloc() {
+-                      ;
+-                           ;
+-                                     ;
+-      super.dealloc()
+     }
+ 
+ 
+     func isAtEnd() -> Bool {
+-      var save__scanLocation:UInt
++      var save__scanLocation:Int
+       var ret:Bool
+ 
+-      if _scanLocation >= ((_string as! ivars)->_count)
++      if _scanLocation >= _string.utf16.count
+         {return true}
+       save__scanLocation = _scanLocation
+-      ret = !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++      while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      ret = !((_scanLocation >= _string.utf16.count) ? false : true)
+       _scanLocation = save__scanLocation
+       return ret
+     }
+-   func _scanInt(value:Int) -> Bool {
++   func _scanInt(value:inout Int) -> Bool {
+       var num:UInt = 0
+       let limit:UInt = 0xffffffff / 10
+       var negative:Bool = false
+@@ -279,35 +208,37 @@
+       var got_digits:Bool = false
+ 
+ 
+-      if _scanLocation < ((_string as! ivars)->_count)
++      if _scanLocation < _string.utf16.count
+         {
+-          switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-     { 
+-       case '+':
+-         _scanLocation++
++          switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++     {
++       case "+".utf16.first!:
++         _scanLocation += 1
+          break
+-       case '-':
++       case "-".utf16.first!:
+          negative = true
+-         _scanLocation++
++         _scanLocation += 1
+          break
+-     }
++          default: break
++
++          }
+         }
+ 
+ 
+-      while  _scanLocation < ((_string as! ivars)->_count)
++      while  _scanLocation < _string.utf16.count
+         {
+-          let digit:UniChar = ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++          let digit:UniChar = _string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]
+ 
+-          if (digit < '0') || (digit > '9')
++          if (digit < "0".utf16.first!) || (digit > "9".utf16.first!)
+      {break}
+           if !overflow
+      {
+        if num >= limit
+          {overflow = true}
+        else
+-         {num = num * 10 + (digit - '0')}
++         {num = num * UInt(10) + UInt(digit - "0".utf16.first!)}
+      }
+-          _scanLocation++
++          _scanLocation += 1
+           got_digits = true
+         }
+ 
+@@ -317,64 +248,65 @@
+       if (value != 0)
+         {
+           if overflow
+-     || (num > (negative ? (INT_MIN as! NSUInteger) : (INT_MAX as! NSUInteger)))
+-     {*value = negative ? INT_MIN: INT_MAX}
++     || (num > (negative ? (UInt.min) : (UInt.max)))
++     {value = Int(negative ? UInt.min: UInt.max)} // TODO: uint max to int??
+           else if negative
+-     {*value = -num}
++     {value = -Int(num)}
+           else
+-     {*value = num}
++     {value = Int(num)}
+         }
+       return true
+     }
+-   func scanInt(value:Int) -> Bool {
+-      let saveScanLocation:UInt = _scanLocation
+-
+-      if ( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true) && self._scanInt(value)
++   func scanInt(value:inout Int) -> Bool {
++      let saveScanLocation:Int = _scanLocation
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if (  (_scanLocation >= _string.utf16.count) ? false : true) && self._scanInt(value: &value)
+         {return true}
+       _scanLocation = saveScanLocation
+       return false
+     }
+ 
+ 
+-    func scanUnsignedLongLong_(value:UInt64, radix:UInt, maximum max:UInt64, gotDigits:Bool) -> Bool {
++    func scanUnsignedLongLong_(value:inout UInt64, radix:UInt, maximum max:UInt64, gotDigits:Bool) -> Bool {
++        var gotDigits_ = gotDigits
+       var num:UInt64 = 0
+       let numLimit:UInt64 = max / UInt64(radix)
+       let digitLimit:UInt64 = max % UInt64(radix)
+       var digitValue:UInt64 = 0
+       var overflow:Bool = false
+-      let saveScanLocation:UInt = _scanLocation
++      let saveScanLocation:Int = _scanLocation
+ 
+ 
+-      while  _scanLocation < ((_string as! ivars)->_count)
++      while  _scanLocation < _string.utf16.count
+         {
+-          let digit:UniChar = ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++          let digit:UniChar = ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+ 
+           switch (digit)
+-            { 
+-              case '0': digitValue = 0; break
+-              case '1': digitValue = 1; break
+-              case '2': digitValue = 2; break
+-              case '3': digitValue = 3; break
+-              case '4': digitValue = 4; break
+-              case '5': digitValue = 5; break
+-              case '6': digitValue = 6; break
+-              case '7': digitValue = 7; break
+-              case '8': digitValue = 8; break
+-              case '9': digitValue = 9; break
+-              case 'a': digitValue = 0xA; break
+-              case 'b': digitValue = 0xB; break
+-              case 'c': digitValue = 0xC; break
+-              case 'd': digitValue = 0xD; break
+-              case 'e': digitValue = 0xE; break
+-              case 'f': digitValue = 0xF; break
+-              case 'A': digitValue = 0xA; break
+-              case 'B': digitValue = 0xB; break
+-              case 'C': digitValue = 0xC; break
+-              case 'D': digitValue = 0xD; break
+-              case 'E': digitValue = 0xE; break
+-              case 'F': digitValue = 0xF; break
++            {
++              case "0".utf16.first!: digitValue = 0; break
++              case "1".utf16.first!: digitValue = 1; break
++              case "2".utf16.first!: digitValue = 2; break
++              case "3".utf16.first!: digitValue = 3; break
++              case "4".utf16.first!: digitValue = 4; break
++              case "5".utf16.first!: digitValue = 5; break
++              case "6".utf16.first!: digitValue = 6; break
++              case "7".utf16.first!: digitValue = 7; break
++              case "8".utf16.first!: digitValue = 8; break
++              case "9".utf16.first!: digitValue = 9; break
++              case "a".utf16.first!: digitValue = 0xA; break
++              case "b".utf16.first!: digitValue = 0xB; break
++              case "c".utf16.first!: digitValue = 0xC; break
++              case "d".utf16.first!: digitValue = 0xD; break
++              case "e".utf16.first!: digitValue = 0xE; break
++              case "f".utf16.first!: digitValue = 0xF; break
++              case "A".utf16.first!: digitValue = 0xA; break
++              case "B".utf16.first!: digitValue = 0xB; break
++              case "C".utf16.first!: digitValue = 0xC; break
++              case "D".utf16.first!: digitValue = 0xD; break
++              case "E".utf16.first!: digitValue = 0xE; break
++              case "F".utf16.first!: digitValue = 0xF; break
+               default:
+-                digitValue = radix
++                digitValue = UInt64(radix)
+                 break
+             }
+           if digitValue >= radix
+@@ -391,40 +323,40 @@
+                 }
+                else
+                 {
+-                  num = num * radix + digitValue
++                  num = num * UInt64(radix) + digitValue
+                 }
+             }
+-          _scanLocation++
+-          gotDigits = true
++          _scanLocation += 1
++          gotDigits_ = true
+         }
+ 
+ 
+-      if !gotDigits
++      if !gotDigits_
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+-      if (value != 0)
++      if (value != UInt(0))
+         {
+           if overflow
+             {
+-              *value = (9223372036854775807 * 2 + 1)
++              value = (9223372036854775807 * 2 + 1)
+             }
+           else
+             {
+-              *value = num
++              value = num
+             }
+         }
+       return true
+     }
+-    func scanRadixUnsignedInt(value:UInt) -> Bool {
++    func scanRadixUnsignedInt(value:inout UInt) -> Bool {
+       var radix:UInt
+-      var tmp:UInt64
++      var tmp:UInt64 = 0
+       var gotDigits:Bool = false
+-      let saveScanLocation:UInt = _scanLocation
++      let saveScanLocation:Int = _scanLocation
+ 
+-
+-      if !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if !(  (_scanLocation >= _string.utf16.count) ? false : true)
+         {
+           _scanLocation = saveScanLocation
+           return false
+@@ -433,49 +365,51 @@
+ 
+ 
+       radix = 10
+-      if (_scanLocation < ((_string as! ivars)->_count)) && (((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == '0')
++      if (_scanLocation < _string.utf16.count) && (((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == "0".utf16.first!)
+         {
+           radix = 8
+-          _scanLocation++
++          _scanLocation += 1
+           gotDigits = true
+-          if _scanLocation < ((_string as! ivars)->_count)
++          if _scanLocation < _string.utf16.count
+      {
+-       switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-         { 
+-           case 'x',
+-                'X':
+-      _scanLocation++
++       switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++         {
++           case "x".utf16.first!,
++                "X".utf16.first!:
++      _scanLocation += 1
+       radix = 16
+       gotDigits = false
+       break
+-         }
++       default:
++           break
++       }
+      }
+         }
+-      if self.scanUnsignedLongLong_(&tmp,
++      if self.scanUnsignedLongLong_(value: &tmp,
+                                 radix: radix,
+                               maximum: 0xffffffff,
+                             gotDigits: gotDigits)
+         {
+           if tmp > 0xffffffff
+             {
+-              *value = 0xffffffff
++              value = 0xffffffff
+             }
+           else
+             {
+-              *value = (tmp as! unsigned int)
++              value = UInt(tmp)
+             }
+           return true
+         }
+       _scanLocation = saveScanLocation
+       return false
+     }
+-    func scanRadixUnsignedLongLong(value:UInt64) -> Bool {
++    func scanRadixUnsignedLongLong(value:inout UInt64) -> Bool {
+       var radix:UInt
+       var gotDigits:Bool = false
+-      let saveScanLocation:UInt = _scanLocation
++      let saveScanLocation:Int = _scanLocation
+ 
+-
+-      if !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if !(  (_scanLocation >= _string.utf16.count) ? false : true)
+         {
+           _scanLocation = saveScanLocation
+           return false
+@@ -484,25 +418,27 @@
+ 
+ 
+       radix = 10
+-      if (_scanLocation < ((_string as! ivars)->_count)) && (((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == '0')
++      if (_scanLocation < _string.utf16.count) && (((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == "0".utf16.first!)
+         {
+           radix = 8
+-          _scanLocation++
++          _scanLocation += 1
+           gotDigits = true
+-          if _scanLocation < ((_string as! ivars)->_count)
++          if _scanLocation < _string.utf16.count
+      {
+-       switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-         { 
+-           case 'x',
+-                'X':
+-      _scanLocation++
++       switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++         {
++           case "x".utf16.first!,
++                "X".utf16.first!:
++      _scanLocation += 1
+       radix = 16
+       gotDigits = false
+       break
+-         }
++       default:
++           break
++       }
+      }
+         }
+-      if self.scanUnsignedLongLong_(value,
++      if self.scanUnsignedLongLong_(value: &value,
+                                 radix: radix,
+                               maximum: (9223372036854775807 * 2 + 1),
+                             gotDigits: gotDigits)
+@@ -512,93 +448,95 @@
+       _scanLocation = saveScanLocation
+       return false
+     }
+-    func scanHexInt(value:UInt) -> Bool {
+-      let saveScanLocation:UInt = _scanLocation
+-      var tmp:UInt64
++    func scanHexInt(value:inout UInt) -> Bool {
++      let saveScanLocation:Int = _scanLocation
++      var tmp:UInt64 = 0
+ 
+-
+-      if !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if !(  (_scanLocation >= _string.utf16.count) ? false : true)
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+ 
+-      if (_scanLocation < ((_string as! ivars)->_count)) && (((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == '0')
++      if (_scanLocation < _string.utf16.count) && (((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == "0".utf16.first!)
+         {
+-          _scanLocation++
+-          if _scanLocation < ((_string as! ivars)->_count)
++          _scanLocation += 1
++          if _scanLocation < _string.utf16.count
+      {
+-       switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-         { 
+-           case 'x',
+-                'X':
+-      _scanLocation++
++       switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++         {
++           case "x".utf16.first!,
++                "X".utf16.first!:
++      _scanLocation += 1
+       break
+            default:
+-      _scanLocation--
++      _scanLocation -= 1
+              break
+          }
+      }
+           else
+      {
+-       _scanLocation--
++       _scanLocation -= 1
+      }
+         }
+-      if self.scanUnsignedLongLong_(&tmp,
++      if self.scanUnsignedLongLong_(value: &tmp,
+                                 radix: 16,
+                               maximum: 0xffffffff,
+                             gotDigits: false)
+         {
+-          *value = (tmp as! unsigned int)
++          value = UInt(tmp)
+           return true
+         }
+       _scanLocation = saveScanLocation
+       return false
+     }
+-    func scanLongLong(value:Int64) -> Bool {
++    func scanLongLong(value:inout Int64) -> Bool {
+       var num:UInt64 = 0
+       let limit:UInt64 = (9223372036854775807 * 2 + 1) / 10
+       var negative:Bool = false
+       var overflow:Bool = false
+       var got_digits:Bool = false
+-      let saveScanLocation:UInt = _scanLocation
++      let saveScanLocation:Int = _scanLocation
+ 
+-
+-      if !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if !(  (_scanLocation >= _string.utf16.count) ? false : true)
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+ 
+ 
+-      if _scanLocation < ((_string as! ivars)->_count)
++      if _scanLocation < _string.utf16.count
+         {
+-          switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-     { 
+-       case '+':
+-         _scanLocation++
++          switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++     {
++       case "+".utf16.first!:
++         _scanLocation += 1
+          break
+-       case '-':
++       case "-".utf16.first!:
+          negative = true
+-         _scanLocation++
++         _scanLocation += 1
+          break
+-     }
++          default:
++              break
++          }
+         }
+ 
+ 
+-      while  _scanLocation < ((_string as! ivars)->_count)
++      while  _scanLocation < _string.utf16.count
+         {
+-          let digit:UniChar = ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++          let digit:UniChar = ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+ 
+-          if (digit < '0') || (digit > '9')
++          if (digit < "0".utf16.first!) || (digit > "9".utf16.first!)
+      {break}
+           if !overflow {
+      if num >= limit
+        {overflow = true}
+      else
+-       {num = num * 10 + (digit - '0')}
++       {num = num * 10 + UInt64(digit - "0".utf16.first!)}
+           }
+-          _scanLocation++
++          _scanLocation += 1
+           got_digits = true
+         }
+ 
+@@ -610,57 +548,57 @@
+           _scanLocation = saveScanLocation
+           return false
+         }
+-      if (value != 0)
++      if (value != Int64(0))
+         {
+           if negative
+      {
+-       if overflow || (num > ((-9223372036854775807-1) as! unsigned long long))
+-         {*value = (-9223372036854775807-1)}
++       if overflow || (num > (UInt64(-9223372036854775807 - 1)))
++         {value = (-9223372036854775807 - 1)}
+        else
+-         {*value = -num}
++         {value = -Int64(num)}
+      }
+           else
+      {
+-       if overflow || (num > (9223372036854775807 as! unsigned long long))
+-         {*value = 9223372036854775807}
++       if overflow || (num > UInt64(9223372036854775807))
++         {value = 9223372036854775807}
+        else
+-         {*value = num}
++         {value = Int64(num)}
+      }
+         }
+       return true
+     }
+-    func scanHexLongLong(value:UInt64) -> Bool {
+-      let saveScanLocation:UInt = _scanLocation
++    func scanHexLongLong(value:inout UInt64) -> Bool {
++      let saveScanLocation:Int = _scanLocation
+ 
+-
+-      if !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if !(  (_scanLocation >= _string.utf16.count) ? false : true)
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+ 
+-      if (_scanLocation < ((_string as! ivars)->_count)) && (((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == '0')
++      if (_scanLocation < _string.utf16.count) && (((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == "0".utf16.first!)
+         {
+-          _scanLocation++
+-          if _scanLocation < ((_string as! ivars)->_count)
++          _scanLocation += 1
++          if _scanLocation < _string.utf16.count
+            {
+-             switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-               { 
+-                 case 'x',
+-                      'X':
+-                   _scanLocation++
++             switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++               {
++                 case "x".utf16.first!,
++                      "X".utf16.first!:
++                   _scanLocation += 1
+                    break
+                  default:
+-                   _scanLocation--
++                   _scanLocation -= 1
+                    break
+                }
+            }
+           else
+            {
+-             _scanLocation--
++             _scanLocation -= 1
+            }
+         }
+-      if self.scanUnsignedLongLong_(value,
++      if self.scanUnsignedLongLong_(value: &value,
+                                 radix: 16,
+                               maximum: (9223372036854775807 * 2 + 1),
+                             gotDigits: false)
+@@ -673,67 +611,69 @@
+     }
+ 
+ 
+-    func scanDecimal(value:NSDecimal) -> Bool {
+-      self.notImplemented(_cmd)
++    func scanDecimal(value: Decimal) -> Bool {
++        fatalError("scanDecimal is not implemented")
+       return false
+     }
+-    func scanDouble(value:Double) -> Bool {
+-      var c:UniChar = "\0"
+-      var mantissa:[Int8]
+-      var ptr:Int8
+-      var d:Double
++    func scanDouble(value:inout Double) -> Bool {
++      var c:UniChar = 0
++      var mantissa:[UniChar]
++      var ptr:Int
++      var d:Int
+       var result:Double
+       var e:Double
+       var exponent:Int = 0
+       var negativeMantissa:Bool = false
+       var negativeExponent:Bool = false
+-      let shift:unsigned = 0
++      var shift:Int = 0
+       var mantissaLength:Int
+       var dotPos:Int = -1
+       var hi:Int = 0
+       var lo:Int = 0
+       var mantissaDigit:Bool = false
+-      let saveScanLocation:UInt = _scanLocation
++      let saveScanLocation:Int = _scanLocation
+ 
+-
+-      if !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if !(  (_scanLocation >= _string.utf16.count) ? false : true)
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+ 
+ 
+-      if _scanLocation < ((_string as! ivars)->_count)
++      if _scanLocation < _string.utf16.count
+         {
+-          switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-     { 
+-       case '+':
+-         _scanLocation++
++          switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++     {
++       case "+".utf16.first!:
++         _scanLocation += 1
+          break
+-       case '-':
+-         _scanLocation++
++       case "-".utf16.first!:
++         _scanLocation += 1
+          negativeMantissa = true
+          break
+-     }
++          default:
++              break
++          }
+         }
+-      if _scanLocation >= ((_string as! ivars)->_count)
++      if _scanLocation >= _string.utf16.count
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+-      for  ; _scanLocation < ((_string as! ivars)->_count) ; _scanLocation++ { 
++        mantissaLength = 0; while  _scanLocation < _string.utf16.count  {
+ 
+-          c = ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-          if c < '0' || c > '9'
++          c = ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++          if c < "0".utf16.first! || c > "9".utf16.first!
+             {
+               if dotPos >= 0
+                 {
+                   break
+                 }
+ 
+ 
+        if _decimal == c
+-         || (_decimal > 127 && _decimal == ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])))
++         || (_decimal > 127 && _decimal == ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])))
+          {
+            dotPos = mantissaLength
+          }
+@@ -748,16 +688,17 @@
+           else
+             {
+        mantissaDigit = true
+-       if 0 == mantissaLength && '0' == c
++       if 0 == mantissaLength && "0".utf16.first! == c
+          {
+            if dotPos >= 0
+       {
+-        shift++
++        shift += 1
+       }
+          }
+        else if mantissaLength < 19
+          {
+-           mantissa[mantissaLength++] = c
++           mantissa[mantissaLength] = c
++           mantissaLength += 1
+          }
+             }
+          _scanLocation += 1 }
+@@ -779,57 +720,67 @@
+       dotPos -= mantissaLength
+ 
+ 
+-      for  ; mantissaLength > 9 ; mantissaLength -= 1 { 
++       ptr = mantissa.startIndex; while  mantissaLength > 9  {
+ 
+-          c = *ptr
++          c = mantissa[ptr]
+           ptr += 1
+-          hi = hi * 10 + (c - '0')
+-         }
+-      for  ; mantissaLength > 0 ; mantissaLength -= 1 { 
++          hi = hi * 10 + Int(c - "0".utf16.first!)
++          mantissaLength -= 1 }
++        while  mantissaLength > 0  {
+ 
+-          c = *ptr
++          c = mantissa[ptr]
+           ptr += 1
+-          lo = lo * 10 + (c - '0')
+-         }
+-      result = (1.0e9 * hi) + lo
++          lo = lo * 10 + Int(c - "0".utf16.first!)
++          mantissaLength -= 1 }
++      result = (1.0e9 * Double(hi)) + Double(lo)
+ 
+-
+-      if _scanLocation < ((_string as! ivars)->_count)
+-        && ((c = ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) == 'e' || c == 'E')
++      var cond1 = _scanLocation < _string.utf16.count
++      if cond1 {
++          c = _string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]
++      }
++      if cond1 && (c == "e".utf16.first! || c == "E".utf16.first!)
+         {
+-          let saveExpLoc:unsigned = _scanLocation
++          let saveExpLoc:Int = _scanLocation
+ 
+-          _scanLocation++
+-          if _scanLocation >= ((_string as! ivars)->_count)
++          _scanLocation += 1
++          if _scanLocation >= _string.utf16.count
+      {
+        _scanLocation = saveExpLoc
+      }
+           else
+      {
+-       switch ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
+-         { 
+-           case '+':
+-      _scanLocation++
++       switch ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++         {
++           case "+".utf16.first!:
++      _scanLocation += 1
+       break
+-           case '-':
+-      _scanLocation++
++           case "-".utf16.first!:
++      _scanLocation += 1
+       negativeExponent = true
+       break
+-         }
+-       if _scanLocation >= ((_string as! ivars)->_count)
+-         || (c = ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) < '0' || c > '9'
++       default:
++           break
++       }
++       var cond2 = _scanLocation >= _string.utf16.count
++       if !cond2 {
++           c = ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++       }
++       if cond2 || c < "0".utf16.first! || c > "9".utf16.first!
+          {
+            _scanLocation = saveExpLoc
+          }
+        else
+          {
+-           exponent = c - '0'
+-           _scanLocation++
+-           while  _scanLocation < ((_string as! ivars)->_count)
+-      && (c = ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) >= '0' && c <= '9'
++           exponent = Int(c - "0".utf16.first!)
++           _scanLocation += 1
++           while  _scanLocation < _string.utf16.count
+       {
+-        exponent = exponent * 10 + (c - '0')
+-        _scanLocation++
++          c = ((_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))
++          if !(c >= "0".utf16.first! && c <= "9".utf16.first!) {
++              break
++          }
++        exponent = exponent * 10 + Int(c - "0".utf16.first!)
++        _scanLocation += 1
+       }
+          }
+      }
+@@ -844,7 +795,7 @@
+         {
+           exponent = dotPos + exponent
+         }
+-      exponent -= shift
++      exponent -= Int(shift)
+       if exponent < 0
+         {
+           negativeExponent = true
+@@ -862,13 +813,15 @@
+ 
+ 
+       e = 1.0
+-      for  ; exponent != 0 ; exponent >>= 1, d += 1 { 
++      d = powersOf10.startIndex; while  exponent != 0  {
+ 
+           if (exponent & 1 != 0)
+             {
+-              e *= *d
++              e *= powersOf10[d]
+             }
+-         }
++            exponent /= 2
++            d += 1
++        }
+       if true == negativeExponent
+         {
+           result /= e
+@@ -882,68 +835,62 @@
+         {
+           if true == negativeMantissa
+             {
+-              *value = -result
++              value = -result
+             }
+           else
+             {
+-              *value = result
++              value = result
+             }
+         }
+       return true
+     }
+-    func scanFloat(value:Float) -> Bool {
++    func scanFloat(value:inout Float) -> Bool {
+       var num:Double
+ 
+       if value == nil
+-        {return self.scanDouble(nil)}
+-      if self.scanDouble(&num)
+         {
+-          *value = num
++            var unused: Double = 0.0
++            return self.scanDouble(value: &unused)
++        }
++      if self.scanDouble(value: &num)
++        {
++          value = Float(num)
+           return true
+         }
+       return false
+     }
+-    func scanCharactersFromSet(aSet:NSCharacterSet, intoString value:String) -> Bool {
+-      let saveScanLocation:UInt = _scanLocation
+-
+-      if ( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++    func scanCharactersFromSet(aSet:NSCharacterSet, intoString value:inout String) -> Bool {
++      let saveScanLocation:Int = _scanLocation
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if (  (_scanLocation >= _string.utf16.count) ? false : true)
+         {
+-          var start:UInt
+-          var memImp:@convention(c) (UnsafeMutablePointer<NSCharacterSet!>,Selector,UniChar)->Bool
+-
+-          if aSet == _charactersToBeSkipped
+-     {memImp = _skipImp}
+-          else
+-     {memImp = (aSet.methodForSelector(memSel) as! BOOL)}
++          var start:Int
+ 
+           start = _scanLocation
+           if _isUnicode
+      {
+-       while  _scanLocation < ((_string as! ivars)->_count)
++       while  _scanLocation < _string.utf16.count
+          {
+-           if (*memImp)(aSet, memSel, (_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == false
++             if aSet.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) == false
+       {break}
+-           _scanLocation++
++           _scanLocation += 1
+          }
+      }
+           else
+      {
+-       while  _scanLocation < ((_string as! ivars)->_count)
++       while  _scanLocation < _string.utf16.count
+          {
+-           if (*memImp)(aSet, memSel, (_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == false
++           if aSet.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) == false
+       {break}
+-           _scanLocation++
++           _scanLocation += 1
+          }
+      }
+           if _scanLocation != start
+      {
+-       if value != 0
++       if value != "\0"
+          {
+-           var range:NSRange
+-
+-           range.location = start
+-           range.length = _scanLocation - start
+-           *value = _string.substringWithRange(range)
++           var range = _string.utf16.index(_string.utf16.startIndex, offsetBy: start) ..< _string.utf16.index(_string.utf16.startIndex, offsetBy: (_scanLocation))
++           value = _string.substring(with: range)
+          }
+        return true
+      }
+@@ -953,36 +900,30 @@
+       _scanLocation = saveScanLocation
+       return false
+     }
+-    func scanUpToCharactersFromSet(aSet:NSCharacterSet, intoString value:String) -> Bool {
+-      let saveScanLocation:UInt = _scanLocation
+-      var start:UInt
+-      var memImp:@convention(c) (UnsafeMutablePointer<NSCharacterSet!>,Selector,UniChar)->Bool
+-
+-      if !( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true)
++    func scanUpToCharactersFromSet(aSet:NSCharacterSet, intoString value:inout String) -> Bool {
++      let saveScanLocation:Int = _scanLocation
++      var start:Int
++      while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if !(  (_scanLocation >= _string.utf16.count) ? false : true)
+         {return false}
+ 
+-      if aSet == _charactersToBeSkipped
+-        {memImp = _skipImp}
+-      else
+-        {memImp = (aSet.methodForSelector(memSel) as! BOOL)}
+-
+       start = _scanLocation
+       if _isUnicode
+         {
+-          while  _scanLocation < ((_string as! ivars)->_count)
++          while  _scanLocation < _string.utf16.count
+      {
+-       if (*memImp)(aSet, memSel, (_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == true
++       if aSet.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) == true
+          {break}
+-       _scanLocation++
++       _scanLocation += 1
+      }
+         }
+       else
+         {
+-          while  _scanLocation < ((_string as! ivars)->_count)
++          while  _scanLocation < _string.utf16.count
+      {
+-       if (*memImp)(aSet, memSel, (_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)])) == true
++       if aSet.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) == true
+          {break}
+-       _scanLocation++
++       _scanLocation += 1
+      }
+         }
+ 
+@@ -994,65 +935,61 @@
+         }
+       if (value != nil)
+         {
+-          var range:NSRange
+-
+-          range.location = start
+-          range.length = _scanLocation - start
+-          *value = _string.substringWithRange(range)
++          var range = _string.utf16.index(_string.utf16.startIndex, offsetBy:start)..<_string.utf16.index(_string.utf16.startIndex, offsetBy:(_scanLocation - start))
++          value = _string.substring(with: range)
+         }
+       return true
+     }
+ 
+ 
+-    func scanString(string:String, intoString value:String) -> Bool {
+-      var range:NSRange
+-      let saveScanLocation:UInt = _scanLocation
+-
+-      if ( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true) == false
++    func scanString(string:String, intoString value:inout String) -> Bool {
++      let saveScanLocation:Int = _scanLocation
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++      if (  (_scanLocation >= _string.utf16.count) ? false : true) == false
+         {
+           return false
+         }
+-      range.location = _scanLocation
+-      range.length = string.utf16.count
+-      if range.location + range.length > ((_string as! ivars)->_count)
++        var range = _string.utf16.index(_string.utf16.startIndex, offsetBy:_scanLocation) ..<
++        _string.utf16.index(_string.utf16.startIndex, offsetBy: Int(_scanLocation)+string.utf16.count)
++      if range.upperBound.utf16Offset(in: _string) > _string.utf16.count
+         {return false}
+-      range = _string.rangeOfString(string,
+-       options: _caseSensitive ? 0 : NSCaseInsensitiveSearch,
+-         range: range)
+-      if range.length == 0
++      range = _string.range(of: string,
++       options: _caseSensitive ? String.CompareOptions() : String.CompareOptions.caseInsensitive,
++         range: range)!
++      if range.isEmpty
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+       if (value != nil)
+-        {*value = _string.substringWithRange(range)}
+-      _scanLocation += range.length
++        {value = _string.substring(with: range)}
++      _scanLocation += Int(range.upperBound.utf16Offset(in: _string) - range.lowerBound.utf16Offset(in: _string))
+       return true
+     }
+-    func scanUpToString(string:String, intoString value:String) -> Bool {
+-      var range:NSRange
+-      var found:NSRange
+-      let saveScanLocation:UInt = _scanLocation
+-
+-      if ( while  _scanLocation < ((_string as! ivars)->_count) && _charactersToBeSkipped != nil && (*_skipImp)(_charactersToBeSkipped, memSel, ((_string[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]))) {_scanLocation++} (_scanLocation >= ((_string as! ivars)->_count)) ? false : true) == false
++    func scanUpToString(string:String, intoString value:inout String) -> Bool {
++      let saveScanLocation:Int = _scanLocation
++        while  _scanLocation < _string.utf16.count && _charactersToBeSkipped != nil && _charactersToBeSkipped!.characterIsMember(_string.utf16[_string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation)]) {_scanLocation += 1}
++        if ( (_scanLocation >= _string.utf16.count) ? false : true) == false
+         {
+           return false
+         }
+-      range.location = _scanLocation
+-      range.length = ((_string as! ivars)->_count) - _scanLocation
+-      found = _string.rangeOfString(string,
+-        options: _caseSensitive ? 0 : NSCaseInsensitiveSearch,
+-          range: range)
+-      if found.length
+-        {range.length = found.location - _scanLocation}
+-      if range.length == 0
++        var range = _string.utf16.index(_string.utf16.startIndex, offsetBy: _scanLocation) ..< _string.utf16.index(_string.utf16.startIndex, offsetBy: _string.utf16.count)
++
++      var found = _string.range(of: string,
++              options: _caseSensitive ? String.CompareOptions() : String.CompareOptions.caseInsensitive,
++              range: range)
++      if (found?.isEmpty == false)
++        {
++            range = range.lowerBound ..< _string.utf16.index(range.lowerBound, offsetBy: found!.lowerBound.utf16Offset(in: _string.utf16) - Int(_scanLocation))
++        }
++      if range.isEmpty
+         {
+           _scanLocation = saveScanLocation
+           return false
+         }
+       if (value != nil)
+-        {*value = _string.substringWithRange(range)}
+-      _scanLocation += range.length
++        {value = _string.substring(with: range)}
++      _scanLocation += Int(range.upperBound.utf16Offset(in: _string.utf16) - range.lowerBound.utf16Offset(in: _string.utf16))
+       return true
+     }
+ 
+@@ -1063,56 +1000,56 @@
+     }
+ 
+ 
+-    func scanLocation() -> UInt {
++    func scanLocation() -> Int {
+       return _scanLocation
+     }
+-    func setScanLocation(anIndex:UInt) {
+-      if _scanLocation <= ((_string as! ivars)->_count)
++    func setScanLocation(anIndex:Int) throws {
++      if _scanLocation <= _string.utf16.count
+         {_scanLocation = anIndex}
+       else
+-        {NSException.raise(NSRangeException,
+-      format: "Attempt to set scan location beyond end of string")}
++        {
++            throw NSError(domain: "NSRangeException", code: 0, userInfo: [NSLocalizedDescriptionKey: "Attempt to set scan location beyond end of string"])
++        }
+     }
+         func caseSensitive() -> Bool {
+       return _caseSensitive
+     }
+         func setCaseSensitive(flag:Bool) {
+       _caseSensitive = flag
+     }
+-    func charactersToBeSkipped() -> NSCharacterSet {
++    func charactersToBeSkipped() -> NSCharacterSet? {
+       return _charactersToBeSkipped
+     }
+-    func setCharactersToBeSkipped(aSet:NSCharacterSet) {
+-      _charactersToBeSkipped = aSet.copy()
+-      _skipImp = (_charactersToBeSkipped.methodForSelector(memSel) as! BOOL)
++    func setCharactersToBeSkipped(aSet:NSCharacterSet?) {
++      _charactersToBeSkipped = aSet?.copy() as? NSCharacterSet
+     }
+-    func locale() -> NSDictionary {
++    func locale() -> Dictionary<String, Any>? {
+       return _locale
+     }
+ 
+ 
+-    func setLocale(localeDictionary:NSDictionary) {
++    func setLocale(localeDictionary:Dictionary<String, Any>?) {
+       _locale = (localeDictionary)
+ 
+ 
+       if _locale == nil
+         {
+-          _decimal = '.'
++          _decimal = ".".utf16.first!
+         }
+       else
+         {
+           var pointString:String
+ 
+-          pointString = _locale.objectForKey(NSDecimalSeparator)
++          pointString = _locale![NSDecimalSeparator] as! String
+           if pointString.utf16.count > 0
+-     {_decimal = pointString[pointString.utf16.index(pointString.utf16.startIndex, offsetBy: 0)]}
++     {_decimal = pointString.utf16[pointString.utf16.index(pointString.utf16.startIndex, offsetBy: 0)]}
+           else
+-     {_decimal = '.'}
++     {_decimal = ".".utf16.first!}
+         }
+     }
+ 
+ 
+-    
++
+ 
+     func scanHexDouble(result:Double) -> Bool {
+       return false
+@@ -1128,29 +1065,29 @@
+     func scanHexFloat(result:Float) -> Bool {
+       return false
+     }
+-    func scanInteger(value:Int) -> Bool {
++    func scanInteger(value:inout Int) -> Bool {
+ 
+-      return self.scanInt((value as! int))
++      return self.scanInt(value: &value)
+ 
+ 
+     }
+ }
+ 
+ 
+ 
+ 
+-enum NSComparisonPredicateModifier: UInt{
++enum NSComparisonPredicateModifier: Int{
+   case NSDirectPredicateModifier = 0
+   case NSAllPredicateModifier
+   case NSAnyPredicateModifier
+-} 
++}
+ 
+-enum NSComparisonPredicateOptions: UInt{
++enum NSComparisonPredicateOptions: Int{
+   case NSCaseInsensitivePredicateOption = 0x01
+   case NSDiacriticInsensitivePredicateOption = 0x02
+-} 
++}
+ 
+-enum NSPredicateOperatorType: UInt{
++enum NSPredicateOperatorType: Int{
+   case NSLessThanPredicateOperatorType = 0
+   case NSLessThanOrEqualToPredicateOperatorType
+   case NSGreaterThanPredicateOperatorType
+@@ -1161,18 +1098,18 @@
+   case NSInPredicateOperatorType
+   case NSCustomSelectorPredicateOperatorType
+ 
+-  
++
+   case NSContainsPredicateOperatorType = 99
+   case NSBetweenPredicateOperatorType
+ 
+-} 
++}
+ 
+ 
+ 
+ 
+ 
+ 
+-enum NSCompoundPredicateType: UInt{
++enum NSCompoundPredicateType: Int{
+   case NSNotPredicateType = 0
+   case NSAndPredicateType
+   case NSOrPredicateType
+@@ -1177,172 +1114,38 @@
+ 
+ 
+ 
+-var evaluatedObjectExpression:NSExpression = nil
+-
++let evaluatedObjectExpression:NSExpression = GSEvaluatedObjectExpression()
+ 
+ 
+ 
+-class NSPredicate : NSObject, NSCoding, NSCopying {
+ 
+-    class func predicateWithFormat(format:String) -> NSPredicate {
+-      var p:NSPredicate
+-      var va:va_list
++class NSPredicate : NSObject {
+ 
+-      va_start(va, format)
+-      p = self.predicateWithFormat(format, arguments: va)
+-      va_end(va)
+-      return p
+-    }
+-
+-    class func predicateWithFormat(format:String, argumentArray args:NSArray) -> NSPredicate {
++    class func predicateWithFormat(_ format:String, arguments args:Array<AnyObject>) throws -> NSPredicate {
+       var s:GSPredicateScanner
+       var p:NSPredicate
+ 
+-      s = GSPredicateScanner(string:format,
+-                                                args: args)
+-      p = s.parse()
+-                ;
++      s = GSPredicateScanner(format:format, args: args)
++      p = try s.parse()
+       return p
+     }
+ 
+-    /*class func predicateWithFormat(format:String, arguments args:va_list) -> NSPredicate {
+-      var s:GSPredicateScanner
+-      var p:NSPredicate
+-      let ptr:Int8 = format.UTF8String()
+-      let arr:NSMutableArray = NSMutableArray.arrayWithCapacity(10)
+-
+-      while  *ptr != 0
+-        {
+-          var c:Int8 = *ptr++
+-
+-          if c == '%'
+-            {
+-              c = *ptr
+-              switch (c)
+-                { 
+-                  case '%':
+-                    ptr++
+-                    break
+-
+-                  case 'K',
+-                       '@':
+-                    ptr++
+-                    arr.addObject(va_arg(args, $(TypeName)))
+-                    break
+-
+-                  case 'c':
+-                    ptr++
+-                    arr.addObject(NSNumber.numberWithChar((va_arg(args, $(TypeName)) as! char)))
+-                    break
+-
+-                  case 'C':
+-                    ptr++
+-                    arr.addObject(NSNumber.numberWithShort((va_arg(args, $(TypeName)) as! short)))
+-                    break
+-
+-                  case 'd',
+-                       'D',
+-                       'i':
+-                    ptr++
+-                    arr.addObject(NSNumber.numberWithInt(va_arg(args, $(TypeName))))
+-                    break
+-
+-                  case 'o',
+-                       'O',
+-                       'u',
+-                       'U',
+-                       'x',
+-                       'X':
+-                    ptr++
+-                    arr.addObject(NSNumber.numberWithUnsignedInt(va_arg(args, $(TypeName))))
+-                    break
+-
+-                  case 'e',
+-                       'E',
+-                       'f',
+-                       'g',
+-                       'G':
+-                    ptr++
+-                    arr.addObject(NSNumber.numberWithDouble(va_arg(args, $(TypeName))))
+-                    break
+-
+-                  case 'h':
+-                    ptr++
+-                    if *ptr != 0
+-                      {
+-                        c = *ptr
+-                        if c == 'i'
+-                          {
+-                            arr.addObject(NSNumber.numberWithShort((va_arg(args, $(TypeName)) as! short)))
+-                          }
+-                        if c == 'u'
+-                          {
+-                            arr.addObject(NSNumber.numberWithUnsignedShort((va_arg(args, $(TypeName)) as! unsigned short)))
+-                          }
+-                      }
+-                    break
+-
+-                  case 'q':
+-                    ptr++
+-                    if *ptr != 0
+-                      {
+-                        c = *ptr
+-                        if c == 'i'
+-                          {
+-                            arr.addObject(NSNumber.numberWithLongLong(va_arg(args, $(TypeName))))
+-                          }
+-                        if c == 'u' || c == 'x' || c == 'X'
+-                          {
+-                            arr.addObject(NSNumber.numberWithUnsignedLongLong(va_arg(args, $(TypeName))))
+-                          }
+-                      }
+-                    break
+-                }
+-            }
+-          else if c == '\''
+-            {
+-              while  *ptr != 0
+-                {
+-                  if *ptr++ == '\''
+-                    {
+-                      break
+-                    }
+-                }
+-            }
+-          else if c == '"'
+-            {
+-              while  *ptr != 0
+-                {
+-                  if *ptr++ == '"'
+-                    {
+-                      break
+-                    }
+-                }
+-            }
+-        }
+-      s = GSPredicateScanner(string:format,
+-                                                args: arr)
+-      p = s.parse()
+-                ;
+-      return p
+-    }*/
+-
+     class func predicateWithValue(value:Bool) -> NSPredicate {
+       if value
+         {
+-          return (GSTruePredicate())
++          return GSTruePredicate()
+         }
+       else
+         {
+-          return (GSFalsePredicate())
++          return GSFalsePredicate()
+         }
+     }
+ 
+ 
+-    
++
+ 
+-    func evaluateWithObject(object:AnyObject) -> Bool {
+-      self.subclassResponsibility(_cmd)
++    func evaluateWithObject(`object`:AnyObject) throws -> Bool {
++      fatalError("subclassResponsibility")
+       return false
+     }
+ 
+@@ -1352,17 +1155,16 @@
+     }
+ 
+     func predicateFormat() -> String {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++      fatalError("subclassResponsibility")
+     }
+ 
+-    func predicateWithSubstitutionVariables(variables:NSDictionary) -> NSPredicate {
+-      return (self.copy())
++    func predicateWithSubstitutionVariables(variables:Dictionary<String, AnyObject>) throws -> NSPredicate {
++      return (self.copy()) as! NSPredicate
+     }
+ 
+ 
+-    func evaluateWithObject(object:AnyObject, substitutionVariables variables:NSDictionary) -> Bool {
+-      return self.predicateWithSubstitutionVariables(variables).evaluateWithObject(object)
++    func evaluateWithObject(`object`:AnyObject, substitutionVariables variables:Dictionary<String, AnyObject>) throws -> Bool {
++      return try self.predicateWithSubstitutionVariables(variables: variables).evaluateWithObject(`object`: `object`)
+     }
+ 
+     func classForCoder() -> AnyClass {
+@@ -1371,26 +1173,16 @@
+ 
+-    func encodeWithCoder(coder:NSCoder) {
+-
+-      self.subclassResponsibility(_cmd)
+-    }
+ 
+-    init(coder:NSCoder) {
+-
+-      self.subclassResponsibility(_cmd)
+-      return self
+-    }
++    override init() {
+ 
+-
+-    class func predicateWithBlock(block:GSBlockPredicateBlock) -> NSPredicate {
+-      return GSBlockPredicate(block:block).autorelease()
++      fatalError("subclassResponsibility")
+     }
+ }
+ 
+ class GSTruePredicate : NSPredicate {
+ 
+-    
++
+ 
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
++    override func evaluateWithObject(`object`:AnyObject) -> Bool {
+       return true
+     }
+ 
+@@ -1401,9 +1197,9 @@
+ 
+ class GSFalsePredicate : NSPredicate {
+ 
+-    
++
+ 
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
++    override func evaluateWithObject(`object`:AnyObject) -> Bool {
+       return false
+     }
+ 
+@@ -1415,21 +1211,21 @@
+ class NSCompoundPredicate : NSPredicate {
+ 
+     private var _type:NSCompoundPredicateType
+-    var _subs:NSArray
+-    class func andPredicateWithSubpredicates(list:NSArray) -> NSPredicate {
++    var _subs:Array<NSPredicate>
++    class func andPredicateWithSubpredicates(list:Array<NSPredicate>) -> NSPredicate {
+       return (GSAndCompoundPredicate(type:NSCompoundPredicateType.NSAndPredicateType, subpredicates: list))
+ 
+     }
+ 
+     class func notPredicateWithSubpredicate(predicate:NSPredicate) -> NSPredicate {
+-      var list:NSArray
++      var list:Array<NSPredicate>
+ 
+-      list = NSArray.arrayWithObject(predicate)
++      list = [predicate]
+       return (GSNotCompoundPredicate(type:NSCompoundPredicateType.NSNotPredicateType, subpredicates: list))
+ 
+     }
+ 
+-    class func orPredicateWithSubpredicates(list:NSArray) -> NSPredicate {
++    class func orPredicateWithSubpredicates(list:Array<NSPredicate>) -> NSPredicate {
+       return (GSOrCompoundPredicate(type:NSCompoundPredicateType.NSOrPredicateType, subpredicates: list))
+ 
+     }
+@@ -1438,162 +1234,145 @@
+       return _type
+     }
+ 
+-    init(type:NSCompoundPredicateType, subpredicates list:NSArray) {
+-      if (self = super.init()) != nil
+-        {
++    required init(type:NSCompoundPredicateType, subpredicates list:Array<NSPredicate>) {
+           _type = type
+-          _subs = list.copy()
+-        }
+-      return self
++          _subs = Array(list)
+     }
+ 
+-    func dealloc() {
+-                    ;
+-      super.dealloc()
+-    }
+-
+-    
+-
+-    func subpredicates() -> NSArray {
++    func subpredicates() -> Array<NSPredicate> {
+       return _subs
+     }
+ 
+-    override func predicateWithSubstitutionVariables(variables:NSDictionary) -> NSPredicate {
++    override func predicateWithSubstitutionVariables(variables:Dictionary<String, AnyObject>) throws -> NSPredicate {
+       let count = _subs.count
+-      let esubs:NSMutableArray = NSMutableArray.arrayWithCapacity(count)
+-      var i:UInt
++      var esubs = Array<NSPredicate>(); esubs.reserveCapacity(count)
++      var i:Int
+       var p:NSPredicate
+ 
+-      for  ; i < count ; i++ { 
++       i = 0; while  i < count  {
+ 
+-          esubs.addObject(_subs.objectAtIndex(i).predicateWithSubstitutionVariables(variables))
+-         }
++            try esubs.append(_subs[i]!.predicateWithSubstitutionVariables(variables: variables))
++            i += 1 }
+ 
+-      p = self.self(type:_type, subpredicates: esubs)
++      p = type(of: self).init(type:_type, subpredicates: esubs)
+       return (p)
+     }
+ 
+-    override func classForCoder() -> AnyClass {
+-      return NSCompoundPredicate.self
+-    }
+-
+-    override func encodeWithCoder(coder:NSCoder) {
++    override init() {
+ 
+-      self.subclassResponsibility(_cmd)
+-    }
+-
+-    override init(coder:NSCoder) {
+-
+-      self.subclassResponsibility(_cmd)
+-      return self
++      fatalError("subclassResponsibility")
+     }
+ }
+ 
+ class GSAndCompoundPredicate : NSCompoundPredicate {
++    required override init(type: NSCompoundPredicateType, subpredicates: Array<NSPredicate>) {
++        super.init(type: type, subpredicates: subpredicates)
++    }
+ 
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
+-      let e:NSEnumerator = _subs.objectEnumerator()
+-      var p:NSPredicate
++    override func evaluateWithObject(`object`:AnyObject) throws -> Bool {
++        var e = _subs.makeIterator()
+ 
+-      while  (p = e.nextObject()) != nil
++      while true
+         {
+-          if p.evaluateWithObject(object) == false
+-            {
+-              return false
+-            }
++          if let p = e.next() as? NSPredicate {
++              if try p.evaluateWithObject(`object`: `object`) == false {
++                  return false
++              }
++          } else {
++              break
++          }
+         }
+       return true
+     }
+ 
+     override func predicateFormat() -> String {
+       var fmt:String = ""
+-      let e:NSEnumerator = _subs.objectEnumerator()
+-      var sub:NSPredicate
+-      let cnt:unsigned = 0
++      var e = _subs.makeIterator()
++      var cnt:Int = 0
+ 
+-      while  (sub = e.nextObject()) != nil
+-        {
+-
+-          if cnt == 0
+-            {
+-              fmt = sub.predicateFormat()
+-            }
+-          else
+-            {
+-              if cnt == 1
+-                && (_subs.objectAtIndex(0) is NSCompoundPredicate)
+-                && (_subs.objectAtIndex(0) as! NSCompoundPredicate).compoundPredicateType() == NSCompoundPredicateType.NSOrPredicateType
+-                {
++      while true {
++          if let sub = e.next() as? NSPredicate {
++              if cnt == 0 {
++                  fmt = sub.predicateFormat()
++              } else {
++                  if cnt == 1
++                             && (_subs[0] is NSCompoundPredicate)
++                             && (_subs[0] as! NSCompoundPredicate).compoundPredicateType() == NSCompoundPredicateType.NSOrPredicateType {
+ 
+-                  fmt = String(format:"(%@)", fmt)
+-                }
+-              if (sub is NSCompoundPredicate)
+-                  && (sub as! NSCompoundPredicate).compoundPredicateType()
+-                  == NSCompoundPredicateType.NSOrPredicateType
+-                {
++                      fmt = String(format: "(%@)", fmt)
++                  }
++                  if (sub is NSCompoundPredicate)
++                             && (sub as! NSCompoundPredicate).compoundPredicateType()
++                             == NSCompoundPredicateType.NSOrPredicateType {
+ 
+-                  fmt = String(format:"%@ AND (%@)",
+-                                  fmt, sub.predicateFormat())
+-                }
+-              else
+-                {
+-                  fmt = String(format:"%@ AND %@",
+-                                  fmt, sub.predicateFormat())
+-                }
+-            }
+-          cnt++
+-        }
++                      fmt = String(format: "%@ AND (%@)",
++                              fmt, sub.predicateFormat())
++                  } else {
++                      fmt = String(format: "%@ AND %@",
++                              fmt, sub.predicateFormat())
++                  }
++              }
++              cnt += 1
++          } else {
++              break
++          }
++      }
+       return fmt
+     }
+ }
+ 
+ class GSOrCompoundPredicate : NSCompoundPredicate {
+ 
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
+-      let e:NSEnumerator = _subs.objectEnumerator()
+-      var p:NSPredicate
++    override func evaluateWithObject(`object`:AnyObject) throws -> Bool {
++      var e = _subs.makeIterator()
+ 
+-      while  (p = e.nextObject()) != nil
++      while true
+         {
+-          if p.evaluateWithObject(object) == true
+-            {
+-              return true
+-            }
++          if let p = e.next() as? NSPredicate {
++              if try p.evaluateWithObject(`object`: `object`) == true {
++                  return true
++              }
++          } else {
++              break
++          }
+         }
+       return false
+     }
+ 
+     override func predicateFormat() -> String {
+       var fmt:String = ""
+-      let e:NSEnumerator = _subs.objectEnumerator()
+-      var sub:NSPredicate
++      var e = _subs.makeIterator()
+ 
+-      while  (sub = e.nextObject()) != nil
++      while true
+         {
+-          if fmt.length() > 0
+-            {
+-              fmt = String(format:"%@ OR %@",
+-                              fmt, sub.predicateFormat())
+-            }
+-          else
+-            {
+-              fmt = sub.predicateFormat()
+-            }
++          if let sub = e.next() as? NSPredicate {
++              if !fmt.isEmpty {
++                  fmt = String(format: "%@ OR %@",
++                          fmt, sub.predicateFormat())
++              } else {
++                  fmt = sub.predicateFormat()
++              }
++          } else {
++              break
++          }
+         }
+       return fmt
+     }
+ }
+ 
+ class GSNotCompoundPredicate : NSCompoundPredicate {
++    required override init(type: NSCompoundPredicateType, subpredicates: Array<NSPredicate>) {
++        super.init(type: type, subpredicates: subpredicates)
++    }
+ 
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
+-      let sub:NSPredicate = _subs.objectAtIndex(0) as! NSPredicate
++    override func evaluateWithObject(`object`:AnyObject) throws -> Bool {
++      let sub:NSPredicate = _subs[0]!
+ 
+-      return !sub.evaluateWithObject(object)
++        return try !sub.evaluateWithObject(`object`: `object`)
+     }
+ 
+     override func predicateFormat() -> String {
+-      let sub:NSPredicate = _subs.objectAtIndex(0) as! NSPredicate
++      let sub:NSPredicate = _subs[0]!
+ 
+       if (sub is NSCompoundPredicate)
+         && (sub as! NSCompoundPredicate).compoundPredicateType()
+@@ -1609,57 +1388,39 @@
+ 
+     private var _modifier:NSComparisonPredicateModifier
+     private var _selector:Selector
+-    private var _options:UInt
++    private var _options:Int
+     private var _type:NSPredicateOperatorType
+     private var _internal:AnyObject
+     private var _left:NSExpression
+     private var _right:NSExpression
+     class func predicateWithLeftExpression(left:NSExpression, rightExpression right:NSExpression, customSelector sel:Selector) -> NSPredicate {
+-      return (self.init(leftExpression:left,
+- rightExpression: right,
+- customSelector: sel))
++      return (self.init(left:left, rightExpression: right, customSelector: sel))
+ 
+ 
+     }
+ 
+-    class func predicateWithLeftExpression(left:NSExpression, rightExpression right:NSExpression, modifier:NSComparisonPredicateModifier, type:NSPredicateOperatorType, options opts:UInt) -> NSPredicate {
+-      return (self.init(leftExpression:left,
+- rightExpression: right,
+- modifier: modifier,
+- type: type,
+- options: opts))
++    class func predicateWithLeftExpression(left:NSExpression, rightExpression right:NSExpression, modifier:NSComparisonPredicateModifier, type:NSPredicateOperatorType, options opts:Int) -> NSPredicate {
++      return (self.init(left:left, rightExpression: right, modifier: modifier, type: type, options: opts))
+ 
+ 
+     }
+ 
+-    func initWithLeftExpression(left:NSExpression, rightExpression right:NSExpression, customSelector sel:Selector) -> NSPredicate {
+-      if (self = super.init()) != nil
+-        {
++    required init(left:NSExpression, rightExpression right:NSExpression, customSelector sel:Selector) {
++
+           _left = (left)
+           _right = (right)
+           _selector = sel
+           _type = NSPredicateOperatorType.NSCustomSelectorPredicateOperatorType
+-        }
+-      return self
+     }
+ 
+-    init(left:NSExpression, rightExpression right:NSExpression, modifier:NSComparisonPredicateModifier, type:NSPredicateOperatorType, options opts:UInt) {
+-      if (self = super.init()) != nil
+-        {
++    required init(left:NSExpression, rightExpression right:NSExpression, modifier:NSComparisonPredicateModifier, type:NSPredicateOperatorType, options opts:Int) {
++
+           _left = (left)
+           _right = (right)
+           _modifier = modifier
+           _type = type
+           _options = opts
+-        }
+-      return self
+     }
+-
+-    func dealloc() {
+-                    ;
+-                     ;
+-      super.dealloc()
+-    }
+ 
+     func comparisonPredicateModifier() -> NSComparisonPredicateModifier {
+       return _modifier
+@@ -1667,7 +1434,7 @@
+       return _left
+     }
+ 
+-    func options() -> UInt {
++    func options() -> Int {
+       return _options
+     }
+ 
+@@ -1699,25 +1466,25 @@
+             comp = "IN"
+             break
+           case NSPredicateOperatorType.NSCustomSelectorPredicateOperatorType:
+-            comp = NSStringFromSelector(_selector)
++            fatalError("Custom selector predicates are not supported")
+             break
+           case NSPredicateOperatorType.NSContainsPredicateOperatorType:
+             comp = "CONTAINS"
+             break
+           case NSPredicateOperatorType.NSBetweenPredicateOperatorType:
+             comp = "BETWEEN"
+             break
+-        }
++      }
+       switch (_options)
+-        { 
+-          case NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption:
++        {
++          case NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption.rawValue:
+             opt = "[c]"
+             break
+-          case NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption:
++          case NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption.rawValue:
+             opt = "[d]"
+             break
+-          case NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption
+-            | NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption:
++          case NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption.rawValue
++            | NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption.rawValue:
+             opt = "[cd]"
+             break
+           default:
+@@ -1763,21 +1530,21 @@
+                modi, _left, comp, opt, _right)
+     }
+ 
+-    override func predicateWithSubstitutionVariables(variables:NSDictionary) -> NSPredicate {
++    override func predicateWithSubstitutionVariables(variables:Dictionary<String, AnyObject>) throws -> NSPredicate {
+       var left:NSExpression
+       var right:NSExpression
+ 
+-      left = _left._expressionWithSubstitutionVariables(variables)
+-      right = _right._expressionWithSubstitutionVariables(variables)
++      left = try _left._expressionWithSubstitutionVariables(variables: variables)
++        right = try _right._expressionWithSubstitutionVariables(variables: variables)
+       if _type == NSPredicateOperatorType.NSCustomSelectorPredicateOperatorType
+         {
+-          return NSComparisonPredicate.predicateWithLeftExpression(left,
++          return NSComparisonPredicate.predicateWithLeftExpression(left: left,
+                                                     rightExpression: right,
+                                                      customSelector: _selector)
+         }
+       else
+         {
+-          return NSComparisonPredicate.predicateWithLeftExpression(left,
++          return NSComparisonPredicate.predicateWithLeftExpression(left: left,
+                                                     rightExpression: right,
+                                                            modifier: _modifier,
+                                                                type: _type,
+@@ -1787,20 +1554,20 @@
+ 
+ 
+     func
+-    GSICUStringMatchesRegex(string:String, regex:String, opts:NSStringCompareOptions) -> Bool
++    GSICUStringMatchesRegex(string:String, regex:String, opts: String.CompareOptions) -> Bool
+     {
+       var result:Bool = false
+-      let error:UErrorCode = 0
+-      var flags:uint32_t = 0
++      let error:Int = 0
++      var flags:UInt32 = 0
+       let stringLength = string.utf16.count
+       let regexLength = regex.utf16.count
+       var stringBuffer:UniChar
+       var regexBuffer:UniChar
+       var icuregex:URegularExpression = nil
+ 
+-      stringBuffer = malloc(stringLength * sizeof($(TypeName)))
++      stringBuffer = malloc(stringLength * sizeof(UniChar))
+       if nil == stringBuffer { return false }
+-      regexBuffer = malloc(regexLength * sizeof($(TypeName)))
++      regexBuffer = malloc(regexLength * sizeof(UniChar))
+       if nil == regexBuffer { free(stringBuffer); return false }
+ 
+       string.getCharacters(stringBuffer, range: NSMakeRange(0, stringLength))
+@@ -1827,21 +1594,21 @@
+     func doubleValueFor(value:AnyObject) -> Double {
+       if (value is NSDate)
+         {
+-          return (value as! NSDate).timeIntervalSinceReferenceDate()
++          return (value as! NSDate).timeIntervalSinceReferenceDate
+         }
+       else
+         {
+-          return value.doubleValue()
++          return (value as! NSNumber).doubleValue
+         }
+     }
+ 
+-    func _evaluateLeftValue(leftResult:AnyObject, rightValue rightResult:AnyObject, object:AnyObject) -> Bool {
+-      var compareOptions:unsigned = 0
++    func _evaluateLeftValue(leftResult:AnyObject?, rightValue rightResult:AnyObject?, `object`:AnyObject) throws -> Bool {
++      var compareOptions = String.CompareOptions(rawValue: 0)
+       var leftIsNil:Bool
+       var rightIsNil:Bool
+ 
+-      leftIsNil = (leftResult == nil || leftResult.isEqual(NSNull.null()))
+-      rightIsNil = (rightResult == nil || rightResult.isEqual(NSNull.null()))
++      leftIsNil = (leftResult == nil)
++      rightIsNil = (rightResult == nil)
+       if leftIsNil || rightIsNil
+         {
+           if leftIsNil == rightIsNil
+@@ -1865,390 +1632,339 @@
+         }
+ 
+ 
+-      if !(_options & NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption)
++      if !((_options & NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption.rawValue) != 0)
+         {
+-          compareOptions |= NSLiteralSearch
++            compareOptions.insert(String.CompareOptions.literal)
+         }
+-      if (_options & NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption != 0)
++      if (_options & NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption.rawValue != 0)
+         {
+-          compareOptions |= NSCaseInsensitiveSearch
++            compareOptions.insert(String.CompareOptions.caseInsensitive)
+         }
+ 
+ 
+       switch (_type)
+-        { 
+-          case NSLessThanPredicateOperatorType:
++        {
++          case NSPredicateOperatorType.NSLessThanPredicateOperatorType:
+ 
+-              let ld:Double = self.doubleValueFor(value: leftResult)
+-              let rd:Double = self.doubleValueFor(value: rightResult)
++              let ld:Double = self.doubleValueFor(value: leftResult!)
++              let rd:Double = self.doubleValueFor(value: rightResult!)
+               return (ld < rd) ? true : false
+ 
+           case NSPredicateOperatorType.NSLessThanOrEqualToPredicateOperatorType:
+ 
+-              let ld:Double = self.doubleValueFor(value: leftResult)
+-              let rd:Double = self.doubleValueFor(value: rightResult)
++              let ld:Double = self.doubleValueFor(value: leftResult!)
++              let rd:Double = self.doubleValueFor(value: rightResult!)
+               return (ld <= rd) ? true : false
+ 
+           case NSPredicateOperatorType.NSGreaterThanPredicateOperatorType:
+ 
+-              let ld:Double = self.doubleValueFor(value: leftResult)
+-              let rd:Double = self.doubleValueFor(value: rightResult)
++              let ld:Double = self.doubleValueFor(value: leftResult!)
++              let rd:Double = self.doubleValueFor(value: rightResult!)
+               return (ld > rd) ? true : false
+ 
+           case NSPredicateOperatorType.NSGreaterThanOrEqualToPredicateOperatorType:
+ 
+-              let ld:Double = self.doubleValueFor(value: leftResult)
+-              let rd:Double = self.doubleValueFor(value: rightResult)
++              let ld:Double = self.doubleValueFor(value: leftResult!)
++              let rd:Double = self.doubleValueFor(value: rightResult!)
+               return (ld >= rd) ? true : false
+ 
+-          case NSPredicateOperatorType.NSEqualToPredicateOperatorType:
+-     return leftResult.isEqual(rightResult)
+-          case NSPredicateOperatorType.NSNotEqualToPredicateOperatorType:
+-     return !leftResult.isEqual(rightResult)
+-          case NSPredicateOperatorType.NSMatchesPredicateOperatorType:
++          case NSPredicateOperatorType.NSEqualToPredicateOperatorType:
++     return leftResult!.isEqual(rightResult)
++          case NSPredicateOperatorType.NSNotEqualToPredicateOperatorType:
++     return NSPredicate2.notIsEqual(leftResult!, rightResult)
++          case NSPredicateOperatorType.NSMatchesPredicateOperatorType:
+ 
+-     return GSICUStringMatchesRegex(leftResult, rightResult, compareOptions)
++     return GSICUStringMatchesRegex(string: leftResult as! String, regex: rightResult as! String, opts: compareOptions)
+ 
+ 
+           case NSPredicateOperatorType.NSLikePredicateOperatorType:
+ 
+ 
+        var regex:String
+ 
+ 
+-       regex = rightResult.stringByReplacingOccurrencesOfString("*",
+-            withString: ".*")
+-       regex = regex.stringByReplacingOccurrencesOfString("?",
+-             withString: ".?")
++       regex = (rightResult as! String).replacingOccurrences(of: "*", with: ".*")
++       regex = regex.replacingOccurrences(of: "?", with: ".?")
+        regex = String(format:"^%@$", regex)
+-       return GSICUStringMatchesRegex(leftResult, regex, compareOptions)
++       return GSICUStringMatchesRegex(string: leftResult as! String, regex: regex, opts: compareOptions)
+ 
+ 
+           case NSPredicateOperatorType.NSBeginsWithPredicateOperatorType:
+ 
+-       var range:NSRange
+-              let ll = leftResult.length
+-              let rl = rightResult.length
++              let ll = (leftResult as! String).count
++              let rl = (rightResult as! String).count
+ 
+        if rl > ll
+          {
+            return false
+          }
+-       range = NSMakeRange(0, rl)
+-       return (leftResult.compare(rightResult,
++      let myStr: String = (leftResult as! String)
++       var range = myStr.utf16.startIndex ..< myStr.utf16.index(myStr.utf16.startIndex, offsetBy: rl)
++       return (myStr.compare(rightResult!,
+              options: compareOptions,
+-        range: range) == NSOrderedSame ? true : false)
++        range: range) == ComparisonResult.orderedSame ? true : false)
+ 
+           case NSPredicateOperatorType.NSEndsWithPredicateOperatorType:
+ 
+-       var range:NSRange
+-              let ll = leftResult.length
+-              let rl = rightResult.length
++              let ll = (leftResult as! String).count
++              let rl = (rightResult as! String).count
+ 
+               if ll < rl
+                 {
+                   return false
+                 }
+-       range = NSMakeRange(ll - rl, rl)
+-       return (leftResult.compare(rightResult,
++              let myStr: String = leftResult as! String
++       var range = myStr.utf16.index(myStr.utf16.startIndex, offsetBy: ll - rl) ..< myStr.utf16.index(myStr.utf16.startIndex, offsetBy: rl)
++              return (myStr.compare(rightResult! as! String,
+              options: compareOptions,
+-        range: range) == NSOrderedSame ? true : false)
++        range: range) == ComparisonResult.orderedSame ? true : false)
+ 
+           case NSPredicateOperatorType.NSInPredicateOperatorType:
+ 
+ 
+      if !(rightResult is NSString)
+        {
+-         var e:NSEnumerator
+-         var value:AnyObject
+-
+-         if !rightResult.respondsToSelector(Selector("objectEnumerator"))
++         guard let eArray = rightResult as? Array<AnyObject> else
+            {
+-      NSException.raise(NSInvalidArgumentException,
+-           format: "The right hand side for an IN operator "
+-        @"must be a collection")
++               throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                       userInfo: [NSLocalizedDescriptionKey: "The right hand side for an IN operator must be a collection"])
+            }
+ 
+-         e = rightResult.objectEnumerator()
+-         while  (value = e.nextObject())
++         var e = eArray.makeIterator()
++         while true
+            {
+-      if value.isEqual(leftResult)
+-        {return true}
++               if let value = e.next() as? AnyObject {
++                   if value.isEqual(leftResult!) {
++                       return true
++                   }
++               } else {
++                   break
++               }
+            }
+ 
+          return false
+        }
+-     return (rightResult.rangeOfString(leftResult,
+-           options: compareOptions).location
+-       != ivars.NSNotFound ? true : false)
+-          case NSPredicateOperatorType.NSCustomSelectorPredicateOperatorType:
++     return ((rightResult as! String).range(of: leftResult as! String,
++           options: compareOptions)?.isEmpty == false ? true : false)
++          /*case NSPredicateOperatorType.NSCustomSelectorPredicateOperatorType:
+ 
+        let function:@convention(c) (UnsafeMutablePointer<AnyObject!>,Selector,UnsafeMutablePointer<AnyObject!>)->Bool = leftResult.methodForSelector(_selector)
+        return function(leftResult, _selector, rightResult)
+ 
+-          default:
++          */default:
+      return false
+         }
+     }
+ 
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
+-      let leftValue:AnyObject = _left.expressionValueWithObject(object: object, context: nil)
+-      let rightValue:AnyObject = _right.expressionValueWithObject(object: object, context: nil)
++    override func evaluateWithObject(`object`:AnyObject) throws -> Bool {
++      let leftValue:AnyObject = _left.expressionValueWithObject(`object`: `object`, context: nil)!
++      let rightValue:AnyObject = _right.expressionValueWithObject(`object`: `object`, context: nil)!
+ 
+       if _modifier == NSComparisonPredicateModifier.NSDirectPredicateModifier
+         {
+-          return self._evaluateLeftValue(leftResult: leftValue,
++          return try self._evaluateLeftValue(leftResult: leftValue,
+           rightValue: rightValue,
+-              object: object)
++              `object`: `object`)
+         }
+       else
+         {
+           let result:Bool = (_modifier == NSComparisonPredicateModifier.NSAllPredicateModifier)
+-          var e:NSEnumerator
+-          var value:AnyObject
+ 
+-          if !leftValue.respondsToSelector(Selector("objectEnumerator"))
++          guard let leftVal = leftValue as? Array<AnyObject>
++          else
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                          format: "The left hand side for an ALL or ANY operator must be a collection")
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey: "The left hand side for an ALL or ANY operator must be a collection"])
+             }
+ 
+-          e = leftValue.objectEnumerator()
+-          while  (value = e.nextObject())
++          var e = leftVal.makeIterator()
++          while true
+             {
+-              let eval:Bool = self._evaluateLeftValue(leftResult: value,
+-            rightValue: rightValue,
+-         object: object)
+-              if eval != result
+-                {return eval}
++                if let value = e.next() as? AnyObject {
++                    let eval: Bool = try self._evaluateLeftValue(leftResult: value,
++                            rightValue: rightValue,
++                            `object`: `object`)
++                    if eval != result {
++                        return eval
++                    }
++                } else {
++                    break
++                }
+             }
+ 
+           return result
+         }
+     }
+ 
+-    
+ 
+-    override func classForCoder() -> AnyClass {
+-      return NSComparisonPredicate.self
+-    }
+ 
+-    override func encodeWithCoder(coder:NSCoder) {
++    override init() {
+ 
+-      self.subclassResponsibility(_cmd)
+-    }
+-
+-    override init(coder:NSCoder) {
+-
+-      self.subclassResponsibility(_cmd)
+-      return self
++      fatalError("subclassResponsibility")
+     }
+ }
+ 
+ 
+-class NSExpression {
+-
+-    class func initialize() {
+-      if self == NSExpression.self && nil == evaluatedObjectExpression
+-        {
+-          evaluatedObjectExpression = GSEvaluatedObjectExpression()
+-        }
+-    }
++class NSExpression : NSObject {
+ 
+-    class func expressionForConstantValue(obj:AnyObject) -> NSExpression {
++    class func expressionForConstantValue(obj:Any?) -> NSExpression {
+       var e:GSConstantValueExpression
+ 
+-      e = GSConstantValueExpression(expressionType:NSConstantValueExpressionType)
+-      e->_obj = (obj)
++      e = GSConstantValueExpression()
++      e._obj = obj
+       return (e)
+     }
+ 
+     class func expressionForEvaluatedObject() -> NSExpression {
+-      return evaluatedObjectExpression
++      return evaluatedObjectExpression!
+     }
+ 
+-    class func expressionForFunction(name:String, arguments args:NSArray) -> NSExpression {
++    class func expressionForFunction(name:String, arguments args:Array<AnyObject?>) throws -> NSExpression {
+       var e:GSFunctionExpression
+       var s:String
+ 
+-      e = GSFunctionExpression(expressionType:NSFunctionExpressionType)
++      e = GSFunctionExpression()
+       s = String(format:"_eval_%@:", name)
+-      e->_selector = NSSelectorFromString(s)
+-      if !e.respondsToSelector(e->_selector)
++      e._selector = NSSelectorFromString(s)
++      if !e.respondsToSelector(e._selector)
+         {
+-          NSException.raise(NSInvalidArgumentException,
+-                       format: "Unknown function implementation: %@", name)
++            throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                    userInfo: [NSLocalizedDescriptionKey: "Unknown function implementation"])
+         }
+-      e->_function = (name)
+-      e->_argc = args.count()
+-      e->_args = (args)
+-      if (name == "_add") {e->_op = "+"}
+-      else if (name == "_sub") {e->_op = "-"}
+-      else if (name == "_mul") {e->_op = "*"}
+-      else if (name == "_div") {e->_op = "/"}
+-      else if (name == "_pow") {e->_op = "**"}
++      e._function = (name)
++      e._argc = args.count
++      e._args = (args)
++      if (name == "_add") {e._op = "+"}
++      else if (name == "_sub") {e._op = "-"}
++      else if (name == "_mul") {e._op = "*"}
++      else if (name == "_div") {e._op = "/"}
++      else if (name == "_pow") {e._op = "**"}
+       return (e)
+     }
+ 
+-    class func expressionForKeyPath(path:String) -> NSExpression {
++    class func expressionForKeyPath(path:String) throws -> NSExpression {
+       var e:GSKeyPathExpression
+ 
+-      if !(path is NSString)
++      if !(path is String)
+         {
+-          NSException.raise(NSInvalidArgumentException,
+-        format: "Keypath is not NSString: %@", path)
++            throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                    userInfo: [NSLocalizedDescriptionKey: "Keypath is not String"])
+         }
+-      e = GSKeyPathExpression(expressionType:NSKeyPathExpressionType)
+-      e->_keyPath = (path)
++      e = GSKeyPathExpression()
++      e._keyPath = (path)
+       return (e)
+     }
+ 
+     class func expressionForKeyPathCompositionWithLeft(left:NSExpression, right:NSExpression) -> NSExpression {
+       var e:GSKeyPathCompositionExpression
+ 
+-      e = GSKeyPathCompositionExpression(expressionType:NSKeyPathCompositionExpressionType)
+-      e->_left = (left)
+-      e->_right = (right)
++      e = GSKeyPathCompositionExpression()
++      e._left = (left)
++      e._right = (right)
+       return (e)
+     }
+ 
+     class func expressionForVariable(string:String) -> NSExpression {
+       var e:GSVariableExpression
+ 
+-      e = GSVariableExpression(expressionType:NSVariableExpressionType)
+-      e->_variable = (string)
++      e = GSVariableExpression()
++      e._variable = (string)
+       return (e)
+     }
+ 
+-    init(type:NSExpressionType) {
+-      if (self = super.init()) != nil
+-        {
+-          _type = type
+-        }
+-      return self
++    required override init() {
+     }
+ 
+-    
+ 
+-    func arguments() -> NSArray {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++    func arguments() -> Array<AnyObject?> {
++      fatalError("subclassResponsibility")
+     }
+ 
+-    func constantValue() -> AnyObject {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++    func constantValue() -> Any {
++      fatalError("subclassResponsibility")
+     }
+ 
+     func description() -> String {
+-      self.subclassResponsibility(_cmd)
+-      return nil
+-    }
+-
+-    func expressionType() -> NSExpressionType {
+-      return _type
++      fatalError("subclassResponsibility")
+     }
+ 
+-    func expressionValueWithObject(object:AnyObject, context:NSMutableDictionary) -> AnyObject {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++    func expressionValueWithObject(`object`: AnyObject, context: Dictionary<String, AnyObject>?) -> AnyObject? {
++      fatalError("subclassResponsibility")
+     }
+ 
+     func function() -> String {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++      fatalError("subclassResponsibility")
+     }
+ 
+-    func keyPath() -> String {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++    func keyPath() -> String? {
++      fatalError("subclassResponsibility")
+     }
+ 
+     func operand() -> NSExpression {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++      fatalError("subclassResponsibility")
+     }
+ 
+     func variable() -> String {
+-      self.subclassResponsibility(_cmd)
+-      return nil
+-    }
+-
+-    func classForCoder() -> AnyClass {
+-      return NSExpression.self
+-    }
+-
+-    func encodeWithCoder(coder:NSCoder) {
+-
+-      self.subclassResponsibility(_cmd)
+-    }
+-
+-    init(coder:NSCoder) {
+-
+-      self.subclassResponsibility(_cmd)
+-      return nil
++      fatalError("subclassResponsibility")
+     }
+ 
+-    func _expressionWithSubstitutionVariables(variables:NSDictionary) -> AnyObject {
+-      self.subclassResponsibility(_cmd)
+-      return nil
++    func _expressionWithSubstitutionVariables(variables: Dictionary<String, AnyObject>) throws -> NSExpression {
++      fatalError("subclassResponsibility")
+     }
+ }
+ 
+ class GSConstantValueExpression : NSExpression {
++    required override init() {
++        super.init()
++    }
+ 
+-    private var _obj:AnyObject
+-    override func constantValue() -> AnyObject {
++    var _obj:Any
++    override func constantValue() -> Any {
+       return _obj
+     }
+ 
+     override func description() -> String {
+-      if (_obj is NSString)
++      if (_obj is String)
+         {
+-          let result:NSMutableString = nil
++          var result:String? = nil
+ 
+ 
+           GSPropertyListMake(_obj, nil, false, true, 2, &result)
+-          return result
++          return result!
+         }
+       else if (_obj is NSDate)
+         {
+           return String(format:"CAST(%15.6f, \"NSDate\")",
+-                           (_obj as! NSDate).timeIntervalSinceReferenceDate())
++                           (_obj as! NSDate).timeIntervalSinceReferenceDate)
+         }
+-      return _obj.description()
++      return (_obj as AnyObject).description
+     }
+ 
+-    override func expressionValueWithObject(object:AnyObject, context:NSMutableDictionary) -> AnyObject {
+-      if (_obj is NSArray)
++    override func expressionValueWithObject(`object`: AnyObject, context: Dictionary<String, AnyObject>?) -> AnyObject? {
++      if (_obj is Array<AnyObject>)
+         {
+-          let count = (_obj as! NSArray).count
+-          let tmp:NSMutableArray = NSMutableArray.arrayWithCapacity(count)
+-          let index = 0
++          let count = (_obj as! Array<AnyObject>).count
++          var tmp = Array<AnyObject>()
++            var index = 0
+ 
+           while  index < count
+      {
+-       let e:NSExpression = (_obj as! NSArray).objectAtIndex(index) as! NSExpression; index += 1
+-       let o:AnyObject = e.expressionValueWithObject(object: e, context: context)
++       let e:NSExpression = (_obj as! Array<NSExpression>)[index]; index += 1
++       let o:AnyObject = e.expressionValueWithObject(`object`: e, context: context)!
+ 
+-       tmp.addObject(o)
++       tmp.append(o)
+      }
+-          return tmp
++          return tmp as AnyObject
+         }
+       else
+         {
+-          return _obj
++          return _obj as AnyObject
+         }
+     }
+-
+-    func dealloc() {
+-                   ;
+-      super.dealloc()
+-    }
+ 
+-    
++
+ 
+-    override func _expressionWithSubstitutionVariables(variables:NSDictionary) -> AnyObject {
++    override func _expressionWithSubstitutionVariables(variables: Dictionary<String, AnyObject>) -> NSExpression {
+       return self
+     }
+ }
+@@ -2259,47 +1975,47 @@
+       return "SELF"
+     }
+ 
+-    override func expressionValueWithObject(object:AnyObject, context:NSMutableDictionary) -> AnyObject {
+-      return object
++    override func expressionValueWithObject(`object`: AnyObject, context: Dictionary<String, AnyObject>?) -> AnyObject? {
++      return `object`
+     }
+ 
+-    override func _expressionWithSubstitutionVariables(variables:NSDictionary) -> AnyObject {
++    override func _expressionWithSubstitutionVariables(variables: Dictionary<String, AnyObject>) -> NSExpression {
+       return self
+     }
+ 
+-    override func keyPath() -> String {
++    override func keyPath() -> String? {
+       return "SELF"
+     }
+ }
+ 
+ class GSVariableExpression : NSExpression {
+ 
+-    private var _variable:String
++    var _variable:String
++
++    override required init() {
++        super.init()
++    }
++
+     override func description() -> String {
+       return String(format:"$%@", _variable)
+     }
+ 
+-    override func expressionValueWithObject(object:AnyObject, context:NSMutableDictionary) -> AnyObject {
+-      return context.objectForKey(_variable)
++    override func expressionValueWithObject(`object`: AnyObject, context: Dictionary<String, AnyObject>?) -> AnyObject? {
++      return context![_variable] as AnyObject
+     }
+ 
+     override func variable() -> String {
+       return _variable
+     }
+ 
+-    func dealloc() {
+-                        ;
+-      super.dealloc()
+-    }
+ 
+-    
+ 
+-    override func _expressionWithSubstitutionVariables(variables:NSDictionary) -> AnyObject {
+-      let result:AnyObject = variables.objectForKey(_variable) as! AnyObject
++    override func _expressionWithSubstitutionVariables(variables: Dictionary<String, AnyObject>) -> NSExpression {
++      let result:AnyObject = variables[_variable] as AnyObject
+ 
+       if result != nil
+         {
+-          return NSExpression.expressionForConstantValue(result)
++          return NSExpression.expressionForConstantValue(obj: result)
+         }
+       else
+         {
+@@ -2310,84 +2026,89 @@
+ 
+ class GSKeyPathExpression : NSExpression {
+ 
+-    private var _keyPath:String
++    var _keyPath:String
++
++    override required init() {
++        super.init()
++    }
++
+     override func description() -> String {
+       return _keyPath
+     }
+ 
+-    override func expressionValueWithObject(object:AnyObject, context:NSMutableDictionary) -> AnyObject {
+-      return object.valueForKeyPath(_keyPath)
++    override func expressionValueWithObject(`object`: AnyObject, context: Dictionary<String, AnyObject>?) -> AnyObject? {
++      return `object`.valueForKeyPath(_keyPath) as AnyObject
+     }
+ 
+-    override func keyPath() -> String {
++    override func keyPath() -> String? {
+       return _keyPath
+     }
+ 
+-    func dealloc() {
+-                       ;
+-      super.dealloc()
+-    }
+ 
+-    
+ 
+-    override func _expressionWithSubstitutionVariables(variables:NSDictionary) -> AnyObject {
++    override func _expressionWithSubstitutionVariables(variables: Dictionary<String, AnyObject>) -> NSExpression {
+       return self
+     }
+ }
+ 
+ class GSKeyPathCompositionExpression : NSExpression {
+ 
+-    private var _left:NSExpression
+-    private var _right:NSExpression
++    var _left:NSExpression
++    var _right:NSExpression
++
++    override required init() {
++        super.init()
++    }
++
+     override func description() -> String {
+       return String(format:"%@.%@", _left, _right)
+     }
+ 
+-    override func expressionValueWithObject(object:AnyObject, context:NSMutableDictionary) -> AnyObject {
+-      object = _left.expressionValueWithObject(object: object, context: context)
+-      return _right.expressionValueWithObject(object: object, context: context)
++    override func expressionValueWithObject(`object`: AnyObject, context: Dictionary<String, AnyObject>?) -> AnyObject? {
++        var object_ = `object`
++      object_ = _left.expressionValueWithObject(`object`: object_, context: context) as AnyObject
++      return _right.expressionValueWithObject(`object`: object_, context: context)
+     }
+ 
+-    override func keyPath() -> String {
++    override func keyPath() -> String? {
+       return nil
+     }
+ 
+-    func dealloc() {
+-                    ;
+-                     ;
+-      super.dealloc()
+-    }
+ 
+-    
+ 
+-    override func _expressionWithSubstitutionVariables(variables:NSDictionary) -> AnyObject {
++    override func _expressionWithSubstitutionVariables(variables: Dictionary<String, AnyObject>) throws -> NSExpression {
+       var left:NSExpression
+       var right:NSExpression
+ 
+-      left = _left._expressionWithSubstitutionVariables(variables)
+-      right = _right._expressionWithSubstitutionVariables(variables)
+-      return NSExpression.expressionForKeyPathCompositionWithLeft(left,
++      left = try _left._expressionWithSubstitutionVariables(variables: variables)
++      right = try _right._expressionWithSubstitutionVariables(variables: variables)
++      return NSExpression.expressionForKeyPathCompositionWithLeft(left: left,
+             right: right)
+     }
+ }
+ 
+ class GSFunctionExpression : NSExpression {
++    var _function:String
++    var _args:Array<AnyObject?>
++    var _argc:Int
++    var _selector:Selector
++    var _op:String
+ 
+-    private var _function:String
+-    private var _args:NSArray
+-    private var _argc:Int
+-    private var _selector:Selector
+-    private var _op:String
+-    override func arguments() -> NSArray {
++    override required init() {
++        super.init()
++    }
++
++    func respondsToSelector(_ to: Selector) -> Bool { return false; }
++    override func arguments() -> Array<AnyObject?> {
+       return _args
+     }
+ 
+     override func description() -> String {
+-      if nil != _op && 1 == _args.count()
++      if nil != _op && 1 == _args.count
+         {
+-          let a0:GSFunctionExpression = _args.objectAtIndex(0) as! GSFunctionExpression
++          let a0:GSFunctionExpression = _args[0] as! GSFunctionExpression
+ 
+-          if true == (a0 is self) && nil != a0->_op
++          if true == (a0 is GSFunctionExpression) && nil != a0._op
+             {
+               return String(format:"%@(%@)", _op, a0)
+             }
+@@ -2396,19 +2116,19 @@
+ 
+       if nil != _op
+         {
+-          let a0:GSFunctionExpression = _args.objectAtIndex(0) as! GSFunctionExpression
+-          let a1:GSFunctionExpression = _args.objectAtIndex(1) as! GSFunctionExpression
++          let a0:GSFunctionExpression = _args[0] as! GSFunctionExpression
++          let a1:GSFunctionExpression = _args[1] as! GSFunctionExpression
+ 
+-          if true == (a0 is self) && nil != a0->_op
++          if true == (a0 is GSFunctionExpression) && nil != a0._op
+             {
+-              if true == (a1 is self) && nil != a1->_op
++              if true == (a1 is GSFunctionExpression) && nil != a1._op
+                 {
+                   return String(format:"(%@) %@ (%@)", a0, _op, a1)
+                 }
+               return String(format:"(%@) %@ %@", a0, _op, a1)
+             }
+ 
+-          if true == (a1 is self) && nil != a1->_op
++          if true == (a1 is GSFunctionExpression) && nil != a1._op
+             {
+               return String(format:"%@ %@ (%@)", a0, _op, a1)
+             }
+@@ -2422,193 +2142,201 @@
+       return _function
+     }
+ 
+-    override func keyPath() -> String {
++    override func keyPath() -> String? {
+       return nil
+     }
+ 
+-    override func expressionValueWithObject(object:AnyObject, context:NSMutableDictionary) -> AnyObject {
+-
+-      let eargs:NSMutableArray = NSMutableArray.arrayWithCapacity(_argc)
+-      var i:UInt
++    override func expressionValueWithObject(`object`: AnyObject, context: Dictionary<String, AnyObject>?) -> AnyObject? {
+ 
+-      for  ; i < _argc ; i++ { 
++      var eargs = Array<AnyObject>(); eargs.reserveCapacity(_argc)
++      var i:Int
+ 
+-          eargs.addObject(_args.objectAtIndex(i).expressionValueWithObject(object: object, context: context))
+-         }
++      i = 0; while i < _argc {
+ 
+-      return self.performSelector(_selector,
+-                        withObject: eargs)
+-    }
++          eargs.append((_args[i] as! NSExpression).expressionValueWithObject(`object`: `object`, context: context) as AnyObject)
++            i += 1
++         }
+ 
+-    func dealloc() {
+-                    ;
+-                        ;
+-      super.dealloc()
++      return self.performSelector(onMainThread: _selector, with: eargs, waitUntilDone: true) as AnyObject
+     }
+ 
+-    
++
+ 
+-    func _enum(expressions:NSArray) -> NSEnumerator {
+-      var o:AnyObject
++    func _enum(expressions:Array<AnyObject>) -> IndexingIterator<Array<AnyObject>> {
+ 
+ 
+-      if 1 == _argc && (o = expressions.lastObject()).respondsToSelector(Selector("objectEnumerator"))
++      if 1 == _argc
+         {
+-          return o.objectEnumerator()
++            let o:AnyObject = expressions.last as AnyObject
++            if let s = o as? Array<AnyObject> {
++                return s.makeIterator()
++            }
+         }
+-      return expressions.objectEnumerator()
++      return expressions.makeIterator()
+     }
+-
+-    override func _expressionWithSubstitutionVariables(variables:NSDictionary) -> AnyObject {
+-      let args:NSMutableArray = NSMutableArray.arrayWithCapacity(_argc)
+-      var i:UInt
+ 
+-      for  ; i < _argc ; i++ { 
++    override func _expressionWithSubstitutionVariables(variables: Dictionary<String, AnyObject>) throws -> NSExpression {
++      var args = Array<AnyObject>(); args.reserveCapacity(_argc)
++      var i:Int = 0
+ 
+-          args.addObject(_args.objectAtIndex(i)._expressionWithSubstitutionVariables(variables))
++      while i < _argc {
++          try args.append((_args[i] as! NSExpression)._expressionWithSubstitutionVariables(variables: variables))
++          i += 1
+          }
+ 
+-       return NSExpression.expressionForFunction(_function, arguments: args)
++       return try NSExpression.expressionForFunction(name: _function, arguments: args)
+     }
+ 
+-    func _eval__chs(expressions:NSArray) -> AnyObject {
+-      return NSNumber.numberWithInt(-expressions.objectAtIndex(0).intValue())
++    func _eval__chs(expressions:Array<NSNumber>) -> AnyObject {
++      return NSNumber(value: -(expressions[0].int32Value))
+     }
+ 
+-    func _eval__first(expressions:NSArray) -> AnyObject {
+-      return expressions.objectAtIndex(0).objectAtIndex(0)
++    func _eval__first(expressions:Array<AnyObject>) -> AnyObject {
++      return (expressions[0] as! Array<AnyObject>)[0] as AnyObject
+     }
+ 
+-    func _eval__last(expressions:NSArray) -> AnyObject {
+-      return expressions.objectAtIndex(0).lastObject()
++    func _eval__last(expressions:Array<AnyObject>) -> AnyObject {
++      return (expressions[0] as! Array<AnyObject>).last as AnyObject
+     }
+ 
+-    func _eval__index(expressions:NSArray) -> AnyObject {
+-      let left:AnyObject = expressions.objectAtIndex(0) as! AnyObject
+-      let right:AnyObject = expressions.objectAtIndex(1) as! AnyObject
++    func _eval__index(expressions:Array<AnyObject>) -> AnyObject {
++      let left:AnyObject = expressions[0] as AnyObject
++      let right:AnyObject = expressions[1] as AnyObject
+ 
+-      if (left is NSDictionary)
++      if (left is Dictionary<String, AnyObject>)
+         {
+-          return left.objectForKey(right)
++          // gryphon ignore
++          return (left as! Dictionary<String, AnyObject>)[right as! String] as AnyObject
++          // gryphon insert: return left[right]
+         }
+       else
+         {
+-
+-          return left.objectAtIndex(right.unsignedIntValue())
++          return (left as! Array<AnyObject>)[Int((right as! NSNumber).uint32Value)] as AnyObject
+         }
+     }
+ 
+-    func _eval__pow(expressions:NSArray) -> AnyObject {
+-      let left:AnyObject = expressions.objectAtIndex(0) as! AnyObject
+-      let right:AnyObject = expressions.objectAtIndex(1) as! AnyObject
++    func _eval__pow(expressions:Array<NSNumber>) -> AnyObject {
++      let left = expressions[0] as! NSNumber
++      let right = expressions[1] as! NSNumber
+ 
+-      return NSNumber.numberWithDouble(pow(left.doubleValue(), right.doubleValue()))
++      return NSNumber(value: pow(left.doubleValue, right.doubleValue))
+     }
+ 
+-    func _eval__mul(expressions:NSArray) -> AnyObject {
+-      let left:AnyObject = expressions.objectAtIndex(0) as! AnyObject
+-      let right:AnyObject = expressions.objectAtIndex(1) as! AnyObject
++    func _eval__mul(expressions:Array<NSNumber>) -> AnyObject {
++      let left = expressions[0] as! NSNumber
++      let right = expressions[1] as! NSNumber
+ 
+-      return NSNumber.numberWithDouble(left.doubleValue() * right.doubleValue())
++      return NSNumber(value: left.doubleValue * right.doubleValue)
+     }
+ 
+-    func _eval__div(expressions:NSArray) -> AnyObject {
+-      let left:AnyObject = expressions.objectAtIndex(0) as! AnyObject
+-      let right:AnyObject = expressions.objectAtIndex(1) as! AnyObject
++    func _eval__div(expressions:Array<NSNumber>) -> AnyObject {
++      let left = expressions[0] as! NSNumber
++      let right = expressions[1] as! NSNumber
+ 
+-      return NSNumber.numberWithDouble(left.doubleValue() / right.doubleValue())
++      return NSNumber(value: left.doubleValue / right.doubleValue)
+     }
+ 
+-    func _eval__add(expressions:NSArray) -> AnyObject {
+-      let left:AnyObject = expressions.objectAtIndex(0) as! AnyObject
+-      let right:AnyObject = expressions.objectAtIndex(1) as! AnyObject
++    func _eval__add(expressions:Array<NSNumber>) -> AnyObject {
++      let left = expressions[0] as! NSNumber
++      let right = expressions[1] as! NSNumber
+ 
+-      return NSNumber.numberWithDouble(left.doubleValue() + right.doubleValue())
++      return NSNumber(value: left.doubleValue + right.doubleValue)
+     }
+ 
+-    func _eval__sub(expressions:NSArray) -> AnyObject {
+-      let left:AnyObject = expressions.objectAtIndex(0) as! AnyObject
+-      let right:AnyObject = expressions.objectAtIndex(1) as! AnyObject
++    func _eval__sub(expressions:Array<NSNumber>) -> AnyObject {
++      let left = expressions[0] as! NSNumber
++      let right = expressions[1] as! NSNumber
+ 
+-      return NSNumber.numberWithDouble(left.doubleValue() - right.doubleValue())
++      return NSNumber(value: left.doubleValue - right.doubleValue)
+     }
+ 
+-    func _eval_count(expressions:NSArray) -> AnyObject {
+-      repeat { if !(_argc == 1) { NSAssertionHandler.currentHandler().handleFailureInMethod(_cmd, object: self, file: String(UTF8String:"prefix/GSPredicate.m"), lineNumber: 5531, description: (NSInternalInconsistencyException)) } } while (0 != nil)
+-      return NSNumber.numberWithUnsignedInt(expressions.objectAtIndex(0).count())
++    func _eval_count(expressions:Array<String>) -> AnyObject {
++        precondition(_argc == 1)
++        return NSNumber(value: (expressions[0] as! String).utf16.count)
+     }
+ 
+-    func _eval_avg(expressions:NSArray) -> AnyObject {
+-      let e:NSEnumerator = self._enum(expressions: expressions)
++    func _eval_avg(expressions:Array<NSNumber>) -> AnyObject {
++      var e = self._enum(expressions: expressions)
+       var sum:Double = 0.0
+-      let count:unsigned = 0
+-      var o:AnyObject
++      var count:Int = 0
+ 
+-      while  nil != (o = e.nextObject())
+-        {
+-          sum += o.doubleValue()
+-          count++
+-        }
++      while true {
++          if let o = e.next() as? NSNumber {
++              sum += o.doubleValue
++              count += 1
++          } else {
++              break
++          }
++      }
+       if count == 0
+         {
+-          return NSNumber.numberWithDouble(0.0)
++          return NSNumber(value: 0.0)
+         }
+-      return NSNumber.numberWithDouble(sum / count)
++      return NSNumber(value: sum / Double(count))
+     }
+ 
+-    func _eval_max(expressions:NSArray) -> AnyObject {
+-      let e:NSEnumerator = self._enum(expressions: expressions)
+-      var o:AnyObject = e.nextObject() as! AnyObject
++    func _eval_max(expressions:Array<NSNumber>) -> AnyObject {
++      var e = self._enum(expressions: expressions)
++      let o:NSNumber? = e.next() as? NSNumber
+       var max:Double = o?.doubleValue ?? 0.0
+       var cur:Double
+ 
+-      while  nil != (o = e.nextObject())
++      while true
+         {
+-          cur = o.doubleValue()
+-          if max < cur
+-            {
+-              max = cur
++            if let o = e.next() as? NSNumber {
++                cur = o.doubleValue
++                if max < cur {
++                    max = cur
++                }
++            } else {
++                break
+             }
+         }
+-      return NSNumber.numberWithDouble(max)
++      return NSNumber(value: max)
+     }
+ 
+-    func _eval_min(expressions:NSArray) -> AnyObject {
+-      let e:NSEnumerator = self._enum(expressions: expressions)
+-      var o:AnyObject = e.nextObject() as! AnyObject
++    func _eval_min(expressions:Array<NSNumber>) -> AnyObject {
++      var e = self._enum(expressions: expressions)
++      let o:NSNumber? = e.next() as? NSNumber
+       var min:Double = (o?.doubleValue ?? 0.0)
+       var cur:Double
+ 
+-      while  nil != (o = e.nextObject())
++      while true
+         {
+-          cur = o.doubleValue()
+-          if min > cur
+-            {
+-              min = cur
++            if let o = e.next() as? NSNumber {
++                cur = o.doubleValue
++                if min > cur {
++                    min = cur
++                }
++            } else {
++                break
+             }
+         }
+-      return NSNumber.numberWithDouble(min)
++      return NSNumber(value: min)
+     }
+ 
+-    func _eval_sum(expressions:NSArray) -> AnyObject {
+-      let e:NSEnumerator = self._enum(expressions: expressions)
++    func _eval_sum(expressions:Array<NSNumber>) -> AnyObject {
++        var e = self._enum(expressions: expressions)
+       var sum:Double = 0.0
+-      var o:AnyObject
+ 
+-      while  nil != (o = e.nextObject())
++      while true
+         {
+-          sum += o.doubleValue()
++            if let o = e.next() as? NSNumber {
++                sum += o.doubleValue
++            } else {
++                break
++            }
+         }
+-      return NSNumber.numberWithDouble(sum)
++      return NSNumber(value: sum)
+     }
+ 
+-    func _eval_CAST(expressions:NSArray) -> AnyObject {
+-      let left:AnyObject = expressions.objectAtIndex(0) as! AnyObject
+-      let right:AnyObject = expressions.objectAtIndex(1) as! AnyObject
++    func _eval_CAST(expressions:Array<AnyObject>) -> AnyObject? {
++      let left:AnyObject = expressions[0] as! NSNumber
++      let right:AnyObject = expressions[1]
+ 
+-      if (right == "NSDate")
++        if (right as? String == "NSDate")
+         {
+-          return NSDate.dateWithTimeIntervalSinceReferenceDate(left.doubleValue())
++          return NSDate(timeIntervalSinceReferenceDate: left.doubleValue)
+         }
+ 
+       NSLog("Cast to unknown type %@", right)
+@@ -2617,37 +2343,43 @@
+ }
+ 
+ 
+-extension NSArray {
++extension Array {
+ 
+-    func filteredArrayUsingPredicate(predicate:NSPredicate) -> NSArray {
+-      var result:NSMutableArray
+-      let e:NSEnumerator = self.objectEnumerator()
+-      var object:AnyObject
++    func filteredArrayUsingPredicate(predicate:NSPredicate) throws -> Array<AnyObject> {
++      var result = Array(); result.reserveCapacity(self.count)
++      var e = self.makeIterator()
++      var `object`:AnyObject
+ 
+-      result = NSMutableArray.arrayWithCapacity(self.count())
+-      while  (object = e.nextObject()) != nil
++      while true
+         {
+-          if predicate.evaluateWithObject(object) == true
+-            {
+-              result.addObject(object)
+-            }
++          if let `object` = e.next() {
++              if try predicate.evaluateWithObject(`object`: `object` as AnyObject) == true {
++                  result.append(`object`)
++              }
++          } else {
++              break
++          }
+         }
+-      return GS_IMMUTABLE(result)
++        return Array(result) as! Array<AnyObject>
+     }
+ }
+ 
+-extension NSMutableArray {
++extension Array {
+ 
+-    func filterUsingPredicate(predicate:NSPredicate) {
+-      let count = self.count
++    mutating func filterUsingPredicate(predicate:NSPredicate) throws {
++      var count = self.count
+ 
+-      while  count-- > 0
++      while true
+         {
+-          let object:AnyObject = self.objectAtIndex(count) as! AnyObject
++            count -= 1
++            if count > 0 {
++                let `object`: AnyObject = self[count] as AnyObject
+ 
+-          if predicate.evaluateWithObject(object) == false
+-            {
+-              self.removeObjectAtIndex(count)
++                if try predicate.evaluateWithObject(`object`: `object`) == false {
++                    self.remove(at: count)
++                }
++            } else {
++                break
+             }
+         }
+     }
+@@ -2655,67 +2387,65 @@
+ 
+ extension NSSet {
+ 
+-    func filteredSetUsingPredicate(predicate:NSPredicate) -> NSSet {
++    func filteredSetUsingPredicate(predicate:NSPredicate) throws -> NSSet {
+       var result:NSMutableSet
+-      let e:NSEnumerator = self.objectEnumerator()
+-      var object:AnyObject
++        var e = self.makeIterator()
+ 
+-      result = NSMutableSet.withCapacity = self.count()
+-      while  (object = e.nextObject()) != nil
++      result = NSMutableSet(capacity: self.count)
++      while true
+         {
+-          if predicate.evaluateWithObject(object) == true
+-            {
+-              result.addObject(object)
+-            }
++          if let `object` = e.next() as? AnyObject {
++              if try predicate.evaluateWithObject(`object`: `object`) == true {
++                  result.add(`object`)
++              }
++          }
+         }
+-      return GS_IMMUTABLE(result)
++      return result.copy() as! NSSet
+     }
+ }
+ 
+ extension NSMutableSet {
+ 
+-    func filterUsingPredicate(predicate:NSPredicate) {
++    func filterUsingPredicate(predicate:NSPredicate) throws {
+       var rejected:NSMutableSet
+-      let e:NSEnumerator = self.objectEnumerator()
+-      var object:AnyObject
++      var e = self.makeIterator()
+ 
+-      rejected = NSMutableSet.withCapacity = self.count()
+-      while  (object = e.nextObject()) != nil
+-        {
+-          if predicate.evaluateWithObject(object) == false
+-            {
+-              rejected.addObject(object)
+-            }
+-        }
+-      self.minusSet(rejected)
++      rejected = NSMutableSet(capacity: self.count)
++      while true {
++          if let `object` = e.next() as? AnyObject {
++                  if try predicate.evaluateWithObject(`object`: `object`) == false {
++                      rejected.add(`object`)
++                  }
++          } else {
++              break
++          }
++      }
++      self.minus(rejected as! Set<AnyHashable>)
+     }
+ }
+ 
+ 
+ class GSPredicateScanner : NSScanner {
+ 
+-    private var _args:NSEnumerator
+-    private var _retrieved:unsigned
+-    init(format:String, args:NSArray) {
+-      self = super.init(string:format)
+-      if self != nil
+-        {
+-          _args = args.objectEnumerator()
+-        }
+-      return self
++    private var _args:IndexingIterator<Array<Any>>
++    private var _retrieved:Int
++    init(format:String, args:Array<Any>) {
++      super.init(aString: format)!
++      _args = args.makeIterator()
+     }
+ 
+     func nextArg() -> AnyObject {
+-      return _args.nextObject()
++      return _args.next() as AnyObject
+     }
+ 
+-    func scanPredicateKeyword(key:String) -> Bool {
++    func scanPredicateKeyword(key:String) throws -> Bool {
+ 
+-      let loc:unsigned = self.scanLocation()
++      let loc:Int = self.scanLocation()
+       var c:UniChar
+ 
+-      self.caseSensitive = false
+-      if !self.scanString(key, intoString: nil)
++      self.setCaseSensitive(flag: false)
++        var unused: String = ""
++      if !self.scanString(string: key, intoString: &unused)
+         {
+ 
+           return false
+@@ -2728,55 +2458,52 @@
+         }
+ 
+ 
+-      c = self.string()[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
+-      if !NSCharacterSet.alphanumericCharacterSet().characterIsMember(c)
++      c = self.string().utf16[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
++      if !(NSCharacterSet.alphanumerics as NSCharacterSet).characterIsMember(c)
+         {
+ 
+           return true
+         }
+ 
+ 
+-      self.scanLocation = loc
++        try self.setScanLocation(anIndex:loc)
+ 
+-      return false
++        return false
+     }
+ 
+-    func parse() -> NSPredicate {
+-      var r:NSPredicate = nil
++    func parse() throws -> NSPredicate {
++      var r:NSPredicate? = nil
+ 
+-      @try {
+-        {
+-          r = self.parsePredicate()
+-        }
+-      } @catch (localException:NSException) {
+-        {
++      do {
++          r = try self.parsePredicate()
++      } catch let localException {
+           NSLog("Parsing failed for %@ with %@", self.string(), localException)
+-          localException.raise()
+-        }
++          throw localException
+       }
+ 
+       if !self.isAtEnd()
+         {
+-          NSException.raise(NSInvalidArgumentException,
+-        format: "Format string contains extra characters: \"%@\"",
+-         self.string())
++            throw NSError(
++                    domain: "NSInvalidArgumentException",
++                    code: 0,
++                    userInfo: [NSLocalizedDescriptionKey: "Format string contains extra characters"]
++            )
+         }
+-      return r
++      return r!
+     }
+ 
+-    func parsePredicate() -> NSPredicate {
+-      return self.parseAnd()
++    func parsePredicate() throws -> NSPredicate {
++      return try self.parseAnd()
+     }
+ 
+-    func parseAnd() -> NSPredicate {
+-      var l:NSPredicate = self.parseOr()
++    func parseAnd() throws -> NSPredicate {
++      var l:NSPredicate = try self.parseOr()
+ 
+-      while  self.scanPredicateKeyword("AND")
+-        || self.scanPredicateKeyword("&&")
+-        {
+-          let r:NSPredicate = self.parseOr()
++        while try self.scanPredicateKeyword(key: "AND")
++        || self.scanPredicateKeyword(key: "&&") {
++          let r:NSPredicate = try self.parseOr()
+ 
+-          if (r is NSCompoundPredicate)
++            if (r is NSCompoundPredicate)
+             && (r as! NSCompoundPredicate).compoundPredicateType()
+             == NSCompoundPredicateType.NSAndPredicateType
+             {
+@@ -2788,22 +2515,17 @@
+                 == NSCompoundPredicateType.NSAndPredicateType
+                 {
+                   var left:NSCompoundPredicate
+-                  var subs:NSMutableArray
+ 
+                   left = (l as! NSCompoundPredicate)
+-                  subs = left.subpredicates().mutableCopy()
+-                  subs.addObjectsFromArray(right.subpredicates())
+-                  l = NSCompoundPredicate.andPredicateWithSubpredicates(subs)
+-                  subs.release()
++                  var subs = Array<NSPredicate>(left.subpredicates())
++                  subs.append(contentsOf: right.subpredicates())
++                  l = NSCompoundPredicate.andPredicateWithSubpredicates(list: subs)
+                 }
+               else
+                 {
+-                  var subs:NSMutableArray
+-
+-                  subs = right.subpredicates().mutableCopy()
+-                  subs.insertObject(l, atIndex: 0)
+-                  l = NSCompoundPredicate.andPredicateWithSubpredicates(subs)
+-                  subs.release()
++                  var subs = Array<NSPredicate>(right.subpredicates())
++                  subs.insert(l, at: 0)
++                  l = NSCompoundPredicate.andPredicateWithSubpredicates(list: subs)
+                 }
+             }
+           else if (l is NSCompoundPredicate)
+@@ -2811,60 +2533,55 @@
+             == NSCompoundPredicateType.NSAndPredicateType
+             {
+               var left:NSCompoundPredicate
+-              var subs:NSMutableArray
+ 
+               left = (l as! NSCompoundPredicate)
+-              subs = left.subpredicates().mutableCopy()
+-              subs.addObject(r)
+-              l = NSCompoundPredicate.andPredicateWithSubpredicates(subs)
+-              subs.release()
++              var subs = Array<NSPredicate>(left.subpredicates())
++              subs.append(r)
++              l = NSCompoundPredicate.andPredicateWithSubpredicates(list: subs)
+             }
+           else
+             {
+-              l = NSCompoundPredicate.andPredicateWithSubpredicates(NSArray.arrayWithObjects(l, r, nil))
++              l = NSCompoundPredicate.andPredicateWithSubpredicates(list: [l, r])
+             }
+         }
+       return l
+     }
+ 
+-    func parseNot() -> NSPredicate {
+-      if self.scanString("(", intoString: nil)
++    func parseNot() throws -> NSPredicate {
++        var unused: String = ""
++      if self.scanString(string: "(", intoString: &unused)
+         {
+-          let r:NSPredicate = self.parsePredicate()
++          let r:NSPredicate = try self.parsePredicate()
+ 
+-          if !self.scanString(")", intoString: nil)
++            if !self.scanString(string: ")", intoString: &unused)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                          format: "Missing ) in compound predicate")
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey: "Missing ) in compound predicate"])
+             }
+           return r
+         }
+ 
+-      if self.scanPredicateKeyword("NOT") || self.scanPredicateKeyword("!")
+-        {
++      if try self.scanPredicateKeyword(key: "NOT") || self.scanPredicateKeyword(key: "!") {
+ 
+-          return NSCompoundPredicate.notPredicateWithSubpredicate(self.parseNot())
++          return try NSCompoundPredicate.notPredicateWithSubpredicate(predicate: self.parseNot())
+         }
+ 
+-      if self.scanPredicateKeyword("TRUEPREDICATE")
+-        {
+-          return NSPredicate.predicateWithValue(true)
++      if try self.scanPredicateKeyword(key: "TRUEPREDICATE") {
++          return NSPredicate.predicateWithValue(value: true)
+         }
+-      if self.scanPredicateKeyword("FALSEPREDICATE")
+-        {
+-          return NSPredicate.predicateWithValue(false)
++      if try self.scanPredicateKeyword(key: "FALSEPREDICATE") {
++          return NSPredicate.predicateWithValue(value: false)
+         }
+ 
+-      return self.parseComparison()
++      return try self.parseComparison()
+     }
+ 
+-    func parseOr() -> NSPredicate {
+-      var l:NSPredicate = self.parseNot()
++    func parseOr() throws -> NSPredicate {
++      var l:NSPredicate = try self.parseNot()
+ 
+-      while  self.scanPredicateKeyword("OR")
+-        || self.scanPredicateKeyword("||")
+-        {
+-          let r:NSPredicate = self.parseNot()
++      while try self.scanPredicateKeyword(key: "OR")
++        || self.scanPredicateKeyword(key: "||") {
++          let r:NSPredicate = try self.parseNot()
+ 
+           if (r is NSCompoundPredicate)
+             && (r as! NSCompoundPredicate).compoundPredicateType()
+@@ -2878,21 +2595,17 @@
+                 == NSCompoundPredicateType.NSOrPredicateType
+                 {
+                   let left:NSCompoundPredicate = (l as! NSCompoundPredicate)
+-                  var subs:NSMutableArray
+ 
+-                  subs = left.subpredicates().mutableCopy()
+-                  subs.addObjectsFromArray(right.subpredicates())
+-                  l = NSCompoundPredicate.orPredicateWithSubpredicates(subs)
+-                  subs.release()
++                  var subs = Array(left.subpredicates())
++                  subs.append(contentsOf: right.subpredicates())
++                  l = NSCompoundPredicate.orPredicateWithSubpredicates(list: subs)
+                 }
+               else
+                 {
+-                  var subs:NSMutableArray
+ 
+-                  subs = right.subpredicates().mutableCopy()
+-                  subs.insertObject(l, atIndex: 0)
+-                  l = NSCompoundPredicate.orPredicateWithSubpredicates(subs)
+-                  subs.release()
++                  var subs = Array(right.subpredicates())
++                  subs.insert(l, at: 0)
++                  l = NSCompoundPredicate.orPredicateWithSubpredicates(list: subs)
+                 }
+             }
+           else if (l is NSCompoundPredicate)
+@@ -2900,159 +2613,152 @@
+             == NSCompoundPredicateType.NSOrPredicateType
+             {
+               let left:NSCompoundPredicate = (l as! NSCompoundPredicate)
+-              var subs:NSMutableArray
+ 
+-              subs = left.subpredicates().mutableCopy()
+-              subs.addObject(r)
+-              l = NSCompoundPredicate.orPredicateWithSubpredicates(subs)
+-              subs.release()
++              var subs = Array(left.subpredicates())
++              subs.append(r)
++              l = NSCompoundPredicate.orPredicateWithSubpredicates(list: subs)
+             }
+           else
+             {
+-              l = NSCompoundPredicate.orPredicateWithSubpredicates(NSArray.arrayWithObjects(l, r, nil))
++              l = NSCompoundPredicate.orPredicateWithSubpredicates(list: [l, r])
+             }
+         }
+       return l
+     }
+ 
+-    func parseComparison() -> NSPredicate {
++    func parseComparison() throws -> NSPredicate {
+ 
+       var modifier:NSComparisonPredicateModifier = NSComparisonPredicateModifier.NSDirectPredicateModifier
+-      var type:NSPredicateOperatorType = 0
++      var type:NSPredicateOperatorType = NSPredicateOperatorType.NSLessThanPredicateOperatorType
+-      var opts:unsigned = 0
++      var opts:Int = 0
+       var left:NSExpression
+       var right:NSExpression
+       var p:NSPredicate
+       var negate:Bool = false
+       var swap:Bool = false
+ 
+-      if self.scanPredicateKeyword("ANY")
+-        {
++      if try self.scanPredicateKeyword(key: "ANY") {
+           modifier = NSComparisonPredicateModifier.NSAnyPredicateModifier
+         }
+-      else if self.scanPredicateKeyword("ALL")
+-        {
++      else if try self.scanPredicateKeyword(key: "ALL") {
+           modifier = NSComparisonPredicateModifier.NSAllPredicateModifier
+         }
+-      else if self.scanPredicateKeyword("NONE")
+-        {
++      else if try self.scanPredicateKeyword(key: "NONE") {
+           modifier = NSComparisonPredicateModifier.NSAnyPredicateModifier
+           negate = true
+         }
+-      else if self.scanPredicateKeyword("SOME")
+-        {
++      else if try self.scanPredicateKeyword(key: "SOME") {
+           modifier = NSComparisonPredicateModifier.NSAllPredicateModifier
+           negate = true
+         }
+ 
+-      left = self.parseExpression()
+-      if self.scanString("!=", intoString: nil)
+-        || self.scanString("<>", intoString: nil)
++      left = try self.parseExpression()
++        var unused: String = ""
++      if self.scanString(string: "!=", intoString: &unused)
++        || self.scanString(string: "<>", intoString: &unused)
+         {
+           type = NSPredicateOperatorType.NSNotEqualToPredicateOperatorType
+         }
+-      else if self.scanString("<=", intoString: nil)
+-        || self.scanString("=<", intoString: nil)
++      else if self.scanString(string: "<=", intoString: &unused)
++        || self.scanString(string: "=<", intoString: &unused)
+         {
+           type = NSPredicateOperatorType.NSLessThanOrEqualToPredicateOperatorType
+         }
+-      else if self.scanString(">=", intoString: nil)
+-        || self.scanString("=>", intoString: nil)
++      else if self.scanString(string: ">=", intoString: &unused)
++        || self.scanString(string: "=>", intoString: &unused)
+         {
+           type = NSPredicateOperatorType.NSGreaterThanOrEqualToPredicateOperatorType
+         }
+-      else if self.scanString("<", intoString: nil)
++      else if self.scanString(string: "<", intoString: &unused)
+         {
+           type = NSPredicateOperatorType.NSLessThanPredicateOperatorType
+         }
+-      else if self.scanString(">", intoString: nil)
++      else if self.scanString(string: ">", intoString: &unused)
+         {
+           type = NSPredicateOperatorType.NSGreaterThanPredicateOperatorType
+         }
+-      else if self.scanString("==", intoString: nil)
+-        || self.scanString("=", intoString: nil)
++      else if self.scanString(string: "==", intoString: &unused)
++        || self.scanString(string: "=", intoString: &unused)
+         {
+           type = NSPredicateOperatorType.NSEqualToPredicateOperatorType
+         }
+-      else if self.scanPredicateKeyword("MATCHES")
+-        {
++      else if try self.scanPredicateKeyword(key: "MATCHES") {
+           type = NSPredicateOperatorType.NSMatchesPredicateOperatorType
+         }
+-      else if self.scanPredicateKeyword("LIKE")
++      else if try self.scanPredicateKeyword(key: "LIKE")
+         {
+           type = NSPredicateOperatorType.NSLikePredicateOperatorType
+         }
+-      else if self.scanPredicateKeyword("BEGINSWITH")
++      else if try self.scanPredicateKeyword(key: "BEGINSWITH")
+         {
+           type = NSPredicateOperatorType.NSBeginsWithPredicateOperatorType
+         }
+-      else if self.scanPredicateKeyword("ENDSWITH")
++      else if try self.scanPredicateKeyword(key: "ENDSWITH")
+         {
+           type = NSPredicateOperatorType.NSEndsWithPredicateOperatorType
+         }
+-      else if self.scanPredicateKeyword("IN")
++      else if try self.scanPredicateKeyword(key: "IN")
+         {
+           type = NSPredicateOperatorType.NSInPredicateOperatorType
+         }
+-      else if self.scanPredicateKeyword("CONTAINS")
++      else if try self.scanPredicateKeyword(key: "CONTAINS")
+         {
+           type = NSPredicateOperatorType.NSInPredicateOperatorType
+           swap = true
+         }
+-      else if self.scanPredicateKeyword("BETWEEN")
++      else if try self.scanPredicateKeyword(key: "BETWEEN")
+         {
+ 
+ 
+-          let exp:NSExpression = self.parseSimpleExpression()
+-          let a:NSArray = exp.constantValue() as! NSArray
++          let exp:NSExpression = try self.parseSimpleExpression()
++          let a:Array<AnyObject> = exp.constantValue() as! Array<AnyObject>
+           var lower:NSNumber, upper:NSNumber
+           var lexp:NSExpression, uexp:NSExpression
+           var lp:NSPredicate, up:NSPredicate
+ 
+-          if !(a is NSArray)
++          if !(a is Array<AnyObject>)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                           format: "BETWEEN operator requires array argument")
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey: "BETWEEN operator requires array argument"])
+             }
+ 
+-          lower = a.objectAtIndex(0)
+-          upper = a.objectAtIndex(1)
+-          lexp = NSExpression.expressionForConstantValue(lower)
+-          uexp = NSExpression.expressionForConstantValue(upper)
+-          lp = NSComparisonPredicate.predicateWithLeftExpression(left,
++          lower = a[0] as! NSNumber
++          upper = a[1] as! NSNumber
++          lexp = NSExpression.expressionForConstantValue(obj: lower)
++          uexp = NSExpression.expressionForConstantValue(obj: upper)
++          lp = NSComparisonPredicate.predicateWithLeftExpression(left: left,
+                                       rightExpression: lexp,
+                                       modifier: modifier,
+                                       type: NSPredicateOperatorType.NSGreaterThanPredicateOperatorType,
+                                       options: opts)
+-          up = NSComparisonPredicate.predicateWithLeftExpression(left,
++          up = NSComparisonPredicate.predicateWithLeftExpression(left: left,
+                                       rightExpression: uexp,
+                                       modifier: modifier,
+                                       type: NSPredicateOperatorType.NSLessThanPredicateOperatorType,
+                                       options: opts)
+-          return NSCompoundPredicate.andPredicateWithSubpredicates(NSArray.arrayWithObjects(lp, up, nil))
++          return NSCompoundPredicate.andPredicateWithSubpredicates(list: [lp, up])
+         }
+       else
+         {
+-          NSException.raise(NSInvalidArgumentException,
+-                       format: "Invalid comparison predicate: %@",
+-         self.string().substringFromIndex(self.scanLocation()))
++            throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                    userInfo: [NSLocalizedDescriptionKey: "Invalid comparison predicate"])
+         }
+ 
+-      if self.scanString("[cd]", intoString: nil)
++      if self.scanString(string: "[cd]", intoString: &unused)
+         {
+-          opts = NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption
+-            | NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption
++          opts = NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption.rawValue
++            | NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption.rawValue
+         }
+-      else if self.scanString("[c]", intoString: nil)
++      else if self.scanString(string: "[c]", intoString: &unused)
+         {
+-          opts = NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption
++          opts = NSComparisonPredicateOptions.NSCaseInsensitivePredicateOption.rawValue
+         }
+-      else if self.scanString("[d]", intoString: nil)
++      else if self.scanString(string: "[d]", intoString: &unused)
+         {
+-          opts = NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption
++          opts = NSComparisonPredicateOptions.NSDiacriticInsensitivePredicateOption.rawValue
+         }
+ 
+-      right = self.parseExpression()
++      right = try self.parseExpression()
+       if swap == true
+         {
+           let tmp:NSExpression = left
+@@ -3061,348 +2767,347 @@
+           right = tmp
+         }
+ 
+-      p = NSComparisonPredicate.predicateWithLeftExpression(left,
++      p = NSComparisonPredicate.predicateWithLeftExpression(left: left,
+                                  rightExpression: right,
+                                  modifier: modifier,
+                                  type: type,
+                                  options: opts)
+ 
+-      return negate ? NSCompoundPredicate.notPredicateWithSubpredicate(p) : p
++      return negate ? NSCompoundPredicate.notPredicateWithSubpredicate(predicate: p) : p
+     }
+ 
+-    func parseExpression() -> NSExpression {
++    func parseExpression() throws -> NSExpression {
+ 
+-      return self.parseBinaryExpression()
++      return try self.parseBinaryExpression()
+     }
+ 
+-    func parseIdentifierExpression() -> NSExpression {
++    func parseIdentifierExpression() throws -> NSExpression {
+       var _identifier:NSCharacterSet
+       var ident:String
+ 
+-
+-      (self.scanString("#", intoString: nil) as! void)
++        var unused: String = ""
++        self.scanString(string: "#", intoString: &unused)
+       if (_identifier == nil)
+         {
+-          _identifier = (NSCharacterSet.characterSetWithCharactersInString("_$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
++          _identifier = (NSCharacterSet(charactersIn: "_$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")) as NSCharacterSet
+ 
+         }
+ 
+-      if !self.scanCharactersFromSet(_identifier, intoString: &ident)
++      if !self.scanCharactersFromSet(aSet: _identifier, intoString: &ident)
+         {
+-          NSException.raise(NSInvalidArgumentException,
+-                      format: "Missing identifier: %@",
+-                       self.string().substringFromIndex(self.scanLocation()))
++            throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                    userInfo: [NSLocalizedDescriptionKey: "Missing identifier"])
+         }
+ 
+-      return NSExpression.expressionForKeyPath(ident)
++      return try NSExpression.expressionForKeyPath(path: ident)
+     }
+ 
+-    func parseSimpleExpression() -> NSExpression {
+-      var location:unsigned
++    func parseSimpleExpression() throws -> NSExpression {
++      var location:Int
+       var dbl:Double
+ 
+-      if self.scanDouble(&dbl)
++      if self.scanDouble(value: &dbl)
+         {
+-          return NSExpression.expressionForConstantValue(NSNumber.numberWithDouble(dbl))
++          return NSExpression.expressionForConstantValue(obj: NSNumber(value: dbl))
+         }
+ 
+ 
+-      if self.scanString("-", intoString: nil)
++        var unused: String = ""
++      if self.scanString(string: "-", intoString: &unused)
+         {
+-          return NSExpression.expressionForFunction("_chs",
+-            arguments: NSArray.arrayWithObject(self.parseExpression()))
++          return try NSExpression.expressionForFunction(name: "_chs",
++            arguments: [self.parseExpression()])
+         }
+ 
+-      if self.scanString("(", intoString: nil)
++      if self.scanString(string: "(", intoString: &unused)
+         {
+-          let arg:NSExpression = self.parseExpression()
++          let arg:NSExpression = try self.parseExpression()
+ 
+-          if !self.scanString(")", intoString: nil)
++            if !self.scanString(string: ")", intoString: &unused)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                           format: "Missing ) in expression")
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey: "Missing ) in expression"])
+             }
+           return arg
+         }
+ 
+-      if self.scanString("{", intoString: nil)
++      if self.scanString(string: "{", intoString: &unused)
+         {
+-          let a:NSMutableArray = NSMutableArray.arrayWithCapacity(10)
++          var a = Array<NSExpression>(); a.reserveCapacity(10)
+ 
+-          if self.scanString("}", intoString: nil)
++          if self.scanString(string: "}", intoString: &unused)
+             {
+ 
+-              return NSExpression.expressionForConstantValue(a)
++              return NSExpression.expressionForConstantValue(obj: a)
+             }
+ 
+-          a.addObject(self.parseExpression())
+-          while  self.scanString(",", intoString: nil)
++            try a.append(self.parseExpression())
++            while  self.scanString(string: ",", intoString: &unused)
+             {
+ 
+-              a.addObject(self.parseExpression())
++                try a.append(self.parseExpression())
+             }
+ 
+-          if !self.scanString("}", intoString: nil)
++          if !self.scanString(string: "}", intoString: &unused)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                          format: "Missing } in aggregate")
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey: "Missing } in aggregate"])
+             }
+-          return NSExpression.expressionForConstantValue(a)
++          return NSExpression.expressionForConstantValue(obj: a)
+         }
+ 
+-      if self.scanPredicateKeyword("NULL")
+-        || self.scanPredicateKeyword("NIL")
++      if try self.scanPredicateKeyword(key: "NULL")
++        || self.scanPredicateKeyword(key: "NIL")
+         {
+-          return NSExpression.expressionForConstantValue(NSNull.null())
++          return NSExpression.expressionForConstantValue(obj: nil)
+         }
+-      if self.scanPredicateKeyword("TRUE")
+-        || self.scanPredicateKeyword("YES")
++      if try self.scanPredicateKeyword(key: "TRUE")
++        || self.scanPredicateKeyword(key: "YES")
+         {
+-          return NSExpression.expressionForConstantValue(NSNumber.numberWithBool(true))
++          return NSExpression.expressionForConstantValue(obj: NSNumber(value: true))
+         }
+-      if self.scanPredicateKeyword("FALSE")
+-        || self.scanPredicateKeyword("NO")
++      if try self.scanPredicateKeyword(key: "FALSE")
++        || self.scanPredicateKeyword(key: "NO")
+         {
+-          return NSExpression.expressionForConstantValue(NSNumber.numberWithBool(false))
++          return NSExpression.expressionForConstantValue(obj: NSNumber(value: false))
+         }
+-      if self.scanPredicateKeyword("SELF")
++      if try self.scanPredicateKeyword(key: "SELF")
+         {
+           return NSExpression.expressionForEvaluatedObject()
+         }
+-      if self.scanString("$", intoString: nil)
++      if self.scanString(string: "$", intoString: &unused)
+         {
+ 
+-          let var:NSExpression = self.parseIdentifierExpression()
++          let var0:NSExpression = try self.parseIdentifierExpression()
+ 
+-          if (var.keyPath() == nil)
++          if (var0.keyPath() == nil)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                          format: "Invalid variable identifier: %@", var)
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey:"Invalid variable identifier" ])
+             }
+-          return NSExpression.expressionForVariable(var.keyPath())
++          return NSExpression.expressionForVariable(string: var0.keyPath()!)
+         }
+ 
+       location = self.scanLocation()
+-
+-      if self.scanString("%", intoString: nil)
++      if self.scanString(string: "%", intoString: &unused)
+         {
+           if self.isAtEnd() == false
+             {
+-              var c:UniChar = self.string()[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
++              var c:UniChar = self.string().utf16[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
+ 
+               switch (c)
+                 { 
+-                  case '%':
++                  case "%".utf16.first!:
+                     location = self.scanLocation()
+                     break
+ 
+-                  case 'K':
+-                    self.scanLocation = self.scanLocation() + 1
+-                    return NSExpression.expressionForKeyPath(self.nextArg())
++                  case "K".utf16.first!:
++                      try self.setScanLocation(anIndex: self.scanLocation() + 1)
++                      return try NSExpression.expressionForKeyPath(path: self.nextArg() as! String)
+ 
+-                  case '@',
+-                       'c',
+-                       'C',
+-                       'd',
+-                       'D',
+-                       'i',
+-                       'o',
+-                       'O',
+-                       'u',
+-                       'U',
+-                       'x',
+-                       'X',
+-                       'e',
+-                       'E',
+-                       'f',
+-                       'g',
+-                       'G':
+-                    self.scanLocation = self.scanLocation() + 1
+-                    return NSExpression.expressionForConstantValue(self.nextArg())
++                  case "@".utf16.first!,
++                       "c".utf16.first!,
++                       "C".utf16.first!,
++                       "d".utf16.first!,
++                       "D".utf16.first!,
++                       "i".utf16.first!,
++                       "o".utf16.first!,
++                       "O".utf16.first!,
++                       "u".utf16.first!,
++                       "U".utf16.first!,
++                       "x".utf16.first!,
++                       "X".utf16.first!,
++                       "e".utf16.first!,
++                       "E".utf16.first!,
++                       "f".utf16.first!,
++                       "g".utf16.first!,
++                       "G".utf16.first!:
++                      try self.setScanLocation(anIndex: self.scanLocation() + 1)
++                      return NSExpression.expressionForConstantValue(obj: self.nextArg())
+ 
+-                  case 'h':
+-                    (self.scanString("h", intoString: nil) as! void)
++                  case "h".utf16.first!:
++                    (self.scanString(string: "h", intoString: &unused))
+                     if self.isAtEnd() == false
+                       {
+-                        c = self.string()[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
+-                        if c == 'i' || c == 'u'
++                        c = self.string().utf16[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
++                        if c == "i".utf16.first! || c == "u".utf16.first!
+                           {
+-                            self.scanLocation = self.scanLocation() + 1
+-                            return NSExpression.expressionForConstantValue(self.nextArg())
++                            try self.setScanLocation(anIndex: self.scanLocation() + 1)
++                            return NSExpression.expressionForConstantValue(obj: self.nextArg())
+                           }
+                       }
+                     break
+ 
+-                  case 'q':
+-                    (self.scanString("q", intoString: nil) as! void)
++                  case "q".utf16.first!:
++                    (self.scanString(string: "q", intoString: &unused))
+                     if self.isAtEnd() == false
+                       {
+-                        c = self.string()[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
+-                        if c == 'i' || c == 'u' || c == 'x' || c == 'X'
++                        c = self.string().utf16[self.string().utf16.index(self.string().utf16.startIndex, offsetBy: self.scanLocation())]
++                        if c == "i".utf16.first! || c == "u".utf16.first! || c == "x".utf16.first! || c == "X".utf16.first!
+                           {
+-                            self.scanLocation = self.scanLocation() + 1
+-                            return NSExpression.expressionForConstantValue(self.nextArg())
++                            try self.setScanLocation(anIndex: self.scanLocation() + 1)
++                            return NSExpression.expressionForConstantValue(obj: self.nextArg())
+                           }
+                       }
+                     break
+-                }
++              default:
++                  break
++              }
+             }
+ 
+-          self.scanLocation = location
++          try self.setScanLocation(anIndex: location)
+         }
+ 
+-      if self.scanString("\"", intoString: nil)
++      if self.scanString(string: "\"", intoString: &unused)
+         {
+-          let skip:NSCharacterSet = self.charactersToBeSkipped()
+-          let str:String = nil
++          let skip:NSCharacterSet? = self.charactersToBeSkipped()
++          var str:String = ""
+ 
+-          self.charactersToBeSkipped = nil
+-          if self.scanUpToString("\"", intoString: &str) == false
++          self.setCharactersToBeSkipped(aSet: NSCharacterSet())
++          if !self.scanUpToString(string: "\"", intoString: &str)
+      {
+-       self.charactersToBeSkipped = skip
+-              NSException.raise(NSInvalidArgumentException,
+-                          format: "Invalid double quoted literal at %u", location)
++       self.setCharactersToBeSkipped(aSet: skip)
++         throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                 userInfo: [NSLocalizedDescriptionKey:"Invalid double quoted literal"])
+      }
+-          self.charactersToBeSkipped = skip
+-          if false == self.scanString("\"", intoString: nil)
++          self.setCharactersToBeSkipped(aSet: skip)
++          if false == self.scanString(string: "\"", intoString: &unused)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                format: "Unterminated double quoted literal at %u", location)
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey:"Unterminated double quoted literal"])
+             }
+-          return NSExpression.expressionForConstantValue(str)
++          return NSExpression.expressionForConstantValue(obj: str)
+         }
+ 
+-      if self.scanString("'", intoString: nil)
++      if self.scanString(string: "'", intoString: &unused)
+         {
+-          let skip:NSCharacterSet = self.charactersToBeSkipped()
+-          let str:String = nil
+-
+-          self.charactersToBeSkipped = nil
+-          if self.scanUpToString("'", intoString: &str) == false
++          let skip:NSCharacterSet? = self.charactersToBeSkipped()
++          var str:String = ""
++          self.setCharactersToBeSkipped(aSet: nil)
++          if self.scanUpToString(string: "'", intoString: &str) == false
+      {
+-       self.charactersToBeSkipped = skip
+-              NSException.raise(NSInvalidArgumentException,
+-                          format: "Invalid single quoted literal at %u", location)
++       self.setCharactersToBeSkipped(aSet: skip)
++         throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                 userInfo: [NSLocalizedDescriptionKey:"Invalid single quoted literal"])
+      }
+-          self.charactersToBeSkipped = skip
+-          if false == self.scanString("'", intoString: nil)
++          self.setCharactersToBeSkipped(aSet: skip)
++          if false == self.scanString(string: "'", intoString: &unused)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                format: "Unterminated single quoted literal at %u", location)
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey:"Unterminated single quoted literal"])
+             }
+-          return NSExpression.expressionForConstantValue(str)
++          return NSExpression.expressionForConstantValue(obj: str)
+         }
+ 
+-      if self.scanString("@", intoString: nil)
++      if self.scanString(string: "@", intoString: &unused)
+         {
+-          let e:NSExpression = self.parseIdentifierExpression()
++          let e:NSExpression = try self.parseIdentifierExpression()
+ 
+           if (e.keyPath() == nil)
+             {
+-              NSException.raise(NSInvalidArgumentException,
+-                          format: "Invalid keypath identifier: %@", e)
++                throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                        userInfo: [NSLocalizedDescriptionKey:"Invalid keypath identifier"])
+             }
+ 
+ 
+-          return NSExpression.expressionForKeyPath(String(format:"@%@", e.keyPath()))
++          return try NSExpression.expressionForKeyPath(path: String(format:"@%@", e.keyPath()!))
+         }
+ 
+-      return self.parseIdentifierExpression()
++      return try self.parseIdentifierExpression()
+     }
+ 
+-    func parseFunctionalExpression() -> NSExpression {
+-      var left:NSExpression = self.parseSimpleExpression()
++    func parseFunctionalExpression() throws -> NSExpression {
++      var left:NSExpression = try self.parseSimpleExpression()
++        var unused: String = ""
+ 
+       while  true
+         {
+-          if self.scanString("(", intoString: nil)
++          if self.scanString(string: "(", intoString: &unused)
+             {
+ 
+ 
+-              let args:NSMutableArray = NSMutableArray.arrayWithCapacity(5)
++              var args = Array<NSExpression>(); args.reserveCapacity(5)
+ 
+               if (left.keyPath() == nil)
+                 {
+-                  NSException.raise(NSInvalidArgumentException,
+-                              format: "Invalid function identifier: %@", left)
++                    throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                            userInfo: [NSLocalizedDescriptionKey:"Invalid function identifier"])
+                 }
+ 
+-              if !self.scanString(")", intoString: nil)
++              if !self.scanString(string: ")", intoString: &unused)
+                 {
+ 
+ 
+-                  args.addObject(self.parseExpression())
+-                  while  self.scanString(",", intoString: nil)
++                    try args.append(self.parseExpression())
++                    while  self.scanString(string: ",", intoString: &unused)
+                     {
+ 
+-                      args.addObject(self.parseExpression())
++                        try args.append(self.parseExpression())
+                     }
+ 
+-                  if !self.scanString(")", intoString: nil)
++                  if !self.scanString(string: ")", intoString: &unused)
+                     {
+-                      NSException.raise(NSInvalidArgumentException,
+-                                  format: "Missing ) in function arguments")
++                        throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                                userInfo: [NSLocalizedDescriptionKey:"Missing ) in function arguments"])
+                     }
+                 }
+-              left = NSExpression.expressionForFunction(left.keyPath(),
++              left = try NSExpression.expressionForFunction(name: left.keyPath()!,
+                                                arguments: args)
+             }
+-          else if self.scanString("[", intoString: nil)
++          else if self.scanString(string: "[", intoString: &unused)
+             {
+ 
+-              if self.scanPredicateKeyword("FIRST")
+-                {
+-                  left = NSExpression.expressionForFunction("_first",
+-                    arguments: NSArray.arrayWithObject(self.parseExpression()))
++              if try self.scanPredicateKeyword(key: "FIRST") {
++                  left = try NSExpression.expressionForFunction(name: "_first",
++                    arguments: [self.parseExpression()])
+                 }
+-              else if self.scanPredicateKeyword("LAST")
++              else if try self.scanPredicateKeyword(key: "LAST")
+                 {
+-                  left = NSExpression.expressionForFunction("_last",
+-                    arguments: NSArray.arrayWithObject(self.parseExpression()))
++                  left = try NSExpression.expressionForFunction(name: "_last",
++                    arguments: [self.parseExpression()])
+                 }
+-              else if self.scanPredicateKeyword("SIZE")
++              else if try self.scanPredicateKeyword(key: "SIZE")
+                 {
+-                  left = NSExpression.expressionForFunction("count",
+-                    arguments: NSArray.arrayWithObject(self.parseExpression()))
++                  left = try NSExpression.expressionForFunction(name: "count",
++                    arguments: [self.parseExpression()])
+                 }
+               else
+                 {
+-                  left = NSExpression.expressionForFunction("_index",
+-                    arguments: NSArray.arrayWithObjects(left,
+-                    self.parseExpression(), nil))
++                  left = try NSExpression.expressionForFunction(name: "_index",
++                    arguments: [left, self.parseExpression()])
+                 }
+-              if !self.scanString("]", intoString: nil)
++              if !self.scanString(string: "]", intoString: &unused)
+                 {
+-                  NSException.raise(NSInvalidArgumentException,
+-                              format: "Missing ] in index argument")
++                    throw NSError(domain: "NSInvalidArgumentException", code: 0,
++                            userInfo: [NSLocalizedDescriptionKey:"Missing ] in index argument"])
+                 }
+             }
+-          else if self.scanString(".", intoString: nil)
++          else if self.scanString(string: ".", intoString: &unused)
+             {
+ 
+ 
+               var right:NSExpression
+ 
+-              right = self.parseExpression()
++              right = try self.parseExpression()
+ 
+               if evaluatedObjectExpression != left
+                 {
+ 
+-           if (left.keyPath() != nil) && right.keyPath()
++           if (left.keyPath() != nil) && (right.keyPath() != nil)
+              {
+ 
+-                      left = NSExpression.expressionForKeyPath(String(format:"%@.%@",
+-            left.keyPath(), right.keyPath()))
++                      left = try NSExpression.expressionForKeyPath(path: String(format:"%@.%@",
++            left.keyPath()!, right.keyPath()!))
+       }
+            else
+       {
+-        left = NSExpression.expressionForKeyPathCompositionWithLeft(left,
++        left = NSExpression.expressionForKeyPathCompositionWithLeft(left: left,
+           right: right)
+       }
+                 }
+               else
+                 {
+-                  left = NSExpression.expressionForKeyPath(right.keyPath())
++                  left = try NSExpression.expressionForKeyPath(path: right.keyPath()!)
+                 }
+             }
+           else
+@@ -3413,18 +3118,18 @@
+         }
+     }
+ 
+-    func parsePowerExpression() -> NSExpression {
+-      var left:NSExpression = self.parseFunctionalExpression()
++    func parsePowerExpression() throws -> NSExpression {
++      var left:NSExpression = try self.parseFunctionalExpression()
+ 
+       while  true
+         {
+           var right:NSExpression
+-
+-          if self.scanString("**", intoString: nil)
++            var unused: String = ""
++          if self.scanString(string: "**", intoString: &unused)
+             {
+-              right = self.parseFunctionalExpression()
+-              left = NSExpression.expressionForFunction("_pow",
+-                arguments: NSArray.arrayWithObjects(left, right, nil))
++              right = try self.parseFunctionalExpression()
++              left = try NSExpression.expressionForFunction(name: "_pow",
++                arguments: [left, right])
+             }
+           else
+             {
+@@ -3433,24 +3138,24 @@
+         }
+     }
+ 
+-    func parseMultiplicationExpression() -> NSExpression {
+-      var left:NSExpression = self.parsePowerExpression()
++    func parseMultiplicationExpression() throws -> NSExpression {
++      var left:NSExpression = try self.parsePowerExpression()
+ 
+       while  true
+         {
+           var right:NSExpression
+-
+-          if self.scanString("*", intoString: nil)
++            var unused: String = ""
++          if self.scanString(string: "*", intoString: &unused)
+             {
+-              right = self.parsePowerExpression()
+-              left = NSExpression.expressionForFunction("_mul",
+-                arguments: NSArray.arrayWithObjects(left, right, nil))
++              right = try self.parsePowerExpression()
++              left = try NSExpression.expressionForFunction(name: "_mul",
++                arguments: [left, right])
+             }
+-          else if self.scanString("/", intoString: nil)
++          else if self.scanString(string: "/", intoString: &unused)
+             {
+-              right = self.parsePowerExpression()
+-              left = NSExpression.expressionForFunction("_div",
+-                arguments: NSArray.arrayWithObjects(left, right, nil))
++              right = try self.parsePowerExpression()
++              left = try NSExpression.expressionForFunction(name: "_div",
++                arguments: [left, right])
+             }
+           else
+             {
+@@ -3459,24 +3164,24 @@
+         }
+     }
+ 
+-    func parseAdditionExpression() -> NSExpression {
+-      var left:NSExpression = self.parseMultiplicationExpression()
++    func parseAdditionExpression() throws -> NSExpression {
++      var left:NSExpression = try self.parseMultiplicationExpression()
+ 
+-      while  true
++        while  true
+         {
+           var right:NSExpression
+-
+-          if self.scanString("+", intoString: nil)
++            var unused: String = ""
++          if self.scanString(string: "+", intoString: &unused)
+             {
+-              right = self.parseMultiplicationExpression()
+-              left = NSExpression.expressionForFunction("_add",
+-                arguments: NSArray.arrayWithObjects(left, right, nil))
++              right = try self.parseMultiplicationExpression()
++              left = try NSExpression.expressionForFunction(name: "_add",
++                arguments: [left, right])
+             }
+-          else if self.scanString("-", intoString: nil)
++          else if self.scanString(string: "-", intoString: &unused)
+             {
+-              right = self.parseMultiplicationExpression()
+-              left = NSExpression.expressionForFunction("_sub",
+-                arguments: NSArray.arrayWithObjects(left, right, nil))
++              right = try self.parseMultiplicationExpression()
++              left = try NSExpression.expressionForFunction(name: "_sub",
++                arguments: [left, right])
+             }
+           else
+             {
+@@ -3485,17 +3190,17 @@
+         }
+     }
+ 
+-    func parseBinaryExpression() -> NSExpression {
+-      let left:NSExpression = self.parseAdditionExpression()
++    func parseBinaryExpression() throws -> NSExpression {
++      let left:NSExpression = try self.parseAdditionExpression()
+ 
+-      while  true
++        while  true
+         {
+           var right:NSExpression
+-
+-          if self.scanString(":=", intoString: nil)
++        var unused: String = ""
++          if self.scanString(string: ":=", intoString: &unused)
+             {
+ 
+-              right = self.parseAdditionExpression()
++              right = try self.parseAdditionExpression()
+ 
+             }
+           else
+@@ -3506,63 +3211,3 @@
+     }
+ }
+ 
+-
+-class GSBlockPredicate : NSPredicate {
+-
+-    private var _block:GSBlockPredicateBlock
+-    init(block:GSBlockPredicateBlock) {
+-      if nil == (self = super.init())
+-        {
+-          return nil
+-        }
+-      _block = ((block as! id).retain() as! GSBlockPredicateBlock)
+-      return self
+-    }
+-
+-    override func predicateWithSubstitutionVariables(variables:NSDictionary) -> NSPredicate {
+-      return GSBoundBlockPredicate(block:_block,
+-                                                  bindings: variables).autorelease()
+-    }
+-
+-    override func evaluateWithObject(object:AnyObject, substitutionVariables variables:NSDictionary) -> Bool {
+-      return CALL_NON_NULL_BLOCK(_block, object, variables)
+-    }
+-
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
+-      return self.evaluateWithObject(object,
+-                substitutionVariables: nil)
+-    }
+-
+-    func dealloc() {
+-      (_block as! id).release()
+-      _block = nil
+-      super.dealloc()
+-    }
+-
+-    override func predicateFormat() -> String {
+-      return String(format:"BLOCKPREDICATE(%p)", (_block as! void))
+-    }
+-}
+-
+-class GSBoundBlockPredicate : GSBlockPredicate {
+-
+-    private var _bindings:NSDictionary
+-    init(block:GSBlockPredicateBlock, bindings:NSDictionary) {
+-      if nil == (self = super.init(block:block))
+-        {
+-          return nil
+-        }
+-      _bindings = (bindings)
+-      return self
+-    }
+-
+-    override func evaluateWithObject(object:AnyObject) -> Bool {
+-      return self.evaluateWithObject(object,
+-                substitutionVariables: _bindings)
+-    }
+-
+-    override func dealloc() {
+-      _bindings = nil
+-      super.dealloc()
+-    }
+-}

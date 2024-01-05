@@ -33,7 +33,7 @@ class UiSelectorProperties {
     fun uiSelectorsDontCrash(
         @ForAll("uiSelector") selector: UiSelector
     ) {
-        evaluator.evaluateUiSelector(singleRootNode, selector)
+        evaluator.evaluateUiSelector(listOf(singleRootNode), selector)
     }
 
     @Provide

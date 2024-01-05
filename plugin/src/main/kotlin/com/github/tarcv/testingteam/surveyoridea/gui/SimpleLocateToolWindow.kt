@@ -19,10 +19,13 @@ package com.github.tarcv.testingteam.surveyoridea.gui
 
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiSelector
+import com.intellij.openapi.editor.EditorFactory
+import com.intellij.openapi.fileTypes.FileTypes
 import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.fileTypes.PlainTextFileType
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.NlsSafe
+import com.intellij.openapi.util.text.StringUtil
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.ui.EditorTextField
 
@@ -40,8 +43,11 @@ class SimpleLocateToolWindow(project: Project) : LocateToolWindow(project) {
                 ?: ""
         }
 
-    override fun initSelectorField(editorField: EditorTextField) {
-        // No-op
+    override fun switchToDroidUiAutomator(editorField: EditorTextField) {
+        with(editorField) {
+            document = EditorFactory.getInstance().createDocument(StringUtil.convertLineSeparators(text))
+            fileType = FileTypes.PLAIN_TEXT
+        }
     }
 
     override fun getCurrentLocator(): String {

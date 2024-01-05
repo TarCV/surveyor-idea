@@ -112,7 +112,7 @@ open class BaseTestProjectTests {
             }
         }
         val isFile = (subItems.isEmpty() && name.contains('.')) ||
-                (subItems.isNotEmpty() && classLoader.getResource("$resourceDir/${subItems.first()}") == null)
+                (subItems.isNotEmpty() && classLoader.getResource("$resourceDir/${subItems.first()}") === null)
         if (isFile) {
             println("Extracting $resourceDir to $basePath")
             PathUtils.copyFile(

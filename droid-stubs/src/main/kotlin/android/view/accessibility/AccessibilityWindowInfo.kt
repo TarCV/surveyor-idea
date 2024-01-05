@@ -1,7 +1,7 @@
 /*
  *  Copyright (C) 2023 TarCV
  *
- *  This package (i.e. directory and its contents) is part of UI Surveyor.
+ *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or

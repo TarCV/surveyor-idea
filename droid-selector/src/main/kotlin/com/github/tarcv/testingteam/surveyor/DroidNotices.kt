@@ -3,15 +3,11 @@ package com.github.tarcv.testingteam.surveyor
 object DroidNotices {
     val uiAutomatorNotice = Notice(
         "UIAutomator library - Apache License",
-        droidUiAutomatorIntro,
+        "depends on UIAutomator library which is covered by" +
+        " the following copyright and permission notices:",
         droidUiAutomatorNotices
     )
 }
-
-private val droidUiAutomatorIntro = """
-depends on UIAutomator library which is covered by
-the following copyright and permission notices:
-""".trimStart()
 
 private val droidUiAutomatorNotices = """
 Copyright (C) 2014 The Android Open Source Project

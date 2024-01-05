@@ -38,7 +38,7 @@ class BySelectorProperties {
     fun bySelectorsDontCrash(
         @ForAll("bySelector") selector: BySelector
     ) {
-        evaluator.evaluateBySelector(singleRootNode, selector)
+        evaluator.evaluateBySelector(listOf(singleRootNode), selector)
     }
 
     @Provide
