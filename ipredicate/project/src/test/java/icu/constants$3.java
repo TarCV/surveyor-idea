@@ -16,14 +16,14 @@ final class constants$3 {
         JAVA_INT
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "ucpmap_get_70",
+        "ucpmap_get_73",
         constants$3.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.upcallHandle(UCPMapValueFilter.class, "apply", constants$3.const$0);
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
         constants$3.const$0
     );
-    static final MethodHandle const$4 = RuntimeHelper.upcallHandle(ucpmap_getRange_70$filter.class, "apply", constants$3.const$0);
+    static final MethodHandle const$4 = RuntimeHelper.upcallHandle(ucpmap_getRange_73$filter.class, "apply", constants$3.const$0);
     static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_INT,
         RuntimeHelper.POINTER,
         JAVA_INT,
@@ -34,7 +34,7 @@ final class constants$3 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "ucpmap_getRange_70",
+        "ucpmap_getRange_73",
         constants$3.const$5
     );
 }

@@ -15,14 +15,14 @@ final class constants$19 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utext_nativeLength_70",
+        "utext_nativeLength_73",
         constants$19.const$0
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_BYTE,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "utext_isLengthExpensive_70",
+        "utext_isLengthExpensive_73",
         constants$19.const$2
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.of(JAVA_INT,
@@ -30,7 +30,7 @@ final class constants$19 {
         JAVA_LONG
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "utext_char32At_70",
+        "utext_char32At_73",
         constants$19.const$4
     );
 }

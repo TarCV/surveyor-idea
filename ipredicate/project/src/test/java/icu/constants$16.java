@@ -12,23 +12,23 @@ final class constants$16 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$16() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "u_isJavaIDPart_70",
+        "u_isJavaIDPart_73",
         constants$5.const$0
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_tolower_70",
+        "u_tolower_73",
         constants$6.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "u_toupper_70",
+        "u_toupper_73",
         constants$6.const$0
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_totitle_70",
+        "u_totitle_73",
         constants$6.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_foldCase_70",
+        "u_foldCase_73",
         constants$5.const$5
     );
     static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_INT,
@@ -36,7 +36,7 @@ final class constants$16 {
         JAVA_BYTE
     );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "u_digit_70",
+        "u_digit_73",
         constants$16.const$5
     );
 }

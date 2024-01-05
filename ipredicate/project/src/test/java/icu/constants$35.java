@@ -17,7 +17,7 @@ final class constants$35 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utext_setup_70",
+        "utext_setup_73",
         constants$35.const$0
     );
     static final StructLayout const$2 = MemoryLayout.structLayout(
@@ -36,7 +36,7 @@ final class constants$35 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "uregex_open_70",
+        "uregex_open_73",
         constants$35.const$5
     );
 }

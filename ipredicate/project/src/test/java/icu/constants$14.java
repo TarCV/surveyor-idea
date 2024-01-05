@@ -16,14 +16,14 @@ final class constants$14 {
         JAVA_INT
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_getPropertyName_70",
+        "u_getPropertyName_73",
         constants$14.const$0
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_INT,
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_getPropertyEnum_70",
+        "u_getPropertyEnum_73",
         constants$14.const$2
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.of(RuntimeHelper.POINTER,
@@ -32,7 +32,7 @@ final class constants$14 {
         JAVA_INT
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_getPropertyValueName_70",
+        "u_getPropertyValueName_73",
         constants$14.const$4
     );
 }

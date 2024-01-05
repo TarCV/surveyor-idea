@@ -12,27 +12,27 @@ final class constants$7 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$7() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "u_islower_70",
+        "u_islower_73",
         constants$5.const$0
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_isupper_70",
+        "u_isupper_73",
         constants$5.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "u_istitle_70",
+        "u_istitle_73",
         constants$5.const$0
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_isdigit_70",
+        "u_isdigit_73",
         constants$5.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_isalpha_70",
+        "u_isalpha_73",
         constants$5.const$0
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_isalnum_70",
+        "u_isalnum_73",
         constants$5.const$0
     );
 }

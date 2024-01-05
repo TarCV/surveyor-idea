@@ -17,19 +17,19 @@ final class constants$38 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_setUText_70",
+        "uregex_setUText_73",
         constants$38.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_getText_70",
+        "uregex_getText_73",
         constants$37.const$0
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_getUText_70",
+        "uregex_getUText_73",
         constants$37.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_refreshUText_70",
+        "uregex_refreshUText_73",
         constants$38.const$0
     );
     static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_BYTE,
@@ -38,7 +38,7 @@ final class constants$38 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "uregex_matches_70",
+        "uregex_matches_73",
         constants$38.const$5
     );
 }

@@ -11,6 +11,70 @@ public class uregex_h_1 {
 
     /**
      * {@snippet lang=c :
+     * enum UGraphemeClusterBreak.U_GCB_E_MODIFIER = 15;
+     * }
+     */
+    public static int U_GCB_E_MODIFIER() {
+        return (int)15L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UGraphemeClusterBreak.U_GCB_GLUE_AFTER_ZWJ = 16;
+     * }
+     */
+    public static int U_GCB_GLUE_AFTER_ZWJ() {
+        return (int)16L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UGraphemeClusterBreak.U_GCB_ZWJ = 17;
+     * }
+     */
+    public static int U_GCB_ZWJ() {
+        return (int)17L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UGraphemeClusterBreak.U_GCB_COUNT = 18;
+     * }
+     */
+    public static int U_GCB_COUNT() {
+        return (int)18L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UWordBreakValues.U_WB_OTHER = 0;
+     * }
+     */
+    public static int U_WB_OTHER() {
+        return (int)0L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UWordBreakValues.U_WB_ALETTER = 1;
+     * }
+     */
+    public static int U_WB_ALETTER() {
+        return (int)1L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UWordBreakValues.U_WB_FORMAT = 2;
+     * }
+     */
+    public static int U_WB_FORMAT() {
+        return (int)2L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UWordBreakValues.U_WB_KATAKANA = 3;
+     * }
+     */
+    public static int U_WB_KATAKANA() {
+        return (int)3L;
+    }
+    /**
+     * {@snippet lang=c :
      * enum UWordBreakValues.U_WB_MIDLETTER = 4;
      * }
      */
@@ -1201,1344 +1265,1344 @@ public class uregex_h_1 {
     public static int U_VO_UPRIGHT() {
         return (int)3L;
     }
-    public static MethodHandle u_hasBinaryProperty_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.const$1,"u_hasBinaryProperty_70");
+    public static MethodHandle u_hasBinaryProperty_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$4.const$1,"u_hasBinaryProperty_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_hasBinaryProperty_70(int c, enum UProperty which);
+     * signed char u_hasBinaryProperty_73(int c, enum UProperty which);
      * }
      */
-    public static byte u_hasBinaryProperty_70(int c, int which) {
-        var mh$ = u_hasBinaryProperty_70$MH();
+    public static byte u_hasBinaryProperty_73(int c, int which) {
+        var mh$ = u_hasBinaryProperty_73$MH();
         try {
             return (byte)mh$.invokeExact(c, which);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_stringHasBinaryProperty_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.const$3,"u_stringHasBinaryProperty_70");
+    public static MethodHandle u_stringHasBinaryProperty_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$4.const$3,"u_stringHasBinaryProperty_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_stringHasBinaryProperty_70(unsigned short* s, int length, enum UProperty which);
+     * signed char u_stringHasBinaryProperty_73(unsigned short* s, int length, enum UProperty which);
      * }
      */
-    public static byte u_stringHasBinaryProperty_70(MemorySegment s, int length, int which) {
-        var mh$ = u_stringHasBinaryProperty_70$MH();
+    public static byte u_stringHasBinaryProperty_73(MemorySegment s, int length, int which) {
+        var mh$ = u_stringHasBinaryProperty_73$MH();
         try {
             return (byte)mh$.invokeExact(s, length, which);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getBinaryPropertySet_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.const$5,"u_getBinaryPropertySet_70");
+    public static MethodHandle u_getBinaryPropertySet_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$4.const$5,"u_getBinaryPropertySet_73");
     }
     /**
      * {@snippet lang=c :
-     * struct USet* u_getBinaryPropertySet_70(enum UProperty property, enum UErrorCode* pErrorCode);
+     * struct USet* u_getBinaryPropertySet_73(enum UProperty property, enum UErrorCode* pErrorCode);
      * }
      */
-    public static MemorySegment u_getBinaryPropertySet_70(int property, MemorySegment pErrorCode) {
-        var mh$ = u_getBinaryPropertySet_70$MH();
+    public static MemorySegment u_getBinaryPropertySet_73(int property, MemorySegment pErrorCode) {
+        var mh$ = u_getBinaryPropertySet_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(property, pErrorCode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isUAlphabetic_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.const$1,"u_isUAlphabetic_70");
+    public static MethodHandle u_isUAlphabetic_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$5.const$1,"u_isUAlphabetic_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isUAlphabetic_70(int c);
+     * signed char u_isUAlphabetic_73(int c);
      * }
      */
-    public static byte u_isUAlphabetic_70(int c) {
-        var mh$ = u_isUAlphabetic_70$MH();
+    public static byte u_isUAlphabetic_73(int c) {
+        var mh$ = u_isUAlphabetic_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isULowercase_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.const$2,"u_isULowercase_70");
+    public static MethodHandle u_isULowercase_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$5.const$2,"u_isULowercase_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isULowercase_70(int c);
+     * signed char u_isULowercase_73(int c);
      * }
      */
-    public static byte u_isULowercase_70(int c) {
-        var mh$ = u_isULowercase_70$MH();
+    public static byte u_isULowercase_73(int c) {
+        var mh$ = u_isULowercase_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isUUppercase_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.const$3,"u_isUUppercase_70");
+    public static MethodHandle u_isUUppercase_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$5.const$3,"u_isUUppercase_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isUUppercase_70(int c);
+     * signed char u_isUUppercase_73(int c);
      * }
      */
-    public static byte u_isUUppercase_70(int c) {
-        var mh$ = u_isUUppercase_70$MH();
+    public static byte u_isUUppercase_73(int c) {
+        var mh$ = u_isUUppercase_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isUWhiteSpace_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.const$4,"u_isUWhiteSpace_70");
+    public static MethodHandle u_isUWhiteSpace_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$5.const$4,"u_isUWhiteSpace_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isUWhiteSpace_70(int c);
+     * signed char u_isUWhiteSpace_73(int c);
      * }
      */
-    public static byte u_isUWhiteSpace_70(int c) {
-        var mh$ = u_isUWhiteSpace_70$MH();
+    public static byte u_isUWhiteSpace_73(int c) {
+        var mh$ = u_isUWhiteSpace_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getIntPropertyValue_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.const$6,"u_getIntPropertyValue_70");
+    public static MethodHandle u_getIntPropertyValue_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$5.const$6,"u_getIntPropertyValue_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_getIntPropertyValue_70(int c, enum UProperty which);
+     * int u_getIntPropertyValue_73(int c, enum UProperty which);
      * }
      */
-    public static int u_getIntPropertyValue_70(int c, int which) {
-        var mh$ = u_getIntPropertyValue_70$MH();
+    public static int u_getIntPropertyValue_73(int c, int which) {
+        var mh$ = u_getIntPropertyValue_73$MH();
         try {
             return (int)mh$.invokeExact(c, which);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getIntPropertyMinValue_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.const$1,"u_getIntPropertyMinValue_70");
+    public static MethodHandle u_getIntPropertyMinValue_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$6.const$1,"u_getIntPropertyMinValue_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_getIntPropertyMinValue_70(enum UProperty which);
+     * int u_getIntPropertyMinValue_73(enum UProperty which);
      * }
      */
-    public static int u_getIntPropertyMinValue_70(int which) {
-        var mh$ = u_getIntPropertyMinValue_70$MH();
+    public static int u_getIntPropertyMinValue_73(int which) {
+        var mh$ = u_getIntPropertyMinValue_73$MH();
         try {
             return (int)mh$.invokeExact(which);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getIntPropertyMaxValue_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.const$2,"u_getIntPropertyMaxValue_70");
+    public static MethodHandle u_getIntPropertyMaxValue_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$6.const$2,"u_getIntPropertyMaxValue_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_getIntPropertyMaxValue_70(enum UProperty which);
+     * int u_getIntPropertyMaxValue_73(enum UProperty which);
      * }
      */
-    public static int u_getIntPropertyMaxValue_70(int which) {
-        var mh$ = u_getIntPropertyMaxValue_70$MH();
+    public static int u_getIntPropertyMaxValue_73(int which) {
+        var mh$ = u_getIntPropertyMaxValue_73$MH();
         try {
             return (int)mh$.invokeExact(which);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getIntPropertyMap_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.const$3,"u_getIntPropertyMap_70");
+    public static MethodHandle u_getIntPropertyMap_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$6.const$3,"u_getIntPropertyMap_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UCPMap* u_getIntPropertyMap_70(enum UProperty property, enum UErrorCode* pErrorCode);
+     * struct UCPMap* u_getIntPropertyMap_73(enum UProperty property, enum UErrorCode* pErrorCode);
      * }
      */
-    public static MemorySegment u_getIntPropertyMap_70(int property, MemorySegment pErrorCode) {
-        var mh$ = u_getIntPropertyMap_70$MH();
+    public static MemorySegment u_getIntPropertyMap_73(int property, MemorySegment pErrorCode) {
+        var mh$ = u_getIntPropertyMap_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(property, pErrorCode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getNumericValue_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.const$5,"u_getNumericValue_70");
+    public static MethodHandle u_getNumericValue_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$6.const$5,"u_getNumericValue_73");
     }
     /**
      * {@snippet lang=c :
-     * double u_getNumericValue_70(int c);
+     * double u_getNumericValue_73(int c);
      * }
      */
-    public static double u_getNumericValue_70(int c) {
-        var mh$ = u_getNumericValue_70$MH();
+    public static double u_getNumericValue_73(int c) {
+        var mh$ = u_getNumericValue_73$MH();
         try {
             return (double)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_islower_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.const$0,"u_islower_70");
+    public static MethodHandle u_islower_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$7.const$0,"u_islower_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_islower_70(int c);
+     * signed char u_islower_73(int c);
      * }
      */
-    public static byte u_islower_70(int c) {
-        var mh$ = u_islower_70$MH();
+    public static byte u_islower_73(int c) {
+        var mh$ = u_islower_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isupper_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.const$1,"u_isupper_70");
+    public static MethodHandle u_isupper_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$7.const$1,"u_isupper_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isupper_70(int c);
+     * signed char u_isupper_73(int c);
      * }
      */
-    public static byte u_isupper_70(int c) {
-        var mh$ = u_isupper_70$MH();
+    public static byte u_isupper_73(int c) {
+        var mh$ = u_isupper_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_istitle_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.const$2,"u_istitle_70");
+    public static MethodHandle u_istitle_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$7.const$2,"u_istitle_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_istitle_70(int c);
+     * signed char u_istitle_73(int c);
      * }
      */
-    public static byte u_istitle_70(int c) {
-        var mh$ = u_istitle_70$MH();
+    public static byte u_istitle_73(int c) {
+        var mh$ = u_istitle_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isdigit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.const$3,"u_isdigit_70");
+    public static MethodHandle u_isdigit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$7.const$3,"u_isdigit_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isdigit_70(int c);
+     * signed char u_isdigit_73(int c);
      * }
      */
-    public static byte u_isdigit_70(int c) {
-        var mh$ = u_isdigit_70$MH();
+    public static byte u_isdigit_73(int c) {
+        var mh$ = u_isdigit_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isalpha_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.const$4,"u_isalpha_70");
+    public static MethodHandle u_isalpha_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$7.const$4,"u_isalpha_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isalpha_70(int c);
+     * signed char u_isalpha_73(int c);
      * }
      */
-    public static byte u_isalpha_70(int c) {
-        var mh$ = u_isalpha_70$MH();
+    public static byte u_isalpha_73(int c) {
+        var mh$ = u_isalpha_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isalnum_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.const$5,"u_isalnum_70");
+    public static MethodHandle u_isalnum_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$7.const$5,"u_isalnum_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isalnum_70(int c);
+     * signed char u_isalnum_73(int c);
      * }
      */
-    public static byte u_isalnum_70(int c) {
-        var mh$ = u_isalnum_70$MH();
+    public static byte u_isalnum_73(int c) {
+        var mh$ = u_isalnum_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isxdigit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.const$0,"u_isxdigit_70");
+    public static MethodHandle u_isxdigit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$8.const$0,"u_isxdigit_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isxdigit_70(int c);
+     * signed char u_isxdigit_73(int c);
      * }
      */
-    public static byte u_isxdigit_70(int c) {
-        var mh$ = u_isxdigit_70$MH();
+    public static byte u_isxdigit_73(int c) {
+        var mh$ = u_isxdigit_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_ispunct_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.const$1,"u_ispunct_70");
+    public static MethodHandle u_ispunct_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$8.const$1,"u_ispunct_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_ispunct_70(int c);
+     * signed char u_ispunct_73(int c);
      * }
      */
-    public static byte u_ispunct_70(int c) {
-        var mh$ = u_ispunct_70$MH();
+    public static byte u_ispunct_73(int c) {
+        var mh$ = u_ispunct_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isgraph_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.const$2,"u_isgraph_70");
+    public static MethodHandle u_isgraph_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$8.const$2,"u_isgraph_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isgraph_70(int c);
+     * signed char u_isgraph_73(int c);
      * }
      */
-    public static byte u_isgraph_70(int c) {
-        var mh$ = u_isgraph_70$MH();
+    public static byte u_isgraph_73(int c) {
+        var mh$ = u_isgraph_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isblank_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.const$3,"u_isblank_70");
+    public static MethodHandle u_isblank_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$8.const$3,"u_isblank_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isblank_70(int c);
+     * signed char u_isblank_73(int c);
      * }
      */
-    public static byte u_isblank_70(int c) {
-        var mh$ = u_isblank_70$MH();
+    public static byte u_isblank_73(int c) {
+        var mh$ = u_isblank_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isdefined_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.const$4,"u_isdefined_70");
+    public static MethodHandle u_isdefined_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$8.const$4,"u_isdefined_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isdefined_70(int c);
+     * signed char u_isdefined_73(int c);
      * }
      */
-    public static byte u_isdefined_70(int c) {
-        var mh$ = u_isdefined_70$MH();
+    public static byte u_isdefined_73(int c) {
+        var mh$ = u_isdefined_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isspace_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.const$5,"u_isspace_70");
+    public static MethodHandle u_isspace_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$8.const$5,"u_isspace_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isspace_70(int c);
+     * signed char u_isspace_73(int c);
      * }
      */
-    public static byte u_isspace_70(int c) {
-        var mh$ = u_isspace_70$MH();
+    public static byte u_isspace_73(int c) {
+        var mh$ = u_isspace_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isJavaSpaceChar_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.const$0,"u_isJavaSpaceChar_70");
+    public static MethodHandle u_isJavaSpaceChar_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$9.const$0,"u_isJavaSpaceChar_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isJavaSpaceChar_70(int c);
+     * signed char u_isJavaSpaceChar_73(int c);
      * }
      */
-    public static byte u_isJavaSpaceChar_70(int c) {
-        var mh$ = u_isJavaSpaceChar_70$MH();
+    public static byte u_isJavaSpaceChar_73(int c) {
+        var mh$ = u_isJavaSpaceChar_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isWhitespace_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.const$1,"u_isWhitespace_70");
+    public static MethodHandle u_isWhitespace_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$9.const$1,"u_isWhitespace_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isWhitespace_70(int c);
+     * signed char u_isWhitespace_73(int c);
      * }
      */
-    public static byte u_isWhitespace_70(int c) {
-        var mh$ = u_isWhitespace_70$MH();
+    public static byte u_isWhitespace_73(int c) {
+        var mh$ = u_isWhitespace_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_iscntrl_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.const$2,"u_iscntrl_70");
+    public static MethodHandle u_iscntrl_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$9.const$2,"u_iscntrl_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_iscntrl_70(int c);
+     * signed char u_iscntrl_73(int c);
      * }
      */
-    public static byte u_iscntrl_70(int c) {
-        var mh$ = u_iscntrl_70$MH();
+    public static byte u_iscntrl_73(int c) {
+        var mh$ = u_iscntrl_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isISOControl_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.const$3,"u_isISOControl_70");
+    public static MethodHandle u_isISOControl_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$9.const$3,"u_isISOControl_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isISOControl_70(int c);
+     * signed char u_isISOControl_73(int c);
      * }
      */
-    public static byte u_isISOControl_70(int c) {
-        var mh$ = u_isISOControl_70$MH();
+    public static byte u_isISOControl_73(int c) {
+        var mh$ = u_isISOControl_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isprint_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.const$4,"u_isprint_70");
+    public static MethodHandle u_isprint_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$9.const$4,"u_isprint_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isprint_70(int c);
+     * signed char u_isprint_73(int c);
      * }
      */
-    public static byte u_isprint_70(int c) {
-        var mh$ = u_isprint_70$MH();
+    public static byte u_isprint_73(int c) {
+        var mh$ = u_isprint_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isbase_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.const$5,"u_isbase_70");
+    public static MethodHandle u_isbase_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$9.const$5,"u_isbase_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isbase_70(int c);
+     * signed char u_isbase_73(int c);
      * }
      */
-    public static byte u_isbase_70(int c) {
-        var mh$ = u_isbase_70$MH();
+    public static byte u_isbase_73(int c) {
+        var mh$ = u_isbase_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_charDirection_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.const$0,"u_charDirection_70");
+    public static MethodHandle u_charDirection_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$10.const$0,"u_charDirection_73");
     }
     /**
      * {@snippet lang=c :
-     * enum UCharDirection u_charDirection_70(int c);
+     * enum UCharDirection u_charDirection_73(int c);
      * }
      */
-    public static int u_charDirection_70(int c) {
-        var mh$ = u_charDirection_70$MH();
+    public static int u_charDirection_73(int c) {
+        var mh$ = u_charDirection_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isMirrored_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.const$1,"u_isMirrored_70");
+    public static MethodHandle u_isMirrored_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$10.const$1,"u_isMirrored_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isMirrored_70(int c);
+     * signed char u_isMirrored_73(int c);
      * }
      */
-    public static byte u_isMirrored_70(int c) {
-        var mh$ = u_isMirrored_70$MH();
+    public static byte u_isMirrored_73(int c) {
+        var mh$ = u_isMirrored_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_charMirror_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.const$2,"u_charMirror_70");
+    public static MethodHandle u_charMirror_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$10.const$2,"u_charMirror_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_charMirror_70(int c);
+     * int u_charMirror_73(int c);
      * }
      */
-    public static int u_charMirror_70(int c) {
-        var mh$ = u_charMirror_70$MH();
+    public static int u_charMirror_73(int c) {
+        var mh$ = u_charMirror_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getBidiPairedBracket_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.const$3,"u_getBidiPairedBracket_70");
+    public static MethodHandle u_getBidiPairedBracket_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$10.const$3,"u_getBidiPairedBracket_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_getBidiPairedBracket_70(int c);
+     * int u_getBidiPairedBracket_73(int c);
      * }
      */
-    public static int u_getBidiPairedBracket_70(int c) {
-        var mh$ = u_getBidiPairedBracket_70$MH();
+    public static int u_getBidiPairedBracket_73(int c) {
+        var mh$ = u_getBidiPairedBracket_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_charType_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.const$4,"u_charType_70");
+    public static MethodHandle u_charType_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$10.const$4,"u_charType_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_charType_70(int c);
+     * signed char u_charType_73(int c);
      * }
      */
-    public static byte u_charType_70(int c) {
-        var mh$ = u_charType_70$MH();
+    public static byte u_charType_73(int c) {
+        var mh$ = u_charType_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_enumCharTypes_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.const$3,"u_enumCharTypes_70");
+    public static MethodHandle u_enumCharTypes_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$11.const$3,"u_enumCharTypes_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_enumCharTypes_70(signed char (*enumRange)(void*,int,int,enum UCharCategory), void* context);
+     * void u_enumCharTypes_73(signed char (*enumRange)(void*,int,int,enum UCharCategory), void* context);
      * }
      */
-    public static void u_enumCharTypes_70(MemorySegment enumRange, MemorySegment context) {
-        var mh$ = u_enumCharTypes_70$MH();
+    public static void u_enumCharTypes_73(MemorySegment enumRange, MemorySegment context) {
+        var mh$ = u_enumCharTypes_73$MH();
         try {
             mh$.invokeExact(enumRange, context);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getCombiningClass_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.const$4,"u_getCombiningClass_70");
+    public static MethodHandle u_getCombiningClass_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$11.const$4,"u_getCombiningClass_73");
     }
     /**
      * {@snippet lang=c :
-     * unsigned char u_getCombiningClass_70(int c);
+     * unsigned char u_getCombiningClass_73(int c);
      * }
      */
-    public static byte u_getCombiningClass_70(int c) {
-        var mh$ = u_getCombiningClass_70$MH();
+    public static byte u_getCombiningClass_73(int c) {
+        var mh$ = u_getCombiningClass_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_charDigitValue_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.const$5,"u_charDigitValue_70");
+    public static MethodHandle u_charDigitValue_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$11.const$5,"u_charDigitValue_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_charDigitValue_70(int c);
+     * int u_charDigitValue_73(int c);
      * }
      */
-    public static int u_charDigitValue_70(int c) {
-        var mh$ = u_charDigitValue_70$MH();
+    public static int u_charDigitValue_73(int c) {
+        var mh$ = u_charDigitValue_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle ublock_getCode_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.const$0,"ublock_getCode_70");
+    public static MethodHandle ublock_getCode_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$12.const$0,"ublock_getCode_73");
     }
     /**
      * {@snippet lang=c :
-     * enum UBlockCode ublock_getCode_70(int c);
+     * enum UBlockCode ublock_getCode_73(int c);
      * }
      */
-    public static int ublock_getCode_70(int c) {
-        var mh$ = ublock_getCode_70$MH();
+    public static int ublock_getCode_73(int c) {
+        var mh$ = ublock_getCode_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_charName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.const$2,"u_charName_70");
+    public static MethodHandle u_charName_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$12.const$2,"u_charName_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_charName_70(int code, enum UCharNameChoice nameChoice, char* buffer, int bufferLength, enum UErrorCode* pErrorCode);
+     * int u_charName_73(int code, enum UCharNameChoice nameChoice, char* buffer, int bufferLength, enum UErrorCode* pErrorCode);
      * }
      */
-    public static int u_charName_70(int code, int nameChoice, MemorySegment buffer, int bufferLength, MemorySegment pErrorCode) {
-        var mh$ = u_charName_70$MH();
+    public static int u_charName_73(int code, int nameChoice, MemorySegment buffer, int bufferLength, MemorySegment pErrorCode) {
+        var mh$ = u_charName_73$MH();
         try {
             return (int)mh$.invokeExact(code, nameChoice, buffer, bufferLength, pErrorCode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getISOComment_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.const$4,"u_getISOComment_70");
+    public static MethodHandle u_getISOComment_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$12.const$4,"u_getISOComment_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_getISOComment_70(int c, char* dest, int destCapacity, enum UErrorCode* pErrorCode);
+     * int u_getISOComment_73(int c, char* dest, int destCapacity, enum UErrorCode* pErrorCode);
      * }
      */
-    public static int u_getISOComment_70(int c, MemorySegment dest, int destCapacity, MemorySegment pErrorCode) {
-        var mh$ = u_getISOComment_70$MH();
+    public static int u_getISOComment_73(int c, MemorySegment dest, int destCapacity, MemorySegment pErrorCode) {
+        var mh$ = u_getISOComment_73$MH();
         try {
             return (int)mh$.invokeExact(c, dest, destCapacity, pErrorCode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_charFromName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.const$6,"u_charFromName_70");
+    public static MethodHandle u_charFromName_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$12.const$6,"u_charFromName_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_charFromName_70(enum UCharNameChoice nameChoice, char* name, enum UErrorCode* pErrorCode);
+     * int u_charFromName_73(enum UCharNameChoice nameChoice, char* name, enum UErrorCode* pErrorCode);
      * }
      */
-    public static int u_charFromName_70(int nameChoice, MemorySegment name, MemorySegment pErrorCode) {
-        var mh$ = u_charFromName_70$MH();
+    public static int u_charFromName_73(int nameChoice, MemorySegment name, MemorySegment pErrorCode) {
+        var mh$ = u_charFromName_73$MH();
         try {
             return (int)mh$.invokeExact(nameChoice, name, pErrorCode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_enumCharNames_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.const$5,"u_enumCharNames_70");
+    public static MethodHandle u_enumCharNames_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$13.const$5,"u_enumCharNames_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_enumCharNames_70(int start, int limit, signed char (*fn)(void*,int,enum UCharNameChoice,char*,int), void* context, enum UCharNameChoice nameChoice, enum UErrorCode* pErrorCode);
+     * void u_enumCharNames_73(int start, int limit, signed char (*fn)(void*,int,enum UCharNameChoice,char*,int), void* context, enum UCharNameChoice nameChoice, enum UErrorCode* pErrorCode);
      * }
      */
-    public static void u_enumCharNames_70(int start, int limit, MemorySegment fn, MemorySegment context, int nameChoice, MemorySegment pErrorCode) {
-        var mh$ = u_enumCharNames_70$MH();
+    public static void u_enumCharNames_73(int start, int limit, MemorySegment fn, MemorySegment context, int nameChoice, MemorySegment pErrorCode) {
+        var mh$ = u_enumCharNames_73$MH();
         try {
             mh$.invokeExact(start, limit, fn, context, nameChoice, pErrorCode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getPropertyName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.const$1,"u_getPropertyName_70");
+    public static MethodHandle u_getPropertyName_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$14.const$1,"u_getPropertyName_73");
     }
     /**
      * {@snippet lang=c :
-     * char* u_getPropertyName_70(enum UProperty property, enum UPropertyNameChoice nameChoice);
+     * char* u_getPropertyName_73(enum UProperty property, enum UPropertyNameChoice nameChoice);
      * }
      */
-    public static MemorySegment u_getPropertyName_70(int property, int nameChoice) {
-        var mh$ = u_getPropertyName_70$MH();
+    public static MemorySegment u_getPropertyName_73(int property, int nameChoice) {
+        var mh$ = u_getPropertyName_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(property, nameChoice);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getPropertyEnum_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.const$3,"u_getPropertyEnum_70");
+    public static MethodHandle u_getPropertyEnum_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$14.const$3,"u_getPropertyEnum_73");
     }
     /**
      * {@snippet lang=c :
-     * enum UProperty u_getPropertyEnum_70(char* alias);
+     * enum UProperty u_getPropertyEnum_73(char* alias);
      * }
      */
-    public static int u_getPropertyEnum_70(MemorySegment alias) {
-        var mh$ = u_getPropertyEnum_70$MH();
+    public static int u_getPropertyEnum_73(MemorySegment alias) {
+        var mh$ = u_getPropertyEnum_73$MH();
         try {
             return (int)mh$.invokeExact(alias);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getPropertyValueName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.const$5,"u_getPropertyValueName_70");
+    public static MethodHandle u_getPropertyValueName_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$14.const$5,"u_getPropertyValueName_73");
     }
     /**
      * {@snippet lang=c :
-     * char* u_getPropertyValueName_70(enum UProperty property, int value, enum UPropertyNameChoice nameChoice);
+     * char* u_getPropertyValueName_73(enum UProperty property, int value, enum UPropertyNameChoice nameChoice);
      * }
      */
-    public static MemorySegment u_getPropertyValueName_70(int property, int value, int nameChoice) {
-        var mh$ = u_getPropertyValueName_70$MH();
+    public static MemorySegment u_getPropertyValueName_73(int property, int value, int nameChoice) {
+        var mh$ = u_getPropertyValueName_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(property, value, nameChoice);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getPropertyValueEnum_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$1,"u_getPropertyValueEnum_70");
+    public static MethodHandle u_getPropertyValueEnum_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$15.const$1,"u_getPropertyValueEnum_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_getPropertyValueEnum_70(enum UProperty property, char* alias);
+     * int u_getPropertyValueEnum_73(enum UProperty property, char* alias);
      * }
      */
-    public static int u_getPropertyValueEnum_70(int property, MemorySegment alias) {
-        var mh$ = u_getPropertyValueEnum_70$MH();
+    public static int u_getPropertyValueEnum_73(int property, MemorySegment alias) {
+        var mh$ = u_getPropertyValueEnum_73$MH();
         try {
             return (int)mh$.invokeExact(property, alias);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isIDStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$2,"u_isIDStart_70");
+    public static MethodHandle u_isIDStart_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$15.const$2,"u_isIDStart_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isIDStart_70(int c);
+     * signed char u_isIDStart_73(int c);
      * }
      */
-    public static byte u_isIDStart_70(int c) {
-        var mh$ = u_isIDStart_70$MH();
+    public static byte u_isIDStart_73(int c) {
+        var mh$ = u_isIDStart_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isIDPart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$3,"u_isIDPart_70");
+    public static MethodHandle u_isIDPart_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$15.const$3,"u_isIDPart_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isIDPart_70(int c);
+     * signed char u_isIDPart_73(int c);
      * }
      */
-    public static byte u_isIDPart_70(int c) {
-        var mh$ = u_isIDPart_70$MH();
+    public static byte u_isIDPart_73(int c) {
+        var mh$ = u_isIDPart_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isIDIgnorable_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$4,"u_isIDIgnorable_70");
+    public static MethodHandle u_isIDIgnorable_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$15.const$4,"u_isIDIgnorable_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isIDIgnorable_70(int c);
+     * signed char u_isIDIgnorable_73(int c);
      * }
      */
-    public static byte u_isIDIgnorable_70(int c) {
-        var mh$ = u_isIDIgnorable_70$MH();
+    public static byte u_isIDIgnorable_73(int c) {
+        var mh$ = u_isIDIgnorable_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isJavaIDStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.const$5,"u_isJavaIDStart_70");
+    public static MethodHandle u_isJavaIDStart_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$15.const$5,"u_isJavaIDStart_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isJavaIDStart_70(int c);
+     * signed char u_isJavaIDStart_73(int c);
      * }
      */
-    public static byte u_isJavaIDStart_70(int c) {
-        var mh$ = u_isJavaIDStart_70$MH();
+    public static byte u_isJavaIDStart_73(int c) {
+        var mh$ = u_isJavaIDStart_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_isJavaIDPart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$0,"u_isJavaIDPart_70");
+    public static MethodHandle u_isJavaIDPart_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$16.const$0,"u_isJavaIDPart_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char u_isJavaIDPart_70(int c);
+     * signed char u_isJavaIDPart_73(int c);
      * }
      */
-    public static byte u_isJavaIDPart_70(int c) {
-        var mh$ = u_isJavaIDPart_70$MH();
+    public static byte u_isJavaIDPart_73(int c) {
+        var mh$ = u_isJavaIDPart_73$MH();
         try {
             return (byte)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_tolower_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$1,"u_tolower_70");
+    public static MethodHandle u_tolower_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$16.const$1,"u_tolower_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_tolower_70(int c);
+     * int u_tolower_73(int c);
      * }
      */
-    public static int u_tolower_70(int c) {
-        var mh$ = u_tolower_70$MH();
+    public static int u_tolower_73(int c) {
+        var mh$ = u_tolower_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_toupper_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$2,"u_toupper_70");
+    public static MethodHandle u_toupper_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$16.const$2,"u_toupper_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_toupper_70(int c);
+     * int u_toupper_73(int c);
      * }
      */
-    public static int u_toupper_70(int c) {
-        var mh$ = u_toupper_70$MH();
+    public static int u_toupper_73(int c) {
+        var mh$ = u_toupper_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_totitle_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$3,"u_totitle_70");
+    public static MethodHandle u_totitle_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$16.const$3,"u_totitle_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_totitle_70(int c);
+     * int u_totitle_73(int c);
      * }
      */
-    public static int u_totitle_70(int c) {
-        var mh$ = u_totitle_70$MH();
+    public static int u_totitle_73(int c) {
+        var mh$ = u_totitle_73$MH();
         try {
             return (int)mh$.invokeExact(c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_foldCase_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$4,"u_foldCase_70");
+    public static MethodHandle u_foldCase_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$16.const$4,"u_foldCase_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_foldCase_70(int c, unsigned int options);
+     * int u_foldCase_73(int c, unsigned int options);
      * }
      */
-    public static int u_foldCase_70(int c, int options) {
-        var mh$ = u_foldCase_70$MH();
+    public static int u_foldCase_73(int c, int options) {
+        var mh$ = u_foldCase_73$MH();
         try {
             return (int)mh$.invokeExact(c, options);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_digit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.const$6,"u_digit_70");
+    public static MethodHandle u_digit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$16.const$6,"u_digit_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_digit_70(int ch, signed char radix);
+     * int u_digit_73(int ch, signed char radix);
      * }
      */
-    public static int u_digit_70(int ch, byte radix) {
-        var mh$ = u_digit_70$MH();
+    public static int u_digit_73(int ch, byte radix) {
+        var mh$ = u_digit_73$MH();
         try {
             return (int)mh$.invokeExact(ch, radix);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_forDigit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$0,"u_forDigit_70");
+    public static MethodHandle u_forDigit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$17.const$0,"u_forDigit_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_forDigit_70(int digit, signed char radix);
+     * int u_forDigit_73(int digit, signed char radix);
      * }
      */
-    public static int u_forDigit_70(int digit, byte radix) {
-        var mh$ = u_forDigit_70$MH();
+    public static int u_forDigit_73(int digit, byte radix) {
+        var mh$ = u_forDigit_73$MH();
         try {
             return (int)mh$.invokeExact(digit, radix);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_charAge_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$2,"u_charAge_70");
+    public static MethodHandle u_charAge_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$17.const$2,"u_charAge_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_charAge_70(int c, unsigned char versionArray[4]);
+     * void u_charAge_73(int c, unsigned char versionArray[4]);
      * }
      */
-    public static void u_charAge_70(int c, MemorySegment versionArray) {
-        var mh$ = u_charAge_70$MH();
+    public static void u_charAge_73(int c, MemorySegment versionArray) {
+        var mh$ = u_charAge_73$MH();
         try {
             mh$.invokeExact(c, versionArray);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getUnicodeVersion_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$3,"u_getUnicodeVersion_70");
+    public static MethodHandle u_getUnicodeVersion_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$17.const$3,"u_getUnicodeVersion_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_getUnicodeVersion_70(unsigned char versionArray[4]);
+     * void u_getUnicodeVersion_73(unsigned char versionArray[4]);
      * }
      */
-    public static void u_getUnicodeVersion_70(MemorySegment versionArray) {
-        var mh$ = u_getUnicodeVersion_70$MH();
+    public static void u_getUnicodeVersion_73(MemorySegment versionArray) {
+        var mh$ = u_getUnicodeVersion_73$MH();
         try {
             mh$.invokeExact(versionArray);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getFC_NFKC_Closure_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$4,"u_getFC_NFKC_Closure_70");
+    public static MethodHandle u_getFC_NFKC_Closure_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$17.const$4,"u_getFC_NFKC_Closure_73");
     }
     /**
      * {@snippet lang=c :
-     * int u_getFC_NFKC_Closure_70(int c, unsigned short* dest, int destCapacity, enum UErrorCode* pErrorCode);
+     * int u_getFC_NFKC_Closure_73(int c, unsigned short* dest, int destCapacity, enum UErrorCode* pErrorCode);
      * }
      */
-    public static int u_getFC_NFKC_Closure_70(int c, MemorySegment dest, int destCapacity, MemorySegment pErrorCode) {
-        var mh$ = u_getFC_NFKC_Closure_70$MH();
+    public static int u_getFC_NFKC_Closure_73(int c, MemorySegment dest, int destCapacity, MemorySegment pErrorCode) {
+        var mh$ = u_getFC_NFKC_Closure_73$MH();
         try {
             return (int)mh$.invokeExact(c, dest, destCapacity, pErrorCode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_close_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.const$6,"utext_close_70");
+    public static MethodHandle utext_close_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$17.const$6,"utext_close_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* utext_close_70(struct UText* ut);
+     * struct UText* utext_close_73(struct UText* ut);
      * }
      */
-    public static MemorySegment utext_close_70(MemorySegment ut) {
-        var mh$ = utext_close_70$MH();
+    public static MemorySegment utext_close_73(MemorySegment ut) {
+        var mh$ = utext_close_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_openUTF8_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.const$1,"utext_openUTF8_70");
+    public static MethodHandle utext_openUTF8_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$18.const$1,"utext_openUTF8_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* utext_openUTF8_70(struct UText* ut, char* s, long length, enum UErrorCode* status);
+     * struct UText* utext_openUTF8_73(struct UText* ut, char* s, long length, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment utext_openUTF8_70(MemorySegment ut, MemorySegment s, long length, MemorySegment status) {
-        var mh$ = utext_openUTF8_70$MH();
+    public static MemorySegment utext_openUTF8_73(MemorySegment ut, MemorySegment s, long length, MemorySegment status) {
+        var mh$ = utext_openUTF8_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(ut, s, length, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_openUChars_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.const$2,"utext_openUChars_70");
+    public static MethodHandle utext_openUChars_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$18.const$2,"utext_openUChars_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* utext_openUChars_70(struct UText* ut, unsigned short* s, long length, enum UErrorCode* status);
+     * struct UText* utext_openUChars_73(struct UText* ut, unsigned short* s, long length, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment utext_openUChars_70(MemorySegment ut, MemorySegment s, long length, MemorySegment status) {
-        var mh$ = utext_openUChars_70$MH();
+    public static MemorySegment utext_openUChars_73(MemorySegment ut, MemorySegment s, long length, MemorySegment status) {
+        var mh$ = utext_openUChars_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(ut, s, length, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_clone_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.const$4,"utext_clone_70");
+    public static MethodHandle utext_clone_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$18.const$4,"utext_clone_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* utext_clone_70(struct UText* dest, struct UText* src, signed char deep, signed char readOnly, enum UErrorCode* status);
+     * struct UText* utext_clone_73(struct UText* dest, struct UText* src, signed char deep, signed char readOnly, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment utext_clone_70(MemorySegment dest, MemorySegment src, byte deep, byte readOnly, MemorySegment status) {
-        var mh$ = utext_clone_70$MH();
+    public static MemorySegment utext_clone_73(MemorySegment dest, MemorySegment src, byte deep, byte readOnly, MemorySegment status) {
+        var mh$ = utext_clone_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(dest, src, deep, readOnly, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_equals_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.const$6,"utext_equals_70");
+    public static MethodHandle utext_equals_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$18.const$6,"utext_equals_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char utext_equals_70(struct UText* a, struct UText* b);
+     * signed char utext_equals_73(struct UText* a, struct UText* b);
      * }
      */
-    public static byte utext_equals_70(MemorySegment a, MemorySegment b) {
-        var mh$ = utext_equals_70$MH();
+    public static byte utext_equals_73(MemorySegment a, MemorySegment b) {
+        var mh$ = utext_equals_73$MH();
         try {
             return (byte)mh$.invokeExact(a, b);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_nativeLength_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.const$1,"utext_nativeLength_70");
+    public static MethodHandle utext_nativeLength_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$19.const$1,"utext_nativeLength_73");
     }
     /**
      * {@snippet lang=c :
-     * long utext_nativeLength_70(struct UText* ut);
+     * long utext_nativeLength_73(struct UText* ut);
      * }
      */
-    public static long utext_nativeLength_70(MemorySegment ut) {
-        var mh$ = utext_nativeLength_70$MH();
+    public static long utext_nativeLength_73(MemorySegment ut) {
+        var mh$ = utext_nativeLength_73$MH();
         try {
             return (long)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_isLengthExpensive_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.const$3,"utext_isLengthExpensive_70");
+    public static MethodHandle utext_isLengthExpensive_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$19.const$3,"utext_isLengthExpensive_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char utext_isLengthExpensive_70(struct UText* ut);
+     * signed char utext_isLengthExpensive_73(struct UText* ut);
      * }
      */
-    public static byte utext_isLengthExpensive_70(MemorySegment ut) {
-        var mh$ = utext_isLengthExpensive_70$MH();
+    public static byte utext_isLengthExpensive_73(MemorySegment ut) {
+        var mh$ = utext_isLengthExpensive_73$MH();
         try {
             return (byte)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_char32At_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.const$5,"utext_char32At_70");
+    public static MethodHandle utext_char32At_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$19.const$5,"utext_char32At_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_char32At_70(struct UText* ut, long nativeIndex);
+     * int utext_char32At_73(struct UText* ut, long nativeIndex);
      * }
      */
-    public static int utext_char32At_70(MemorySegment ut, long nativeIndex) {
-        var mh$ = utext_char32At_70$MH();
+    public static int utext_char32At_73(MemorySegment ut, long nativeIndex) {
+        var mh$ = utext_char32At_73$MH();
         try {
             return (int)mh$.invokeExact(ut, nativeIndex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_current32_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.const$0,"utext_current32_70");
+    public static MethodHandle utext_current32_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.const$0,"utext_current32_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_current32_70(struct UText* ut);
+     * int utext_current32_73(struct UText* ut);
      * }
      */
-    public static int utext_current32_70(MemorySegment ut) {
-        var mh$ = utext_current32_70$MH();
+    public static int utext_current32_73(MemorySegment ut) {
+        var mh$ = utext_current32_73$MH();
         try {
             return (int)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_next32_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.const$1,"utext_next32_70");
+    public static MethodHandle utext_next32_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.const$1,"utext_next32_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_next32_70(struct UText* ut);
+     * int utext_next32_73(struct UText* ut);
      * }
      */
-    public static int utext_next32_70(MemorySegment ut) {
-        var mh$ = utext_next32_70$MH();
+    public static int utext_next32_73(MemorySegment ut) {
+        var mh$ = utext_next32_73$MH();
         try {
             return (int)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_previous32_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.const$2,"utext_previous32_70");
+    public static MethodHandle utext_previous32_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.const$2,"utext_previous32_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_previous32_70(struct UText* ut);
+     * int utext_previous32_73(struct UText* ut);
      * }
      */
-    public static int utext_previous32_70(MemorySegment ut) {
-        var mh$ = utext_previous32_70$MH();
+    public static int utext_previous32_73(MemorySegment ut) {
+        var mh$ = utext_previous32_73$MH();
         try {
             return (int)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_next32From_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.const$3,"utext_next32From_70");
+    public static MethodHandle utext_next32From_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.const$3,"utext_next32From_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_next32From_70(struct UText* ut, long nativeIndex);
+     * int utext_next32From_73(struct UText* ut, long nativeIndex);
      * }
      */
-    public static int utext_next32From_70(MemorySegment ut, long nativeIndex) {
-        var mh$ = utext_next32From_70$MH();
+    public static int utext_next32From_73(MemorySegment ut, long nativeIndex) {
+        var mh$ = utext_next32From_73$MH();
         try {
             return (int)mh$.invokeExact(ut, nativeIndex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_previous32From_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.const$4,"utext_previous32From_70");
+    public static MethodHandle utext_previous32From_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.const$4,"utext_previous32From_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_previous32From_70(struct UText* ut, long nativeIndex);
+     * int utext_previous32From_73(struct UText* ut, long nativeIndex);
      * }
      */
-    public static int utext_previous32From_70(MemorySegment ut, long nativeIndex) {
-        var mh$ = utext_previous32From_70$MH();
+    public static int utext_previous32From_73(MemorySegment ut, long nativeIndex) {
+        var mh$ = utext_previous32From_73$MH();
         try {
             return (int)mh$.invokeExact(ut, nativeIndex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_getNativeIndex_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.const$5,"utext_getNativeIndex_70");
+    public static MethodHandle utext_getNativeIndex_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.const$5,"utext_getNativeIndex_73");
     }
     /**
      * {@snippet lang=c :
-     * long utext_getNativeIndex_70(struct UText* ut);
+     * long utext_getNativeIndex_73(struct UText* ut);
      * }
      */
-    public static long utext_getNativeIndex_70(MemorySegment ut) {
-        var mh$ = utext_getNativeIndex_70$MH();
+    public static long utext_getNativeIndex_73(MemorySegment ut) {
+        var mh$ = utext_getNativeIndex_73$MH();
         try {
             return (long)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_setNativeIndex_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.const$1,"utext_setNativeIndex_70");
+    public static MethodHandle utext_setNativeIndex_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$21.const$1,"utext_setNativeIndex_73");
     }
     /**
      * {@snippet lang=c :
-     * void utext_setNativeIndex_70(struct UText* ut, long nativeIndex);
+     * void utext_setNativeIndex_73(struct UText* ut, long nativeIndex);
      * }
      */
-    public static void utext_setNativeIndex_70(MemorySegment ut, long nativeIndex) {
-        var mh$ = utext_setNativeIndex_70$MH();
+    public static void utext_setNativeIndex_73(MemorySegment ut, long nativeIndex) {
+        var mh$ = utext_setNativeIndex_73$MH();
         try {
             mh$.invokeExact(ut, nativeIndex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_moveIndex32_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.const$3,"utext_moveIndex32_70");
+    public static MethodHandle utext_moveIndex32_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$21.const$3,"utext_moveIndex32_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char utext_moveIndex32_70(struct UText* ut, int delta);
+     * signed char utext_moveIndex32_73(struct UText* ut, int delta);
      * }
      */
-    public static byte utext_moveIndex32_70(MemorySegment ut, int delta) {
-        var mh$ = utext_moveIndex32_70$MH();
+    public static byte utext_moveIndex32_73(MemorySegment ut, int delta) {
+        var mh$ = utext_moveIndex32_73$MH();
         try {
             return (byte)mh$.invokeExact(ut, delta);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_getPreviousNativeIndex_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.const$4,"utext_getPreviousNativeIndex_70");
+    public static MethodHandle utext_getPreviousNativeIndex_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$21.const$4,"utext_getPreviousNativeIndex_73");
     }
     /**
      * {@snippet lang=c :
-     * long utext_getPreviousNativeIndex_70(struct UText* ut);
+     * long utext_getPreviousNativeIndex_73(struct UText* ut);
      * }
      */
-    public static long utext_getPreviousNativeIndex_70(MemorySegment ut) {
-        var mh$ = utext_getPreviousNativeIndex_70$MH();
+    public static long utext_getPreviousNativeIndex_73(MemorySegment ut) {
+        var mh$ = utext_getPreviousNativeIndex_73$MH();
         try {
             return (long)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_extract_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.const$6,"utext_extract_70");
+    public static MethodHandle utext_extract_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$21.const$6,"utext_extract_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_extract_70(struct UText* ut, long nativeStart, long nativeLimit, unsigned short* dest, int destCapacity, enum UErrorCode* status);
+     * int utext_extract_73(struct UText* ut, long nativeStart, long nativeLimit, unsigned short* dest, int destCapacity, enum UErrorCode* status);
      * }
      */
-    public static int utext_extract_70(MemorySegment ut, long nativeStart, long nativeLimit, MemorySegment dest, int destCapacity, MemorySegment status) {
-        var mh$ = utext_extract_70$MH();
+    public static int utext_extract_73(MemorySegment ut, long nativeStart, long nativeLimit, MemorySegment dest, int destCapacity, MemorySegment status) {
+        var mh$ = utext_extract_73$MH();
         try {
             return (int)mh$.invokeExact(ut, nativeStart, nativeLimit, dest, destCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_isWritable_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.const$0,"utext_isWritable_70");
+    public static MethodHandle utext_isWritable_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$22.const$0,"utext_isWritable_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char utext_isWritable_70(struct UText* ut);
+     * signed char utext_isWritable_73(struct UText* ut);
      * }
      */
-    public static byte utext_isWritable_70(MemorySegment ut) {
-        var mh$ = utext_isWritable_70$MH();
+    public static byte utext_isWritable_73(MemorySegment ut) {
+        var mh$ = utext_isWritable_73$MH();
         try {
             return (byte)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_hasMetaData_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.const$1,"utext_hasMetaData_70");
+    public static MethodHandle utext_hasMetaData_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$22.const$1,"utext_hasMetaData_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char utext_hasMetaData_70(struct UText* ut);
+     * signed char utext_hasMetaData_73(struct UText* ut);
      * }
      */
-    public static byte utext_hasMetaData_70(MemorySegment ut) {
-        var mh$ = utext_hasMetaData_70$MH();
+    public static byte utext_hasMetaData_73(MemorySegment ut) {
+        var mh$ = utext_hasMetaData_73$MH();
         try {
             return (byte)mh$.invokeExact(ut);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_replace_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.const$2,"utext_replace_70");
+    public static MethodHandle utext_replace_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$22.const$2,"utext_replace_73");
     }
     /**
      * {@snippet lang=c :
-     * int utext_replace_70(struct UText* ut, long nativeStart, long nativeLimit, unsigned short* replacementText, int replacementLength, enum UErrorCode* status);
+     * int utext_replace_73(struct UText* ut, long nativeStart, long nativeLimit, unsigned short* replacementText, int replacementLength, enum UErrorCode* status);
      * }
      */
-    public static int utext_replace_70(MemorySegment ut, long nativeStart, long nativeLimit, MemorySegment replacementText, int replacementLength, MemorySegment status) {
-        var mh$ = utext_replace_70$MH();
+    public static int utext_replace_73(MemorySegment ut, long nativeStart, long nativeLimit, MemorySegment replacementText, int replacementLength, MemorySegment status) {
+        var mh$ = utext_replace_73$MH();
         try {
             return (int)mh$.invokeExact(ut, nativeStart, nativeLimit, replacementText, replacementLength, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_copy_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.const$4,"utext_copy_70");
+    public static MethodHandle utext_copy_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$22.const$4,"utext_copy_73");
     }
     /**
      * {@snippet lang=c :
-     * void utext_copy_70(struct UText* ut, long nativeStart, long nativeLimit, long destIndex, signed char move, enum UErrorCode* status);
+     * void utext_copy_73(struct UText* ut, long nativeStart, long nativeLimit, long destIndex, signed char move, enum UErrorCode* status);
      * }
      */
-    public static void utext_copy_70(MemorySegment ut, long nativeStart, long nativeLimit, long destIndex, byte move, MemorySegment status) {
-        var mh$ = utext_copy_70$MH();
+    public static void utext_copy_73(MemorySegment ut, long nativeStart, long nativeLimit, long destIndex, byte move, MemorySegment status) {
+        var mh$ = utext_copy_73$MH();
         try {
             mh$.invokeExact(ut, nativeStart, nativeLimit, destIndex, move, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utext_freeze_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.const$5,"utext_freeze_70");
+    public static MethodHandle utext_freeze_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$22.const$5,"utext_freeze_73");
     }
     /**
      * {@snippet lang=c :
-     * void utext_freeze_70(struct UText* ut);
+     * void utext_freeze_73(struct UText* ut);
      * }
      */
-    public static void utext_freeze_70(MemorySegment ut) {
-        var mh$ = utext_freeze_70$MH();
+    public static void utext_freeze_73(MemorySegment ut) {
+        var mh$ = utext_freeze_73$MH();
         try {
             mh$.invokeExact(ut);
         } catch (Throwable ex$) {
@@ -2547,7 +2611,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = 1;
+     * enum enum (unnamed at /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE = 1;
      * }
      */
     public static int UTEXT_PROVIDER_LENGTH_IS_EXPENSIVE() {
@@ -2555,7 +2619,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_STABLE_CHUNKS = 2;
+     * enum enum (unnamed at /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_STABLE_CHUNKS = 2;
      * }
      */
     public static int UTEXT_PROVIDER_STABLE_CHUNKS() {
@@ -2563,7 +2627,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_WRITABLE = 3;
+     * enum enum (unnamed at /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_WRITABLE = 3;
      * }
      */
     public static int UTEXT_PROVIDER_WRITABLE() {
@@ -2571,7 +2635,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_HAS_META_DATA = 4;
+     * enum enum (unnamed at /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_HAS_META_DATA = 4;
      * }
      */
     public static int UTEXT_PROVIDER_HAS_META_DATA() {
@@ -2579,22 +2643,22 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_OWNS_TEXT = 5;
+     * enum enum (unnamed at /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev/include/unicode/utext.h:910:1).UTEXT_PROVIDER_OWNS_TEXT = 5;
      * }
      */
     public static int UTEXT_PROVIDER_OWNS_TEXT() {
         return (int)5L;
     }
-    public static MethodHandle utext_setup_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.const$1,"utext_setup_70");
+    public static MethodHandle utext_setup_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$35.const$1,"utext_setup_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* utext_setup_70(struct UText* ut, int extraSpace, enum UErrorCode* status);
+     * struct UText* utext_setup_73(struct UText* ut, int extraSpace, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment utext_setup_70(MemorySegment ut, int extraSpace, MemorySegment status) {
-        var mh$ = utext_setup_70$MH();
+    public static MemorySegment utext_setup_73(MemorySegment ut, int extraSpace, MemorySegment status) {
+        var mh$ = utext_setup_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(ut, extraSpace, status);
         } catch (Throwable ex$) {
@@ -2603,7 +2667,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/utext.h:1547:1).UTEXT_MAGIC = 878368812;
+     * enum enum (unnamed at /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev/include/unicode/utext.h:1547:1).UTEXT_MAGIC = 878368812;
      * }
      */
     public static int UTEXT_MAGIC() {
@@ -2611,7 +2675,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum enum (unnamed at /nix/store/m82j48l6nyq840y7f81f87gw54bvxnax-icu4c-70.1-dev/include/unicode/parseerr.h:27:1).U_PARSE_CONTEXT_LEN = 16;
+     * enum enum (unnamed at /nix/store/cs1hycx3bnfyvxkq8jv5xr0pv5d7ksj7-icu4c-73.2-dev/include/unicode/parseerr.h:27:1).U_PARSE_CONTEXT_LEN = 16;
      * }
      */
     public static int U_PARSE_CONTEXT_LEN() {
@@ -2689,992 +2753,992 @@ public class uregex_h_1 {
     public static int UREGEX_ERROR_ON_UNKNOWN_ESCAPES() {
         return (int)512L;
     }
-    public static MethodHandle uregex_open_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.const$6,"uregex_open_70");
+    public static MethodHandle uregex_open_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$35.const$6,"uregex_open_73");
     }
     /**
      * {@snippet lang=c :
-     * struct URegularExpression* uregex_open_70(unsigned short* pattern, int patternLength, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
+     * struct URegularExpression* uregex_open_73(unsigned short* pattern, int patternLength, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_open_70(MemorySegment pattern, int patternLength, int flags, MemorySegment pe, MemorySegment status) {
-        var mh$ = uregex_open_70$MH();
+    public static MemorySegment uregex_open_73(MemorySegment pattern, int patternLength, int flags, MemorySegment pe, MemorySegment status) {
+        var mh$ = uregex_open_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(pattern, patternLength, flags, pe, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_openUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$1,"uregex_openUText_70");
+    public static MethodHandle uregex_openUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$36.const$1,"uregex_openUText_73");
     }
     /**
      * {@snippet lang=c :
-     * struct URegularExpression* uregex_openUText_70(struct UText* pattern, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
+     * struct URegularExpression* uregex_openUText_73(struct UText* pattern, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_openUText_70(MemorySegment pattern, int flags, MemorySegment pe, MemorySegment status) {
-        var mh$ = uregex_openUText_70$MH();
+    public static MemorySegment uregex_openUText_73(MemorySegment pattern, int flags, MemorySegment pe, MemorySegment status) {
+        var mh$ = uregex_openUText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(pattern, flags, pe, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_openC_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$2,"uregex_openC_70");
+    public static MethodHandle uregex_openC_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$36.const$2,"uregex_openC_73");
     }
     /**
      * {@snippet lang=c :
-     * struct URegularExpression* uregex_openC_70(char* pattern, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
+     * struct URegularExpression* uregex_openC_73(char* pattern, unsigned int flags, struct UParseError* pe, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_openC_70(MemorySegment pattern, int flags, MemorySegment pe, MemorySegment status) {
-        var mh$ = uregex_openC_70$MH();
+    public static MemorySegment uregex_openC_73(MemorySegment pattern, int flags, MemorySegment pe, MemorySegment status) {
+        var mh$ = uregex_openC_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(pattern, flags, pe, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_close_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$3,"uregex_close_70");
+    public static MethodHandle uregex_close_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$36.const$3,"uregex_close_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_close_70(struct URegularExpression* regexp);
+     * void uregex_close_73(struct URegularExpression* regexp);
      * }
      */
-    public static void uregex_close_70(MemorySegment regexp) {
-        var mh$ = uregex_close_70$MH();
+    public static void uregex_close_73(MemorySegment regexp) {
+        var mh$ = uregex_close_73$MH();
         try {
             mh$.invokeExact(regexp);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_clone_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.const$5,"uregex_clone_70");
+    public static MethodHandle uregex_clone_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$36.const$5,"uregex_clone_73");
     }
     /**
      * {@snippet lang=c :
-     * struct URegularExpression* uregex_clone_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * struct URegularExpression* uregex_clone_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_clone_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_clone_70$MH();
+    public static MemorySegment uregex_clone_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_clone_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_pattern_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$1,"uregex_pattern_70");
+    public static MethodHandle uregex_pattern_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$37.const$1,"uregex_pattern_73");
     }
     /**
      * {@snippet lang=c :
-     * unsigned short* uregex_pattern_70(struct URegularExpression* regexp, int* patLength, enum UErrorCode* status);
+     * unsigned short* uregex_pattern_73(struct URegularExpression* regexp, int* patLength, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_pattern_70(MemorySegment regexp, MemorySegment patLength, MemorySegment status) {
-        var mh$ = uregex_pattern_70$MH();
+    public static MemorySegment uregex_pattern_73(MemorySegment regexp, MemorySegment patLength, MemorySegment status) {
+        var mh$ = uregex_pattern_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, patLength, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_patternUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$2,"uregex_patternUText_70");
+    public static MethodHandle uregex_patternUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$37.const$2,"uregex_patternUText_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* uregex_patternUText_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * struct UText* uregex_patternUText_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_patternUText_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_patternUText_70$MH();
+    public static MemorySegment uregex_patternUText_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_patternUText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_flags_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$4,"uregex_flags_70");
+    public static MethodHandle uregex_flags_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$37.const$4,"uregex_flags_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_flags_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * int uregex_flags_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static int uregex_flags_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_flags_70$MH();
+    public static int uregex_flags_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_flags_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.const$6,"uregex_setText_70");
+    public static MethodHandle uregex_setText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$37.const$6,"uregex_setText_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setText_70(struct URegularExpression* regexp, unsigned short* text, int textLength, enum UErrorCode* status);
+     * void uregex_setText_73(struct URegularExpression* regexp, unsigned short* text, int textLength, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setText_70(MemorySegment regexp, MemorySegment text, int textLength, MemorySegment status) {
-        var mh$ = uregex_setText_70$MH();
+    public static void uregex_setText_73(MemorySegment regexp, MemorySegment text, int textLength, MemorySegment status) {
+        var mh$ = uregex_setText_73$MH();
         try {
             mh$.invokeExact(regexp, text, textLength, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$1,"uregex_setUText_70");
+    public static MethodHandle uregex_setUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$38.const$1,"uregex_setUText_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setUText_70(struct URegularExpression* regexp, struct UText* text, enum UErrorCode* status);
+     * void uregex_setUText_73(struct URegularExpression* regexp, struct UText* text, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setUText_70(MemorySegment regexp, MemorySegment text, MemorySegment status) {
-        var mh$ = uregex_setUText_70$MH();
+    public static void uregex_setUText_73(MemorySegment regexp, MemorySegment text, MemorySegment status) {
+        var mh$ = uregex_setUText_73$MH();
         try {
             mh$.invokeExact(regexp, text, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_getText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$2,"uregex_getText_70");
+    public static MethodHandle uregex_getText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$38.const$2,"uregex_getText_73");
     }
     /**
      * {@snippet lang=c :
-     * unsigned short* uregex_getText_70(struct URegularExpression* regexp, int* textLength, enum UErrorCode* status);
+     * unsigned short* uregex_getText_73(struct URegularExpression* regexp, int* textLength, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_getText_70(MemorySegment regexp, MemorySegment textLength, MemorySegment status) {
-        var mh$ = uregex_getText_70$MH();
+    public static MemorySegment uregex_getText_73(MemorySegment regexp, MemorySegment textLength, MemorySegment status) {
+        var mh$ = uregex_getText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, textLength, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_getUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$3,"uregex_getUText_70");
+    public static MethodHandle uregex_getUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$38.const$3,"uregex_getUText_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* uregex_getUText_70(struct URegularExpression* regexp, struct UText* dest, enum UErrorCode* status);
+     * struct UText* uregex_getUText_73(struct URegularExpression* regexp, struct UText* dest, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_getUText_70(MemorySegment regexp, MemorySegment dest, MemorySegment status) {
-        var mh$ = uregex_getUText_70$MH();
+    public static MemorySegment uregex_getUText_73(MemorySegment regexp, MemorySegment dest, MemorySegment status) {
+        var mh$ = uregex_getUText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, dest, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_refreshUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$4,"uregex_refreshUText_70");
+    public static MethodHandle uregex_refreshUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$38.const$4,"uregex_refreshUText_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_refreshUText_70(struct URegularExpression* regexp, struct UText* text, enum UErrorCode* status);
+     * void uregex_refreshUText_73(struct URegularExpression* regexp, struct UText* text, enum UErrorCode* status);
      * }
      */
-    public static void uregex_refreshUText_70(MemorySegment regexp, MemorySegment text, MemorySegment status) {
-        var mh$ = uregex_refreshUText_70$MH();
+    public static void uregex_refreshUText_73(MemorySegment regexp, MemorySegment text, MemorySegment status) {
+        var mh$ = uregex_refreshUText_73$MH();
         try {
             mh$.invokeExact(regexp, text, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_matches_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.const$6,"uregex_matches_70");
+    public static MethodHandle uregex_matches_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$38.const$6,"uregex_matches_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_matches_70(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
+     * signed char uregex_matches_73(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_matches_70(MemorySegment regexp, int startIndex, MemorySegment status) {
-        var mh$ = uregex_matches_70$MH();
+    public static byte uregex_matches_73(MemorySegment regexp, int startIndex, MemorySegment status) {
+        var mh$ = uregex_matches_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, startIndex, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_matches64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$1,"uregex_matches64_70");
+    public static MethodHandle uregex_matches64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$39.const$1,"uregex_matches64_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_matches64_70(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
+     * signed char uregex_matches64_73(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_matches64_70(MemorySegment regexp, long startIndex, MemorySegment status) {
-        var mh$ = uregex_matches64_70$MH();
+    public static byte uregex_matches64_73(MemorySegment regexp, long startIndex, MemorySegment status) {
+        var mh$ = uregex_matches64_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, startIndex, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_lookingAt_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$2,"uregex_lookingAt_70");
+    public static MethodHandle uregex_lookingAt_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$39.const$2,"uregex_lookingAt_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_lookingAt_70(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
+     * signed char uregex_lookingAt_73(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_lookingAt_70(MemorySegment regexp, int startIndex, MemorySegment status) {
-        var mh$ = uregex_lookingAt_70$MH();
+    public static byte uregex_lookingAt_73(MemorySegment regexp, int startIndex, MemorySegment status) {
+        var mh$ = uregex_lookingAt_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, startIndex, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_lookingAt64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$3,"uregex_lookingAt64_70");
+    public static MethodHandle uregex_lookingAt64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$39.const$3,"uregex_lookingAt64_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_lookingAt64_70(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
+     * signed char uregex_lookingAt64_73(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_lookingAt64_70(MemorySegment regexp, long startIndex, MemorySegment status) {
-        var mh$ = uregex_lookingAt64_70$MH();
+    public static byte uregex_lookingAt64_73(MemorySegment regexp, long startIndex, MemorySegment status) {
+        var mh$ = uregex_lookingAt64_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, startIndex, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_find_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$4,"uregex_find_70");
+    public static MethodHandle uregex_find_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$39.const$4,"uregex_find_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_find_70(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
+     * signed char uregex_find_73(struct URegularExpression* regexp, int startIndex, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_find_70(MemorySegment regexp, int startIndex, MemorySegment status) {
-        var mh$ = uregex_find_70$MH();
+    public static byte uregex_find_73(MemorySegment regexp, int startIndex, MemorySegment status) {
+        var mh$ = uregex_find_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, startIndex, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_find64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.const$5,"uregex_find64_70");
+    public static MethodHandle uregex_find64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$39.const$5,"uregex_find64_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_find64_70(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
+     * signed char uregex_find64_73(struct URegularExpression* regexp, long startIndex, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_find64_70(MemorySegment regexp, long startIndex, MemorySegment status) {
-        var mh$ = uregex_find64_70$MH();
+    public static byte uregex_find64_73(MemorySegment regexp, long startIndex, MemorySegment status) {
+        var mh$ = uregex_find64_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, startIndex, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_findNext_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$0,"uregex_findNext_70");
+    public static MethodHandle uregex_findNext_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$40.const$0,"uregex_findNext_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_findNext_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * signed char uregex_findNext_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_findNext_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_findNext_70$MH();
+    public static byte uregex_findNext_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_findNext_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_groupCount_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$1,"uregex_groupCount_70");
+    public static MethodHandle uregex_groupCount_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$40.const$1,"uregex_groupCount_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_groupCount_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * int uregex_groupCount_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static int uregex_groupCount_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_groupCount_70$MH();
+    public static int uregex_groupCount_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_groupCount_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_groupNumberFromName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$3,"uregex_groupNumberFromName_70");
+    public static MethodHandle uregex_groupNumberFromName_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$40.const$3,"uregex_groupNumberFromName_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_groupNumberFromName_70(struct URegularExpression* regexp, unsigned short* groupName, int nameLength, enum UErrorCode* status);
+     * int uregex_groupNumberFromName_73(struct URegularExpression* regexp, unsigned short* groupName, int nameLength, enum UErrorCode* status);
      * }
      */
-    public static int uregex_groupNumberFromName_70(MemorySegment regexp, MemorySegment groupName, int nameLength, MemorySegment status) {
-        var mh$ = uregex_groupNumberFromName_70$MH();
+    public static int uregex_groupNumberFromName_73(MemorySegment regexp, MemorySegment groupName, int nameLength, MemorySegment status) {
+        var mh$ = uregex_groupNumberFromName_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, groupName, nameLength, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_groupNumberFromCName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$4,"uregex_groupNumberFromCName_70");
+    public static MethodHandle uregex_groupNumberFromCName_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$40.const$4,"uregex_groupNumberFromCName_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_groupNumberFromCName_70(struct URegularExpression* regexp, char* groupName, int nameLength, enum UErrorCode* status);
+     * int uregex_groupNumberFromCName_73(struct URegularExpression* regexp, char* groupName, int nameLength, enum UErrorCode* status);
      * }
      */
-    public static int uregex_groupNumberFromCName_70(MemorySegment regexp, MemorySegment groupName, int nameLength, MemorySegment status) {
-        var mh$ = uregex_groupNumberFromCName_70$MH();
+    public static int uregex_groupNumberFromCName_73(MemorySegment regexp, MemorySegment groupName, int nameLength, MemorySegment status) {
+        var mh$ = uregex_groupNumberFromCName_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, groupName, nameLength, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_group_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.const$6,"uregex_group_70");
+    public static MethodHandle uregex_group_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$40.const$6,"uregex_group_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_group_70(struct URegularExpression* regexp, int groupNum, unsigned short* dest, int destCapacity, enum UErrorCode* status);
+     * int uregex_group_73(struct URegularExpression* regexp, int groupNum, unsigned short* dest, int destCapacity, enum UErrorCode* status);
      * }
      */
-    public static int uregex_group_70(MemorySegment regexp, int groupNum, MemorySegment dest, int destCapacity, MemorySegment status) {
-        var mh$ = uregex_group_70$MH();
+    public static int uregex_group_73(MemorySegment regexp, int groupNum, MemorySegment dest, int destCapacity, MemorySegment status) {
+        var mh$ = uregex_group_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, groupNum, dest, destCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_groupUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.const$1,"uregex_groupUText_70");
+    public static MethodHandle uregex_groupUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$41.const$1,"uregex_groupUText_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* uregex_groupUText_70(struct URegularExpression* regexp, int groupNum, struct UText* dest, long* groupLength, enum UErrorCode* status);
+     * struct UText* uregex_groupUText_73(struct URegularExpression* regexp, int groupNum, struct UText* dest, long* groupLength, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_groupUText_70(MemorySegment regexp, int groupNum, MemorySegment dest, MemorySegment groupLength, MemorySegment status) {
-        var mh$ = uregex_groupUText_70$MH();
+    public static MemorySegment uregex_groupUText_73(MemorySegment regexp, int groupNum, MemorySegment dest, MemorySegment groupLength, MemorySegment status) {
+        var mh$ = uregex_groupUText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, groupNum, dest, groupLength, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_start_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.const$3,"uregex_start_70");
+    public static MethodHandle uregex_start_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$41.const$3,"uregex_start_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_start_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
+     * int uregex_start_73(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
-    public static int uregex_start_70(MemorySegment regexp, int groupNum, MemorySegment status) {
-        var mh$ = uregex_start_70$MH();
+    public static int uregex_start_73(MemorySegment regexp, int groupNum, MemorySegment status) {
+        var mh$ = uregex_start_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, groupNum, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_start64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.const$5,"uregex_start64_70");
+    public static MethodHandle uregex_start64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$41.const$5,"uregex_start64_73");
     }
     /**
      * {@snippet lang=c :
-     * long uregex_start64_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
+     * long uregex_start64_73(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
-    public static long uregex_start64_70(MemorySegment regexp, int groupNum, MemorySegment status) {
-        var mh$ = uregex_start64_70$MH();
+    public static long uregex_start64_73(MemorySegment regexp, int groupNum, MemorySegment status) {
+        var mh$ = uregex_start64_73$MH();
         try {
             return (long)mh$.invokeExact(regexp, groupNum, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_end_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$0,"uregex_end_70");
+    public static MethodHandle uregex_end_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$42.const$0,"uregex_end_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_end_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
+     * int uregex_end_73(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
-    public static int uregex_end_70(MemorySegment regexp, int groupNum, MemorySegment status) {
-        var mh$ = uregex_end_70$MH();
+    public static int uregex_end_73(MemorySegment regexp, int groupNum, MemorySegment status) {
+        var mh$ = uregex_end_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, groupNum, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_end64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$1,"uregex_end64_70");
+    public static MethodHandle uregex_end64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$42.const$1,"uregex_end64_73");
     }
     /**
      * {@snippet lang=c :
-     * long uregex_end64_70(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
+     * long uregex_end64_73(struct URegularExpression* regexp, int groupNum, enum UErrorCode* status);
      * }
      */
-    public static long uregex_end64_70(MemorySegment regexp, int groupNum, MemorySegment status) {
-        var mh$ = uregex_end64_70$MH();
+    public static long uregex_end64_73(MemorySegment regexp, int groupNum, MemorySegment status) {
+        var mh$ = uregex_end64_73$MH();
         try {
             return (long)mh$.invokeExact(regexp, groupNum, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_reset_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$3,"uregex_reset_70");
+    public static MethodHandle uregex_reset_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$42.const$3,"uregex_reset_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_reset_70(struct URegularExpression* regexp, int index, enum UErrorCode* status);
+     * void uregex_reset_73(struct URegularExpression* regexp, int index, enum UErrorCode* status);
      * }
      */
-    public static void uregex_reset_70(MemorySegment regexp, int index, MemorySegment status) {
-        var mh$ = uregex_reset_70$MH();
+    public static void uregex_reset_73(MemorySegment regexp, int index, MemorySegment status) {
+        var mh$ = uregex_reset_73$MH();
         try {
             mh$.invokeExact(regexp, index, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_reset64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.const$5,"uregex_reset64_70");
+    public static MethodHandle uregex_reset64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$42.const$5,"uregex_reset64_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_reset64_70(struct URegularExpression* regexp, long index, enum UErrorCode* status);
+     * void uregex_reset64_73(struct URegularExpression* regexp, long index, enum UErrorCode* status);
      * }
      */
-    public static void uregex_reset64_70(MemorySegment regexp, long index, MemorySegment status) {
-        var mh$ = uregex_reset64_70$MH();
+    public static void uregex_reset64_73(MemorySegment regexp, long index, MemorySegment status) {
+        var mh$ = uregex_reset64_73$MH();
         try {
             mh$.invokeExact(regexp, index, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setRegion_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$1,"uregex_setRegion_70");
+    public static MethodHandle uregex_setRegion_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$43.const$1,"uregex_setRegion_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setRegion_70(struct URegularExpression* regexp, int regionStart, int regionLimit, enum UErrorCode* status);
+     * void uregex_setRegion_73(struct URegularExpression* regexp, int regionStart, int regionLimit, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setRegion_70(MemorySegment regexp, int regionStart, int regionLimit, MemorySegment status) {
-        var mh$ = uregex_setRegion_70$MH();
+    public static void uregex_setRegion_73(MemorySegment regexp, int regionStart, int regionLimit, MemorySegment status) {
+        var mh$ = uregex_setRegion_73$MH();
         try {
             mh$.invokeExact(regexp, regionStart, regionLimit, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setRegion64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$3,"uregex_setRegion64_70");
+    public static MethodHandle uregex_setRegion64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$43.const$3,"uregex_setRegion64_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setRegion64_70(struct URegularExpression* regexp, long regionStart, long regionLimit, enum UErrorCode* status);
+     * void uregex_setRegion64_73(struct URegularExpression* regexp, long regionStart, long regionLimit, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setRegion64_70(MemorySegment regexp, long regionStart, long regionLimit, MemorySegment status) {
-        var mh$ = uregex_setRegion64_70$MH();
+    public static void uregex_setRegion64_73(MemorySegment regexp, long regionStart, long regionLimit, MemorySegment status) {
+        var mh$ = uregex_setRegion64_73$MH();
         try {
             mh$.invokeExact(regexp, regionStart, regionLimit, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setRegionAndStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.const$5,"uregex_setRegionAndStart_70");
+    public static MethodHandle uregex_setRegionAndStart_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$43.const$5,"uregex_setRegionAndStart_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setRegionAndStart_70(struct URegularExpression* regexp, long regionStart, long regionLimit, long startIndex, enum UErrorCode* status);
+     * void uregex_setRegionAndStart_73(struct URegularExpression* regexp, long regionStart, long regionLimit, long startIndex, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setRegionAndStart_70(MemorySegment regexp, long regionStart, long regionLimit, long startIndex, MemorySegment status) {
-        var mh$ = uregex_setRegionAndStart_70$MH();
+    public static void uregex_setRegionAndStart_73(MemorySegment regexp, long regionStart, long regionLimit, long startIndex, MemorySegment status) {
+        var mh$ = uregex_setRegionAndStart_73$MH();
         try {
             mh$.invokeExact(regexp, regionStart, regionLimit, startIndex, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_regionStart_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$0,"uregex_regionStart_70");
+    public static MethodHandle uregex_regionStart_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$44.const$0,"uregex_regionStart_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_regionStart_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * int uregex_regionStart_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static int uregex_regionStart_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_regionStart_70$MH();
+    public static int uregex_regionStart_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_regionStart_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_regionStart64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$2,"uregex_regionStart64_70");
+    public static MethodHandle uregex_regionStart64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$44.const$2,"uregex_regionStart64_73");
     }
     /**
      * {@snippet lang=c :
-     * long uregex_regionStart64_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * long uregex_regionStart64_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static long uregex_regionStart64_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_regionStart64_70$MH();
+    public static long uregex_regionStart64_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_regionStart64_73$MH();
         try {
             return (long)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_regionEnd_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$3,"uregex_regionEnd_70");
+    public static MethodHandle uregex_regionEnd_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$44.const$3,"uregex_regionEnd_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_regionEnd_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * int uregex_regionEnd_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static int uregex_regionEnd_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_regionEnd_70$MH();
+    public static int uregex_regionEnd_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_regionEnd_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_regionEnd64_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$4,"uregex_regionEnd64_70");
+    public static MethodHandle uregex_regionEnd64_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$44.const$4,"uregex_regionEnd64_73");
     }
     /**
      * {@snippet lang=c :
-     * long uregex_regionEnd64_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * long uregex_regionEnd64_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static long uregex_regionEnd64_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_regionEnd64_70$MH();
+    public static long uregex_regionEnd64_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_regionEnd64_73$MH();
         try {
             return (long)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_hasTransparentBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.const$5,"uregex_hasTransparentBounds_70");
+    public static MethodHandle uregex_hasTransparentBounds_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$44.const$5,"uregex_hasTransparentBounds_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_hasTransparentBounds_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * signed char uregex_hasTransparentBounds_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_hasTransparentBounds_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_hasTransparentBounds_70$MH();
+    public static byte uregex_hasTransparentBounds_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_hasTransparentBounds_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_useTransparentBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$1,"uregex_useTransparentBounds_70");
+    public static MethodHandle uregex_useTransparentBounds_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$45.const$1,"uregex_useTransparentBounds_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_useTransparentBounds_70(struct URegularExpression* regexp, signed char b, enum UErrorCode* status);
+     * void uregex_useTransparentBounds_73(struct URegularExpression* regexp, signed char b, enum UErrorCode* status);
      * }
      */
-    public static void uregex_useTransparentBounds_70(MemorySegment regexp, byte b, MemorySegment status) {
-        var mh$ = uregex_useTransparentBounds_70$MH();
+    public static void uregex_useTransparentBounds_73(MemorySegment regexp, byte b, MemorySegment status) {
+        var mh$ = uregex_useTransparentBounds_73$MH();
         try {
             mh$.invokeExact(regexp, b, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_hasAnchoringBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$2,"uregex_hasAnchoringBounds_70");
+    public static MethodHandle uregex_hasAnchoringBounds_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$45.const$2,"uregex_hasAnchoringBounds_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_hasAnchoringBounds_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * signed char uregex_hasAnchoringBounds_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_hasAnchoringBounds_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_hasAnchoringBounds_70$MH();
+    public static byte uregex_hasAnchoringBounds_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_hasAnchoringBounds_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_useAnchoringBounds_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$3,"uregex_useAnchoringBounds_70");
+    public static MethodHandle uregex_useAnchoringBounds_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$45.const$3,"uregex_useAnchoringBounds_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_useAnchoringBounds_70(struct URegularExpression* regexp, signed char b, enum UErrorCode* status);
+     * void uregex_useAnchoringBounds_73(struct URegularExpression* regexp, signed char b, enum UErrorCode* status);
      * }
      */
-    public static void uregex_useAnchoringBounds_70(MemorySegment regexp, byte b, MemorySegment status) {
-        var mh$ = uregex_useAnchoringBounds_70$MH();
+    public static void uregex_useAnchoringBounds_73(MemorySegment regexp, byte b, MemorySegment status) {
+        var mh$ = uregex_useAnchoringBounds_73$MH();
         try {
             mh$.invokeExact(regexp, b, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_hitEnd_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$4,"uregex_hitEnd_70");
+    public static MethodHandle uregex_hitEnd_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$45.const$4,"uregex_hitEnd_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_hitEnd_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * signed char uregex_hitEnd_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_hitEnd_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_hitEnd_70$MH();
+    public static byte uregex_hitEnd_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_hitEnd_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_requireEnd_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.const$5,"uregex_requireEnd_70");
+    public static MethodHandle uregex_requireEnd_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$45.const$5,"uregex_requireEnd_73");
     }
     /**
      * {@snippet lang=c :
-     * signed char uregex_requireEnd_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * signed char uregex_requireEnd_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static byte uregex_requireEnd_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_requireEnd_70$MH();
+    public static byte uregex_requireEnd_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_requireEnd_73$MH();
         try {
             return (byte)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_replaceAll_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$1,"uregex_replaceAll_70");
+    public static MethodHandle uregex_replaceAll_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$46.const$1,"uregex_replaceAll_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_replaceAll_70(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short* destBuf, int destCapacity, enum UErrorCode* status);
+     * int uregex_replaceAll_73(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short* destBuf, int destCapacity, enum UErrorCode* status);
      * }
      */
-    public static int uregex_replaceAll_70(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, int destCapacity, MemorySegment status) {
-        var mh$ = uregex_replaceAll_70$MH();
+    public static int uregex_replaceAll_73(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, int destCapacity, MemorySegment status) {
+        var mh$ = uregex_replaceAll_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, replacementText, replacementLength, destBuf, destCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_replaceAllUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$3,"uregex_replaceAllUText_70");
+    public static MethodHandle uregex_replaceAllUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$46.const$3,"uregex_replaceAllUText_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* uregex_replaceAllUText_70(struct URegularExpression* regexp, struct UText* replacement, struct UText* dest, enum UErrorCode* status);
+     * struct UText* uregex_replaceAllUText_73(struct URegularExpression* regexp, struct UText* replacement, struct UText* dest, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_replaceAllUText_70(MemorySegment regexp, MemorySegment replacement, MemorySegment dest, MemorySegment status) {
-        var mh$ = uregex_replaceAllUText_70$MH();
+    public static MemorySegment uregex_replaceAllUText_73(MemorySegment regexp, MemorySegment replacement, MemorySegment dest, MemorySegment status) {
+        var mh$ = uregex_replaceAllUText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, replacement, dest, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_replaceFirst_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$4,"uregex_replaceFirst_70");
+    public static MethodHandle uregex_replaceFirst_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$46.const$4,"uregex_replaceFirst_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_replaceFirst_70(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short* destBuf, int destCapacity, enum UErrorCode* status);
+     * int uregex_replaceFirst_73(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short* destBuf, int destCapacity, enum UErrorCode* status);
      * }
      */
-    public static int uregex_replaceFirst_70(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, int destCapacity, MemorySegment status) {
-        var mh$ = uregex_replaceFirst_70$MH();
+    public static int uregex_replaceFirst_73(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, int destCapacity, MemorySegment status) {
+        var mh$ = uregex_replaceFirst_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, replacementText, replacementLength, destBuf, destCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_replaceFirstUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.const$5,"uregex_replaceFirstUText_70");
+    public static MethodHandle uregex_replaceFirstUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$46.const$5,"uregex_replaceFirstUText_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* uregex_replaceFirstUText_70(struct URegularExpression* regexp, struct UText* replacement, struct UText* dest, enum UErrorCode* status);
+     * struct UText* uregex_replaceFirstUText_73(struct URegularExpression* regexp, struct UText* replacement, struct UText* dest, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_replaceFirstUText_70(MemorySegment regexp, MemorySegment replacement, MemorySegment dest, MemorySegment status) {
-        var mh$ = uregex_replaceFirstUText_70$MH();
+    public static MemorySegment uregex_replaceFirstUText_73(MemorySegment regexp, MemorySegment replacement, MemorySegment dest, MemorySegment status) {
+        var mh$ = uregex_replaceFirstUText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, replacement, dest, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_appendReplacement_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.const$1,"uregex_appendReplacement_70");
+    public static MethodHandle uregex_appendReplacement_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$47.const$1,"uregex_appendReplacement_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_appendReplacement_70(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short** destBuf, int* destCapacity, enum UErrorCode* status);
+     * int uregex_appendReplacement_73(struct URegularExpression* regexp, unsigned short* replacementText, int replacementLength, unsigned short** destBuf, int* destCapacity, enum UErrorCode* status);
      * }
      */
-    public static int uregex_appendReplacement_70(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, MemorySegment destCapacity, MemorySegment status) {
-        var mh$ = uregex_appendReplacement_70$MH();
+    public static int uregex_appendReplacement_73(MemorySegment regexp, MemorySegment replacementText, int replacementLength, MemorySegment destBuf, MemorySegment destCapacity, MemorySegment status) {
+        var mh$ = uregex_appendReplacement_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, replacementText, replacementLength, destBuf, destCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_appendReplacementUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.const$3,"uregex_appendReplacementUText_70");
+    public static MethodHandle uregex_appendReplacementUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$47.const$3,"uregex_appendReplacementUText_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_appendReplacementUText_70(struct URegularExpression* regexp, struct UText* replacementText, struct UText* dest, enum UErrorCode* status);
+     * void uregex_appendReplacementUText_73(struct URegularExpression* regexp, struct UText* replacementText, struct UText* dest, enum UErrorCode* status);
      * }
      */
-    public static void uregex_appendReplacementUText_70(MemorySegment regexp, MemorySegment replacementText, MemorySegment dest, MemorySegment status) {
-        var mh$ = uregex_appendReplacementUText_70$MH();
+    public static void uregex_appendReplacementUText_73(MemorySegment regexp, MemorySegment replacementText, MemorySegment dest, MemorySegment status) {
+        var mh$ = uregex_appendReplacementUText_73$MH();
         try {
             mh$.invokeExact(regexp, replacementText, dest, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_appendTail_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.const$5,"uregex_appendTail_70");
+    public static MethodHandle uregex_appendTail_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$47.const$5,"uregex_appendTail_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_appendTail_70(struct URegularExpression* regexp, unsigned short** destBuf, int* destCapacity, enum UErrorCode* status);
+     * int uregex_appendTail_73(struct URegularExpression* regexp, unsigned short** destBuf, int* destCapacity, enum UErrorCode* status);
      * }
      */
-    public static int uregex_appendTail_70(MemorySegment regexp, MemorySegment destBuf, MemorySegment destCapacity, MemorySegment status) {
-        var mh$ = uregex_appendTail_70$MH();
+    public static int uregex_appendTail_73(MemorySegment regexp, MemorySegment destBuf, MemorySegment destCapacity, MemorySegment status) {
+        var mh$ = uregex_appendTail_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, destBuf, destCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_appendTailUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.const$0,"uregex_appendTailUText_70");
+    public static MethodHandle uregex_appendTailUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$48.const$0,"uregex_appendTailUText_73");
     }
     /**
      * {@snippet lang=c :
-     * struct UText* uregex_appendTailUText_70(struct URegularExpression* regexp, struct UText* dest, enum UErrorCode* status);
+     * struct UText* uregex_appendTailUText_73(struct URegularExpression* regexp, struct UText* dest, enum UErrorCode* status);
      * }
      */
-    public static MemorySegment uregex_appendTailUText_70(MemorySegment regexp, MemorySegment dest, MemorySegment status) {
-        var mh$ = uregex_appendTailUText_70$MH();
+    public static MemorySegment uregex_appendTailUText_73(MemorySegment regexp, MemorySegment dest, MemorySegment status) {
+        var mh$ = uregex_appendTailUText_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(regexp, dest, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_split_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.const$2,"uregex_split_70");
+    public static MethodHandle uregex_split_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$48.const$2,"uregex_split_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_split_70(struct URegularExpression* regexp, unsigned short* destBuf, int destCapacity, int* requiredCapacity, unsigned short* destFields[], int destFieldsCapacity, enum UErrorCode* status);
+     * int uregex_split_73(struct URegularExpression* regexp, unsigned short* destBuf, int destCapacity, int* requiredCapacity, unsigned short* destFields[], int destFieldsCapacity, enum UErrorCode* status);
      * }
      */
-    public static int uregex_split_70(MemorySegment regexp, MemorySegment destBuf, int destCapacity, MemorySegment requiredCapacity, MemorySegment destFields, int destFieldsCapacity, MemorySegment status) {
-        var mh$ = uregex_split_70$MH();
+    public static int uregex_split_73(MemorySegment regexp, MemorySegment destBuf, int destCapacity, MemorySegment requiredCapacity, MemorySegment destFields, int destFieldsCapacity, MemorySegment status) {
+        var mh$ = uregex_split_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, destBuf, destCapacity, requiredCapacity, destFields, destFieldsCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_splitUText_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.const$3,"uregex_splitUText_70");
+    public static MethodHandle uregex_splitUText_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$48.const$3,"uregex_splitUText_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_splitUText_70(struct URegularExpression* regexp, struct UText* destFields[], int destFieldsCapacity, enum UErrorCode* status);
+     * int uregex_splitUText_73(struct URegularExpression* regexp, struct UText* destFields[], int destFieldsCapacity, enum UErrorCode* status);
      * }
      */
-    public static int uregex_splitUText_70(MemorySegment regexp, MemorySegment destFields, int destFieldsCapacity, MemorySegment status) {
-        var mh$ = uregex_splitUText_70$MH();
+    public static int uregex_splitUText_73(MemorySegment regexp, MemorySegment destFields, int destFieldsCapacity, MemorySegment status) {
+        var mh$ = uregex_splitUText_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, destFields, destFieldsCapacity, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setTimeLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.const$4,"uregex_setTimeLimit_70");
+    public static MethodHandle uregex_setTimeLimit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$48.const$4,"uregex_setTimeLimit_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setTimeLimit_70(struct URegularExpression* regexp, int limit, enum UErrorCode* status);
+     * void uregex_setTimeLimit_73(struct URegularExpression* regexp, int limit, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setTimeLimit_70(MemorySegment regexp, int limit, MemorySegment status) {
-        var mh$ = uregex_setTimeLimit_70$MH();
+    public static void uregex_setTimeLimit_73(MemorySegment regexp, int limit, MemorySegment status) {
+        var mh$ = uregex_setTimeLimit_73$MH();
         try {
             mh$.invokeExact(regexp, limit, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_getTimeLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.const$5,"uregex_getTimeLimit_70");
+    public static MethodHandle uregex_getTimeLimit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$48.const$5,"uregex_getTimeLimit_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_getTimeLimit_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * int uregex_getTimeLimit_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static int uregex_getTimeLimit_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_getTimeLimit_70$MH();
+    public static int uregex_getTimeLimit_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_getTimeLimit_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setStackLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.const$0,"uregex_setStackLimit_70");
+    public static MethodHandle uregex_setStackLimit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$49.const$0,"uregex_setStackLimit_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setStackLimit_70(struct URegularExpression* regexp, int limit, enum UErrorCode* status);
+     * void uregex_setStackLimit_73(struct URegularExpression* regexp, int limit, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setStackLimit_70(MemorySegment regexp, int limit, MemorySegment status) {
-        var mh$ = uregex_setStackLimit_70$MH();
+    public static void uregex_setStackLimit_73(MemorySegment regexp, int limit, MemorySegment status) {
+        var mh$ = uregex_setStackLimit_73$MH();
         try {
             mh$.invokeExact(regexp, limit, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_getStackLimit_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.const$1,"uregex_getStackLimit_70");
+    public static MethodHandle uregex_getStackLimit_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$49.const$1,"uregex_getStackLimit_73");
     }
     /**
      * {@snippet lang=c :
-     * int uregex_getStackLimit_70(struct URegularExpression* regexp, enum UErrorCode* status);
+     * int uregex_getStackLimit_73(struct URegularExpression* regexp, enum UErrorCode* status);
      * }
      */
-    public static int uregex_getStackLimit_70(MemorySegment regexp, MemorySegment status) {
-        var mh$ = uregex_getStackLimit_70$MH();
+    public static int uregex_getStackLimit_73(MemorySegment regexp, MemorySegment status) {
+        var mh$ = uregex_getStackLimit_73$MH();
         try {
             return (int)mh$.invokeExact(regexp, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setMatchCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.const$5,"uregex_setMatchCallback_70");
+    public static MethodHandle uregex_setMatchCallback_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$49.const$5,"uregex_setMatchCallback_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setMatchCallback_70(struct URegularExpression* regexp, signed char (*callback)(void*,int), void* context, enum UErrorCode* status);
+     * void uregex_setMatchCallback_73(struct URegularExpression* regexp, signed char (*callback)(void*,int), void* context, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setMatchCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
-        var mh$ = uregex_setMatchCallback_70$MH();
+    public static void uregex_setMatchCallback_73(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
+        var mh$ = uregex_setMatchCallback_73$MH();
         try {
             mh$.invokeExact(regexp, callback, context, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_getMatchCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.const$1,"uregex_getMatchCallback_70");
+    public static MethodHandle uregex_getMatchCallback_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$50.const$1,"uregex_getMatchCallback_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_getMatchCallback_70(struct URegularExpression* regexp, signed char (**callback)(void*,int), void** context, enum UErrorCode* status);
+     * void uregex_getMatchCallback_73(struct URegularExpression* regexp, signed char (**callback)(void*,int), void** context, enum UErrorCode* status);
      * }
      */
-    public static void uregex_getMatchCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
-        var mh$ = uregex_getMatchCallback_70$MH();
+    public static void uregex_getMatchCallback_73(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
+        var mh$ = uregex_getMatchCallback_73$MH();
         try {
             mh$.invokeExact(regexp, callback, context, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_setFindProgressCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.const$0,"uregex_setFindProgressCallback_70");
+    public static MethodHandle uregex_setFindProgressCallback_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$51.const$0,"uregex_setFindProgressCallback_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_setFindProgressCallback_70(struct URegularExpression* regexp, signed char (*callback)(void*,long), void* context, enum UErrorCode* status);
+     * void uregex_setFindProgressCallback_73(struct URegularExpression* regexp, signed char (*callback)(void*,long), void* context, enum UErrorCode* status);
      * }
      */
-    public static void uregex_setFindProgressCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
-        var mh$ = uregex_setFindProgressCallback_70$MH();
+    public static void uregex_setFindProgressCallback_73(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
+        var mh$ = uregex_setFindProgressCallback_73$MH();
         try {
             mh$.invokeExact(regexp, callback, context, status);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle uregex_getFindProgressCallback_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.const$2,"uregex_getFindProgressCallback_70");
+    public static MethodHandle uregex_getFindProgressCallback_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$51.const$2,"uregex_getFindProgressCallback_73");
     }
     /**
      * {@snippet lang=c :
-     * void uregex_getFindProgressCallback_70(struct URegularExpression* regexp, signed char (**callback)(void*,long), void** context, enum UErrorCode* status);
+     * void uregex_getFindProgressCallback_73(struct URegularExpression* regexp, signed char (**callback)(void*,long), void** context, enum UErrorCode* status);
      * }
      */
-    public static void uregex_getFindProgressCallback_70(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
-        var mh$ = uregex_getFindProgressCallback_70$MH();
+    public static void uregex_getFindProgressCallback_73(MemorySegment regexp, MemorySegment callback, MemorySegment context, MemorySegment status) {
+        var mh$ = uregex_getFindProgressCallback_73$MH();
         try {
             mh$.invokeExact(regexp, callback, context, status);
         } catch (Throwable ex$) {
@@ -3707,7 +3771,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * #define U_ICU_VERSION "70.1"
+     * #define U_ICU_VERSION "73.2"
      * }
      */
     public static MemorySegment U_ICU_VERSION() {
@@ -3715,7 +3779,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * #define U_ICU_VERSION_SHORT "70"
+     * #define U_ICU_VERSION_SHORT "73"
      * }
      */
     public static MemorySegment U_ICU_VERSION_SHORT() {
@@ -3723,7 +3787,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * #define U_ICU_DATA_VERSION "70.1"
+     * #define U_ICU_DATA_VERSION "73.2"
      * }
      */
     public static MemorySegment U_ICU_DATA_VERSION() {
@@ -4651,7 +4715,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * #define U_ICUDATA_NAME "icudt70l"
+     * #define U_ICUDATA_NAME "icudt73l"
      * }
      */
     public static MemorySegment U_ICUDATA_NAME() {
@@ -4659,7 +4723,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * #define U_USRDATA_NAME "usrdt70l"
+     * #define U_USRDATA_NAME "usrdt73l"
      * }
      */
     public static MemorySegment U_USRDATA_NAME() {
@@ -4715,7 +4779,7 @@ public class uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * #define U_UNICODE_VERSION "14.0"
+     * #define U_UNICODE_VERSION "15.0"
      * }
      */
     public static MemorySegment U_UNICODE_VERSION() {

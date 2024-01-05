@@ -9,16 +9,16 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
  * {@snippet lang=c :
- * signed char (*uregex_getMatchCallback_70$callback)(void*,int);
+ * signed char (*uregex_setMatchCallback_73$callback)(void*,int);
  * }
  */
-public interface uregex_getMatchCallback_70$callback {
+public interface uregex_setMatchCallback_73$callback {
 
     byte apply(java.lang.foreign.MemorySegment context, int steps);
-    static MemorySegment allocate(uregex_getMatchCallback_70$callback fi, Arena scope) {
-        return RuntimeHelper.upcallStub(constants$50.const$0, fi, constants$21.const$2, scope);
+    static MemorySegment allocate(uregex_setMatchCallback_73$callback fi, Arena scope) {
+        return RuntimeHelper.upcallStub(constants$49.const$4, fi, constants$21.const$2, scope);
     }
-    static uregex_getMatchCallback_70$callback ofAddress(MemorySegment addr, Arena arena) {
+    static uregex_setMatchCallback_73$callback ofAddress(MemorySegment addr, Arena arena) {
         MemorySegment symbol = addr.reinterpret(arena, null);
         return (java.lang.foreign.MemorySegment _context, int _steps) -> {
             try {

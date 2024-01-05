@@ -12,11 +12,11 @@ final class constants$42 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$42() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "uregex_end_70",
+        "uregex_end_73",
         constants$41.const$2
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_end64_70",
+        "uregex_end64_73",
         constants$41.const$4
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
@@ -25,7 +25,7 @@ final class constants$42 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_reset_70",
+        "uregex_reset_73",
         constants$42.const$2
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.ofVoid(
@@ -34,7 +34,7 @@ final class constants$42 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_reset64_70",
+        "uregex_reset64_73",
         constants$42.const$4
     );
 }

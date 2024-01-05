@@ -18,11 +18,11 @@ final class constants$18 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utext_openUTF8_70",
+        "utext_openUTF8_73",
         constants$18.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "utext_openUChars_70",
+        "utext_openUChars_73",
         constants$18.const$0
     );
     static final FunctionDescriptor const$3 = FunctionDescriptor.of(RuntimeHelper.POINTER,
@@ -33,7 +33,7 @@ final class constants$18 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "utext_clone_70",
+        "utext_clone_73",
         constants$18.const$3
     );
     static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_BYTE,
@@ -41,7 +41,7 @@ final class constants$18 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "utext_equals_70",
+        "utext_equals_73",
         constants$18.const$5
     );
 }

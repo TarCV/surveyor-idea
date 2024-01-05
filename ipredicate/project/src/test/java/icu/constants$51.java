@@ -12,12 +12,12 @@ final class constants$51 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$51() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "uregex_setFindProgressCallback_70",
+        "uregex_setFindProgressCallback_73",
         constants$47.const$2
     );
-    static final MethodHandle const$1 = RuntimeHelper.upcallHandle(uregex_getFindProgressCallback_70$callback.class, "apply", constants$50.const$2);
+    static final MethodHandle const$1 = RuntimeHelper.upcallHandle(uregex_getFindProgressCallback_73$callback.class, "apply", constants$50.const$2);
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_getFindProgressCallback_70",
+        "uregex_getFindProgressCallback_73",
         constants$47.const$2
     );
     static final MemorySegment const$3 = MemorySegment.ofAddress(0L);

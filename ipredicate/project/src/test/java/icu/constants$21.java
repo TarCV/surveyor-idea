@@ -16,7 +16,7 @@ final class constants$21 {
         JAVA_LONG
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utext_setNativeIndex_70",
+        "utext_setNativeIndex_73",
         constants$21.const$0
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_BYTE,
@@ -24,11 +24,11 @@ final class constants$21 {
         JAVA_INT
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "utext_moveIndex32_70",
+        "utext_moveIndex32_73",
         constants$21.const$2
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "utext_getPreviousNativeIndex_70",
+        "utext_getPreviousNativeIndex_73",
         constants$19.const$0
     );
     static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_INT,
@@ -40,7 +40,7 @@ final class constants$21 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "utext_extract_70",
+        "utext_extract_73",
         constants$21.const$5
     );
 }

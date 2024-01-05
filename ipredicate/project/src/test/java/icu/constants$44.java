@@ -12,7 +12,7 @@ final class constants$44 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$44() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "uregex_regionStart_70",
+        "uregex_regionStart_73",
         constants$37.const$3
     );
     static final FunctionDescriptor const$1 = FunctionDescriptor.of(JAVA_LONG,
@@ -20,19 +20,19 @@ final class constants$44 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_regionStart64_70",
+        "uregex_regionStart64_73",
         constants$44.const$1
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_regionEnd_70",
+        "uregex_regionEnd_73",
         constants$37.const$3
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_regionEnd64_70",
+        "uregex_regionEnd64_73",
         constants$44.const$1
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_hasTransparentBounds_70",
+        "uregex_hasTransparentBounds_73",
         constants$18.const$5
     );
 }

@@ -18,7 +18,7 @@ final class constants$43 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_setRegion_70",
+        "uregex_setRegion_73",
         constants$43.const$0
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.ofVoid(
@@ -28,7 +28,7 @@ final class constants$43 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_setRegion64_70",
+        "uregex_setRegion64_73",
         constants$43.const$2
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.ofVoid(
@@ -39,7 +39,7 @@ final class constants$43 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_setRegionAndStart_70",
+        "uregex_setRegionAndStart_73",
         constants$43.const$4
     );
 }

@@ -12,15 +12,15 @@ final class constants$22 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$22() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "utext_isWritable_70",
+        "utext_isWritable_73",
         constants$19.const$2
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utext_hasMetaData_70",
+        "utext_hasMetaData_73",
         constants$19.const$2
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "utext_replace_70",
+        "utext_replace_73",
         constants$21.const$5
     );
     static final FunctionDescriptor const$3 = FunctionDescriptor.ofVoid(
@@ -32,11 +32,11 @@ final class constants$22 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "utext_copy_70",
+        "utext_copy_73",
         constants$22.const$3
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "utext_freeze_70",
+        "utext_freeze_73",
         constants$1.const$0
     );
 }

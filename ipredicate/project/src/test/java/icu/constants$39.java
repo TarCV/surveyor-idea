@@ -17,23 +17,23 @@ final class constants$39 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_matches64_70",
+        "uregex_matches64_73",
         constants$39.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_lookingAt_70",
+        "uregex_lookingAt_73",
         constants$38.const$5
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_lookingAt64_70",
+        "uregex_lookingAt64_73",
         constants$39.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_find_70",
+        "uregex_find_73",
         constants$38.const$5
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_find64_70",
+        "uregex_find64_73",
         constants$39.const$0
     );
 }

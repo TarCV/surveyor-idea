@@ -16,23 +16,23 @@ final class constants$15 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_getPropertyValueEnum_70",
+        "u_getPropertyValueEnum_73",
         constants$15.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "u_isIDStart_70",
+        "u_isIDStart_73",
         constants$5.const$0
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_isIDPart_70",
+        "u_isIDPart_73",
         constants$5.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_isIDIgnorable_70",
+        "u_isIDIgnorable_73",
         constants$5.const$0
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_isJavaIDStart_70",
+        "u_isJavaIDStart_73",
         constants$5.const$0
     );
 }

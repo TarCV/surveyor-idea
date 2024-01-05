@@ -16,7 +16,7 @@ final class constants$4 {
         JAVA_INT
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_hasBinaryProperty_70",
+        "u_hasBinaryProperty_73",
         constants$4.const$0
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_BYTE,
@@ -25,7 +25,7 @@ final class constants$4 {
         JAVA_INT
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_stringHasBinaryProperty_70",
+        "u_stringHasBinaryProperty_73",
         constants$4.const$2
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.of(RuntimeHelper.POINTER,
@@ -33,7 +33,7 @@ final class constants$4 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_getBinaryPropertySet_70",
+        "u_getBinaryPropertySet_73",
         constants$4.const$4
     );
 }

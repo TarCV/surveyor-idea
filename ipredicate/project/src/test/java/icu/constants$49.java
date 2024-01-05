@@ -12,20 +12,20 @@ final class constants$49 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$49() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "uregex_setStackLimit_70",
+        "uregex_setStackLimit_73",
         constants$42.const$2
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_getStackLimit_70",
+        "uregex_getStackLimit_73",
         constants$37.const$3
     );
     static final MethodHandle const$2 = RuntimeHelper.upcallHandle(URegexMatchCallback.class, "apply", constants$21.const$2);
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
         constants$21.const$2
     );
-    static final MethodHandle const$4 = RuntimeHelper.upcallHandle(uregex_setMatchCallback_70$callback.class, "apply", constants$21.const$2);
+    static final MethodHandle const$4 = RuntimeHelper.upcallHandle(uregex_setMatchCallback_73$callback.class, "apply", constants$21.const$2);
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_setMatchCallback_70",
+        "uregex_setMatchCallback_73",
         constants$47.const$2
     );
 }

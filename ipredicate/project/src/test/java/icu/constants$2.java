@@ -19,7 +19,7 @@ final class constants$2 {
         JAVA_BYTE
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utf8_prevCharSafeBody_70",
+        "utf8_prevCharSafeBody_73",
         constants$2.const$0
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_INT,
@@ -28,14 +28,14 @@ final class constants$2 {
         JAVA_INT
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "utf8_back1SafeBody_70",
+        "utf8_back1SafeBody_73",
         constants$2.const$2
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.of(RuntimeHelper.POINTER,
         JAVA_INT
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_errorName_70",
+        "u_errorName_73",
         constants$2.const$4
     );
 }

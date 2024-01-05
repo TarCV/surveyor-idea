@@ -19,7 +19,7 @@ final class constants$41 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_groupUText_70",
+        "uregex_groupUText_73",
         constants$41.const$0
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_INT,
@@ -28,7 +28,7 @@ final class constants$41 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_start_70",
+        "uregex_start_73",
         constants$41.const$2
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.of(JAVA_LONG,
@@ -37,7 +37,7 @@ final class constants$41 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_start64_70",
+        "uregex_start64_73",
         constants$41.const$4
     );
 }

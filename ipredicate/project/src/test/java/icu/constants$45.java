@@ -17,23 +17,23 @@ final class constants$45 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_useTransparentBounds_70",
+        "uregex_useTransparentBounds_73",
         constants$45.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "uregex_hasAnchoringBounds_70",
+        "uregex_hasAnchoringBounds_73",
         constants$18.const$5
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "uregex_useAnchoringBounds_70",
+        "uregex_useAnchoringBounds_73",
         constants$45.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "uregex_hitEnd_70",
+        "uregex_hitEnd_73",
         constants$18.const$5
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "uregex_requireEnd_70",
+        "uregex_requireEnd_73",
         constants$18.const$5
     );
 }

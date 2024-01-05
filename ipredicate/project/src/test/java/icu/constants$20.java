@@ -12,27 +12,27 @@ final class constants$20 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$20() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "utext_current32_70",
+        "utext_current32_73",
         constants$14.const$2
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "utext_next32_70",
+        "utext_next32_73",
         constants$14.const$2
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "utext_previous32_70",
+        "utext_previous32_73",
         constants$14.const$2
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "utext_next32From_70",
+        "utext_next32From_73",
         constants$19.const$4
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "utext_previous32From_70",
+        "utext_previous32From_73",
         constants$19.const$4
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "utext_getNativeIndex_70",
+        "utext_getNativeIndex_73",
         constants$19.const$0
     );
 }

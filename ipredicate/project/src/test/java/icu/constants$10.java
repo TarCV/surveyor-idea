@@ -12,23 +12,23 @@ final class constants$10 {
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$10() {}
     static final MethodHandle const$0 = RuntimeHelper.downcallHandle(
-        "u_charDirection_70",
+        "u_charDirection_73",
         constants$6.const$0
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_isMirrored_70",
+        "u_isMirrored_73",
         constants$5.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "u_charMirror_70",
+        "u_charMirror_73",
         constants$6.const$0
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_getBidiPairedBracket_70",
+        "u_getBidiPairedBracket_73",
         constants$6.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_charType_70",
+        "u_charType_73",
         constants$5.const$0
     );
     static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_BYTE,

@@ -15,19 +15,19 @@ final class constants$5 {
         JAVA_INT
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_isUAlphabetic_70",
+        "u_isUAlphabetic_73",
         constants$5.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "u_isULowercase_70",
+        "u_isULowercase_73",
         constants$5.const$0
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_isUUppercase_70",
+        "u_isUUppercase_73",
         constants$5.const$0
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_isUWhiteSpace_70",
+        "u_isUWhiteSpace_73",
         constants$5.const$0
     );
     static final FunctionDescriptor const$5 = FunctionDescriptor.of(JAVA_INT,
@@ -35,7 +35,7 @@ final class constants$5 {
         JAVA_INT
     );
     static final MethodHandle const$6 = RuntimeHelper.downcallHandle(
-        "u_getIntPropertyValue_70",
+        "u_getIntPropertyValue_73",
         constants$5.const$5
     );
 }

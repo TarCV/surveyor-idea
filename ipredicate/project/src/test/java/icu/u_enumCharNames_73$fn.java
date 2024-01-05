@@ -9,16 +9,16 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 /**
  * {@snippet lang=c :
- * signed char (*u_enumCharNames_70$fn)(void*,int,enum UCharNameChoice,char*,int);
+ * signed char (*u_enumCharNames_73$fn)(void*,int,enum UCharNameChoice,char*,int);
  * }
  */
-public interface u_enumCharNames_70$fn {
+public interface u_enumCharNames_73$fn {
 
     byte apply(java.lang.foreign.MemorySegment context, int code, int nameChoice, java.lang.foreign.MemorySegment name, int length);
-    static MemorySegment allocate(u_enumCharNames_70$fn fi, Arena scope) {
+    static MemorySegment allocate(u_enumCharNames_73$fn fi, Arena scope) {
         return RuntimeHelper.upcallStub(constants$13.const$3, fi, constants$13.const$0, scope);
     }
-    static u_enumCharNames_70$fn ofAddress(MemorySegment addr, Arena arena) {
+    static u_enumCharNames_73$fn ofAddress(MemorySegment addr, Arena arena) {
         MemorySegment symbol = addr.reinterpret(arena, null);
         return (java.lang.foreign.MemorySegment _context, int _code, int _nameChoice, java.lang.foreign.MemorySegment _name, int _length) -> {
             try {

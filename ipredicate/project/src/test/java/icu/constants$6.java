@@ -15,22 +15,22 @@ final class constants$6 {
         JAVA_INT
     );
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "u_getIntPropertyMinValue_70",
+        "u_getIntPropertyMinValue_73",
         constants$6.const$0
     );
     static final MethodHandle const$2 = RuntimeHelper.downcallHandle(
-        "u_getIntPropertyMaxValue_70",
+        "u_getIntPropertyMaxValue_73",
         constants$6.const$0
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_getIntPropertyMap_70",
+        "u_getIntPropertyMap_73",
         constants$4.const$4
     );
     static final FunctionDescriptor const$4 = FunctionDescriptor.of(JAVA_DOUBLE,
         JAVA_INT
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_getNumericValue_70",
+        "u_getNumericValue_73",
         constants$6.const$4
     );
 }

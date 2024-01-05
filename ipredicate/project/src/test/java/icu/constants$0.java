@@ -22,15 +22,15 @@ final class constants$0 {
         RuntimeHelper.POINTER
     );
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_versionFromString_70",
+        "u_versionFromString_73",
         constants$0.const$2
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_versionFromUString_70",
+        "u_versionFromUString_73",
         constants$0.const$2
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_versionToString_70",
+        "u_versionToString_73",
         constants$0.const$2
     );
 }

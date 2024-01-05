@@ -15,17 +15,17 @@ final class constants$11 {
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
         constants$10.const$5
     );
-    static final MethodHandle const$2 = RuntimeHelper.upcallHandle(u_enumCharTypes_70$enumRange.class, "apply", constants$10.const$5);
+    static final MethodHandle const$2 = RuntimeHelper.upcallHandle(u_enumCharTypes_73$enumRange.class, "apply", constants$10.const$5);
     static final MethodHandle const$3 = RuntimeHelper.downcallHandle(
-        "u_enumCharTypes_70",
+        "u_enumCharTypes_73",
         constants$0.const$2
     );
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
-        "u_getCombiningClass_70",
+        "u_getCombiningClass_73",
         constants$5.const$0
     );
     static final MethodHandle const$5 = RuntimeHelper.downcallHandle(
-        "u_charDigitValue_70",
+        "u_charDigitValue_73",
         constants$6.const$0
     );
 }

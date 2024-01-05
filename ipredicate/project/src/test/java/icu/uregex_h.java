@@ -147,6 +147,14 @@ public class uregex_h extends uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
+     * #define UCONFIG_USE_ML_PHRASE_BREAKING 0
+     * }
+     */
+    public static int UCONFIG_USE_ML_PHRASE_BREAKING() {
+        return (int)0L;
+    }
+    /**
+     * {@snippet lang=c :
      * #define UCONFIG_NO_BREAK_ITERATION 0
      * }
      */
@@ -227,19 +235,19 @@ public class uregex_h extends uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * #define U_ICU_VERSION_MAJOR_NUM 70
+     * #define U_ICU_VERSION_MAJOR_NUM 73
      * }
      */
     public static int U_ICU_VERSION_MAJOR_NUM() {
-        return (int)70L;
+        return (int)73L;
     }
     /**
      * {@snippet lang=c :
-     * #define U_ICU_VERSION_MINOR_NUM 1
+     * #define U_ICU_VERSION_MINOR_NUM 2
      * }
      */
     public static int U_ICU_VERSION_MINOR_NUM() {
-        return (int)1L;
+        return (int)2L;
     }
     /**
      * {@snippet lang=c :
@@ -1059,128 +1067,128 @@ public class uregex_h extends uregex_h_1 {
      * }
      */
     public static final OfInt UChar32 = JAVA_INT;
-    public static MethodHandle u_versionFromString_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.const$3,"u_versionFromString_70");
+    public static MethodHandle u_versionFromString_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$0.const$3,"u_versionFromString_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_versionFromString_70(unsigned char versionArray[4], char* versionString);
+     * void u_versionFromString_73(unsigned char versionArray[4], char* versionString);
      * }
      */
-    public static void u_versionFromString_70(MemorySegment versionArray, MemorySegment versionString) {
-        var mh$ = u_versionFromString_70$MH();
+    public static void u_versionFromString_73(MemorySegment versionArray, MemorySegment versionString) {
+        var mh$ = u_versionFromString_73$MH();
         try {
             mh$.invokeExact(versionArray, versionString);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_versionFromUString_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.const$4,"u_versionFromUString_70");
+    public static MethodHandle u_versionFromUString_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$0.const$4,"u_versionFromUString_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_versionFromUString_70(unsigned char versionArray[4], unsigned short* versionString);
+     * void u_versionFromUString_73(unsigned char versionArray[4], unsigned short* versionString);
      * }
      */
-    public static void u_versionFromUString_70(MemorySegment versionArray, MemorySegment versionString) {
-        var mh$ = u_versionFromUString_70$MH();
+    public static void u_versionFromUString_73(MemorySegment versionArray, MemorySegment versionString) {
+        var mh$ = u_versionFromUString_73$MH();
         try {
             mh$.invokeExact(versionArray, versionString);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_versionToString_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.const$5,"u_versionToString_70");
+    public static MethodHandle u_versionToString_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$0.const$5,"u_versionToString_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_versionToString_70(unsigned char versionArray[4], char* versionString);
+     * void u_versionToString_73(unsigned char versionArray[4], char* versionString);
      * }
      */
-    public static void u_versionToString_70(MemorySegment versionArray, MemorySegment versionString) {
-        var mh$ = u_versionToString_70$MH();
+    public static void u_versionToString_73(MemorySegment versionArray, MemorySegment versionString) {
+        var mh$ = u_versionToString_73$MH();
         try {
             mh$.invokeExact(versionArray, versionString);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle u_getVersion_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.const$1,"u_getVersion_70");
+    public static MethodHandle u_getVersion_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$1.const$1,"u_getVersion_73");
     }
     /**
      * {@snippet lang=c :
-     * void u_getVersion_70(unsigned char versionArray[4]);
+     * void u_getVersion_73(unsigned char versionArray[4]);
      * }
      */
-    public static void u_getVersion_70(MemorySegment versionArray) {
-        var mh$ = u_getVersion_70$MH();
+    public static void u_getVersion_73(MemorySegment versionArray) {
+        var mh$ = u_getVersion_73$MH();
         try {
             mh$.invokeExact(versionArray);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utf8_nextCharSafeBody_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.const$3,"utf8_nextCharSafeBody_70");
+    public static MethodHandle utf8_nextCharSafeBody_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$1.const$3,"utf8_nextCharSafeBody_73");
     }
     /**
      * {@snippet lang=c :
-     * int utf8_nextCharSafeBody_70(unsigned char* s, int* pi, int length, int c, signed char strict);
+     * int utf8_nextCharSafeBody_73(unsigned char* s, int* pi, int length, int c, signed char strict);
      * }
      */
-    public static int utf8_nextCharSafeBody_70(MemorySegment s, MemorySegment pi, int length, int c, byte strict) {
-        var mh$ = utf8_nextCharSafeBody_70$MH();
+    public static int utf8_nextCharSafeBody_73(MemorySegment s, MemorySegment pi, int length, int c, byte strict) {
+        var mh$ = utf8_nextCharSafeBody_73$MH();
         try {
             return (int)mh$.invokeExact(s, pi, length, c, strict);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utf8_appendCharSafeBody_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.const$5,"utf8_appendCharSafeBody_70");
+    public static MethodHandle utf8_appendCharSafeBody_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$1.const$5,"utf8_appendCharSafeBody_73");
     }
     /**
      * {@snippet lang=c :
-     * int utf8_appendCharSafeBody_70(unsigned char* s, int i, int length, int c, signed char* pIsError);
+     * int utf8_appendCharSafeBody_73(unsigned char* s, int i, int length, int c, signed char* pIsError);
      * }
      */
-    public static int utf8_appendCharSafeBody_70(MemorySegment s, int i, int length, int c, MemorySegment pIsError) {
-        var mh$ = utf8_appendCharSafeBody_70$MH();
+    public static int utf8_appendCharSafeBody_73(MemorySegment s, int i, int length, int c, MemorySegment pIsError) {
+        var mh$ = utf8_appendCharSafeBody_73$MH();
         try {
             return (int)mh$.invokeExact(s, i, length, c, pIsError);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utf8_prevCharSafeBody_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.const$1,"utf8_prevCharSafeBody_70");
+    public static MethodHandle utf8_prevCharSafeBody_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$2.const$1,"utf8_prevCharSafeBody_73");
     }
     /**
      * {@snippet lang=c :
-     * int utf8_prevCharSafeBody_70(unsigned char* s, int start, int* pi, int c, signed char strict);
+     * int utf8_prevCharSafeBody_73(unsigned char* s, int start, int* pi, int c, signed char strict);
      * }
      */
-    public static int utf8_prevCharSafeBody_70(MemorySegment s, int start, MemorySegment pi, int c, byte strict) {
-        var mh$ = utf8_prevCharSafeBody_70$MH();
+    public static int utf8_prevCharSafeBody_73(MemorySegment s, int start, MemorySegment pi, int c, byte strict) {
+        var mh$ = utf8_prevCharSafeBody_73$MH();
         try {
             return (int)mh$.invokeExact(s, start, pi, c, strict);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle utf8_back1SafeBody_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.const$3,"utf8_back1SafeBody_70");
+    public static MethodHandle utf8_back1SafeBody_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$2.const$3,"utf8_back1SafeBody_73");
     }
     /**
      * {@snippet lang=c :
-     * int utf8_back1SafeBody_70(unsigned char* s, int start, int i);
+     * int utf8_back1SafeBody_73(unsigned char* s, int start, int i);
      * }
      */
-    public static int utf8_back1SafeBody_70(MemorySegment s, int start, int i) {
-        var mh$ = utf8_back1SafeBody_70$MH();
+    public static int utf8_back1SafeBody_73(MemorySegment s, int start, int i) {
+        var mh$ = utf8_back1SafeBody_73$MH();
         try {
             return (int)mh$.invokeExact(s, start, i);
         } catch (Throwable ex$) {
@@ -2497,16 +2505,16 @@ public class uregex_h extends uregex_h_1 {
     public static int U_ERROR_LIMIT() {
         return (int)66818L;
     }
-    public static MethodHandle u_errorName_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.const$5,"u_errorName_70");
+    public static MethodHandle u_errorName_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$2.const$5,"u_errorName_73");
     }
     /**
      * {@snippet lang=c :
-     * char* u_errorName_70(enum UErrorCode code);
+     * char* u_errorName_73(enum UErrorCode code);
      * }
      */
-    public static MemorySegment u_errorName_70(int code) {
-        var mh$ = u_errorName_70$MH();
+    public static MemorySegment u_errorName_73(int code) {
+        var mh$ = u_errorName_73$MH();
         try {
             return (java.lang.foreign.MemorySegment)mh$.invokeExact(code);
         } catch (Throwable ex$) {
@@ -2537,32 +2545,32 @@ public class uregex_h extends uregex_h_1 {
     public static int UCPMAP_RANGE_FIXED_ALL_SURROGATES() {
         return (int)2L;
     }
-    public static MethodHandle ucpmap_get_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.const$1,"ucpmap_get_70");
+    public static MethodHandle ucpmap_get_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$3.const$1,"ucpmap_get_73");
     }
     /**
      * {@snippet lang=c :
-     * unsigned int ucpmap_get_70(struct UCPMap* map, int c);
+     * unsigned int ucpmap_get_73(struct UCPMap* map, int c);
      * }
      */
-    public static int ucpmap_get_70(MemorySegment map, int c) {
-        var mh$ = ucpmap_get_70$MH();
+    public static int ucpmap_get_73(MemorySegment map, int c) {
+        var mh$ = ucpmap_get_73$MH();
         try {
             return (int)mh$.invokeExact(map, c);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle ucpmap_getRange_70$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.const$6,"ucpmap_getRange_70");
+    public static MethodHandle ucpmap_getRange_73$MH() {
+        return RuntimeHelper.requireNonNull(constants$3.const$6,"ucpmap_getRange_73");
     }
     /**
      * {@snippet lang=c :
-     * int ucpmap_getRange_70(struct UCPMap* map, int start, enum UCPMapRangeOption option, unsigned int surrogateValue, unsigned int (*filter)(void*,unsigned int), void* context, unsigned int* pValue);
+     * int ucpmap_getRange_73(struct UCPMap* map, int start, enum UCPMapRangeOption option, unsigned int surrogateValue, unsigned int (*filter)(void*,unsigned int), void* context, unsigned int* pValue);
      * }
      */
-    public static int ucpmap_getRange_70(MemorySegment map, int start, int option, int surrogateValue, MemorySegment filter, MemorySegment context, MemorySegment pValue) {
-        var mh$ = ucpmap_getRange_70$MH();
+    public static int ucpmap_getRange_73(MemorySegment map, int start, int option, int surrogateValue, MemorySegment filter, MemorySegment context, MemorySegment pValue) {
+        var mh$ = ucpmap_getRange_73$MH();
         try {
             return (int)mh$.invokeExact(map, start, option, surrogateValue, filter, context, pValue);
         } catch (Throwable ex$) {
@@ -6651,11 +6659,67 @@ public class uregex_h extends uregex_h_1 {
     }
     /**
      * {@snippet lang=c :
-     * enum UBlockCode.UBLOCK_COUNT = 321;
+     * enum UBlockCode.UBLOCK_ARABIC_EXTENDED_C = 321;
+     * }
+     */
+    public static int UBLOCK_ARABIC_EXTENDED_C() {
+        return (int)321L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UBlockCode.UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_H = 322;
+     * }
+     */
+    public static int UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_H() {
+        return (int)322L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UBlockCode.UBLOCK_CYRILLIC_EXTENDED_D = 323;
+     * }
+     */
+    public static int UBLOCK_CYRILLIC_EXTENDED_D() {
+        return (int)323L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UBlockCode.UBLOCK_DEVANAGARI_EXTENDED_A = 324;
+     * }
+     */
+    public static int UBLOCK_DEVANAGARI_EXTENDED_A() {
+        return (int)324L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UBlockCode.UBLOCK_KAKTOVIK_NUMERALS = 325;
+     * }
+     */
+    public static int UBLOCK_KAKTOVIK_NUMERALS() {
+        return (int)325L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UBlockCode.UBLOCK_KAWI = 326;
+     * }
+     */
+    public static int UBLOCK_KAWI() {
+        return (int)326L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UBlockCode.UBLOCK_NAG_MUNDARI = 327;
+     * }
+     */
+    public static int UBLOCK_NAG_MUNDARI() {
+        return (int)327L;
+    }
+    /**
+     * {@snippet lang=c :
+     * enum UBlockCode.UBLOCK_COUNT = 328;
      * }
      */
     public static int UBLOCK_COUNT() {
-        return (int)321L;
+        return (int)328L;
     }
     /**
      * {@snippet lang=c :
@@ -7960,70 +8024,6 @@ public class uregex_h extends uregex_h_1 {
      */
     public static int U_GCB_E_BASE_GAZ() {
         return (int)14L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UGraphemeClusterBreak.U_GCB_E_MODIFIER = 15;
-     * }
-     */
-    public static int U_GCB_E_MODIFIER() {
-        return (int)15L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UGraphemeClusterBreak.U_GCB_GLUE_AFTER_ZWJ = 16;
-     * }
-     */
-    public static int U_GCB_GLUE_AFTER_ZWJ() {
-        return (int)16L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UGraphemeClusterBreak.U_GCB_ZWJ = 17;
-     * }
-     */
-    public static int U_GCB_ZWJ() {
-        return (int)17L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UGraphemeClusterBreak.U_GCB_COUNT = 18;
-     * }
-     */
-    public static int U_GCB_COUNT() {
-        return (int)18L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UWordBreakValues.U_WB_OTHER = 0;
-     * }
-     */
-    public static int U_WB_OTHER() {
-        return (int)0L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UWordBreakValues.U_WB_ALETTER = 1;
-     * }
-     */
-    public static int U_WB_ALETTER() {
-        return (int)1L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UWordBreakValues.U_WB_FORMAT = 2;
-     * }
-     */
-    public static int U_WB_FORMAT() {
-        return (int)2L;
-    }
-    /**
-     * {@snippet lang=c :
-     * enum UWordBreakValues.U_WB_KATAKANA = 3;
-     * }
-     */
-    public static int U_WB_KATAKANA() {
-        return (int)3L;
     }
 }
 

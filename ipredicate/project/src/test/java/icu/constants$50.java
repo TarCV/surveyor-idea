@@ -11,9 +11,9 @@ final class constants$50 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$50() {}
-    static final MethodHandle const$0 = RuntimeHelper.upcallHandle(uregex_getMatchCallback_70$callback.class, "apply", constants$21.const$2);
+    static final MethodHandle const$0 = RuntimeHelper.upcallHandle(uregex_getMatchCallback_73$callback.class, "apply", constants$21.const$2);
     static final MethodHandle const$1 = RuntimeHelper.downcallHandle(
-        "uregex_getMatchCallback_70",
+        "uregex_getMatchCallback_73",
         constants$47.const$2
     );
     static final FunctionDescriptor const$2 = FunctionDescriptor.of(JAVA_BYTE,
@@ -24,7 +24,7 @@ final class constants$50 {
     static final MethodHandle const$4 = RuntimeHelper.downcallHandle(
         constants$50.const$2
     );
-    static final MethodHandle const$5 = RuntimeHelper.upcallHandle(uregex_setFindProgressCallback_70$callback.class, "apply", constants$50.const$2);
+    static final MethodHandle const$5 = RuntimeHelper.upcallHandle(uregex_setFindProgressCallback_73$callback.class, "apply", constants$50.const$2);
 }
 
 

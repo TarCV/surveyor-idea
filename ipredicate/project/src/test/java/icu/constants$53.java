@@ -11,7 +11,7 @@ final class constants$53 {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private constants$53() {}
-    static final MemorySegment const$0 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("14.0");
+    static final MemorySegment const$0 = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("15.0");
 }
 
 
