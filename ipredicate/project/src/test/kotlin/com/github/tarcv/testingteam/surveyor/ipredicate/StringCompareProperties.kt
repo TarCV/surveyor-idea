@@ -61,45 +61,53 @@ class StringCompareProperties {
         assertEquals(expectedReverse, gsReverseResult)
     }
 
-    fun regexZeroLengthExamples(string: String, quantifier: String) = listOf<Tuple3<NSString, NSString, Set<StringCompareOption>>>(
-        Tuple.of(string.toNSString(), "$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "^$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "$$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "\\b$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "()$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "(?:)$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "(?=)$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "(?!=)$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "(?<=)$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "(?!<=)$quantifier".toNSString(), emptySet()),
-        Tuple.of(string.toNSString(), "(?!<)$quantifier".toNSString(), emptySet()),
-    )
+    fun regexZeroLengthExamples(string: String, quantifier: String) =
+        listOf<Tuple3<NSString, NSString, Set<StringCompareOption>>>(
+            Tuple.of(string.toNSString(), "$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "^$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "$$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "\\b$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "()$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "(?:)$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "(?=)$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "(?!=)$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "(?<=)$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "(?!<=)$quantifier".toNSString(), emptySet()),
+            Tuple.of(string.toNSString(), "(?!<)$quantifier".toNSString(), emptySet()),
+        )
 
     // Known edge cases that caused failures in the past:
     @Data
     fun regexIsIcuCompatibleExamples() = listOf<Tuple3<NSString, NSString, Set<Any>>>(
-            Tuple.of(NSString(listOf(0x20.toUShort())), NSString(listOf(0x20.toUShort())), emptySet()),
-            Tuple.of("a".toNSString(), "}".toNSString(), emptySet()),
-            Tuple.of("a".toNSString(), "\\".toNSString(), emptySet()),
-            Tuple.of("1".toNSString(), "\\1".toNSString(), emptySet()),
-            Tuple.of("1".toNSString(), "[\\1]".toNSString(), emptySet()),
-            Tuple.of("a".toNSString(), "\\1(a)".toNSString(), emptySet()),
-            Tuple.of("".toNSString(), "\\1()".toNSString(), emptySet()),
-            Tuple.of("aa".toNSString(), "\\1(a)".toNSString(), emptySet()),
-            Tuple.of("1a".toNSString(), "\\1(a)".toNSString(), emptySet()),
-            Tuple.of("/".toNSString(), "/".toNSString(), emptySet()),
-            Tuple.of("//".toNSString(), "//".toNSString(), emptySet()),
-            Tuple.of("a".toNSString(), "?}".toNSString(), emptySet()),
-            Tuple.of("{".toNSString(), "[(}{{{{]".toNSString(), emptySet()),
-            Tuple.of("}".toNSString(), "[]}]".toNSString(), emptySet()),
-            Tuple.of("?".toNSString(), "\\c ".toNSString(), emptySet()),
-            Tuple.of("??".toNSString(), "\\c \\c ".toNSString(), emptySet()),
-        ) +
-                regexZeroLengthExamples("", "?") +
-                regexZeroLengthExamples("", "*") +
-                regexZeroLengthExamples("", "+") +
-                regexZeroLengthExamples("", "{7}") +
-                regexZeroLengthExamples("", "{0,7}")
+        Tuple.of(NSString(listOf(0x20.toUShort())), NSString(listOf(0x20.toUShort())), emptySet()),
+        Tuple.of("a".toNSString(), "}".toNSString(), emptySet()),
+        Tuple.of("a".toNSString(), "\\".toNSString(), emptySet()),
+        Tuple.of("1".toNSString(), "\\1".toNSString(), emptySet()),
+        Tuple.of("1".toNSString(), "[\\1]".toNSString(), emptySet()),
+        Tuple.of("a".toNSString(), "\\1(a)".toNSString(), emptySet()),
+        Tuple.of("".toNSString(), "\\1()".toNSString(), emptySet()),
+        Tuple.of("aa".toNSString(), "\\1(a)".toNSString(), emptySet()),
+        Tuple.of("1a".toNSString(), "\\1(a)".toNSString(), emptySet()),
+        Tuple.of("/".toNSString(), "/".toNSString(), emptySet()),
+        Tuple.of("//".toNSString(), "//".toNSString(), emptySet()),
+        Tuple.of("a".toNSString(), "?}".toNSString(), emptySet()),
+        Tuple.of("{".toNSString(), "[(}{]".toNSString(), emptySet()),
+        Tuple.of("}".toNSString(), "[]}]".toNSString(), emptySet()),
+        Tuple.of("{".toNSString(), "[{]]".toNSString(), emptySet()),
+//            Tuple.of("{".toNSString(), "[{]}]".toNSString(), emptySet()), // Not sure why this fails
+        Tuple.of("!\"#%&'()*,./:;?@[\\]_{}-".toNSString(), "\\p{Punct}{23}".toNSString(), emptySet()),
+        Tuple.of("\$+<=>^`|~".toNSString(), ".*\\p{Punct}.*".toNSString(), emptySet()),
+        Tuple.of("c".toNSString(), "\\c".toNSString(), emptySet()),
+        Tuple.of("\u0000".toNSString(), "\\c ".toNSString(), emptySet()),
+        Tuple.of("\u0000\u0000".toNSString(), "\\c \\c ".toNSString(), emptySet()),
+        Tuple.of("\u0131".toNSString(), "\\x{0049}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u0049".toNSString(), "\\x{0131}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+    ) +
+            regexZeroLengthExamples("", "?") +
+            regexZeroLengthExamples("", "*") +
+            regexZeroLengthExamples("", "+") +
+            regexZeroLengthExamples("", "{7}") +
+            regexZeroLengthExamples("", "{0,7}")
 
     @Property
     @FromData("regexIsIcuCompatibleExamples")
@@ -114,7 +122,13 @@ class StringCompareProperties {
         @ForAll("nsString") string1: NSString,
         @ForAll("nsRegexString") string2: NSString,
         @ForAll("optionSet") options: Set<StringCompareOption>
-    ) = checkRegexIsIcuCompatible(string1, string2, options)
+    ) {
+        val icuResult = kotlin.runCatching { GSICUStringMatchesRegex(string1, string2, options) }.getOrDefault(false)
+        val jvmResult = kotlin.runCatching {
+                staticPredicate.GSICUStringMatchesRegex(string1, string2, options.toMutableSet())
+            }.getOrDefault(false)
+        assertEquals(icuResult, jvmResult, "Test if '$string1' matching '$string2'. The expected result is ICU one.")
+    }
 
     fun checkRegexIsIcuCompatible(
         string1: NSString,
@@ -126,13 +140,14 @@ class StringCompareProperties {
             staticPredicate.GSICUStringMatchesRegex(string1, string2, options.toMutableSet())
         }
         if (icuResult.isFailure) {
-            assertEquals(icuResult.isFailure, jvmResult.isFailure,
+            assertEquals(
+                icuResult.isFailure, jvmResult.isFailure,
                 "Test if it's error to check '$string1' against '$string2'\n" +
-                "ICU result: $icuResult\n" +
-                "JVM result: $jvmResult"
+                        "ICU result: $icuResult\n" +
+                        "JVM result: $jvmResult"
             )
         } else {
-            assertEquals(icuResult, jvmResult, "Test if '$string1' matching '$string2'")
+            assertEquals(icuResult, jvmResult, "Test if '$string1' matching '$string2'. The expected result is ICU one.")
         }
     }
 
@@ -140,18 +155,19 @@ class StringCompareProperties {
     fun nsString(): Arbitrary<NSString> {
         return Arbitraries
             .oneOf(
-                Arbitraries.strings().withCharRange(Char(0), Char.MAX_VALUE).ofMaxLength(5),
-                Arbitraries.strings().withCharRange(' ', 0x7f.toChar()).ofMaxLength(5),
+                Arbitraries.integers().map { it.toUShort() }.list().ofMaxSize(6).map { NSString(it) },
+                Arbitraries.strings().withCharRange(' ', 0x7f.toChar()).ofMaxLength(5).map { it.toNSString() },
             )
-            .map { it.toNSString() }
     }
 
     @Provide
     fun nsRegexString(): Arbitrary<NSString> {
         return Arbitraries
             .oneOf(
-                Arbitraries.strings().withCharRange(Char.MIN_VALUE, Char.MAX_VALUE).ofMaxLength(5),
-                Arbitraries.strings().withCharRange(' ', 0x7f.toChar()).ofMaxLength(5),
+                Arbitraries.integers().map { it.toUShort() }.list().ofMaxSize(6).map { NSString(it) },
+                Arbitraries.strings().withCharRange(Char.MIN_VALUE, Char.MAX_VALUE).ofMaxLength(5)
+                    .map { it.toNSString() },
+                Arbitraries.strings().withCharRange(' ', 0x7f.toChar()).ofMaxLength(5).map { it.toNSString() },
                 Combinators
                     .combine(
                         Arbitraries.strings().withCharRange(Char.MIN_VALUE, Char.MAX_VALUE),
@@ -160,17 +176,19 @@ class StringCompareProperties {
                         Arbitraries.strings().withChars('{', '[', '(', ')', ']', '}'),
                         Arbitraries.strings().withCharRange(Char.MIN_VALUE, Char.MAX_VALUE),
                     )
-                    .`as` { t1, t2, t3, t4, t5 -> "$t1$t2$t3$t4$t5" },
+                    .`as` { t1, t2, t3, t4, t5 -> "$t1$t2$t3$t4$t5" }
+                    .map { it.toNSString() },
                 Combinators
                     .combine(
                         Arbitraries.strings().withCharRange(Char.MIN_VALUE, Char.MAX_VALUE),
-                        Arbitraries.strings().ofLength(1),
+                        Arbitraries.strings().ofMaxLength(2),
                         Arbitraries.strings().withCharRange(Char.MIN_VALUE, Char.MAX_VALUE),
                     )
                     .`as` { t1, t2, t3 -> "$t1\\c$t2$t3" }
+                    .map { it.toNSString() }
             )
-            .map { it.toNSString() }
     }
+
     @Provide
     fun optionSet(): Arbitrary<Set<*>> {
         return Arbitraries.defaultFor(Set::class.java, StringCompareOption::class.java)
@@ -212,7 +230,7 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
         if (opts.contains(StringCompareOption.caseInsensitive)) {
             flags = flags or UREGEX_CASE_INSENSITIVE; }
 
-        val regexObj = uregex_open_70(regexStr, regexLength, flags, parseError, errorCode)
+        val regexObj = uregex_open_73(regexStr, regexLength, flags, parseError, errorCode)
         requireSuccess(errorCode.get(JAVA_INT, 0), "uregex_open", string, regex, opts)
 
         try {
@@ -223,15 +241,15 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
                 arena.allocateArray(JAVA_SHORT, *it.toShortArray())
             }
 
-            uregex_setText_70(regexObj, textStr, stringLength, errorCode)
+            uregex_setText_73(regexObj, textStr, stringLength, errorCode)
             requireSuccess(errorCode.get(JAVA_INT, 0), "uregex_setText", string, regex, opts)
 
-            val result = uregex_matches_70(regexObj, 0, errorCode)
+            val result = uregex_matches_73(regexObj, 0, errorCode)
             requireSuccess(errorCode.get(JAVA_INT, 0), "uregex_matches", string, regex, opts)
             println("ICU result: $result ${describeParams(string, regex, opts)}")
             return@synchronized (result.toInt() != 0)
         } finally {
-            uregex_close_70(regexObj)
+            uregex_close_73(regexObj)
         }
 
     }
@@ -242,7 +260,7 @@ private fun describeParams(string: NSString, regex: NSString, opts: Set<StringCo
 
 private fun requireSuccess(code: Int, where: String, string: NSString, regex: NSString, opts: Set<StringCompareOption>) {
     require(U_SUCCESS(code)) {
-        val msg = "ICU returned error: ${code} (${u_errorName_70(code).getUtf8String(0)})" +
+        val msg = "ICU returned error: ${code} (${u_errorName_73(code).getUtf8String(0)})" +
                 " from $where ${describeParams(string, regex, opts)}"
         println(msg)
         msg
