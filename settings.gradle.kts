@@ -7,7 +7,6 @@ pluginManagement {
             url = uri("https://jitpack.io")
             content {
                 // Download only these groups from the repository
-                includeGroup("com.github.TarCV")
                 includeGroup("com.github.TarCV.aar2jar")
             }
         }

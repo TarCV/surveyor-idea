@@ -11,6 +11,7 @@ qodana = "0.1.13"
 
 # libraries
 beanshell = "5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c"
+u4jregex = "67352f493146a4436c340c294a3f680a3281dde3"
 junitVideo = "2.0"
 remoteRobot = "0.11.20"
 uiautomator = "2.2.0"
@@ -25,6 +26,7 @@ qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
 
 [libraries]
 beanshell = { group = "com.github.TarCV.beanshell", name = "bsh", version.ref = "beanshell" }
+u4jregex = { group = "com.github.TarCV", name = "u4j-regex", version.ref = "u4jregex" }
 jqwik = { group = "net.jqwik", name = "jqwik", version.ref = "jqwik" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }

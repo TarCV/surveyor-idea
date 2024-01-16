@@ -758,171 +758,47 @@
          }
          else {
              return NSComparisonPredicate.predicateWithLeftExpression(
-@@ -1478,10 +1577,18 @@
+@@ -1478,11 +1594,39 @@
      open fun GSICUStringMatchesRegex(
          string: NSString,
          regex: NSString,
 -        opts: NSString.CompareOptions)
 +        opts: NSStringCompareOptions)
-         : Boolean
-     {
+-        : Boolean
+-    {
 -        return false
-+        require(regex.length > 0) { "Regex should not be empty" }
-+        data class Bracket(val openingChar: Char, val openPos: Int, var closePos: Int) {
-+            constructor(open: Char, openPos: Int): this(open, openPos, -1)
-+            val isOpen: Boolean get() = closePos < 0
-+            val range: IntRange get() { require(!isOpen); return openPos..closePos }
-+            fun substringIn(str: String): String = str.substring(openPos, closePos + 1)
-+        }
-+        val parts = run {
-+            val bracketPairs = arrayOf('(' to ')', '[' to ']', '{' to '}')
-+            val openingBrackets = bracketPairs.map { it.first }
-+            val closingBrackets = bracketPairs.map { it.second }
-+            data class ParserState(
-+                var isInEscape: Boolean = false,
-+                var stack: MutableList<Bracket> = ArrayList()
-+            ) {
-+                fun lastOpenOrNull(): Bracket? = stack.lastOrNull { it.isOpen }
++        : Boolean = try { // TODO: Avoid generation of 'return false' in the previous line
++        GSICUStringMatchesRegexThrowing(string, regex, opts)
++    } catch (e: com.github.tarcv.u4jregex.RegexParseException) {
++        false
++    } catch (e: IllegalStateException) {
++        false
++    } catch (e: IllegalArgumentException) {
++        false
++    }
 +
-+                fun tryCloseWith(it: Char, index: Int): Bracket? {
-+                    val lastOpen = lastOpenOrNull() ?: return null
-+                    val closeChar = bracketPairs
-+                        .firstOrNull { it.first == lastOpen.openingChar }
-+                        ?.second
-+                        ?: return null
-+                    if (closeChar != it) {
-+                        return null
-+                    }
-+                    lastOpen.closePos = index
-+                    return lastOpen
-+                }
-+
-+                fun resetLastClassClose(): Int {
-+                    isInEscape = false
-+                    val lastClosedClassIndex = stack.indexOfLast {
-+                        it.openingChar == '[' && !it.isOpen
-+                    }
-+                    if (lastClosedClassIndex < 0) {
-+                        return Int.MAX_VALUE
-+                    }
-+                    val lastClosedAt = stack[lastClosedClassIndex].closePos
-+                    stack[lastClosedClassIndex].closePos = -1
-+                    val indexToDelete = lastClosedClassIndex + 1
-+                    while (stack.size > indexToDelete) {
-+                        stack.removeAt(indexToDelete)
-+                    }
-+                    return lastClosedAt
-+                }
-+            }
-+
-+            val regexStr = regex.toString()
-+            val regexLength = regexStr.length
-+            var firstError: Exception? = null
-+            val parserState = ParserState()
-+            var index = 0
-+            fun requireNonZeroLengthTest(endIndexExclusive: Int) {
-+                val msg = "Quantifiers cannot be added to zero-length tests"
-+                require(endIndexExclusive > 0) { msg }
-+                if (endIndexExclusive >= 2) {
-+                    val test = parserState.stack
-+                        .lastOrNull { (endIndexExclusive - 1) in it.range }
-+                        ?.substringIn(regexStr)
-+                    require(test != "\\b" &&
-+                            test?.startsWith("(?=") != true &&
-+                            test?.startsWith("(?!=") != true &&
-+                            test?.startsWith("(?<") != true &&
-+                            test?.startsWith("(?!<") != true
-+                    ) { msg }
-+                }
-+            }
-+            for (attempt in 1..100) {
-+                var maxRequestedGroup = -1
-+                try {
-+                    while (index < regexLength) {
-+                        val it = regexStr[index]
-+                        if (parserState.isInEscape) {
-+                            if (it.isDigit() && parserState.lastOpenOrNull()?.openingChar != '[') {
-+                                val group = regexStr
-+                                    .substring(index)
-+                                    .takeWhile { it.isDigit() }
-+                                    .toInt()
-+                                maxRequestedGroup = maxRequestedGroup.coerceAtLeast(group)
-+                            }
-+                            parserState.stack.add(Bracket('\\', index - 1).apply {
-+                                closePos = index
-+                            })
-+                            parserState.isInEscape = false
-+                        } else when (it) {
-+                            '\\' -> parserState.isInEscape = true
-+                            '?', '*', '+' -> if (parserState.lastOpenOrNull()?.openingChar != '[') {
-+                                requireNonZeroLengthTest(index)
-+                            }
-+
-+                            in openingBrackets -> if (parserState.lastOpenOrNull()?.openingChar != '[') {
-+                                parserState.stack.add(Bracket(it, index))
-+                            }
-+
-+                            in closingBrackets -> {
-+                                val closed = parserState.tryCloseWith(it, index)
-+                                if (closed != null) {
-+                                    if (closed.openingChar == '{' &&
-+                                        regexStr[closed.openPos + 1].isDigit() &&
-+                                        regexStr[closed.closePos - 1].isDigit()) {
-+                                        requireNonZeroLengthTest(closed.openPos)
-+                                    }
-+                                } else {
-+                                    require(parserState.lastOpenOrNull()?.openingChar == '[' || it != '}') {
-+                                        "Invalid character in a regex: $it" }
-+                                }
-+                            }
-+                        }
-+
-+                        index += 1
-+                    }
-+                    parserState.apply {
-+                        require(!isInEscape) { "Regex should not end with a slash" }
-+                        require(lastOpenOrNull() == null) { "Regex has unbalanced braces" }
-+
-+                        val groupCount = stack.count {
-+                            it.openingChar == '(' && regexStr.getOrNull(it.openPos + 1).let { c ->
-+                                c != '?' && c != ':'
-+                            }
-+                        }
-+                        require(maxRequestedGroup <= groupCount) { "Backtrack requests a non-existing group $maxRequestedGroup" }
-+                    }
-+                    return@run parserState.stack
-+                } catch (e: Exception) {
-+                    if (firstError == null) {
-+                        firstError = e
-+                    }
-+                    index = parserState.resetLastClassClose() + 1
-+                }
-+            }
-+            throw firstError ?: IllegalArgumentException("Regex is not correct")
++    fun GSICUStringMatchesRegexThrowing(
++        string: NSString,
++        regex: NSString,
++        opts: NSString.CompareOptions)
++        opts: NSStringCompareOptions)
+     {
++        if (regex.length == 0) { // C version of regex API errors on empty strings
++            throw IllegalArgumentException()
 +        }
 +
-+        val flags = mutableSetOf<RegexOption>()
-+        flags += RegexOption.DOT_MATCHES_ALL
++        val result: Boolean = false;
++        var flags = mutableListOf<com.github.tarcv.u4jregex.URegexpFlag>();
++
++        flags += com.github.tarcv.u4jregex.URegexpFlag.UREGEX_DOTALL; // . is supposed to recognize newlines
 +        if (opts.contains(StringCompareOption.caseInsensitive)) {
-+            flags += RegexOption.IGNORE_CASE
++            flags += com.github.tarcv.u4jregex.URegexpFlag.UREGEX_CASE_INSENSITIVE
 +        }
 +
-+        val compiledRegex: Regex = run {
-+            var fixedRegex = regex.toString()
-+            for (attempt in 1..regex.size) {
-+                try {
-+                    return@run Regex(fixedRegex, flags)
-+                } catch (e: java.util.regex.PatternSyntaxException) {
-+                    if (e.message?.contains("Illegal/unsupported escape sequence") == true) {
-+                        // ICU doesn't error in this case without UREGEX_ERROR_ON_UNKNOWN_ESCAPES flag
-+                        require(fixedRegex[e.index - 1] == '\\')
-+                        fixedRegex = fixedRegex.substring(0, e.index - 1) + fixedRegex.substring(e.index)
-+                    }
-+                }
-+            }
-+            Regex(fixedRegex, flags)
-+        }
-+        return compiledRegex.matches(string.toString())
++        val icuregex = com.github.tarcv.u4jregex.RegexPattern.compile(regex.toString(), flags);
++        val matcher = icuregex.matcher()
++        matcher.reset(string.toString())
++        return matcher.matches()
      }
  
      open fun doubleValueFor(value: AnyObject): Double {

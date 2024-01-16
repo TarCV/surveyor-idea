@@ -94,7 +94,7 @@ class StringCompareProperties {
         Tuple.of("{".toNSString(), "[(}{]".toNSString(), emptySet()),
         Tuple.of("}".toNSString(), "[]}]".toNSString(), emptySet()),
         Tuple.of("{".toNSString(), "[{]]".toNSString(), emptySet()),
-//            Tuple.of("{".toNSString(), "[{]}]".toNSString(), emptySet()), // Not sure why this fails
+        Tuple.of("{".toNSString(), "[{]}]".toNSString(), emptySet()),
         Tuple.of("!\"#%&'()*,./:;?@[\\]_{}-".toNSString(), "\\p{Punct}{23}".toNSString(), emptySet()),
         Tuple.of("\$+<=>^`|~".toNSString(), ".*\\p{Punct}.*".toNSString(), emptySet()),
         Tuple.of("c".toNSString(), "\\c".toNSString(), emptySet()),
@@ -102,6 +102,27 @@ class StringCompareProperties {
         Tuple.of("\u0000\u0000".toNSString(), "\\c \\c ".toNSString(), emptySet()),
         Tuple.of("\u0131".toNSString(), "\\x{0049}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
         Tuple.of("\u0049".toNSString(), "\\x{0131}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u0406".toNSString(), "\\x{0456}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u0456".toNSString(), "\\x{0406}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u0130".toNSString(), "\\x{0069}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u0069".toNSString(), "\\x{0130}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u0406".toNSString(), "\\x{0456}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u0456".toNSString(), "\\x{0406}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+
+        Tuple.of("\u03C3".toNSString(), "\\x{03C2}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u03C3".toNSString(), "\\x{03A3}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+
+        Tuple.of("ﬀ".toNSString(), "FF".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("ff".toNSString(), "ﬀ".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u00DF".toNSString(), "SS".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("SS".toNSString(), "\\x{00DF}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u1E9E".toNSString(), "\\x{00DF}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u00DF".toNSString(), "\\x{1E9E}".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+
+        Tuple.of("a\u030A".toNSString(), "\u00E5".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u00E5".toNSString(), "a\u030A".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("Å".toNSString(), "å".toNSString(), setOf(StringCompareOption.caseInsensitive)),
+        Tuple.of("\u212B".toNSString(), "å".toNSString(), setOf(StringCompareOption.caseInsensitive)),
     ) +
             regexZeroLengthExamples("", "?") +
             regexZeroLengthExamples("", "*") +
@@ -123,9 +144,15 @@ class StringCompareProperties {
         @ForAll("nsRegexString") string2: NSString,
         @ForAll("optionSet") options: Set<StringCompareOption>
     ) {
-        val icuResult = kotlin.runCatching { GSICUStringMatchesRegex(string1, string2, options) }.getOrDefault(false)
+        println()
+        println("=== For params: ${describeParams(string1, string2, options)}")
+        val icuResult = kotlin.runCatching {
+            GSICUStringMatchesRegexThrowing(string1, string2, options)
+                .also { println("ICU result: $it") }
+        }.getOrDefault(false)
         val jvmResult = kotlin.runCatching {
-                staticPredicate.GSICUStringMatchesRegex(string1, string2, options.toMutableSet())
+                staticPredicate.GSICUStringMatchesRegexThrowing(string1, string2, options.toMutableSet())
+                    .also { println("JVM result: $it") }
             }.getOrDefault(false)
         assertEquals(icuResult, jvmResult, "Test if '$string1' matching '$string2'. The expected result is ICU one.")
     }
@@ -135,9 +162,15 @@ class StringCompareProperties {
         string2: NSString,
         options: Set<StringCompareOption>
     ) {
-        val icuResult = kotlin.runCatching { GSICUStringMatchesRegex(string1, string2, options) }
+        println()
+        println("=== For params: ${describeParams(string1, string2, options)}")
+        val icuResult = kotlin.runCatching {
+            GSICUStringMatchesRegexThrowing(string1, string2, options)
+                .also { println("ICU result: $it") }
+        }
         val jvmResult = kotlin.runCatching {
-            staticPredicate.GSICUStringMatchesRegex(string1, string2, options.toMutableSet())
+            staticPredicate.GSICUStringMatchesRegexThrowing(string1, string2, options.toMutableSet())
+                .also { println("JVM result: $it") }
         }
         if (icuResult.isFailure) {
             assertEquals(
@@ -205,7 +238,7 @@ private val staticPredicate = NSComparisonPredicate(
 val lock = Any()
 fun U_SUCCESS(code: Int): Boolean {
     return (code <= 0); }
-fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringCompareOption>): Boolean = synchronized(lock) {
+fun GSICUStringMatchesRegexThrowing(string: NSString, regex: NSString, opts: Set<StringCompareOption>): Boolean = synchronized(lock) {
     library // load the library
 
     val UREGEX_CASE_INSENSITIVE = 2
@@ -213,6 +246,9 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
 
     val stringLength: Int = string.length
     val regexLength: Int = regex.length
+
+    println("stringLength = $stringLength")
+    println("regexLength = $regexLength")
 
     Arena.ofConfined().use { arena ->
         val regexStr = regex.getCharacters(NSMakeRange(regex.startIndex, regexLength))
@@ -228,6 +264,7 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
 
         var flags= UREGEX_DOTALL // . is supposed to recognize newlines
         if (opts.contains(StringCompareOption.caseInsensitive)) {
+            print("(with case insensitivity)")
             flags = flags or UREGEX_CASE_INSENSITIVE; }
 
         val regexObj = uregex_open_73(regexStr, regexLength, flags, parseError, errorCode)
@@ -246,7 +283,6 @@ fun GSICUStringMatchesRegex(string: NSString, regex: NSString, opts: Set<StringC
 
             val result = uregex_matches_73(regexObj, 0, errorCode)
             requireSuccess(errorCode.get(JAVA_INT, 0), "uregex_matches", string, regex, opts)
-            println("ICU result: $result ${describeParams(string, regex, opts)}")
             return@synchronized (result.toInt() != 0)
         } finally {
             uregex_close_73(regexObj)

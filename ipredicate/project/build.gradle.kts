@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(kotlin("reflect"))
     implementation(project(":library"))
+    implementation(libs.u4jregex)
 
     testImplementation(libs.junit.jupiter.api)
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
