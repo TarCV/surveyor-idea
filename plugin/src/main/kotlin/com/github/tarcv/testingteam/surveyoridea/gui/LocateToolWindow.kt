@@ -77,6 +77,7 @@ abstract class LocateToolWindow(protected val project: Project) {
             editorField
         )
 
+        editorField.setOneLineMode(false)
         initSelectorField(editorField)
 
         project.getService(LocateToolHoldingService::class.java).registerToolWindow(this)

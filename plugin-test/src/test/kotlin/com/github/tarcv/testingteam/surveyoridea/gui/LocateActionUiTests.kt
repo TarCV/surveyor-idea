@@ -12,9 +12,12 @@ import java.awt.Point
 import java.awt.event.KeyEvent
 import java.lang.Thread.sleep
 
+private const val singleLineLocator = """new UiSelector().resourceIdMatches(".+/celsiusText")"""
+private const val multiLineLocator = """new UiSelector()${'\n'}.resourceIdMatches(${'\n'}".+/celsiusText")"""
+
 class LocateActionUiTests : BaseTestProjectTests() {
     @Test
-    fun testLocatingFromKeyboard() = verifyLocatingFrom {
+    fun testLocatingFromKeyboard() = verifyLocatingFrom(singleLineLocator) {
         locateElementToolWindow {
             editor.apply {
                 keyboard {
@@ -31,7 +34,7 @@ class LocateActionUiTests : BaseTestProjectTests() {
     }
 
     @Test
-    fun testLocatingFromMenu() = verifyLocatingFrom {
+    fun testLocatingFromMenu() = verifyLocatingFrom(singleLineLocator) {
         locateElementToolWindow {
             selectInMenuBar(
                 "Edit",
@@ -42,13 +45,20 @@ class LocateActionUiTests : BaseTestProjectTests() {
     }
 
     @Test
-    fun testLocatingFromToolButton() = verifyLocatingFrom {
-        locateElementToolWindow {
-            locateButton.click()
+    fun testLocatingFromToolButton() = assertLocatingFromToolButton(singleLineLocator)
+
+    @Test
+    fun testLocatingMultilineFromToolButton() = assertLocatingFromToolButton(multiLineLocator)
+
+    private fun assertLocatingFromToolButton(locator: String) {
+        verifyLocatingFrom(locator) {
+            locateElementToolWindow {
+                locateButton.click()
+            }
         }
     }
 
-    private fun verifyLocatingFrom(triggerActionWithBlock: IdeaFrame.() -> Unit) = with(remoteRobot) {
+    private fun verifyLocatingFrom(locator: String, triggerActionWithBlock: IdeaFrame.() -> Unit) = with(remoteRobot) {
         idea {
             openFileInTestProject(droidAutomatorSnapshotFile, "editorWithSnapshot")
 
@@ -73,9 +83,13 @@ class LocateActionUiTests : BaseTestProjectTests() {
 
                         // Escaping is required due to how enterText is implemented
                         enterText(
-                            StringEscapeUtils.escapeEcmaScript("""new UiSelector().resourceIdMatches(".+/celsiusText")""")
+                            StringEscapeUtils.escapeEcmaScript(locator)
                                 .replace("\\\"", "\"")
                         )
+
+                        repeat(5) { // make sure there is no extra automagically added braces
+                            key(KeyEvent.VK_DELETE)
+                        }
                     }
                 }
             }
