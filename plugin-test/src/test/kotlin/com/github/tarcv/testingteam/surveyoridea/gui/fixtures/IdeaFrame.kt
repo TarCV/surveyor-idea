@@ -39,7 +39,7 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
         }
 
     fun selectInMenuBar(vararg items: String) {
-        attempt {
+        attempt(5) {
             menuBar.select(*items)
         }
     }
