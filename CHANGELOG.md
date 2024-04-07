@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### Added
+- Class chain and predicate query evaluation
+
+### Fixed
+- Mod+Enter keyboard shortcut previously sometimes changed the current selector
+
 ## [1.0.2] - 2023-12-10
 
 ### Fixed
