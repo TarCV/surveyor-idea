@@ -68,7 +68,11 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
         }
         toolbar = actionToolbar.component
 
-        val editorField = EditorTextField("new UiSelector()", project, fileType)
+        // TODO: Set initial locator depending on the selected type
+        val editorField = EditorTextField("new UiSelector()", project, fileType).apply {
+            setOneLineMode(false)
+        }
+
         val locateFromKeyboardAction = object : AnAction("Evaluate") {
             override fun actionPerformed(e: AnActionEvent) {
                 val actionManager = ActionManager.getInstance()
@@ -86,13 +90,10 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
         locateFromKeyboardAction.registerCustomShortcutSet(
             CustomShortcutSet(KeyStroke.getKeyStroke(
                 KeyEvent.VK_ENTER,
-                if (SystemInfo.isMac) { InputEvent.META_DOWN_MASK } else { InputEvent.CTRL_DOWN_MASK },
-                true
+                if (SystemInfo.isMac) { InputEvent.META_DOWN_MASK } else { InputEvent.CTRL_DOWN_MASK }
             )),
             editorField
         )
-
-        editorField.setOneLineMode(false)
 
         with(project.getService(LocateToolHoldingService::class.java)) {
             onLocatorTypeChanged(locatorType)
@@ -111,6 +112,7 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
                     switchToDroidUiAutomator(editorField)
                     locatorProvider = ::getCurrentDroidUiAutomatorLocator
                 }
+                // TODO: Don't require completed indexing when highlighting is not supported
                 IClassChainLocatorType, IPredicateLocatorType -> {
                     with(editorField) {
                         document = EditorFactory.getInstance().createDocument(StringUtil.convertLineSeparators(text))
@@ -133,7 +135,7 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
             ?: ""
     }
 
-    fun getCurrentLocator(): String = locatorProvider()
+    fun getCurrentLocator(): String = locatorProvider().trim()
 
     abstract fun switchToDroidUiAutomator(editorField: EditorTextField)
 
