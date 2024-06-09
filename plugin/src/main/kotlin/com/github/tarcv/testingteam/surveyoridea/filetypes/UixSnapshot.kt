@@ -29,6 +29,7 @@ import com.intellij.ide.presentation.PresentationProvider
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import com.intellij.psi.xml.XmlFile
 import com.intellij.util.xml.Attribute
 import com.intellij.util.xml.DomFileDescription
 import com.intellij.util.xml.ElementPresentationManager
@@ -44,10 +45,14 @@ object UixSnapshot: XmlFileType {
         psiFile: PsiFile,
         mapping: IdentityHashMap<com.github.tarcv.testingteam.surveyor.Node, UiPsiElementReference>
     ): List<com.github.tarcv.testingteam.surveyor.Node>? {
-        val uix = tryReadAsXml(project, psiFile, Hierarchy::class.java)
+        val uix = tryReadAsXml(project, psiFile, rootElementClass)
             ?: return null
         return uix.rootElement.nodes
             .map { convert(it, mapping) }
+    }
+
+    fun isXmlFileOfType(file: XmlFile): Boolean {
+        return tryReadAsXml(file.project, file, rootElementClass) != null
     }
 
     private fun convert(
@@ -87,7 +92,7 @@ object UixSnapshot: XmlFileType {
     }
 }
 
-class UixDomDecription: DomFileDescription<Hierarchy>(Hierarchy::class.java, "hierarchy")
+class UixDomDecription: DomFileDescription<Hierarchy>(rootElementClass, "hierarchy")
 
 @Presentation(provider = RootUiElement.DescriptionProvider::class)
 interface Hierarchy: RootUiElement {
@@ -180,3 +185,5 @@ interface Node: ActualUiElement {
         }
     }
 }
+
+private val rootElementClass = Hierarchy::class.java
