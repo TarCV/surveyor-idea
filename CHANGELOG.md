@@ -8,6 +8,7 @@
 - Class chain and predicate query evaluation
 
 ### Fixed
+- Double-click in Structure panel should now work for navigation inside a snapshot
 - Mod+Enter keyboard shortcut previously sometimes changed the current selector
 
 ## [1.0.2] - 2023-12-10

@@ -28,6 +28,8 @@
 
         <xmlStructureViewBuilderProvider
                 implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.structure.IAutStructureViewFactory"/>
+        <xmlStructureViewBuilderProvider
+                implementation="com.github.tarcv.testingteam.surveyoridea.filetypes.structure.UixStructureViewFactory"/>
     </extensions>
 
     <applicationListeners>
