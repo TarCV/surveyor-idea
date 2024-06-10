@@ -3,7 +3,7 @@
 aar2jar = "d4d5195de2"
 changelog = "2.1.2"
 gradleIntelliJPlugin = "1.15.0"
-jqwik = "1.5.0"
+jqwik = "1.8.5"
 junit = "5.7.1"
 kotlin = "1.9.10"
 kover = "0.7.3"
