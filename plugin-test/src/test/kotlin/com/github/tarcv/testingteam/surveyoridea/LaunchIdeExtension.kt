@@ -57,9 +57,6 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
             ideDownloader.getIde(ide, requestedIdeVersion, cacheDir)
         }
 
-        // TODO: Remove this once https://github.com/JetBrains/intellij-ui-test-robot/issues/387 is fixed
-        workaroundRemoteIdeIssue(pathToIde)
-
         val pluginPath = requireNotNull(System.getenv("PLUGIN_PATH")) {
             "PLUGIN_PATH environment variable should be set"
         }.let { Paths.get(it) }
@@ -91,22 +88,6 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
 
         started = true
         context.root.getStore(GLOBAL).put(LaunchIdeExtension::class.java.name, this)
-    }
-
-    private fun workaroundRemoteIdeIssue(pathToIde: Path) {
-        val binDir = when (Os.hostOS()) {
-            Os.MAC -> pathToIde.resolve("Contents").resolve("bin")
-            else -> pathToIde.resolve("bin")
-        }
-        Files.list(binDir)
-            .filter {
-                it.fileName.toString().endsWith(".vmoptions")
-                        && it.fileName.toString().contains("_client")
-            }
-            .forEach {
-                println("Removing unsupported $it")
-                Files.delete(it)
-            }
     }
 
     override fun close() {

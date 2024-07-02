@@ -1,0 +1,1180 @@
+--- a/prefix/WebDriverAgent.kt	1970-01-01 00:00:00.000000000 +0000
++++ b/prefix/WebDriverAgent.kt	1970-01-01 00:00:00.000000000 +0000
+@@ -1,46 +1,50 @@
++/*
++ *  Copyright (C) 2024 TarCV
++ *
++ *  This file is part of UI Surveyor.
++ *  UI Surveyor is free software: you can redistribute it and/or modify
++ *  it under the terms of the GNU General Public License as published by
++ *  the Free Software Foundation, either version 3 of the License, or
++ *  (at your option) any later version.
++ *
++ *  This program is distributed in the hope that it will be useful,
++ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *  GNU General Public License for more details.
++ *
++ *  You should have received a copy of the GNU General Public License
++ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ *  This file is based on the parts of WebDriverAgent which are
++ *  (copies of referenced files can be found in ipredicate/licenses/wda subdirectory
++ *  in this repository):
++ *
++ *      Copyright (c) 2015-present, Facebook, Inc.
++ *      All rights reserved.
++ *
++ *      This source code is licensed under the BSD-style license found in the
++ *      LICENSE file in the root directory of this source tree. An additional grant
++ *      of patent rights can be found in the PATENTS file in the same directory.
++ */
++package com.github.tarcv.testingteam.surveyor.ipredicate
+-internal data class Protocol(
++import com.github.tarcv.testingteam.surveyor.ipredicate.NSString.Companion.toNSString
++import com.github.tarcv.testingteam.surveyor.ipredicate.XCUIElementType.Companion.XCUI_ELEMENT_TYPE_APPLICATION
++import java.lang.Math.abs
++import kotlin.reflect.KProperty
+ 
+-)
+-
+-internal data class objc_property_t(
+-
+-)
+-
+-internal enum class XCUIElementType {
+-    XCUI_ELEMENT_TYPE_ANY;
+-}
+-
+-internal open class XCUIElement {
+-    open fun exists(): Boolean {
+-        return true
+-    }
+-}
+-
+-internal open class XCUIElementQuery {
+-    open fun firstMatch(): XCUIElement {
+-        return XCUIElement()
+-    }
+-
+-    open fun descendantsMatchingType(type: XCUIElementType): XCUIElementQuery {
+-        return XCUIElementQuery()
+-    }
+-
+-    open fun matchingPredicate(predicate: NSPredicate): XCUIElementQuery {
+-        return XCUIElementQuery()
+-    }
+-}
+-
+-internal open class XCElementSnapshot {
+-}
++internal interface XCElementSnapshot
+ 
+ internal open class FBElementTypeTransformer {
+     companion object {
+         fun elementTypeWithTypeName(typeName: NSString): XCUIElementType {
+-            return XCUIElementType.XCUI_ELEMENT_TYPE_ANY
++            @Suppress("DEPRECATION")
++            return XCUIElementType.fromTypeString(typeName.toString())
+         }
+     }
+ }
+ 
++annotation class TARGET_OS_TV
++
+ // define OS_API_VERSION(v, m) 1
+ // define GS_USE_ICU 1
+ // define BASE_NATIVE_OBJC_EXCEPTIONS 1
+@@ -54,20 +29,20 @@
+ // define __LONG_LONG_MAX__ 9223372036854775807ULL
+ //#import <Foundation/Foundation.h>
+ //#import "FBPredicate.h"
+-internal open class FBPredicate: NSPredicate {
+-    companion object {
++object FBPredicate {
+         fun predicateWithFormat(predicateFormat: NSString, args: List<AnyObject>): NSPredicate {
+             val predicate: NSPredicate = NSPredicate.predicateWithFormat(predicateFormat, args)
+-            val hackPredicate: NSPredicate = NSPredicate.predicateWithFormat(this.forceResolvePredicateString(), listOf(AnyObject)())
++            val hackPredicate: NSPredicate = NSPredicate.predicateWithFormat(this.forceResolvePredicateString())
+             return NSCompoundPredicate.andPredicateWithSubpredicates(listOf(predicate, hackPredicate))
+         }
+ 
+         fun forceResolvePredicateString(): NSString {
+             return "1 == 1 or identifier == 0 or frame == 0 or value == 0 or title == 0 or label == 0 or elementType == 0 or enabled == 0 or placeholderValue == 0 or selected == 0"
++                .toNSString()
+         }
+-    }
+ }
+ 
++
+ //#import <Foundation/Foundation.h>
+ //#import "NSPredicate+FBFormat.h"
+ //#import "FBPredicate.h"
+@@ -82,18 +57,18 @@
+         var predicates = mutableListOf<NSPredicate>()
+ 
+         for (predicate in compPred.subpredicates()) {
+-            if ((predicate.predicateFormat.lowercased() == FBPredicate.forceResolvePredicateString().lowercased())) {
++            if ((predicate.predicateFormat().lowercased() == FBPredicate.forceResolvePredicateString().lowercased())) {
+                 // Do not translete this predicate
+                 predicates.addObject(predicate)
+                 continue
+             }
+             val newPredicate: NSPredicate? = NSPredicate.fb_predicateWithPredicate(predicate, comparisonModifier)
+             if (null != newPredicate) {
+-                predicates.addObject(newPredicate!!)
++                predicates.addObject(newPredicate)
+             }
+         }
+ 
+-        return NSCompoundPredicate(compPred.compoundPredicateType, predicates)
++        return NSCompoundPredicate(compPred.compoundPredicateType(), predicates)
+     }
+     if (original is NSComparisonPredicate) {
+         return comparisonModifier((original as NSComparisonPredicate))
+@@ -111,9 +86,9 @@
+                     return@fb_predicateWithPredicate NSComparisonPredicate.predicateWithLeftExpression(
+                         left,
+                         right,
+-                        cp.comparisonPredicateModifier,
+-                        cp.predicateOperatorType,
+-                        cp.options)
++                        cp.comparisonPredicateModifier(),
++                        cp.predicateOperatorType(),
++                        cp.options())
+                 })
+ }
+ 
+@@ -125,24 +100,23 @@
+         return input
+     }
+ 
+-    val propName: NSString = (input as GSKeyPathExpression).keyPath()!!
++    val propName: NSString = (input as GSKeyPathExpression).keyPath()
+     val dotPos: Int? = propName.indexOrNull(".".single())
+ 
+     if (null != dotPos) {
+-        val actualPropName: NSString = propName.substring(0, dotPos!!)
+-        val suffix: NSString = propName.suffix(dotPos!! + 1)
++        val actualPropName:NSString = NSString(propName.characters.prefix(dotPos))
++        val suffix: NSString = propName.suffix(dotPos + 1)
+         return NSExpression.expressionForKeyPath(
+             NSString(
+                     "%@.%@",
+                     FBElementUtils.wdAttributeNameForAttributeName(actualPropName),
+-                    NSString(propName.prefix(propName.index(propName.startIndex, dotPos!!)))))
++                    NSString(propName.prefix(propName.index(propName.startIndex, dotPos)))))
+     }
+ 
+     return NSExpression.expressionForKeyPath(FBElementUtils.wdAttributeNameForAttributeName(propName))
+ }
+ 
+-internal open class FBConfiguration: NSObject() {
+-    companion object {
++object FBConfiguration: NSObject() {
+         fun setUseFirstMatch(enabled: Boolean) {
+             FBShouldUseFirstMatch = enabled
+         }
+@@ -166,109 +140,82 @@
+         fun includeNonModalElements(): Boolean {
+             return FBIncludeNonModalElements
+         }
+-    }
+ 
+-    class private val FBShouldUseFirstMatch: Boolean = false
+-    class private val FBShouldBoundElementsByIndex: Boolean = false
+-    class private val FBIncludeNonModalElements: Boolean = false
++    var tvMode: Boolean = false
++    private var FBShouldUseFirstMatch: Boolean = false
++    private var FBShouldBoundElementsByIndex: Boolean = false
++    private var FBIncludeNonModalElements: Boolean = false
+ }
+ 
+-//#import <Foundation/Foundation.h>
+-//#import <WebDriverAgentLib/FBElement.h>
+-//#import "XCAccessibilityElement.h"
+-//! Notification used to notify about unknown attribute name 
+-internal var FBUnknownAttributeException: NSString
+-
+ //#import <objc/runtime.h>
+ //#import "FBElementUtils.h"
+ //#import "FBElementTypeTransformer.h"
+-internal val FBUnknownAttributeException: NSString = "FBUnknownAttributeException"
+-internal val WD_PREFIX: NSString = "wd"
+-internal val OBJC_PROP_GETTER_PREFIX: NSString = "G"
+-internal val OBJC_PROP_ATTRIBS_SEPARATOR: Char = Character(',')
++internal val FBUnknownAttributeException: String = "FBUnknownAttributeException"
++internal val WD_PREFIX: NSString = "wd".toNSString()
+ 
+-internal open class FBElementUtils: NSObject() {
+-    companion object {
++internal object FBElementUtils: NSObject() {
+         fun wdAttributeNameForAttributeName(name: NSString): NSString {
+-            NSAssert(name.count > 0, "Attribute name cannot be empty", null)
++            require(name.count > 0, { "Attribute name cannot be empty" })
+ 
+             val attributeNamesMapping: Map<NSString, NSString> = FBElementUtils.wdAttributeNamesMapping
+             val result: NSString? = attributeNamesMapping[name]
+ 
+             if (null == result) {
+-                val description: NSString = NSString(
++                val description: String = NSString(
+                     "The attribute '%@' is unknown. Valid attribute names are: %@",
+                     name,
+-                    NSString(attributeNamesMapping.keys))
++                    attributeNamesMapping.keys.toString()
++                ).toString()
+                 throw NSError("FBUnknownAttributeException", 0, mapOf(NSLocalizedDescriptionKey to description))
+-                return null
+             }
+ 
+             return result
+         }
+ 
+-        fun uniqueElementTypesWithElements(elements: List<AnyObject>): Set {
+-            var matchingTypes: Set<AnyObject> = NSMutableSet.set()
++        fun uniqueElementTypesWithElements(elements: List<FBElement>): Set<XCUIElementType> {
++            var matchingTypes = mutableSetOf<XCUIElementType>()
+             for (element in elements) {
+                 matchingTypes.addObject(FBElementTypeTransformer.elementTypeWithTypeName(element.wdType))
+             }
+             return Set(matchingTypes)
+         }
+-    }
+ 
+-    lazy class open var wdAttributeNamesMapping: Map<NSString, NSString> = {
+-            var attributeNamesMapping: NSDictionary
+-            val onceToken: dispatch_once_t
+-                get() {
+-                    var wdPropertyGettersMapping = mutableMapOf<NSString, AnyObject>()
+-                    val propsCount: UInt = 0u
+-                    val aProtocol: Protocol = objc_getProtocol(protocol_getName(FBElement))
+-                    val properties: List<objc_property_t> = protocol_copyPropertyList(aProtocol, &propsCount)
+-                    var i: Int = 0
+-
+-                    while (i < propsCount) {
+-                        val property: objc_property_t = properties[i]
+-                        val name: ContiguousArray<CChar> = property_getName(property)
+-                        val nsName: NSString = NSString(utf8String:name)
++    val wdAttributeNamesMapping: Map<NSString, NSString> by lazy {
++            var attributeNamesMapping: Map<NSString, NSString>
+ 
+-                        if (null == nsName || !nsName.startsWith(WD_PREFIX)) {
+-                            continue
+-                        }
+-
+-                        wdPropertyGettersMapping.setObject(NSNull.null(), nsName)
++                    var wdPropertyGettersMapping = mutableMapOf<NSString, NSString?>()
++                    val propsCount = InOut<UInt>()
++                    val aProtocol = FBElement::class
++                    val properties: List<KProperty<*>> = aProtocol.members.filterIsInstance<KProperty<*>>()
++                    var i: Int = 0
+ 
+-                        val c_attributes: ContiguousArray<CChar> = property_getAttributes(property)
+-                        val attributes: NSString = NSString(utf8String:c_attributes)
++                    for (property in properties) {
++                        val nsName: String = property.name
+ 
+-                        if (null == attributes) {
++                        if (null == nsName || !nsName.startsWith(WD_PREFIX.toString())) {
+                             continue
+                         }
+ 
+-                        // https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
+-                        val splitAttrs: List<NSString> = attributes.split(OBJC_PROP_ATTRIBS_SEPARATOR).map { it }
++                        // ??? wdPropertyGettersMapping.setObject(NSNull.null(), nsName)
+ 
+-                        for (part in splitAttrs) {
+-                            if (part.startsWith(OBJC_PROP_GETTER_PREFIX)) {
+-                                wdPropertyGettersMapping.setObject(NSString(part.characters.suffix(1)), nsName)
+-                                break
+-                            }
++                        val include = FBConfiguration.tvMode || property.annotations.none { it is TARGET_OS_TV }
++                        if (property.getter != null && include) {
++                            wdPropertyGettersMapping.setObject(nsName.toNSString(), nsName.toNSString())
+                         }
+ 
+-                        i += 1
+                     }
+ 
+-                    free(properties)
+-
+-                    var resultCache = mutableMapOf<NSString, AnyObject>()
++                    var resultCache = mutableMapOf<NSString, NSString>()
+ 
+                     for ((propName, unused259) in wdPropertyGettersMapping) {
+-                        if (wdPropertyGettersMapping[propName] == null) {
+-                            // no getter
+-                            resultCache.setValue(propName, propName)
+-                        }
+-                        else {
+-                            // has getter method
+-                            resultCache.setValue(wdPropertyGettersMapping.objectForKey(propName), propName)
++                        wdPropertyGettersMapping[propName].let { propNameValue ->
++                            if (propNameValue == null) {
++                                // no getter
++                                resultCache.setValue(propName, propName)
++                            } else {
++                                // has getter method
++                                resultCache.setValue(propNameValue, propName)
++                            }
+                         }
+ 
+                         var aliasName: NSString
+@@ -280,7 +227,7 @@
+                             val propNameWithoutPrefix: NSString = propName.characters.suffix(WD_PREFIX.length)
+                             var firstPropNameCharacter: NSString = propNameWithoutPrefix.characters.substring(0, 0 + 1)
+ 
+-                            if (!(propNameWithoutPrefix == propNameWithoutPrefix.toUpperCase())) {
++                            if (!(propNameWithoutPrefix == propNameWithoutPrefix.uppercased())) {
+                                 // Lowercase the first character for the alias if the property name is not an uppercase abbreviation
+                                 firstPropNameCharacter = firstPropNameCharacter.lowercased()
+                             }
+@@ -288,26 +235,26 @@
+                             aliasName = NSString("%@%@", firstPropNameCharacter, propNameWithoutPrefix.characters.suffix(1))
+                         }
+ 
+-                        if (wdPropertyGettersMapping[propName] == null) {
+-                            // no getter
+-                            resultCache.setValue(propName, aliasName)
+-                        }
+-                        else {
+-                            // has getter method
+-                            resultCache.setValue(wdPropertyGettersMapping.objectForKey(propName), aliasName)
++                        wdPropertyGettersMapping[propName].let { propNameValue ->
++                            if (propNameValue == null) {
++                                // no getter
++                                resultCache.setValue(propName, aliasName)
++                            } else {
++                                // has getter method
++                                resultCache.setValue(propNameValue, aliasName)
++                            }
+                         }
+                     }
+ 
+-                    attributeNamesMapping = Dictionary(resultCache)
+-                }
++                    attributeNamesMapping = resultCache.toMap()
+ 
+-            return Dictionary(attributeNamesMapping)
+-        }()
++            attributeNamesMapping.toMap()
++        }
+ }
+ 
+ //#import <CoreGraphics/CoreGraphics.h>
+ //#import <Foundation/Foundation.h>
+-internal interface FBElement: NSObject {
++interface FBElement {
+     //! Element's frame in normalized (rounded dimensions without Infinity values) CGRect format 
+     val wdFrame: CGRect
+ 
+@@ -348,9 +295,8 @@
+     @TARGET_OS_TV val wdFocused: Boolean
+ 
+     //! Element's index relatively to its parent. Starts from zero 
+-    val wdIndex: UInt
++    val wdIndex: Int
+ 
+-    fun fb_valueForWDAttributeName(name: NSString?): AnyObject?
+ }
+ 
+ //
+@@ -365,8 +311,8 @@
+ //#import "FBExceptions.h"
+ //#import "FBPredicate.h"
+ //#import "NSPredicate+FBFormat.h"
+-internal open class FBBaseClassChainToken: NSObject() {
+-    private var _asString: NSString
++internal open class FBBaseClassChainToken(stringValue: NSString): NSObject() {
++    private var _asString: NSString = stringValue
+     open var asString: NSString
+         get() {
+             return _asString
+@@ -374,7 +320,7 @@
+         set(newValue) {
+             _asString = newValue
+         }
+-    private var _previousItemsCountToOverride: Int
++    private var _previousItemsCountToOverride: Int = 0
+     open var previousItemsCountToOverride: Int
+         get() {
+             return _previousItemsCountToOverride
+@@ -383,31 +329,14 @@
+             _previousItemsCountToOverride = newValue
+         }
+ 
+-    constructor() {
+-        this = super.init()
+-        if ((this != null)) {
+-            _asString = ""
+-            _previousItemsCountToOverride = 0
+-        }
+-        return this
+-    }
+-
+-    constructor(stringValue: NSString) {
+-        this = super.init()
+-        if ((this != null)) {
+-            _asString = stringValue
+-        }
+-        return this
+-    }
+-
+     open fun allowedCharacters(): NSCharacterSet {
+         // This method is expected to be overriden by subclasses
+         return NSCharacterSet.characterSetWithCharactersInString("")
+     }
+ 
+-    open fun maxLength(): UInt {
++    open fun maxLength(): Int {
+         // This method is expected to be overriden by subclasses
+-        return ULONG_MAX
++        return Int.MAX_VALUE
+     }
+ 
+     open fun followingTokens(): List<FBBaseClassChainToken> {
+@@ -421,14 +350,14 @@
+ 
+     open fun appendChar(character: UShort) {
+         var value: NSString = this.asString
+-        value.appendFormat("%C", character)
++        value = value.appendFormat("%C", character)
+         this.asString = value
+     }
+ 
+     open fun followingTokenBasedOn(character: UShort): FBBaseClassChainToken? {
+         for (matchingTokenClass in this.followingTokens()) {
+             if (matchingTokenClass.canConsumeCharacter(character)) {
+-                return matchingTokenClass().nextTokenWithCharacter(character)
++                return matchingTokenClass.nextTokenWithCharacter(character)
+             }
+         }
+         return null
+@@ -445,7 +374,7 @@
+ 
+ internal open class FBClassNameToken(stringValue: NSString): FBBaseClassChainToken(stringValue) {
+     override open fun allowedCharacters(): NSCharacterSet {
+-        return NSCharacterSet.letterCharacterSet()
++        return NSCharacterSet.letterCharacterSet
+     }
+ 
+     override open fun followingTokens(): List<FBBaseClassChainToken> {
+@@ -453,7 +382,7 @@
+     }
+ }
+ 
+-internal val STAR_TOKEN: NSString = "*"
++internal val STAR_TOKEN: NSString = "*".toNSString()
+ 
+ internal open class FBStarToken(stringValue: NSString): FBBaseClassChainToken(stringValue) {
+     override open fun allowedCharacters(): NSCharacterSet {
+@@ -478,7 +407,7 @@
+     }
+ }
+ 
+-internal val DESCENDANT_MARKER: NSString = "**/"
++internal val DESCENDANT_MARKER: NSString = "**/".toNSString()
+ 
+ internal open class FBDescendantMarkerToken(stringValue: NSString): FBBaseClassChainToken(stringValue) {
+     override open fun allowedCharacters(): NSCharacterSet {
+@@ -489,16 +418,16 @@
+         return listOf(FBClassNameToken(NSString.emptyString), FBStarToken(NSString.emptyString))
+     }
+ 
+-    override open fun maxLength(): UInt {
+-        return 3u
++    override open fun maxLength(): Int {
++        return 3
+     }
+ 
+     override open fun nextTokenWithCharacter(character: UShort): FBBaseClassChainToken? {
+-        if (this.allowedCharacters().characterIsMember(character) && this.asString.count <= this.maxLength) {
++        if (this.allowedCharacters().characterIsMember(character) && this.asString.count <= this.maxLength()) {
+             if (this.asString.length > 0 && !DESCENDANT_MARKER.startsWith(this.asString)) {
+                 return null
+             }
+-            if (this.asString.count < this.maxLength) {
++            if (this.asString.count < this.maxLength()) {
+                 this.appendChar(character = character)
+                 return this
+             }
+@@ -516,8 +445,8 @@
+         return listOf(FBStarToken(NSString.emptyString), FBClassNameToken(NSString.emptyString))
+     }
+ 
+-    override open fun maxLength(): UInt {
+-        return 1u
++    override open fun maxLength(): Int {
++        return 1
+     }
+ }
+ 
+@@ -530,8 +459,8 @@
+         return listOf(FBNumberToken(NSString.emptyString), FBSelfPredicateToken(NSString.emptyString), FBDescendantPredicateToken(NSString.emptyString))
+     }
+ 
+-    override open fun maxLength(): UInt {
+-        return 1u
++    override open fun maxLength(): Int {
++        return 1
+     }
+ }
+ 
+@@ -539,7 +468,7 @@
+     override open fun allowedCharacters(): NSCharacterSet {
+         val result: NSMutableCharacterSet = NSMutableCharacterSet()
+ 
+-        result.formUnionWithCharacterSet(NSCharacterSet.decimalDigitCharacterSet())
++        result.formUnionWithCharacterSet(NSCharacterSet.decimalDigitCharacterSet)
+         result.addCharactersInString("-")
+ 
+         return result
+@@ -559,21 +488,15 @@
+         return listOf(FBSplitterToken(NSString.emptyString), FBOpeningBracketToken(NSString.emptyString))
+     }
+ 
+-    override open fun maxLength(): UInt {
+-        return 1u
++    override open fun maxLength(): Int {
++        return 1
+     }
+ }
+ 
+-internal val FBAbstractMethodInvocationException: NSString = "FBAbstractMethodInvocationException"
+-
+-internal open class FBAbstractPredicateToken(stringValue: NSString): FBBaseClassChainToken(stringValue) {
+-    companion object {
+-        fun enclosingMarker(): NSString {
+-            println("Fatal error: ${"subclassResponsibility"}"); exitProcess(-1)
+-        }
+-    }
++internal abstract class FBAbstractPredicateToken(stringValue: NSString): FBBaseClassChainToken(stringValue) {
++    abstract val enclosingMarker: NSString
+ 
+-    private var _isParsingCompleted: Boolean
++    private var _isParsingCompleted: Boolean = false
+     open var isParsingCompleted: Boolean
+         get() {
+             return _isParsingCompleted
+@@ -582,16 +505,8 @@
+             _isParsingCompleted = newValue
+         }
+ 
+-    constructor() {
+-        this = super.init()
+-        if ((this != null)) {
+-            _isParsingCompleted = false
+-        }
+-        return this
+-    }
+-
+     override open fun allowedCharacters(): NSCharacterSet {
+-        return NSCharacterSet.illegalCharacterSet().invertedSet
++        return NSCharacterSet.illegalCharacterSet.invertedSet
+     }
+ 
+     override open fun followingTokens(): List<FBBaseClassChainToken> {
+@@ -645,24 +560,24 @@
+ }
+ 
+ internal open class FBSelfPredicateToken(stringValue: NSString): FBAbstractPredicateToken(stringValue) {
+-    companion object {
+-        fun enclosingMarker(): NSString {
+-            return "`"
++        override val enclosingMarker: NSString get() {
++            return "`".toNSString()
+         }
+-    }
+ }
+ 
+ internal open class FBDescendantPredicateToken(stringValue: NSString): FBAbstractPredicateToken(stringValue) {
+-    companion object {
+-        fun enclosingMarker(): NSString {
+-            return "\$"
++        override val enclosingMarker: NSString get() {
++            return "\$".toNSString()
+         }
+-    }
+ }
+ 
+-internal open class FBClassChainItem: NSObject() {
+-    private var _position: NSNumber? = null
+-    open val position: NSNumber?
++internal open class FBClassChainItem(
++    type: XCUIElementType,
++    position: Int,
++    predicates: List<AnyObject>,
++    isDescendant: Boolean): NSObject() {
++    private var _position: Int = 0
++    open val position: Int
+         get() {
+             return _position
+         }
+@@ -682,42 +597,30 @@
+             return _predicates
+         }
+ 
+-    constructor(
+-        type: XCUIElementType,
+-        position: NSNumber?,
+-        predicates: List<AnyObject>,
+-        isDescendant: Boolean)
++    init
+     {
+-        this = super.init()
+-        if ((this != null)) {
+             _type = type
+             _position = position
+             _predicates = predicates
+             _isDescendant = isDescendant
+-        }
+-        return this
+     }
+ }
+ 
+-internal open class FBClassChain: NSObject() {
++internal open class FBClassChain(elements: List<FBClassChainItem>): NSObject() {
+     private var _elements: List<FBClassChainItem>
+     open val elements: List<FBClassChainItem>
+         get() {
+             return _elements
+         }
+ 
+-    constructor(elements: List<FBClassChainItem>) {
+-        this = super.init()
+-        if ((this != null)) {
++    init {
+             _elements = elements
+-        }
+-        return this
+     }
+ }
+ 
+ internal open class FBClassChainQueryParser: NSObject() {
+     companion object {
+-        fun tokenizationErrorWithIndex(index: UInt, originalQuery: NSString): NSError {
++        fun tokenizationErrorWithIndex(index: Int, originalQuery: NSString): NSError {
+             val description: NSString = NSString(
+                 "Cannot parse class chain query '%@'. Unexpected character detected at position %@:\n%@ <----",
+                 originalQuery,
+@@ -726,7 +629,7 @@
+             return FBErrorBuilder.builder.withDescription(description).build()
+         }
+ 
+-        fun tokenizedQueryWithQuery(classChainQuery: NSString, error: NSError): List<AnyObject>? {
++        fun tokenizedQueryWithQuery(classChainQuery: NSString, error: InOut<NSError>): List<FBBaseClassChainToken>? {
+             val queryStringLength: Int = classChainQuery.length
+             var token: FBBaseClassChainToken
+             val firstCharacter: UShort = classChainQuery.utf16[classChainQuery.utf16.index(classChainQuery.utf16.startIndex, 0)]
+@@ -734,21 +637,21 @@
+             if (classChainQuery.startsWith(DESCENDANT_MARKER)) {
+                 token = FBDescendantMarkerToken(DESCENDANT_MARKER)
+             }
+-            else if (FBClassNameToken.canConsumeCharacter(firstCharacter)) {
++            else if (FBClassNameToken(NSString.emptyString).canConsumeCharacter(firstCharacter)) {
+                 token = FBClassNameToken(NSString("%C", firstCharacter))
+             }
+-            else if (FBStarToken.canConsumeCharacter(firstCharacter)) {
++            else if (FBStarToken(NSString.emptyString).canConsumeCharacter(firstCharacter)) {
+                 token = FBStarToken(NSString("%C", firstCharacter))
+             }
+             else {
+                 if ((error != null)) {
+-                    error = this.tokenizationErrorWithIndex(0, classChainQuery)
++                    error `=` this.tokenizationErrorWithIndex(0, classChainQuery)
+                 }
+                 return null
+             }
+ 
+             var result = mutableListOf<FBBaseClassChainToken>()
+-            var nextToken: FBBaseClassChainToken = token
++            var nextToken: FBBaseClassChainToken? = token
+             var charIdx: Int = token.asString.length
+ 
+             while (charIdx < queryStringLength) {
+@@ -756,7 +659,7 @@
+ 
+                 if (null == nextToken) {
+                     if ((error != null)) {
+-                        error = this.tokenizationErrorWithIndex(charIdx, classChainQuery)
++                        error `=` this.tokenizationErrorWithIndex(charIdx, classChainQuery)
+                     }
+                     return null
+                 }
+@@ -781,16 +684,16 @@
+                 result.addObject(nextToken)
+             }
+ 
+-            val lastToken: FBBaseClassChainToken = result.lastOrNull()!!
++            val lastToken: FBBaseClassChainToken? = result.lastOrNull()
+ 
+             if (!(lastToken is FBClosingBracketToken || lastToken is FBClassNameToken || lastToken is FBStarToken)) {
+                 if ((error != null)) {
+-                    error = this.tokenizationErrorWithIndex(queryStringLength - 1, classChainQuery)
++                    error `=` this.tokenizationErrorWithIndex(queryStringLength - 1, classChainQuery)
+                 }
+                 return null
+             }
+ 
+-            return result.toMutableList()
++            return result.toList()
+         }
+ 
+         fun compilationErrorWithQuery(originalQuery: NSString, description: NSString): NSError {
+@@ -801,12 +704,12 @@
+         fun compiledQueryWithTokenizedQuery(
+             tokenizedQuery: List<FBBaseClassChainToken>,
+             originalQuery: NSString,
+-            error: NSError)
++            error: InOut<NSError>)
+             : FBClassChain?
+         {
+-            var result = mutableListOf<AnyObject>()
++            var result = mutableListOf<FBClassChainItem>()
+             var chainElementType: XCUIElementType = XCUIElementType.XCUI_ELEMENT_TYPE_ANY
+-            var chainElementPosition: NSNumber? = null
++            var chainElementPosition: Int = 0
+             var isTypeSet: Boolean = false
+             var isPositionSet: Boolean = false
+             var isDescendantSet: Boolean = false
+@@ -816,7 +719,7 @@
+                 if (token is FBClassNameToken) {
+                     if (isTypeSet) {
+                         val description: NSString = NSString("Unexpected token '%@'. The type name can be set only once.", token.asString)
+-                        error = this.compilationErrorWithQuery(originalQuery, description)
++                        error `=` this.compilationErrorWithQuery(originalQuery, description)
+                         return null
+                     }
+                     try {
+@@ -824,9 +727,9 @@
+                         isTypeSet = true
+                     }
+                     catch (e: Exception) {
+-                        if ((e.name == FBInvalidArgumentException)) {
++                        if (e is IllegalArgumentException == true) {
+                             val description: NSString = NSString("'%@' class name is unknown to WDA", token.asString)
+-                            error = this.compilationErrorWithQuery(originalQuery, description)
++                            error `=` this.compilationErrorWithQuery(originalQuery, description)
+                             return null
+                         }
+                         throw e
+@@ -835,7 +738,7 @@
+                 else if (token is FBStarToken) {
+                     if (isTypeSet) {
+                         val description: NSString = NSString("Unexpected token '%@'. The type name can be set only once.", token.asString)
+-                        error = this.compilationErrorWithQuery(originalQuery, description)
++                        error `=` this.compilationErrorWithQuery(originalQuery, description)
+                         return null
+                     }
+                     chainElementType = XCUIElementType.XCUI_ELEMENT_TYPE_ANY
+@@ -844,7 +747,7 @@
+                 else if (token is FBDescendantMarkerToken) {
+                     if (isDescendantSet) {
+                         val description: NSString = NSString("Unexpected token '%@'. Descendant markers cannot be duplicated.", token.asString)
+-                        error = this.compilationErrorWithQuery(originalQuery, description)
++                        error `=` this.compilationErrorWithQuery(originalQuery, description)
+                         return null
+                     }
+ 
+@@ -858,18 +761,18 @@
+                 else if (token is FBAbstractPredicateToken) {
+                     if (isPositionSet) {
+                         val description: NSString = NSString("Predicate value '%@' must be set before position value.", token.asString)
+-                        error = this.compilationErrorWithQuery(originalQuery, description)
++                        error `=` this.compilationErrorWithQuery(originalQuery, description)
+                         return null
+                     }
+ 
+                     if (!(token as FBAbstractPredicateToken).isParsingCompleted) {
+                         val description: NSString = NSString("Cannot find the end of '%@' predicate value.", token.asString)
+-                        error = this.compilationErrorWithQuery(originalQuery, description)
++                        error `=` this.compilationErrorWithQuery(originalQuery, description)
+                         return null
+                     }
+ 
+                     val value: NSPredicate = NSPredicate.fb_formatSearchPredicate(
+-                        input = FBPredicate.predicateWithFormat(token.asString, listOf(AnyObject)()))
++                        input = FBPredicate.predicateWithFormat(token.asString, listOf<AnyObject>()))
+ 
+                     if (token is FBSelfPredicateToken) {
+                         predicates.addObject(FBSelfPredicateItem(value))
+@@ -881,26 +784,26 @@
+                 else if (token is FBNumberToken) {
+                     if (isPositionSet) {
+                         val description: NSString = NSString("Position value '%@' is expected to be set only once.", token.asString)
+-                        error = this.compilationErrorWithQuery(originalQuery, description)
++                        error `=` this.compilationErrorWithQuery(originalQuery, description)
+                         return null
+                     }
+ 
+-                    val position: NSNumber? = numberFormatter.number(token.asString)
++                    val position = numberFormatter.number(token.asString)?.intValue
+ 
+-                    if (null == position || 0 == position.intValue) {
++                    if (null == position || 0 == position) {
+                         val description: NSString = NSString(
+                             "Position value '%@' is expected to be a valid integer number not equal to zero.",
+                             token.asString)
+-                        error = this.compilationErrorWithQuery(originalQuery, description)
++                        error `=` this.compilationErrorWithQuery(originalQuery, description)
+                         return null
+                     }
+ 
+-                    chainElementPosition = position!!
++                    chainElementPosition = position
+                     isPositionSet = true
+                 }
+                 else if (token is FBSplitterToken) {
+                     if (!isPositionSet) {
+-                        chainElementPosition = null
++                        chainElementPosition = 0
+                     }
+ 
+                     if (isDescendantSet) {
+@@ -922,7 +825,7 @@
+             }
+ 
+             if (!isPositionSet) {
+-                chainElementPosition = null
++                chainElementPosition = 0
+             }
+ 
+             if (isDescendantSet) {
+@@ -930,8 +833,8 @@
+                     result.addObject(FBClassChainItem(chainElementType, chainElementPosition, predicates.toMutableList(), true))
+                 }
+                 else {
+-                    val description: NSString = "Descendants lookup modifier '**/' should be followed with the actual element type"
+-                    error = this.compilationErrorWithQuery(originalQuery, description)
++                    val description: NSString = "Descendants lookup modifier '**/' should be followed with the actual element type".toNSString()
++                    error `=` this.compilationErrorWithQuery(originalQuery, description)
+                     return null
+                 }
+             }
+@@ -943,48 +846,44 @@
+             return FBClassChain(result.toMutableList())
+         }
+ 
+-        fun parseQuery(classChainQuery: NSString, error: NSError): FBClassChain? {
++        fun parseQuery(classChainQuery: NSString, error: InOut<NSError>): FBClassChain? {
+             NSAssert(classChainQuery.count > 0, "Query length should be greater than zero", null)
+ 
+-            val tokenizedQuery: List<AnyObject>? = FBClassChainQueryParser.tokenizedQueryWithQuery(classChainQuery, error)
++            val tokenizedQuery: List<FBBaseClassChainToken>? = FBClassChainQueryParser.tokenizedQueryWithQuery(classChainQuery, error)
+ 
+             if (null == tokenizedQuery) {
+                 return null
+             }
+ 
+-            return this.compiledQueryWithTokenizedQuery(tokenizedQuery!!, classChainQuery, error)
++            return this.compiledQueryWithTokenizedQuery(tokenizedQuery, classChainQuery, error)
+         }
+-    }
+ 
+-    class open var numberFormatter: NumberFormatter = {
++        open var numberFormatter: NumberFormatter = run {
+             val nf: NumberFormatter = NumberFormatter()
+ 
+             nf.numberStyle = NumberFormatter.Style.decimal
+ 
+-            return nf
+-        }()
++            nf
++        }
++    }
+ }
+ 
+-internal open class FBAbstractPredicateItem: NSObject() {
++internal open class FBAbstractPredicateItem(value: NSPredicate): NSObject() {
+     private var _value: NSPredicate
+     open val value: NSPredicate
+         get() {
+             return _value
+         }
+ 
+-    constructor(value: NSPredicate) {
+-        this = super.init()
+-        if ((this != null)) {
++    init {
+             _value = value
+-        }
+-        return this
+     }
+ }
+ 
+-internal open class FBSelfPredicateItem: FBAbstractPredicateItem {
++internal open class FBSelfPredicateItem(value: NSPredicate): FBAbstractPredicateItem(value) {
+ }
+ 
+-internal open class FBDescendantPredicateItem: FBAbstractPredicateItem {
++internal open class FBDescendantPredicateItem(value: NSPredicate): FBAbstractPredicateItem(value) {
+ }
+ 
+ //#import <XCTest/XCTest.h>
+@@ -995,21 +894,20 @@
+ internal fun XCUIElement.fb_descendantsMatchingClassChain(
+     classChainQuery: NSString,
+     shouldReturnAfterFirstMatch: Boolean)
+-    : List<AnyObject>
++    : List<XCUIElement>
+ {
+-    var error: NSError
++    var error = InOut<NSError>()
+     val parsedChain: FBClassChain? = FBClassChainQueryParser.parseQuery(classChainQuery, error)
+ 
+     if (null == parsedChain) {
+         throw NSError(
+             "FBClassChainQueryParseException",
+             0,
+-            mapOf(NSLocalizedDescriptionKey to error.localizedDescription))
+-        return null
++            mapOf(NSLocalizedDescriptionKey to (+error).localizedDescription))
+     }
+ 
+-    var lookupChain = mutableListOf<FBClassChainItem>(parsedChain!!.elements)
+-    var chainItem: FBClassChainItem = lookupChain.firstOrNull()!!
++    var lookupChain = parsedChain.elements.toMutableList()
++    var chainItem: FBClassChainItem = lookupChain.firstOrNull()!! // TODO: Can it throw NPE?
+     var currentRoot: XCUIElement = this
+     var query: XCUIElementQuery = currentRoot.fb_queryWithChainItem(item = chainItem, query = null)
+ 
+@@ -1018,23 +916,20 @@
+     while (lookupChain.size > 0) {
+         var isRootChanged: Boolean = false
+ 
+-        if (null != chainItem.position) {
++        if (0 != chainItem.position) {
+             // It is necessary to resolve the query if intermediate element index is not zero or one,
+             // because predicates don't support search by indexes
+-            val currentRootMatch: List<AnyObject> = XCUIElement.fb_matchingElementsWithItem(
++            val currentRootMatch: List<XCUIElement> = XCUIElement.fb_matchingElementsWithItem(
+                 item = chainItem,
+                 query = query,
+                 shouldReturnAfterFirstMatch = null)
+ 
+-            if (0 == currentRootMatch.size) {
+-                return listOf()
+-            }
+ 
+-            currentRoot = currentRootMatch.first!!
++            currentRoot = currentRootMatch.first ?: return listOf()
+             isRootChanged = true
+         }
+ 
+-        chainItem = lookupChain.first!!()
++        chainItem = lookupChain.first!!
+         query = currentRoot.fb_queryWithChainItem(
+             item = chainItem,
+             query = if (isRootChanged) { null } else { query })
+@@ -1050,54 +945,58 @@
+     query: XCUIElementQuery?)
+     : XCUIElementQuery
+ {
+-    if (item.isDescendant) {
++    var query1 = if (item.isDescendant) {
+         if ((query != null)) {
+-            query = query!!.descendantsMatchingType(item.type)
+-        }
+-        else {
+-            query = this.fb_query.descendantsMatchingType(item.type)
++            query.descendantsMatchingType(item.type)
++        } else {
++            this.fb_query().descendantsMatchingType(item.type)
+         }
+     }
+     else {
+         if ((query != null)) {
+-            query = query!!.childrenMatchingType(item.type)
+-        }
+-        else {
+-            query = this.fb_query.childrenMatchingType(item.type)
++            query.childrenMatchingType(item.type)
++        } else {
++            this.fb_query().childrenMatchingType(item.type)
+         }
+     }
+     if ((item.predicates != null)) {
+         for (predicate in item.predicates) {
+             if (predicate is FBSelfPredicateItem) {
+-                query = query!!.matchingPredicate(predicate.value)
++                query1 = query1.matchingPredicate(predicate.value)
+             }
+             else if (predicate is FBDescendantPredicateItem) {
+-                query = query!!.containingPredicate(predicate.value)
++                query1 = query1.containingPredicate(predicate.value)
+             }
+         }
+     }
+-    return query!!
++    return query1
+ }
+ 
+ internal fun XCUIElement.Companion.fb_matchingElementsWithItem(
+     item: FBClassChainItem,
+     query: XCUIElementQuery,
+-    shouldReturnAfterFirstMatch: NSNumber?)
++    shouldReturnAfterFirstMatch: Boolean?)
+     : List<XCUIElement>
+ {
+-    if (1 == item.position!!.intValue || (0 == item.position!!.intValue && shouldReturnAfterFirstMatch!!.boolValue)) {
++    if (1 == item.position || (0 == item.position && shouldReturnAfterFirstMatch!!)) {
+         val result: XCUIElement? = query.fb_firstMatch()
+-        return if (result != null) { listOf(result!!) } else { listOf() }
++        return if (result != null) { listOf(result) } else { listOf() }
+     }
+ 
+     val allMatches: List<XCUIElement> = query.fb_allMatches()
+ 
+-    if (0 == item.position!!.intValue) {
++    if (0 == item.position) {
+         return allMatches
+     }
+ 
+-    if (allMatches.size >= abs(item.position!!.intValue)) {
+-        return if (item.position!!.intValue > 0) { listOf(allMatches[item.position!!.intValue - 1] as XCUIElement) } else { listOf(allMatches[allMatches.size + item.position!!.intValue] as XCUIElement) }
++    if (item.position != 0) {
++        if (allMatches.size >= abs(item.position!!)) {
++            return if (item.position!! > 0) {
++                listOf(allMatches[item.position!! - 1] as XCUIElement)
++            } else {
++                listOf(allMatches[allMatches.size + item.position!!] as XCUIElement)
++            }
++        }
+     }
+ 
+     return listOf()
+@@ -1122,51 +1021,19 @@
+ //#import "FBXCTestDaemonsProxy.h"
+ //#import "XCTestManager_ManagerInterface-Protocol.h"
+ internal fun XCUIElementQuery.fb_firstMatch(): XCUIElement? {
+-    val match: XCUIElement = if (FBConfiguration.useFirstMatch()) { this.firstMatch() } else { this.fb_allMatches().firstOrNull()!! }
+-    return if (match.exists()) { match } else { null }
++    val match: XCUIElement? = if (FBConfiguration.useFirstMatch()) { this.firstMatch() } else { this.fb_allMatches().firstOrNull() }
++    return if (match?.exists() == true) { match } else { null }
+ }
+ 
+ internal fun XCUIElementQuery.fb_allMatches(): List<XCUIElement> {
+     return if (FBConfiguration.boundElementsByIndex()) { this.allElementsBoundByIndex } else { this.allElementsBoundByAccessibilityElement }
+ }
+ 
+-internal fun XCUIElement.fb_resolveWithError(error: NSError): Boolean {
+-    try {
+-        // The order here matters
+-        if (this.respondsToSelector(Selector("resolveOrRaiseTestFailure"))) {
+-            this.resolveOrRaiseTestFailure()
+-            return true
+-        }
+-        else if (this.respondsToSelector(Selector("resolve:"))) {
+-            return this.resolve(error)
+-        }
+-        else if (this.respondsToSelector(Selector("resolve"))) {
+-            this.resolve()
+-            return null != this.lastSnapshot
+-        }
+-    }
+-    catch (e: Exception) {
+-        if (null != e.reason) {
+-            return FBErrorBuilder.builder.withDescription((e.reason as NSString)).buildError(error)
+-        }
+-    }
+-    return FBErrorBuilder.builder.withDescription(
+-        "Cannot find a matching method to resolve elements. Please contact Appium developers").buildError(
+-        error)
+-}
+-
+-lazy class internal var XCUIElement.fb_supportsNonModalElementsInclusion: Boolean = {
+-        var hasIncludingNonModalElements: dispatch_once_t
+-        val result: Boolean
+-            get() {
+-                result = FBApplication.fb_systemApplication.query.respondsToSelector(Selector("includingNonModalElements"))
+-            }
+-
+-        return result
+-    }()
++internal val XCUIElement.fb_supportsNonModalElementsInclusion: Boolean
++    get() = false
+ 
+ internal fun XCUIElement.fb_query(): XCUIElementQuery {
+-    return if (FBConfiguration.includeNonModalElements() && this.fb_supportsNonModalElementsInclusion) { this.query.includingNonModalElements } else { this.query }
++    return this.query
+ }
+ 
+ //#import <XCTest/XCTest.h>
+@@ -1191,59 +1058,38 @@
+ //#import "FBElementUtils.h"
+ //#import "FBXCodeCompatibility.h"
+ //#import "FBXPath.h"
+-internal fun XCUIElement.Companion.fb_extractMatchingElementsFromQuery(
++internal fun XCUIElement.fb_extractMatchingElementsFromQuery(
+     query: XCUIElementQuery,
+     shouldReturnAfterFirstMatch: Boolean)
+-    : List<AnyObject>
++    : List<XCUIElement>
+ {
+     if (!shouldReturnAfterFirstMatch) {
+         return query.fb_allMatches()
+     }
+     val matchedElement: XCUIElement? = query.fb_firstMatch()
+-    return if (matchedElement != null) { listOf(matchedElement!!) } else { listOf() }
++    return if (matchedElement != null) { listOf(matchedElement) } else { listOf() }
+ }
+ 
+ internal fun XCUIElement.fb_cachedSnapshotWithQuery(query: XCUIElementQuery): XCElementSnapshot {
+-    return if (this is XCUIApplication) { query.rootElementSnapshot } else { this.fb_cachedSnapshot }
++    return if (this.elementType == XCUI_ELEMENT_TYPE_APPLICATION) { query.rootElementSnapshot } else { this.fb_cachedSnapshot }
+ }
+ 
+ // MARK: - Search by ClassName
+-internal fun XCUIElement.fb_descendantsMatchingClassName(
+-    className: NSString,
+-    shouldReturnAfterFirstMatch: Boolean)
+-    : List<AnyObject>
+-{
+-    val type: XCUIElementType = FBElementTypeTransformer.elementTypeWithTypeName(typeName = className)
+-    val query: XCUIElementQuery = this.fb_query().descendantsMatchingType(type = type)
+-    var result = mutableListOf<AnyObject>()
+-
+-    result.addObjectsFromArray(
+-        this.fb_extractMatchingElementsFromQuery(query, shouldReturnAfterFirstMatch))
+-
+-    val cachedSnapshot: XCElementSnapshot = this.fb_cachedSnapshotWithQuery(query = query)
+-
+-    if (type == XCUIElementType.XCUI_ELEMENT_TYPE_ANY || cachedSnapshot.elementType == type) {
+-        if (shouldReturnAfterFirstMatch || result.size == 0) {
+-            return listOf(this)
+-        }
+-        result.insertObject(this, 0)
+-    }
+-
+-    return result.toMutableList()
+-}
++// removed
+ 
+ // MARK: - Search by property value
+ // removed
++
+ // MARK: - Search by Predicate NSString
+ internal fun XCUIElement.fb_descendantsMatchingPredicate(
+     predicate: NSPredicate,
+     shouldReturnAfterFirstMatch: Boolean)
+-    : List<AnyObject>
++    : List<XCUIElement>
+ {
+     val formattedPredicate: NSPredicate = NSPredicate.fb_formatSearchPredicate(input = predicate)
+     val query: XCUIElementQuery = this.fb_query().descendantsMatchingType(type = XCUIElementType.XCUI_ELEMENT_TYPE_ANY).matchingPredicate(
+         predicate = formattedPredicate)
+-    var result = mutableListOf<AnyObject>()
++    var result = mutableListOf<XCUIElement>()
+ 
+     result.addObjectsFromArray(
+         this.fb_extractMatchingElementsFromQuery(query, shouldReturnAfterFirstMatch))
+@@ -1262,5 +1108,7 @@
+ }
+ 
+ // MARK: - Search by xpath
+-// MARK: - Search by Accessibility Id
++// removed
+ 
++// MARK: - Search by Accessibility Id
++// removed

@@ -8,6 +8,7 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation(libs.junitApi)
+    testImplementation(libs.junitParams)
     testRuntimeOnly(libs.junitEngine)
     testRuntimeOnly(libs.junitLauncher)
 

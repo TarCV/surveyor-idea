@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1680392223,
+        "narHash": "sha256-n3g7QFr85lDODKt250rkZj2IFS3i4/8HBU2yKHO3tqw=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "dcc36e45d054d7bb554c9cdab69093debd91a0b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -20,13 +38,100 @@
         "type": "github"
       }
     },
+    "gnuStepBaseSrc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651312611,
+        "narHash": "sha256-RgzeYJAqsqwCRdwt6HIfcse3CBkG/zTGN+53iGPWpyo=",
+        "owner": "gnustep",
+        "repo": "libs-base",
+        "rev": "cc38f2f4a1ce2d3f0a5f478ead595d2b011ecf41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gnustep",
+        "repo": "libs-base",
+        "rev": "cc38f2f4a1ce2d3f0a5f478ead595d2b011ecf41",
+        "type": "github"
+      }
+    },
+    "gnuStepBaseSrc_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651312611,
+        "narHash": "sha256-RgzeYJAqsqwCRdwt6HIfcse3CBkG/zTGN+53iGPWpyo=",
+        "owner": "gnustep",
+        "repo": "libs-base",
+        "rev": "cc38f2f4a1ce2d3f0a5f478ead595d2b011ecf41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gnustep",
+        "repo": "libs-base",
+        "rev": "cc38f2f4a1ce2d3f0a5f478ead595d2b011ecf41",
+        "type": "github"
+      }
+    },
+    "gryphon-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636424346,
+        "narHash": "sha256-K+YlSFKHCPqQZzL5u8sglouVYd0Hz1xqQSVLNw1/Ke8=",
+        "owner": "vinivendra",
+        "repo": "Gryphon",
+        "rev": "5bf69a6d33839a7b9db3d82283b6c2bff878eeac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vinivendra",
+        "ref": "v0.18.1",
+        "repo": "Gryphon",
+        "type": "github"
+      }
+    },
+    "gryphon-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636424346,
+        "narHash": "sha256-K+YlSFKHCPqQZzL5u8sglouVYd0Hz1xqQSVLNw1/Ke8=",
+        "owner": "vinivendra",
+        "repo": "Gryphon",
+        "rev": "5bf69a6d33839a7b9db3d82283b6c2bff878eeac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vinivendra",
+        "ref": "v0.18.1",
+        "repo": "Gryphon",
+        "type": "github"
+      }
+    },
+    "ipredicateKt": {
+      "inputs": {
+        "gnuStepBaseSrc": "gnuStepBaseSrc_2",
+        "gryphon-src": "gryphon-src_2",
+        "nixpkgs": "nixpkgs",
+        "objc2swift": "objc2swift",
+        "webDriverAgentSrc": "webDriverAgentSrc"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-ZftAXVJFgiCN8vTNvOAVemhQXVIRVgsGPxbz+XhYX+Q=",
+        "path": "./ipredicate",
+        "type": "path"
+      },
+      "original": {
+        "path": "./ipredicate",
+        "type": "path"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1678500271,
-        "narHash": "sha256-tRBLElf6f02HJGG0ZR7znMNFv/Uf7b2fFInpTHiHaSE=",
+        "lastModified": 1679224734,
+        "narHash": "sha256-1Ab3xY7Wgo1h1TNwRt6fp2XjV+KUo+hP1Bolh0KiDJs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5eb98948b66de29f899c7fe27ae112a47964baf8",
+        "rev": "eac7da7b519a5aefe92c33c90b4450a24ebe0ab3",
         "type": "github"
       },
       "original": {
@@ -35,10 +140,164 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-lib": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1680213900,
+        "narHash": "sha256-cIDr5WZIj3EkKyCgj/6j3HBH4Jj1W296z7HTcWj1aMA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e3652e0735fbec227f342712f180f4f21f0594f2",
+        "type": "github"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgsForSwift": {
+      "locked": {
+        "lastModified": 1647381949,
+        "narHash": "sha256-wMoRFm2siM1+6T2J6wczAbICmhQojBGZL2LJM15/Sj4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "007ccf2f4f1da567903ae392cbf19966eb30cf20",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "rev": "007ccf2f4f1da567903ae392cbf19966eb30cf20",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1679224734,
+        "narHash": "sha256-1Ab3xY7Wgo1h1TNwRt6fp2XjV+KUo+hP1Bolh0KiDJs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "eac7da7b519a5aefe92c33c90b4450a24ebe0ab3",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "release-22.11",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1711819797,
+        "narHash": "sha256-tNeB6emxj74Y6ctwmsjtMlzUMn458sBmwnD35U5KIM4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2b4e3ca0091049c6fbb4908c66b05b77eaef9f0c",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "release-23.11",
+        "type": "indirect"
+      }
+    },
+    "objc2swift": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2",
+        "objc2swift-src": "objc2swift-src"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-TPavsG3uv8iK0aGEyLELfd6KjC3OkOi1pukPmFIPtmg=",
+        "path": "./thirdparty/objc2swift",
+        "type": "path"
+      },
+      "original": {
+        "path": "./thirdparty/objc2swift",
+        "type": "path"
+      }
+    },
+    "objc2swift-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653442089,
+        "narHash": "sha256-XAyby8CgGEhGRkRfAMfMoG6IqCjmIZRGuwJG/OfWKeo=",
+        "owner": "okaxaki",
+        "repo": "objc2swift",
+        "rev": "ee82a541de19e075f197abf307082a19bdfac7c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "okaxaki",
+        "repo": "objc2swift",
+        "rev": "ee82a541de19e075f197abf307082a19bdfac7c6",
+        "type": "github"
+      }
+    },
+    "objc2swift-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653442089,
+        "narHash": "sha256-XAyby8CgGEhGRkRfAMfMoG6IqCjmIZRGuwJG/OfWKeo=",
+        "owner": "okaxaki",
+        "repo": "objc2swift",
+        "rev": "ee82a541de19e075f197abf307082a19bdfac7c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "okaxaki",
+        "repo": "objc2swift",
+        "rev": "ee82a541de19e075f197abf307082a19bdfac7c6",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "flake-parts": "flake-parts",
         "gitignore": "gitignore",
-        "nixpkgs": "nixpkgs"
+        "gnuStepBaseSrc": "gnuStepBaseSrc",
+        "gryphon-src": "gryphon-src",
+        "ipredicateKt": "ipredicateKt",
+        "nixpkgs": "nixpkgs_3",
+        "nixpkgsForSwift": "nixpkgsForSwift",
+        "objc2swift-src": "objc2swift-src_2",
+        "webDriverAgentSrc": "webDriverAgentSrc_2"
+      }
+    },
+    "webDriverAgentSrc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636094222,
+        "narHash": "sha256-OiG0jmTla1imVfQ+VrkJmtDs8y6MF0+SXDrF0NxsPuM=",
+        "owner": "appium",
+        "repo": "WebDriverAgent",
+        "rev": "693bcb2bc724021c18cbc2f9b2576a7d93b639db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "appium",
+        "ref": "v3.16.0",
+        "repo": "WebDriverAgent",
+        "type": "github"
+      }
+    },
+    "webDriverAgentSrc_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636094222,
+        "narHash": "sha256-OiG0jmTla1imVfQ+VrkJmtDs8y6MF0+SXDrF0NxsPuM=",
+        "owner": "appium",
+        "repo": "WebDriverAgent",
+        "rev": "693bcb2bc724021c18cbc2f9b2576a7d93b639db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "appium",
+        "ref": "v3.16.0",
+        "repo": "WebDriverAgent",
+        "type": "github"
       }
     }
   },

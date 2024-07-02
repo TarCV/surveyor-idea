@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -15,11 +15,6 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.testingteam.surveyoridea.filetypes
+package com.github.tarcv.testingteam.surveyor
 
-import com.intellij.util.xml.DomElement
-
-/**
- * DomElement representing an actual UI item in a UI dump
- */
-interface ActualUiElement: DomElement
+class InvalidSnapshotException(message: String) : RuntimeException(message)

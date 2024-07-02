@@ -2,14 +2,18 @@ package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyoridea.LaunchIdeExtension
 import com.github.tarcv.testingteam.surveyoridea.MethodVideoExtension
+import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.IdeaFrame
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.ifTipOfTheDayDialogPresent
 import com.intellij.remoterobot.RemoteRobot
+import com.intellij.remoterobot.fixtures.JButtonFixture
 import com.intellij.remoterobot.steps.CommonSteps
 import com.intellij.remoterobot.utils.DefaultHttpClient
+import com.intellij.remoterobot.utils.WaitForConditionTimeoutException
 import com.intellij.remoterobot.utils.waitForIgnoringError
 import org.apache.commons.io.file.PathUtils
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInfo
 import org.junit.jupiter.api.extension.ExtendWith
@@ -23,12 +27,27 @@ import javax.imageio.ImageIO
 
 @ExtendWith(MethodVideoExtension::class, LaunchIdeExtension::class)
 open class BaseTestProjectTests {
+    companion object {
+        @JvmStatic
+        protected val droidAutomatorSnapshotFile = """demo/snapshots/dump.uix"""
+
+        @JvmStatic
+        protected val iPredicateSnapshotFile = """demo/snapshots/main.xml"""
+
+        @JvmStatic
+        protected val editorWithSnapshot = "editorWithSnapshot"
+
+        const val REQUIRES_SCREENSHOT_ASSUMPTIONS_TAG = "REQUIRES_SCREENSHOT_ASSUMPTIONS"
+
+        fun checkScreenshotAssumptions(robot: RemoteRobot) {
+            Assumptions.assumeTrue(robot.isLinux(), "Screenshot are only enabled on Linux")
+        }
+    }
+
     @field:TempDir
     lateinit var tempDir: Path
 
     lateinit var projectPath: Path
-
-    protected val droidAutomatorSnapshotFile by lazy { """$projectPath/demo/snapshots/dump.uix""" }
 
     protected val remoteRobot: RemoteRobot by lazy {
         val httpClient = DefaultHttpClient.client.newBuilder()
@@ -46,7 +65,11 @@ open class BaseTestProjectTests {
     protected val commonSteps by lazy { CommonSteps(remoteRobot) }
 
     @BeforeEach
-    fun openTestProject() {
+    fun openTestProject(testInfo: TestInfo) {
+        if (REQUIRES_SCREENSHOT_ASSUMPTIONS_TAG in testInfo.tags) {
+            checkScreenshotAssumptions(remoteRobot)
+        }
+
         PathUtils.cleanDirectory(tempDir)
 
         projectPath = tempDir.resolve("project")
@@ -59,8 +82,22 @@ open class BaseTestProjectTests {
                 ifTipOfTheDayDialogPresent {
                     close()
                 }
+                closeCodeWithMeBubbleIfNeeded()
                 commonSteps.waitForSmartMode(1)
+
+                if (REQUIRES_SCREENSHOT_ASSUMPTIONS_TAG in testInfo.tags) {
+                    resizeWindow(1024, 768)
+                }
             }
+        }
+    }
+
+    private fun IdeaFrame.closeCodeWithMeBubbleIfNeeded() {
+        try {
+            find<JButtonFixture>(JButtonFixture.byText("Got It"))
+                .click()
+        } catch (e: WaitForConditionTimeoutException) {
+            // no tooltip displayed, so nothing to do
         }
     }
 
@@ -77,6 +114,10 @@ open class BaseTestProjectTests {
             commonSteps.invokeAction("CloseAllProjects")
             sleep(3_000) // wait until invokeAction is executed
         }
+    }
+
+    protected fun relativeToProject(path: String): Path {
+        return projectPath.resolve(path)
     }
 
     private fun RemoteRobot.takeAndWriteScreenshot(testInfo: TestInfo) {
@@ -112,7 +153,7 @@ open class BaseTestProjectTests {
             }
         }
         val isFile = (subItems.isEmpty() && name.contains('.')) ||
-                (subItems.isNotEmpty() && classLoader.getResource("$resourceDir/${subItems.first()}") == null)
+                (subItems.isNotEmpty() && classLoader.getResource("$resourceDir/${subItems.first()}") === null)
         if (isFile) {
             println("Extracting $resourceDir to $basePath")
             PathUtils.copyFile(

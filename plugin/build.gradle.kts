@@ -3,7 +3,7 @@ import org.jetbrains.changelog.markdownToHTML
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
-sourceSets
+
 plugins {
     kotlin("jvm")
     id("com.github.TarCV.aar2jar")
@@ -15,7 +15,12 @@ plugins {
 }
 
 dependencies {
+    implementation(kotlin("reflect"))
+
     implementation(project(":droid-selector")) {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+    implementation(project(":ipredicate")) {
         exclude(group = "org.jetbrains.kotlin")
     }
     implementation(project(":library")) {
@@ -33,6 +38,12 @@ dependencies {
         }
 
         isTransitive = false
+    }
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xjvm-default=all")
     }
 }
 

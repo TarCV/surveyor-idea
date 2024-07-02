@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.github.tarcv.testingteam.surveyoridea.filetypes
+package com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces
 
 import com.intellij.ide.presentation.PresentationProvider
 import com.intellij.openapi.util.Iconable
@@ -23,7 +23,7 @@ import com.intellij.util.xml.DomElement
 import javax.swing.Icon
 
 /**
- * DomElement not representing any actual UI item in a UI dump, and instead representing a root of a dump instead
+ * DomElement not representing any actual UI item in a UI snapshot, and instead representing a root of such snapshot instead
  */
 interface RootUiElement: DomElement {
     class DescriptionProvider : PresentationProvider<RootUiElement>() {

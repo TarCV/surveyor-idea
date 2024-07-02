@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2024 TarCV
+
+  This file is part of UI Surveyor.
+  UI Surveyor is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+  This file is based on the parts of WebDriverAgent which are
+  (copies of referenced files can be found in ipredicate/licenses/wda subdirectory
+  in this repository):
+
+      Copyright (c) 2015-present, Facebook, Inc.
+      All rights reserved.
+
+      This source code is licensed under the BSD-style license found in the
+      LICENSE file in the root directory of this source tree. An additional grant
+      of patent rights can be found in the PATENTS file in the same directory.
+-->
+<AppiumAUT><XCUIElementTypeApplication type="XCUIElementTypeApplication" name="IntegrationApp" label="IntegrationApp" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+    <XCUIElementTypeWindow type="XCUIElementTypeWindow" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                    <XCUIElementTypeNavigationBar type="XCUIElementTypeNavigationBar" name="FBScrollView" enabled="true" visible="true" x="0" y="48" width="414" height="44" index="0">
+                        <XCUIElementTypeButton type="XCUIElementTypeButton" name="Back" label="Back" enabled="true" visible="true" x="0" y="48" width="71" height="44" index="0"/>
+                    </XCUIElementTypeNavigationBar>
+                    <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="1">
+                        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                                <XCUIElementTypeScrollView type="XCUIElementTypeScrollView" name="scrollView" enabled="true" visible="true" x="0" y="0" width="414" height="862" index="0">
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="0" name="0" label="0" enabled="true" visible="true" x="0" y="92" width="414" height="40" index="0"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="1" name="1" label="1" enabled="true" visible="true" x="0" y="132" width="414" height="40" index="1"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="2" name="2" label="2" enabled="true" visible="true" x="0" y="172" width="414" height="40" index="2"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="3" name="3" label="3" enabled="true" visible="true" x="0" y="212" width="414" height="40" index="3"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="4" name="4" label="4" enabled="true" visible="true" x="0" y="252" width="414" height="40" index="4"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="5" name="5" label="5" enabled="true" visible="true" x="0" y="292" width="414" height="40" index="5"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="6" name="6" label="6" enabled="true" visible="true" x="0" y="332" width="414" height="40" index="6"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="7" name="7" label="7" enabled="true" visible="true" x="0" y="372" width="414" height="40" index="7"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="8" name="8" label="8" enabled="true" visible="true" x="0" y="412" width="414" height="40" index="8"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="9" name="9" label="9" enabled="true" visible="true" x="0" y="452" width="414" height="40" index="9"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="10" name="10" label="10" enabled="true" visible="true" x="0" y="492" width="414" height="40" index="10"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="11" name="11" label="11" enabled="true" visible="true" x="0" y="532" width="414" height="40" index="11"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="12" name="12" label="12" enabled="true" visible="true" x="0" y="572" width="414" height="40" index="12"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="13" name="13" label="13" enabled="true" visible="true" x="0" y="612" width="414" height="40" index="13"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="14" name="14" label="14" enabled="true" visible="true" x="0" y="652" width="414" height="40" index="14"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="15" name="15" label="15" enabled="true" visible="true" x="0" y="692" width="414" height="40" index="15"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="16" name="16" label="16" enabled="true" visible="true" x="0" y="732" width="414" height="40" index="16"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="17" name="17" label="17" enabled="true" visible="true" x="0" y="772" width="414" height="40" index="17"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="18" name="18" label="18" enabled="true" visible="true" x="0" y="812" width="414" height="40" index="18"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="19" name="19" label="19" enabled="true" visible="true" x="0" y="852" width="414" height="40" index="19"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="20" name="20" label="20" enabled="true" visible="false" x="0" y="892" width="414" height="40" index="20"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="21" name="21" label="21" enabled="true" visible="false" x="0" y="932" width="414" height="40" index="21"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="22" name="22" label="22" enabled="true" visible="false" x="0" y="972" width="414" height="40" index="22"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="23" name="23" label="23" enabled="true" visible="false" x="0" y="1012" width="414" height="40" index="23"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="24" name="24" label="24" enabled="true" visible="false" x="0" y="1052" width="414" height="40" index="24"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="25" name="25" label="25" enabled="true" visible="false" x="0" y="1092" width="414" height="40" index="25"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="26" name="26" label="26" enabled="true" visible="false" x="0" y="1132" width="414" height="40" index="26"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="27" name="27" label="27" enabled="true" visible="false" x="0" y="1172" width="414" height="40" index="27"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="28" name="28" label="28" enabled="true" visible="false" x="0" y="1212" width="414" height="40" index="28"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="29" name="29" label="29" enabled="true" visible="false" x="0" y="1252" width="414" height="40" index="29"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="30" name="30" label="30" enabled="true" visible="false" x="0" y="1292" width="414" height="40" index="30"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="31" name="31" label="31" enabled="true" visible="false" x="0" y="1332" width="414" height="40" index="31"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="32" name="32" label="32" enabled="true" visible="false" x="0" y="1372" width="414" height="40" index="32"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="33" name="33" label="33" enabled="true" visible="false" x="0" y="1412" width="414" height="40" index="33"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="34" name="34" label="34" enabled="true" visible="false" x="0" y="1452" width="414" height="40" index="34"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="35" name="35" label="35" enabled="true" visible="false" x="0" y="1492" width="414" height="40" index="35"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="36" name="36" label="36" enabled="true" visible="false" x="0" y="1532" width="414" height="40" index="36"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="37" name="37" label="37" enabled="true" visible="false" x="0" y="1572" width="414" height="40" index="37"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="38" name="38" label="38" enabled="true" visible="false" x="0" y="1612" width="414" height="40" index="38"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="39" name="39" label="39" enabled="true" visible="false" x="0" y="1652" width="414" height="40" index="39"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="40" name="40" label="40" enabled="true" visible="false" x="0" y="1692" width="414" height="40" index="40"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="41" name="41" label="41" enabled="true" visible="false" x="0" y="1732" width="414" height="40" index="41"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="42" name="42" label="42" enabled="true" visible="false" x="0" y="1772" width="414" height="40" index="42"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="43" name="43" label="43" enabled="true" visible="false" x="0" y="1812" width="414" height="40" index="43"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="44" name="44" label="44" enabled="true" visible="false" x="0" y="1852" width="414" height="40" index="44"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="45" name="45" label="45" enabled="true" visible="false" x="0" y="1892" width="414" height="40" index="45"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="46" name="46" label="46" enabled="true" visible="false" x="0" y="1932" width="414" height="40" index="46"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="47" name="47" label="47" enabled="true" visible="false" x="0" y="1972" width="414" height="40" index="47"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="48" name="48" label="48" enabled="true" visible="false" x="0" y="2012" width="414" height="40" index="48"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="49" name="49" label="49" enabled="true" visible="false" x="0" y="2052" width="414" height="40" index="49"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="50" name="50" label="50" enabled="true" visible="false" x="0" y="2092" width="414" height="40" index="50"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="51" name="51" label="51" enabled="true" visible="false" x="0" y="2132" width="414" height="40" index="51"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="52" name="52" label="52" enabled="true" visible="false" x="0" y="2172" width="414" height="40" index="52"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="53" name="53" label="53" enabled="true" visible="false" x="0" y="2212" width="414" height="40" index="53"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="54" name="54" label="54" enabled="true" visible="false" x="0" y="2252" width="414" height="40" index="54"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="55" name="55" label="55" enabled="true" visible="false" x="0" y="2292" width="414" height="40" index="55"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="56" name="56" label="56" enabled="true" visible="false" x="0" y="2332" width="414" height="40" index="56"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="57" name="57" label="57" enabled="true" visible="false" x="0" y="2372" width="414" height="40" index="57"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="58" name="58" label="58" enabled="true" visible="false" x="0" y="2412" width="414" height="40" index="58"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="59" name="59" label="59" enabled="true" visible="false" x="0" y="2452" width="414" height="40" index="59"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="60" name="60" label="60" enabled="true" visible="false" x="0" y="2492" width="414" height="40" index="60"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="61" name="61" label="61" enabled="true" visible="false" x="0" y="2532" width="414" height="40" index="61"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="62" name="62" label="62" enabled="true" visible="false" x="0" y="2572" width="414" height="40" index="62"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="63" name="63" label="63" enabled="true" visible="false" x="0" y="2612" width="414" height="40" index="63"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="64" name="64" label="64" enabled="true" visible="false" x="0" y="2652" width="414" height="40" index="64"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="65" name="65" label="65" enabled="true" visible="false" x="0" y="2692" width="414" height="40" index="65"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="66" name="66" label="66" enabled="true" visible="false" x="0" y="2732" width="414" height="40" index="66"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="67" name="67" label="67" enabled="true" visible="false" x="0" y="2772" width="414" height="40" index="67"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="68" name="68" label="68" enabled="true" visible="false" x="0" y="2812" width="414" height="40" index="68"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="69" name="69" label="69" enabled="true" visible="false" x="0" y="2852" width="414" height="40" index="69"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="70" name="70" label="70" enabled="true" visible="false" x="0" y="2892" width="414" height="40" index="70"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="71" name="71" label="71" enabled="true" visible="false" x="0" y="2932" width="414" height="40" index="71"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="72" name="72" label="72" enabled="true" visible="false" x="0" y="2972" width="414" height="40" index="72"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="73" name="73" label="73" enabled="true" visible="false" x="0" y="3012" width="414" height="40" index="73"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="74" name="74" label="74" enabled="true" visible="false" x="0" y="3052" width="414" height="40" index="74"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="75" name="75" label="75" enabled="true" visible="false" x="0" y="3092" width="414" height="40" index="75"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="76" name="76" label="76" enabled="true" visible="false" x="0" y="3132" width="414" height="40" index="76"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="77" name="77" label="77" enabled="true" visible="false" x="0" y="3172" width="414" height="40" index="77"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="78" name="78" label="78" enabled="true" visible="false" x="0" y="3212" width="414" height="40" index="78"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="79" name="79" label="79" enabled="true" visible="false" x="0" y="3252" width="414" height="40" index="79"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="80" name="80" label="80" enabled="true" visible="false" x="0" y="3292" width="414" height="40" index="80"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="81" name="81" label="81" enabled="true" visible="false" x="0" y="3332" width="414" height="40" index="81"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="82" name="82" label="82" enabled="true" visible="false" x="0" y="3372" width="414" height="40" index="82"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="83" name="83" label="83" enabled="true" visible="false" x="0" y="3412" width="414" height="40" index="83"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="84" name="84" label="84" enabled="true" visible="false" x="0" y="3452" width="414" height="40" index="84"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="85" name="85" label="85" enabled="true" visible="false" x="0" y="3492" width="414" height="40" index="85"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="86" name="86" label="86" enabled="true" visible="false" x="0" y="3532" width="414" height="40" index="86"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="87" name="87" label="87" enabled="true" visible="false" x="0" y="3572" width="414" height="40" index="87"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="88" name="88" label="88" enabled="true" visible="false" x="0" y="3612" width="414" height="40" index="88"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="89" name="89" label="89" enabled="true" visible="false" x="0" y="3652" width="414" height="40" index="89"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="90" name="90" label="90" enabled="true" visible="false" x="0" y="3692" width="414" height="40" index="90"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="91" name="91" label="91" enabled="true" visible="false" x="0" y="3732" width="414" height="40" index="91"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="92" name="92" label="92" enabled="true" visible="false" x="0" y="3772" width="414" height="40" index="92"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="93" name="93" label="93" enabled="true" visible="false" x="0" y="3812" width="414" height="40" index="93"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="94" name="94" label="94" enabled="true" visible="false" x="0" y="3852" width="414" height="40" index="94"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="95" name="95" label="95" enabled="true" visible="false" x="0" y="3892" width="414" height="40" index="95"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="96" name="96" label="96" enabled="true" visible="false" x="0" y="3932" width="414" height="40" index="96"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="97" name="97" label="97" enabled="true" visible="false" x="0" y="3972" width="414" height="40" index="97"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="98" name="98" label="98" enabled="true" visible="false" x="0" y="4012" width="414" height="40" index="98"/>
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="99" name="99" label="99" enabled="true" visible="false" x="0" y="4052" width="414" height="40" index="99"/>
+                                    <XCUIElementTypeOther type="XCUIElementTypeOther" value="0%" name="Vertical scroll bar, 6 pages" label="Vertical scroll bar, 6 pages" enabled="true" visible="true" x="381" y="92" width="30" height="769" index="100"/>
+                                    <XCUIElementTypeOther type="XCUIElementTypeOther" value="0%" name="Horizontal scroll bar, 1 page" label="Horizontal scroll bar, 1 page" enabled="true" visible="true" x="1" y="829" width="412" height="30" index="101"/>
+                                </XCUIElementTypeScrollView>
+                            </XCUIElementTypeOther>
+                        </XCUIElementTypeOther>
+                    </XCUIElementTypeOther>
+                </XCUIElementTypeOther>
+            </XCUIElementTypeOther>
+        </XCUIElementTypeOther>
+    </XCUIElementTypeWindow>
+    <XCUIElementTypeWindow type="XCUIElementTypeWindow" enabled="true" visible="false" x="0" y="0" width="414" height="896" index="1">
+        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" x="0" y="0" width="414" height="896" index="0">
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" x="0" y="0" width="414" height="896" index="0"/>
+        </XCUIElementTypeOther>
+    </XCUIElementTypeWindow>
+</XCUIElementTypeApplication></AppiumAUT>

@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -17,14 +17,14 @@
  */
 package com.github.tarcv.testingteam.surveyoridea.gui
 
-import com.github.tarcv.testingteam.surveyoridea.filetypes.ActualUiElement
-import com.github.tarcv.testingteam.surveyoridea.filetypes.RootUiElement
-import com.github.tarcv.testingteam.surveyoridea.filetypes.uix.UixDomDecription
+import com.github.tarcv.testingteam.surveyoridea.filetypes.IAutSnapshot
+import com.github.tarcv.testingteam.surveyoridea.filetypes.XmlFileType
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.ActualUiElement
+import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.RootUiElement
 import com.intellij.ide.navigationToolbar.StructureAwareNavBarModelExtension
 import com.intellij.lang.Language
 import com.intellij.lang.xml.XMLLanguage
-import com.intellij.openapi.util.Iconable.ICON_FLAG_VISIBILITY
-import com.intellij.psi.xml.XmlElement
+import com.intellij.openapi.util.Iconable
 import com.intellij.psi.xml.XmlFile
 import com.intellij.psi.xml.XmlTag
 import com.intellij.util.xml.DomManager
@@ -34,37 +34,34 @@ class UiAwareNavigationBar : StructureAwareNavBarModelExtension() {
     override val language: Language = XMLLanguage.INSTANCE
 
     override fun getPresentableText(o: Any?): String? {
-        if (o !is XmlElement) {
-            return null
+        if (o is XmlFile) {
+            return o.containingFile.virtualFile?.presentableName ?: o.containingFile.name
         }
-
-        val domManager = DomManager.getDomManager(o.project) ?: return null
-        return when {
-            o is XmlFile && domManager.getDomFileDescription(o) is UixDomDecription -> {
-                o.containingFile.virtualFile?.presentableName ?: o.containingFile.name
-            }
-            o is XmlTag -> when (val domElement = domManager.getDomElement(o)) {
-                is RootUiElement -> {
-                    o.containingFile.virtualFile?.presentableName ?: o.containingFile.name
-                }
-                is ActualUiElement -> domElement.presentation.elementName
-                else -> null
-            }
-            else -> null
-        }
-    }
-
-    override fun getIcon(o: Any?): Icon? {
         if (o !is XmlTag) {
             return null
         }
 
         val domElement = DomManager.getDomManager(o.project)
             .getDomElement(o)
-        return when (domElement) {
-            is RootUiElement -> o.containingFile.getIcon(ICON_FLAG_VISIBILITY)
-            is ActualUiElement -> domElement.presentation.icon
-            else -> null
+        if (domElement == null) {
+            val rootTag = XmlFileType.rootTagFrom(o) ?: return null
+            return if (IAutSnapshot.isXmlFileOfType(rootTag)) {
+                IAutSnapshot.structureTitleFor(o)
+            } else {
+                null
+            }
+        } else {
+            return when (domElement) {
+                is RootUiElement -> o.containingFile.virtualFile?.presentableName ?: o.containingFile.name
+                is ActualUiElement -> domElement.presentation.elementName
+                else -> null
+            }
         }
+    }
+
+    override fun getIcon(o: Any?): Icon? = when (o) {
+        is XmlFile -> o.containingFile.getIcon(Iconable.ICON_FLAG_VISIBILITY)
+        is XmlTag -> XmlFileType.structureIconFor(o)
+        else -> null
     }
 }

@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib"))
 
+    implementation(project(":droid-common"))
     implementation(project(":library"))
 
     testImplementation(libs.junitApi)

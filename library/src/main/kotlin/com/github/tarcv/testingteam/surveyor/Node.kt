@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -19,20 +19,20 @@ package com.github.tarcv.testingteam.surveyor
 
 class Node(
     parent: Node?,
-    val properties: Map<Properties<*>, Any?>,
+    val properties: Map<out Property<*>, Any?>,
     val children: List<Node>,
     val isVisible: Boolean
 ) {
     var parent: Node? = parent
         private set
 
-    inline fun <reified T: Any?> getProperty(key: Properties<T>): T = getProperty(key, T::class.java)
+    inline fun <reified T: Any?> getProperty(key: Property<T>): T = getProperty(key, T::class.java)
 
     @Suppress("UNCHECKED_CAST", "UNUSED_PARAMETER")
-    fun <T> getProperty(key: Properties<T>, clazz: Class<T>): T {
+    fun <T> getProperty(key: Property<T>, clazz: Class<T>): T {
         val found = properties[key]
         return if (found == null && !properties.containsKey(key)) {
-            throw RuntimeException("${key.javaClass.simpleName} property is not supported within the current snapshot format")
+            throw InvalidSnapshotException("${key.javaClass.simpleName} property is not supported within the current snapshot format")
         } else {
             found as T
         }

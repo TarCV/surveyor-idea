@@ -5,27 +5,20 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/21218-ui-surveyor.svg)](https://plugins.jetbrains.com/plugin/21218-ui-surveyor)
 
 ## Description
-
-UI Surveyor plugin provides tools helping with mobile application automation.
+<!-- Plugin description -->
+UI Surveyor plugin provides features helping designing selectors for mobile automated tests:
 They provide the following features:
-* **_Evaluating_ element selectors against an XML UI snapshots** <br />
+* **_Evaluating_ selectors against XML UI snapshots** <br />
+  * UIAutomator UISelectors and BySelectors for Android
+  * (Experimental) WebDriverAgent/Appium class chain and predicate queries for iOS
 ![Search](docs/Search.png)
-* **Syntax highlighting and autocomplete for element selectors (Java IDEs only)** <br />
+* **Syntax highlighting and autocomplete for element selectors (UIAutomator selectors in Java IDEs only)** <br />
 ![Autocomplete & Highlighting](docs/Autocomplete.png)
 * **Improved structure navigation for XML UI snapshots** <br />
 ![Structure navigation](docs/StructureNavigation.png)
 
 If for some reason `Locate Element` tool window is not enabled, you can open it from the View menu: <br />
 ![View &gt; Tool windows &gt; Locate Element](docs/MenuLocation.png)
-
-At the moment
-<!-- Plugin description -->
-UI Surveyor plugin provides tools helping work with Android UI Snapshot in XML format and UIAutomator selectors.
-
-Those tools are:
-* `Locate Element` tool window for **evaluating** element selectors against a currently open XML UI snapshots
-* Basic syntax highlighting and autocomplete for UIAutomator selectors (as Java code, supported only for Java IDEs)
-* Improved structure navigation for UI snapshots
 
 All trademarks are the property of their respective owners. All company, product and service names
 used in this plugin description are for identification purposes only. Use of these names or brands does not imply endorsement.

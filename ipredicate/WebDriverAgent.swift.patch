@@ -1,0 +1,1665 @@
+--- a/prefix/WebDriverAgent.swift	1970-01-01 00:00:00.000000000 +0000
++++ b/prefix/WebDriverAgent.swift	1970-01-01 00:00:00.000000000 +0000
+@@ -1,3 +1,36 @@
++struct Protocol {}
++struct objc_property_t {}
++enum XCUIElementType : UInt {
++    case XCUIElementTypeAny
++}
++class XCUIElement {
++    func exists() -> Bool {
++        return true
++    }
++
++}
++class XCUIElementQuery {
++    func firstMatch() -> XCUIElement {
++        return XCUIElement()
++    }
++
++    func descendantsMatchingType(_ type: XCUIElementType) -> XCUIElementQuery {
++        return XCUIElementQuery()
++    }
++    func matchingPredicate(_ predicate:NSPredicate) -> XCUIElementQuery {
++        return XCUIElementQuery()
++    }
++}
++class XCElementSnapshot {}
++
++class FBElementTypeTransformer {
++    class func elementTypeWithTypeName(_ typeName: String) -> XCUIElementType {
++        return XCUIElementType.XCUIElementTypeAny
++    }
++}
++
++
++import Foundation
+ // define OS_API_VERSION(v, m) 1
+ // define GS_USE_ICU 1
+ // define BASE_NATIVE_OBJC_EXCEPTIONS 1
+@@ -41,13 +74,10 @@
+ 
+ class FBPredicate : NSPredicate {
+ 
+-    class func predicateWithFormat(_ predicateFormat:String) -> NSPredicate {
+-      var args:va_list
+-      va_start(args, predicateFormat)
++    class func predicateWithFormat(_ predicateFormat:String, args:Array<AnyObject>) -> NSPredicate {
+       let predicate:NSPredicate = NSPredicate.predicateWithFormat(predicateFormat, arguments:args)
+-      va_end(args)
+-      let hackPredicate:NSPredicate = NSPredicate.predicateWithFormat(self.forceResolvePredicateString)
+-      return NSCompoundPredicate.andPredicateWithSubpredicates([predicate, hackPredicate])
++      let hackPredicate:NSPredicate = NSPredicate.predicateWithFormat(self.forceResolvePredicateString(), arguments: [AnyObject]())
++      return NSCompoundPredicate.andPredicateWithSubpredicates(list: [predicate, hackPredicate])
+     }
+ 
+     class func forceResolvePredicateString() -> String {
+@@ -82,19 +112,19 @@
+ 
+ extension NSPredicate {
+ 
+-    class func fb_predicateWithPredicate(_ original:NSPredicate, comparisonModifier:NSPredicate) -> Self {
++    class func fb_predicateWithPredicate(_ original:NSPredicate, comparisonModifier:(NSComparisonPredicate) -> NSPredicate) -> Self {
+       if original is NSCompoundPredicate {
+-        let compPred:NSCompoundPredicate = original
+-        let predicates:NSMutableArray = NSMutableArray.array()
++        let compPred:NSCompoundPredicate = original as! NSCompoundPredicate
++        var predicates:Array<NSPredicate> = Array<NSPredicate>()
+         for predicate in compPred.subpredicates() {  
+           if (predicate.predicateFormat.lowercased() == FBPredicate.forceResolvePredicateString().lowercased()) {
+             // Do not translete this predicate
+             predicates.addObject(predicate)
+             continue
+           }
+-          let newPredicate:NSPredicate = self.dynamicType.fb_predicateWithPredicate(predicate, comparisonModifier:comparisonModifier)
++          let newPredicate:NSPredicate? = NSPredicate.fb_predicateWithPredicate(predicate, comparisonModifier:comparisonModifier)
+           if nil != newPredicate {
+-            predicates.addObject(newPredicate)
++            predicates.addObject(newPredicate!)
+           }
+          }
+         return NSCompoundPredicate(type:compPred.compoundPredicateType,
+@@ -107,7 +137,7 @@
+     }
+ 
+     class func fb_formatSearchPredicate(_ input:NSPredicate) -> NSPredicate {
+-      return self.dynamicType.fb_predicateWithPredicate(input, comparisonModifier:{ (cp:NSComparisonPredicate) in 
++      return NSPredicate.fb_predicateWithPredicate(input, comparisonModifier:{ (cp:NSComparisonPredicate) -> NSPredicate in 
+         let left:NSExpression = NSExpression.fb_wdExpressionWithExpression(cp.leftExpression())
+         let right:NSExpression = NSExpression.fb_wdExpressionWithExpression(cp.rightExpression())
+         return NSComparisonPredicate.predicateWithLeftExpression(left,
+@@ -145,351 +175,24 @@
+ extension NSExpression {
+ 
+     class func fb_wdExpressionWithExpression(_ input:NSExpression) -> Self {
+-      if input.expressionType() != NSKeyPathExpressionType {
++      if !(input is GSKeyPathExpression) {
+         return input
+       }
+-      let propName:String = input.keyPath()
+-      let dotPos:UInt = propName.rangeOfString(".").location
+-      if NSNotFound != dotPos {
+-        let actualPropName:String = String(propName.characters.prefix(dotPos))
+-        let suffix:String = String(propName.characters.suffix((dotPos + 1)))
+-        return NSExpression.expressionForKeyPath(String(format:"%@.%@", FBElementUtils.wdAttributeNameForAttributeName(actualPropName), suffix))
++      let propName:String = (input as! GSKeyPathExpression).keyPath()!
++      let dotPos = propName.firstIndex(of: ".".first!)
++      if nil != dotPos {
++        let actualPropName:String = String(propName.prefix(upTo: dotPos!))
++        let suffix = propName.suffix(from: propName.index(after: dotPos!))
++        return NSExpression.expressionForKeyPath(String(format:"%@.%@", FBElementUtils.wdAttributeNameForAttributeName(actualPropName), String(propName.prefix(upTo: propName.index(propName.startIndex, offsetBy: dotPos!)))))
+       }
+       return NSExpression.expressionForKeyPath(FBElementUtils.wdAttributeNameForAttributeName(propName))
+     }
+ }
+-/**
+- * Copyright (c) 2015-present, Facebook, Inc.
+- * All rights reserved.
+- *
+- * This source code is licensed under the BSD-style license found in the
+- * LICENSE file in the root directory of this source tree. An additional grant
+- * of patent rights can be found in the PATENTS file in the same directory.
+- */
+-
+-//#import <Foundation/Foundation.h>
+-
+-//#import "AXSettings.h"
+-//#import "UIKeyboardImpl.h"
+-//#import "TIPreferencesController.h"
+-
+-
+-var FBSnapshotMaxDepthKey:String
+-
+-/**
+- Accessors for Global Constants.
+- */
+-
+-
+-/**
+- * Copyright (c) 2015-present, Facebook, Inc.
+- * All rights reserved.
+- *
+- * This source code is licensed under the BSD-style license found in the
+- * LICENSE file in the root directory of this source tree. An additional grant
+- * of patent rights can be found in the PATENTS file in the same directory.
+- */
+-
+-//#import "FBConfiguration.h"
+-
+-//#import <UIKit/UIKit.h>
+-
+-//#import "FBXCodeCompatibility.h"
+-//#import "XCTestPrivateSymbols.h"
+-//#import "XCElementSnapshot.h"
+-//#import "XCTestConfiguration.h"
+-//#import "XCUIApplication+FBUIInterruptions.h"
+-
+-let DefaultStartingPort:UInt = 8100
+-let DefaultMjpegServerPort:UInt = 9100
+-let DefaultPortRange:UInt = 100
+-
+-let controllerPrefBundlePath:Int8 = "/System/Library/PrivateFrameworks/TextInput.framework/TextInput"
+-let controllerClassName:String = "TIPreferencesController"
+-let FBKeyboardAutocorrectionKey:String = "KeyboardAutocorrection"
+-let FBKeyboardPredictionKey:String = "KeyboardPrediction"
+-let axSettingsClassName:String = "AXSettings"
+-
+-var FBShouldUseTestManagerForVisibilityDetection:Bool = false
+-var FBShouldUseSingletonTestManager:Bool = true
+-var FBShouldUseCompactResponses:Bool = true
+-var FBShouldTerminateApp:Bool = true
+-var FBElementResponseAttributes:String = "type,label"
+-var FBMaxTypingFrequency:UInt = 60
+-var FBMjpegServerScreenshotQuality:UInt = 25
+-var FBMjpegServerFramerate:UInt = 10
+-var FBScreenshotQuality:UInt = 1
+-var FBMjpegScalingFactor:UInt = 100
+-var FBCustomSnapshotTimeout:NSTimeInterval = 15.
+-var FBShouldUseFirstMatch:Bool = false
+-var FBShouldBoundElementsByIndex:Bool = false
+-// This is diabled by default because enabling it prevents the accessbility snapshot to be taken
+-// (it always errors with kxIllegalArgument error)
+-var FBIncludeNonModalElements:Bool = false
+-var FBAcceptAlertButtonSelector:String = ""
+-var FBDismissAlertButtonSelector:String = ""
+-let FBSnapshotMaxDepthKey:String = "maxDepth"
+-var FBSnapshotRequestParameters:NSMutableDictionary
+-var FBWaitForIdleTimeout:NSTimeInterval = 10.
+-var FBAnimationCoolOffTimeout:NSTimeInterval = 2.
+-
+-#if !TARGET_OS_TV
+-var FBScreenshotOrientation:UIInterfaceOrientation = UIInterfaceOrientationUnknown
+-#endif
+ 
+ class FBConfiguration : NSObject {
+-
+-    class func initialize() {
+-      FBSnapshotRequestParameters = NSMutableDictionary.dictionaryWithDictionary([
+-        "maxArrayCount": INT_MAX,
+-        "maxChildren": INT_MAX,
+-        FBSnapshotMaxDepthKey: 50, // 50 should be enough for the majority of the cases. The performance is acceptable for values up to 100.
+-        "traverseFromParentsToChildren": 1
+-      ])
+-    }
+-
+-    // MARK: Public
+-
+-    class func disableRemoteQueryEvaluation() {
+-      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"XCTDisableRemoteQueryEvaluation")
+-    }
+-
+-    class func disableApplicationUIInterruptionsHandling() {
+-      XCUIApplication.fb_disableUIInterruptionsHandling()
+-    }
+-
+-    class func enableXcTestDebugLogs() {
+-      (XCTestConfiguration.activeTestConfiguration as! XCTestConfiguration).emitOSLogs = true
+-      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"XCTEmitOSLogs")
+-    }
+-
+-    class func disableAttributeKeyPathAnalysis() {
+-      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"XCTDisableAttributeKeyPathAnalysis")
+-    }
+-
+-    class func disableScreenshots() {
+-      NSUserDefaults.standardUserDefaults().setBool(true, forKey:"DisableScreenshots")
+-    }
+-
+-    class func enableScreenshots() {
+-      NSUserDefaults.standardUserDefaults().setBool(false, forKey:"DisableScreenshots")
+-    }
+-
+-    class func bindingPortRange() -> NSRange {
+-      // 'WebDriverAgent --port 8080' can be passed via the arguments to the process
+-      if self.bindingPortRangeFromArguments.location != NSNotFound {
+-        return self.bindingPortRangeFromArguments
+-      }
+-
+-      // Existence of USE_PORT in the environment implies the port range is managed by the launching process.
+-      if NSProcessInfo.processInfo.environment["USE_PORT"] &&
+-          NSProcessInfo.processInfo.environment["USE_PORT"].count() > 0 {
+-        return NSMakeRange(NSProcessInfo.processInfo.environment["USE_PORT"].intValue() , 1)
+-      }
+-
+-      return NSMakeRange(DefaultStartingPort, DefaultPortRange)
+-    }
+-
+-    class func mjpegServerPort() -> Int {
+-      if self.mjpegServerPortFromArguments != NSNotFound {
+-        return self.mjpegServerPortFromArguments
+-      }
+-
+-      if NSProcessInfo.processInfo.environment["MJPEG_SERVER_PORT"] &&
+-          NSProcessInfo.processInfo.environment["MJPEG_SERVER_PORT"].count() > 0 {
+-        return NSProcessInfo.processInfo.environment["MJPEG_SERVER_PORT"].intValue()
+-      }
+-
+-      return DefaultMjpegServerPort
+-    }
+-
+-    class func mjpegScalingFactor() -> UInt {
+-      return FBMjpegScalingFactor
+-    }
+-
+-    class func setMjpegScalingFactor(_ scalingFactor:UInt) {
+-      FBMjpegScalingFactor = scalingFactor
+-    }
+-
+-    class func verboseLoggingEnabled() -> Bool {
+-      return NSProcessInfo.processInfo.environment["VERBOSE_LOGGING"].boolValue()
+-    }
+-
+-    class func setShouldUseTestManagerForVisibilityDetection(_ value:Bool) {
+-      FBShouldUseTestManagerForVisibilityDetection = value
+-    }
+-
+-    class func shouldUseTestManagerForVisibilityDetection() -> Bool {
+-      return FBShouldUseTestManagerForVisibilityDetection
+-    }
+-
+-    class func setShouldUseCompactResponses(_ value:Bool) {
+-      FBShouldUseCompactResponses = value
+-    }
+-
+-    class func shouldUseCompactResponses() -> Bool {
+-      return FBShouldUseCompactResponses
+-    }
+-
+-    class func setShouldTerminateApp(_ value:Bool) {
+-      FBShouldTerminateApp = value
+-    }
+-
+-    class func shouldTerminateApp() -> Bool {
+-      return FBShouldTerminateApp
+-    }
+-
+-    class func setElementResponseAttributes(_ value:String) {
+-      FBElementResponseAttributes = value
+-    }
+-
+-    class func elementResponseAttributes() -> String {
+-      return FBElementResponseAttributes
+-    }
+-
+-    class func setMaxTypingFrequency(_ value:UInt) {
+-      FBMaxTypingFrequency = value
+-    }
+-
+-    class func maxTypingFrequency() -> UInt {
+-      return FBMaxTypingFrequency
+-    }
+-
+-    class func setShouldUseSingletonTestManager(_ value:Bool) {
+-      FBShouldUseSingletonTestManager = value
+-    }
+-
+-    class func shouldUseSingletonTestManager() -> Bool {
+-      return FBShouldUseSingletonTestManager
+-    }
+-
+-    class func mjpegServerFramerate() -> UInt {
+-      return FBMjpegServerFramerate
+-    }
+-
+-    class func setMjpegServerFramerate(_ framerate:UInt) {
+-      FBMjpegServerFramerate = framerate
+-    }
+-
+-    class func mjpegServerScreenshotQuality() -> UInt {
+-      return FBMjpegServerScreenshotQuality
+-    }
+-
+-    class func setMjpegServerScreenshotQuality(_ quality:UInt) {
+-      FBMjpegServerScreenshotQuality = quality
+-    }
+-
+-    class func screenshotQuality() -> UInt {
+-      return FBScreenshotQuality
+-    }
+-
+-    class func setScreenshotQuality(_ quality:UInt) {
+-      FBScreenshotQuality = quality
+-    }
+-
+-    class func waitForIdleTimeout() -> NSTimeInterval {
+-      return FBWaitForIdleTimeout
+-    }
+-
+-    class func setWaitForIdleTimeout(_ timeout:NSTimeInterval) {
+-      FBWaitForIdleTimeout = timeout
+-    }
+-
+-    class func animationCoolOffTimeout() -> NSTimeInterval {
+-      return FBAnimationCoolOffTimeout
+-    }
+-
+-    class func setAnimationCoolOffTimeout(_ timeout:NSTimeInterval) {
+-      FBAnimationCoolOffTimeout = timeout
+-    }
+-
+-    // Works for Simulator and Real devices
+-    class func configureDefaultKeyboardPreferences() {
+-      let handle:Void = dlopen(controllerPrefBundlePath, RTLD_LAZY)
+-
+-      let controllerClass:AnyClass = NSClassFromString(controllerClassName)
+-
+-      let controller:TIPreferencesController = controllerClass.sharedPreferencesController()
+-      // Auto-Correction in Keyboards
+-      // 'setAutocorrectionEnabled' Was in TextInput.framework/TIKeyboardState.h over iOS 10.3
+-      if controller.respondsToSelector(Selector("setAutocorrectionEnabled:")) {
+-        // Under iOS 10.2
+-        controller.autocorrectionEnabled = false
+-      } else if controller.respondsToSelector(Selector("setValue:forPreferenceKey:")) {
+-        // Over iOS 10.3
+-        controller.setValue(false, forPreferenceKey:FBKeyboardAutocorrectionKey)
+-      }
+-
+-      // Predictive in Keyboards
+-      if controller.respondsToSelector(Selector("setPredictionEnabled:")) {
+-        controller.predictionEnabled = false
+-      } else if controller.respondsToSelector(Selector("setValue:forPreferenceKey:")) {
+-        controller.setValue(false, forPreferenceKey:FBKeyboardPredictionKey)
+-      }
+-
+-      // To dismiss keyboard tutorial on iOS 11+ (iPad)
+-      if controller.respondsToSelector(Selector("setValue:forPreferenceKey:")) {
+-        if isSDKVersionGreaterThanOrEqualTo("11.0") {
+-          controller.setValue(true, forPreferenceKey:"DidShowGestureKeyboardIntroduction")
+-        }
+-        if isSDKVersionGreaterThanOrEqualTo("13.0") {
+-          controller.setValue(true, forPreferenceKey:"DidShowContinuousPathIntroduction")
+-        }
+-        controller.synchronizePreferences()
+-      }
+-
+-      dlclose(handle)
+-    }
+-
+-    class func forceSimulatorSoftwareKeyboardPresence() {
+-#if TARGET_OS_SIMULATOR
+-      // Force toggle software keyboard on.
+-      // This can avoid 'Keyboard is not present' error which can happen
+-      // when send_keys are called by client
+-      UIKeyboardImpl.sharedInstance().automaticMinimizationEnabled = false
+-
+-      if (UIKeyboardImpl.sharedInstance() as! NSObject).respondsToSelector(Selector("setSoftwareKeyboardShownByTouch:")) {
+-        // Xcode 13 no longer has this method
+-        UIKeyboardImpl.sharedInstance().softwareKeyboardShownByTouch = true
+-      }
+-#endif
+-    }
+-
+-    class func keyboardAutocorrection() -> FBConfigurationKeyboardPreference {
+-      return self.keyboardsPreference(FBKeyboardAutocorrectionKey)
+-    }
+-
+-    class func setKeyboardAutocorrection(_ isEnabled:Bool) {
+-      self.configureKeyboardsPreference(isEnabled, forPreferenceKey:FBKeyboardAutocorrectionKey)
+-    }
+-
+-    class func keyboardPrediction() -> FBConfigurationKeyboardPreference {
+-      return self.keyboardsPreference(FBKeyboardPredictionKey)
+-    }
+-
+-    class func setKeyboardPrediction(_ isEnabled:Bool) {
+-      self.configureKeyboardsPreference(isEnabled, forPreferenceKey:FBKeyboardPredictionKey)
+-    }
+-
+-    class func setCustomSnapshotTimeout(_ timeout:NSTimeInterval) {
+-      FBCustomSnapshotTimeout = timeout
+-    }
+-
+-    class func customSnapshotTimeout() -> NSTimeInterval {
+-      return FBCustomSnapshotTimeout
+-    }
+-
+-    class func setSnapshotMaxDepth(_ maxDepth:Int) {
+-      FBSnapshotRequestParameters[FBSnapshotMaxDepthKey] = maxDepth
+-    }
+-
+-    class func snapshotMaxDepth() -> Int {
+-      return FBSnapshotRequestParameters[FBSnapshotMaxDepthKey].intValue()
+-    }
+-
+-    class func snapshotRequestParameters() -> NSDictionary {
+-      return FBSnapshotRequestParameters
+-    }
++    private class let FBShouldUseFirstMatch: Bool = false 
++    private class let FBShouldBoundElementsByIndex: Bool = false 
++    private class let FBIncludeNonModalElements: Bool = false 
+ 
+     class func setUseFirstMatch(_ enabled:Bool) {
+       FBShouldUseFirstMatch = enabled
+@@ -516,167 +216,8 @@
+     class func includeNonModalElements() -> Bool {
+       return FBIncludeNonModalElements
+     }
+-
+-    class func setAcceptAlertButtonSelector(_ classChainSelector:String) {
+-      FBAcceptAlertButtonSelector = classChainSelector
+-    }
+-
+-    class func acceptAlertButtonSelector() -> String {
+-      return FBAcceptAlertButtonSelector
+-    }
+-
+-    class func setDismissAlertButtonSelector(_ classChainSelector:String) {
+-      FBDismissAlertButtonSelector = classChainSelector
+-    }
+-
+-    class func dismissAlertButtonSelector() -> String {
+-      return FBDismissAlertButtonSelector
+-    }
+-
+-#if !TARGET_OS_TV
+-    class func setScreenshotOrientation(_ orientation:String, error:NSError) -> Bool {
+-      // Only UIInterfaceOrientationUnknown is over iOS 8. Others are over iOS 2.
+-      // https://developer.apple.com/documentation/uikit/uiinterfaceorientation/uiinterfaceorientationunknown
+-      if (orientation.lowercased() == "portrait") {
+-        FBScreenshotOrientation = UIInterfaceOrientationPortrait
+-      } else if (orientation.lowercased() == "portraitupsidedown") {
+-        FBScreenshotOrientation = UIInterfaceOrientationPortraitUpsideDown
+-      } else if (orientation.lowercased() == "landscaperight") {
+-        FBScreenshotOrientation = UIInterfaceOrientationLandscapeRight
+-      } else if (orientation.lowercased() == "landscapeleft") {
+-        FBScreenshotOrientation = UIInterfaceOrientationLandscapeLeft
+-      } else if (orientation.lowercased() == "auto") {
+-        FBScreenshotOrientation = UIInterfaceOrientationUnknown
+-      } else {
+-        return FBErrorBuilder.builder.withDescriptionFormat("The orientation value '%@' is not known. Only the following orientation values are supported: " \
+-                 "'auto', 'portrait', 'portraitUpsideDown', 'landscapeRight' and 'landscapeLeft'", orientation).buildError(error)
+-      }
+-      return true
+-    }
+-
+-    class func screenshotOrientation() -> Int {
+-      return FBScreenshotOrientation
+-    }
+-
+-    class func humanReadableScreenshotOrientation() -> String {
+-      switch (FBScreenshotOrientation) { 
+-        case UIInterfaceOrientationPortrait:
+-          return "portrait"
+-        case UIInterfaceOrientationPortraitUpsideDown:
+-          return "portraitUpsideDown"
+-        case UIInterfaceOrientationLandscapeRight:
+-          return "landscapeRight"
+-        case UIInterfaceOrientationLandscapeLeft:
+-          return "landscapeLeft"
+-        case UIInterfaceOrientationUnknown:
+-          return "auto"
+-      }
+-    }
+-#endif
+-
+-    // MARK: Private
+-
+-    class func keyboardsPreference(_ key:String) -> FBConfigurationKeyboardPreference {
+-      let controllerClass:AnyClass = NSClassFromString(controllerClassName)
+-      let controller:TIPreferencesController = controllerClass.sharedPreferencesController()
+-      if (key == FBKeyboardAutocorrectionKey) {
+-        if controller.respondsToSelector(Selector("boolForPreferenceKey:")) {
+-          return controller.boolForPreferenceKey(FBKeyboardAutocorrectionKey)
+-            ? FBConfigurationKeyboardPreferenceEnabled
+-            : FBConfigurationKeyboardPreferenceDisabled
+-        } else {
+-          FBLogger.log("Updating keyboard autocorrection preference is not supported")
+-          return FBConfigurationKeyboardPreferenceNotSupported
+-        }
+-      } else if (key == FBKeyboardPredictionKey) {
+-        if controller.respondsToSelector(Selector("boolForPreferenceKey:")) {
+-          return controller.boolForPreferenceKey(FBKeyboardPredictionKey)
+-            ? FBConfigurationKeyboardPreferenceEnabled
+-            : FBConfigurationKeyboardPreferenceDisabled
+-        } else {
+-          FBLogger.log("Updating keyboard prediction preference is not supported")
+-          return FBConfigurationKeyboardPreferenceNotSupported
+-        }
+-      }
+-      throw FBErrorBuilder.builder.withDescriptionFormat("No available keyboardsPreferenceKey: '%@'", key).build()
+-    }
+-
+-    class func configureKeyboardsPreference(_ enable:Bool, forPreferenceKey key:String) {
+-      let handle:Void = dlopen(controllerPrefBundlePath, RTLD_LAZY)
+-      let controllerClass:AnyClass = NSClassFromString(controllerClassName)
+-
+-      let controller:TIPreferencesController = controllerClass.sharedPreferencesController()
+-
+-      if (key == FBKeyboardAutocorrectionKey) {
+-        // Auto-Correction in Keyboards
+-        if controller.respondsToSelector(Selector("setAutocorrectionEnabled:")) {
+-          controller.autocorrectionEnabled = enable
+-        } else {
+-          controller.setValue(enable, forPreferenceKey:FBKeyboardAutocorrectionKey)
+-        }
+-      } else if (key == FBKeyboardPredictionKey) {
+-        // Predictive in Keyboards
+-        if controller.respondsToSelector(Selector("setPredictionEnabled:")) {
+-          controller.predictionEnabled = enable
+-        } else {
+-          controller.setValue(enable, forPreferenceKey:FBKeyboardPredictionKey)
+-        }
+-      }
+-
+-      controller.synchronizePreferences()
+-      dlclose(handle)
+-    }
+-
+-    class func valueFromArguments(_ arguments:[AnyObject], forKey key:String) -> String? {
+-      let index:UInt = arguments.indexOfObject(key)
+-      if index == NSNotFound || index == arguments.count - 1 {
+-        return nil
+-      }
+-      return arguments[index + 1]
+-    }
+-
+-    class func mjpegServerPortFromArguments() -> UInt {
+-      let portNumberString:String = self.valueFromArguments(NSProcessInfo.processInfo.arguments,
+-                                                     forKey: "--mjpeg-server-port")
+-      let port:UInt = portNumberString.intValue()
+-      if port == 0 {
+-        return NSNotFound
+-      }
+-      return port
+-    }
+-
+-    class func bindingPortRangeFromArguments() -> NSRange {
+-      let portNumberString:String = self.valueFromArguments(NSProcessInfo.processInfo.arguments,
+-                                                     forKey: "--port")
+-      let port:UInt = portNumberString.intValue()
+-      if port == 0 {
+-        return NSMakeRange(NSNotFound, 0)
+-      }
+-      return NSMakeRange(port, 1)
+-    }
+-
+-    class func setReduceMotionEnabled(_ isEnabled:Bool) {
+-      let settingsClass:AnyClass = NSClassFromString(axSettingsClassName)
+-      let settings:AXSettings = settingsClass.sharedInstance()
+-
+-      // Below does not work on real devices because of iOS security model
+-      //  (lldb) po settings.reduceMotionEnabled = isEnabled
+-      //  2019-08-21 22:58:19.776165+0900 WebDriverAgentRunner-Runner[322:13361] [User Defaults] Couldn't write value for key ReduceMotionEnabled in CFPrefsPlistSource<0x28111a700> (Domain: com.apple.Accessibility, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No): setting preferences outside an application's container requires user-preference-write or file-write-data sandbox access
+-      if settings.respondsToSelector(Selector("setReduceMotionEnabled:")) {
+-        settings.reduceMotionEnabled = isEnabled
+-      }
+-    }
+-
+-    class func reduceMotionEnabled() -> Bool {
+-      let settingsClass:AnyClass = NSClassFromString(axSettingsClassName)
+-      let settings:AXSettings = settingsClass.sharedInstance()
+-
+-      if settings.respondsToSelector(Selector("reduceMotionEnabled")) {
+-        return settings.reduceMotionEnabled
+-      }
+-      return false
+-    }
+ }
++
+ /**
+  * Copyright (c) 2015-present, Facebook, Inc.
+  * All rights reserved.
+@@ -712,64 +253,68 @@
+ let FBUnknownAttributeException:String = "FBUnknownAttributeException"
+ let WD_PREFIX:String = "wd"
+ let OBJC_PROP_GETTER_PREFIX:String = "G"
+-let OBJC_PROP_ATTRIBS_SEPARATOR:String = ","
++let OBJC_PROP_ATTRIBS_SEPARATOR:Character = Character(",")
+ 
+ class FBElementUtils : NSObject {
+ 
+-    class func wdAttributeNameForAttributeName(_ name:String) -> String {
++    class func wdAttributeNameForAttributeName(_ name:String) throws -> String {
+       NSAssert(name.count > 0, "Attribute name cannot be empty", nil)
+-      let attributeNamesMapping:NSDictionary = self.dynamicType.wdAttributeNamesMapping()
+-      let result:String = attributeNamesMapping[name]
++      let attributeNamesMapping = FBElementUtils.wdAttributeNamesMapping
++      let result:String? = attributeNamesMapping[name]
+       if nil == result {
+-        let description:String = String(format:"The attribute '%@' is unknown. Valid attribute names are: %@", name, attributeNamesMapping.allKeys.sortedArrayUsingSelector(Selector("compare:")))
++        let description:String = String(format:"The attribute '%@' is unknown. Valid attribute names are: %@", name, String(describing: attributeNamesMapping.keys))
+         throw NSError(domain: "FBUnknownAttributeException", code: 0, userInfo: [NSLocalizedDescriptionKey: description])
+         return nil
+       }
+       return result
+     }
+ 
+-    class func uniqueElementTypesWithElements(_ elements:[AnyObject]) -> NSSet {
+-      let matchingTypes:NSMutableSet = NSMutableSet.set()
+-      elements.enumerateObjectsUsingBlock({ (element:FBElement,elementIdx:UInt,stopElementsEnum:Bool) in 
++    class func uniqueElementTypesWithElements(_ elements:[AnyObject]) -> Set {
++      var matchingTypes:Set<AnyObject> = NSMutableSet.set()
++      for element in elements { 
+         matchingTypes.addObject(FBElementTypeTransformer.elementTypeWithTypeName(element.wdType))
+-      })
+-      return matchingTypes.copy
++      }
++      return Set(matchingTypes)
+     }
+ 
+-    lazy class var wdAttributeNamesMapping: NSDictionary  = {
++    lazy class var wdAttributeNamesMapping: Dictionary<String, String>  = {
+       var attributeNamesMapping:NSDictionary
+       var onceToken:dispatch_once_t
+       { 
+-        let wdPropertyGettersMapping:NSMutableDictionary = NSMutableDictionary()
++        var wdPropertyGettersMapping:Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+         let propsCount:UInt = 0
+-        let aProtocol:Protocol = objc_getProtocol(protocol_getName(FBElement))
+-        let properties:objc_property_t! = protocol_copyPropertyList(aProtocol, &propsCount)
+-        for var i:UInt=0 ; i < propsCount ; ++i {  
++        let aProtocol:Protocol = /* gryphon value: objc_getProtocol(protocol_getName(FBElement)) */ Protocol()
++        let properties:[objc_property_t] = /* gryphon value: protocol_copyPropertyList(aProtocol, &propsCount) */ [objc_property_t]()
++
++        var i:Int=0
++        while i < propsCount
++        {  
+           let property:objc_property_t = properties[i]
+-          let name:Int8 = property_getName(property)
+-          let nsName:String = String(UTF8String:name)
++          let name = /* gryphon value: property_getName(property) */ "TODO".utf8CString
++          let nsName:String = /* gryphon value: String(utf8String:name) */ "TODO"
+           if nil == nsName || !nsName.hasPrefix(WD_PREFIX) {
+             continue
+           }
+           wdPropertyGettersMapping.setObject(NSNull.null(), forKey:nsName)
+-          let c_attributes:Int8 = property_getAttributes(property)
+-          let attributes:String = String(UTF8String:c_attributes)
++          let c_attributes = /* gryphon value: property_getAttributes(property) */ "TODO".utf8CString
++          let attributes:String = /* gryphon value: String(utf8String:c_attributes) */ "TODO"
+           if nil == attributes {
+             continue
+           }
+           // https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
+-          let splitAttrs:[AnyObject]! = attributes.componentsSeparatedByString(OBJC_PROP_ATTRIBS_SEPARATOR)
++          let splitAttrs:[String] = attributes.split(separator: OBJC_PROP_ATTRIBS_SEPARATOR).map { String($0) }
+           for part in splitAttrs {  
+             if part.hasPrefix(OBJC_PROP_GETTER_PREFIX) {
+               wdPropertyGettersMapping.setObject(String(part.characters.suffix(1)), forKey:nsName)
+               break
+             }
+            }
++          i += 1
+          }
+         free(properties)
+ 
+-        let resultCache:NSMutableDictionary = NSMutableDictionary()
+-        for propName in wdPropertyGettersMapping {  
++        var resultCache:Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
++        for (propName, unused259) in wdPropertyGettersMapping {  
+           if wdPropertyGettersMapping[propName] == nil {
+             // no getter
+             resultCache.setValue(propName, forKey:propName)
+@@ -780,10 +325,10 @@
+           var aliasName:String
+           if propName.count <= WD_PREFIX.count + 1 {
+             aliasName = String(format:"%@",
+-                            String(propName.characters[WD_PREFIX.count ..< WD_PREFIX.count + 1]).lowercased())
++                            String(propName.characters[WD_PREFIX.count ..< (WD_PREFIX.count + 1)]).lowercased())
+           } else {
+             let propNameWithoutPrefix:String = String(propName.characters.suffix(WD_PREFIX.count))
+-            var firstPropNameCharacter:String = String(propNameWithoutPrefix.characters[0 ..< 0 + 1])
++            var firstPropNameCharacter:String = String(propNameWithoutPrefix.characters[0 ..< 0 +  1])
+             if !(propNameWithoutPrefix == propNameWithoutPrefix.uppercased()) {
+               // Lowercase the first character for the alias if the property name is not an uppercase abbreviation
+               firstPropNameCharacter = firstPropNameCharacter.lowercased()
+@@ -798,33 +343,10 @@
+             resultCache.setValue(wdPropertyGettersMapping.objectForKey(propName), forKey:aliasName)
+           }
+          }
+-        attributeNamesMapping = resultCache.copy
++        attributeNamesMapping = Dictionary(resultCache)
+       }
+-      return attributeNamesMapping.copy
++      return Dictionary(attributeNamesMapping)
+     }()
+-
+-    var FBShouldUsePayloadForUIDExtraction:Bool = true
+-    var oncePayloadToken:dispatch_once_t
+-    class func uidWithAccessibilityElement(_ element:XCAccessibilityElement) -> String? {
+-      dispatch_once(&oncePayloadToken, { 
+-        FBShouldUsePayloadForUIDExtraction = element.respondsToSelector(Selector("payload"))
+-      })
+-      var elementId:UInt64
+-      if FBShouldUsePayloadForUIDExtraction {
+-        elementId = element.payload.objectForKey("uid.elementID").longLongValue()
+-      } else {
+-        elementId = element["_elementID"].longLongValue()
+-      }
+-      let processId:Int = element.processIdentifier
+-      if elementId < 1 || processId < 1 {
+-        return nil
+-      }
+-      let b:[uint8_t]! = {0}
+-      memcpy(b, &elementId, sizeof($(TypeName)))
+-      memcpy(b + sizeof($(TypeName)), &processId, sizeof($(TypeName)))
+-      let uuidValue:NSUUID = NSUUID(UUIDBytes:b)
+-      return uuidValue.UUIDString
+-    }
+ }
+ /**
+  * Copyright (c) 2015-present, Facebook, Inc.
+@@ -880,10 +402,9 @@
+     /*! Whether element is an accessibility container (contains children of any depth that are accessible) */
+     var wdAccessibilityContainer:Bool { get }
+ 
+-#if TARGET_OS_TV
+     /*! Whether element is focused */
++    // gryphon annotation: @TARGET_OS_TV
+     var wdFocused:Bool { get }
+-#endif
+ 
+     /*! Element's index relatively to its parent. Starts from zero */
+     var wdIndex:UInt { get }
+@@ -897,7 +418,7 @@
+      @return the corresponding property value
+      throws FBUnknownAttributeException if there is no matching attribute defined in FBElement protocol
+      */
+-    func fb_valueForWDAttributeName(_ name:String?) -> AnyObject?
++    func fb_valueForWDAttributeName(_ name:String?) throws -> AnyObject?
+ 
+ }
+ 
+@@ -945,8 +466,8 @@
+         get { return _asString }
+         set { _asString = newValue }
+     }
+-    private var _previousItemsCountToOverride:UInt
+-    var previousItemsCountToOverride:UInt {
++    private var _previousItemsCountToOverride:Int
++    var previousItemsCountToOverride:Int {
+         get { return _previousItemsCountToOverride }
+         set { _previousItemsCountToOverride = newValue }
+     }
+@@ -968,12 +489,12 @@
+       return self
+     }
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    func allowedCharacters() -> NSCharacterSet {
+       // This method is expected to be overriden by subclasses
+       return NSCharacterSet.characterSetWithCharactersInString("")
+     }
+ 
+-    class func maxLength() -> UInt {
++    func maxLength() -> UInt {
+       // This method is expected to be overriden by subclasses
+       return ULONG_MAX
+     }
+@@ -983,14 +504,14 @@
+       return []
+     }
+ 
+-    class func canConsumeCharacter(_ character:UInt16) -> Bool {
+-      return self.allowedCharacters.characterIsMember(character)
++    func canConsumeCharacter(_ character:UInt16) -> Bool {
++      return self.allowedCharacters().characterIsMember(character)
+     }
+ 
+     func appendChar(_ character:UInt16) {
+-      let value:NSMutableString = NSMutableString(string:self.asString)
++      var value: String = self.asString
+       value.appendFormat("%C", character)
+-      self.asString = value.copy;
++      self.asString = value;
+     }
+ 
+     func followingTokenBasedOn(_ character:UInt16) -> FBBaseClassChainToken? {
+@@ -1014,7 +535,7 @@
+ 
+ class FBClassNameToken : FBBaseClassChainToken {
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       return NSCharacterSet.letterCharacterSet()
+     }
+ 
+@@ -1026,7 +547,7 @@
+ let STAR_TOKEN:String = "*"
+ class FBStarToken : FBBaseClassChainToken {
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       return NSCharacterSet.characterSetWithCharactersInString(STAR_TOKEN)
+     }
+ 
+@@ -1035,7 +556,7 @@
+     }
+ 
+     override func nextTokenWithCharacter(_ character:UInt16) -> FBBaseClassChainToken? {
+-      if self.allowedCharacters.characterIsMember(character) {
++      if self.allowedCharacters().characterIsMember(character) {
+         if self.asString.count >= 1 {
+           let nextToken:FBDescendantMarkerToken = FBDescendantMarkerToken(stringValue:String(format:"%@%@", STAR_TOKEN, STAR_TOKEN))
+           nextToken.previousItemsCountToOverride = 1
+@@ -1052,7 +573,7 @@
+ let DESCENDANT_MARKER:String = "**/"
+ class FBDescendantMarkerToken : FBBaseClassChainToken {
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       return NSCharacterSet.characterSetWithCharactersInString("*/")
+     }
+ 
+@@ -1060,12 +581,12 @@
+       return [FBClassNameToken.self, FBStarToken.self]
+     }
+ 
+-    class func maxLength() -> UInt {
++    override func maxLength() -> UInt {
+       return 3
+     }
+ 
+     override func nextTokenWithCharacter(_ character:UInt16) -> FBBaseClassChainToken? {
+-      if self.allowedCharacters.characterIsMember(character) && self.asString.count <= self.maxLength {
++      if self.allowedCharacters().characterIsMember(character) && self.asString.count <= self.maxLength {
+         if self.asString.count > 0 && !DESCENDANT_MARKER.hasPrefix(self.asString) {
+           return nil
+         }
+@@ -1081,7 +602,7 @@
+ 
+ class FBSplitterToken : FBBaseClassChainToken {
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       return NSCharacterSet.characterSetWithCharactersInString("/")
+     }
+ 
+@@ -1089,7 +610,7 @@
+       return [FBStarToken.self, FBClassNameToken.self]
+     }
+ 
+-    class func maxLength() -> UInt {
++    override func maxLength() -> UInt {
+       return 1
+     }
+ }
+@@ -1097,7 +618,7 @@
+ 
+ class FBOpeningBracketToken : FBBaseClassChainToken {
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       return NSCharacterSet.characterSetWithCharactersInString("[")
+     }
+ 
+@@ -1105,7 +626,7 @@
+       return [FBNumberToken.self, FBSelfPredicateToken.self, FBDescendantPredicateToken.self]
+     }
+ 
+-    class func maxLength() -> UInt {
++    override func maxLength() -> UInt {
+       return 1
+     }
+ }
+@@ -1113,11 +634,11 @@
+ 
+ class FBNumberToken : FBBaseClassChainToken {
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       let result:NSMutableCharacterSet = NSMutableCharacterSet()
+       result.formUnionWithCharacterSet(NSCharacterSet.decimalDigitCharacterSet())
+       result.addCharactersInString("-")
+-      return result.copy
++      return result
+     }
+ 
+     override func followingTokens() -> [AnyClass] {
+@@ -1128,7 +649,7 @@
+ 
+ class FBClosingBracketToken : FBBaseClassChainToken {
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       return NSCharacterSet.characterSetWithCharactersInString("]")
+     }
+ 
+@@ -1136,7 +657,7 @@
+       return [FBSplitterToken.self, FBOpeningBracketToken.self]
+     }
+ 
+-    class func maxLength() -> UInt {
++    override func maxLength() -> UInt {
+       return 1
+     }
+ }
+@@ -1160,11 +681,10 @@
+     }
+ 
+     class func enclosingMarker() -> String {
+-      let errMsg:String = String(format:"The + (NSString *)enclosingMarker method is expected to be overriden by %@ class", NSStringFromClass(self.dynamicType))
+-      throw NSError(domain: "FBAbstractMethodInvocationException", code: 0, userInfo: [NSLocalizedDescriptionKey: errMsg])
++      fatalError("subclassResponsibility")
+     }
+ 
+-    class func allowedCharacters() -> NSCharacterSet {
++    override func allowedCharacters() -> NSCharacterSet {
+       return NSCharacterSet.illegalCharacterSet().invertedSet
+     }
+ 
+@@ -1172,19 +692,19 @@
+       return [FBClosingBracketToken.self]
+     }
+ 
+-    class func canConsumeCharacter(_ character:UInt16) -> Bool {
++    override func canConsumeCharacter(_ character:UInt16) -> Bool {
+       return NSCharacterSet.characterSetWithCharactersInString(self.dynamicType.enclosingMarker).characterIsMember(character)
+     }
+ 
+     func stripLastChar() {
+       if self.asString.count > 0 {
+-        self.asString = String(self.asString.characters.prefix(self.asString.count - 1))
++        self.asString = self.asString.substringToIndex(self.asString.count - 1)
+       }
+     }
+ 
+     override func nextTokenWithCharacter(_ character:UInt16) -> FBBaseClassChainToken? {
+       let currentChar:String = String(format:"%C", character)
+-      if !self.isParsingCompleted && self.allowedCharacters.characterIsMember(character) {
++      if !self.isParsingCompleted && self.allowedCharacters().characterIsMember(character) {
+         if 0 == self.asString.count {
+           if (self.enclosingMarker == currentChar) {
+             // Do not include enclosing character
+@@ -1214,14 +734,14 @@
+ 
+ class FBSelfPredicateToken : FBAbstractPredicateToken {
+ 
+-    class func enclosingMarker() -> String! {
++    class func enclosingMarker() -> String {
+       return "`"
+     }
+ }
+ 
+ class FBDescendantPredicateToken : FBAbstractPredicateToken {
+ 
+-    class func enclosingMarker() -> String! {
++    class func enclosingMarker() -> String {
+       return "$"
+     }
+ }
+@@ -1261,12 +781,12 @@
+ 
+ class FBClassChain : NSObject {
+ 
+-    private var _elements:[AnyObject]
+-    var elements:[AnyObject] {
++    private var _elements:[FBClassChainItem]
++    var elements:[FBClassChainItem] {
+         get { return _elements }
+     }
+ 
+-    init(elements:[AnyObject]) {
++    init(elements:[FBClassChainItem]) {
+       self = super.init()
+       if (self != nil) {
+         _elements = elements
+@@ -1278,24 +798,21 @@
+ 
+ class FBClassChainQueryParser : NSObject {
+ 
+-    var numberFormatter:NSNumberFormatter = nil
+-
+-    class func initialize() {
+-      if nil == numberFormatter {
+-        numberFormatter = NSNumberFormatter()
+-        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle
+-      }
+-    }
++    class var numberFormatter:NumberFormatter = {
++        let nf = NumberFormatter()
++        nf.numberStyle = NumberFormatter.Style.decimal
++        return nf
++    } ()
+ 
+     class func tokenizationErrorWithIndex(_ index:UInt, originalQuery:String) -> NSError {
+-      let description:String = String(format:"Cannot parse class chain query '%@'. Unexpected character detected at position %@:\n%@ <----", originalQuery, index + 1, String(originalQuery.characters.prefix(index + 1)))
++      let description:String = String(format:"Cannot parse class chain query '%@'. Unexpected character detected at position %@:\n%@ <----", originalQuery, index + 1, String(originalQuery.prefix(upTo: originalQuery.index(originalQuery.startIndex, offsetBy: index + 1))))
+       return FBErrorBuilder.builder.withDescription(description).build()
+     }
+ 
+-    class func tokenizedQueryWithQuery(_ classChainQuery:String, error:NSError) -> [AnyObject]? {
++    class func tokenizedQueryWithQuery(_ classChainQuery:String, error:inout NSError) -> [AnyObject]? {
+       let queryStringLength = classChainQuery.count
+       var token:FBBaseClassChainToken
+-      let firstCharacter:UInt16 =classChainQuery.utf16[classChainQuery.utf16.index(classChainQuery.utf16.startIndex, offsetBy: 0)]
++      let firstCharacter:UInt16 = classChainQuery.utf16[classChainQuery.utf16.index(classChainQuery.utf16.startIndex, offsetBy: 0)]
+       if classChainQuery.hasPrefix(DESCENDANT_MARKER) {
+         token = FBDescendantMarkerToken(stringValue:DESCENDANT_MARKER)
+       } else if FBClassNameToken.canConsumeCharacter(firstCharacter) {
+@@ -1304,48 +821,50 @@
+         token = FBStarToken(stringValue:String(format:"%C", firstCharacter))
+       } else {
+         if (error != nil) {
+-          *error = self.dynamicType.tokenizationErrorWithIndex(0, originalQuery:classChainQuery)
++          error = self.dynamicType.tokenizationErrorWithIndex(0, originalQuery:classChainQuery)
+         }
+         return nil
+       }
+-      let result:NSMutableArray = NSMutableArray.array()
++      var result:Array<FBBaseClassChainToken> = Array<FBBaseClassChainToken>()
+       var nextToken:FBBaseClassChainToken = token
+-      for var charIdx:UInt=token.asString.count ; charIdx < queryStringLength ; ++charIdx {  
++      var charIdx=token.asString.count
++      while charIdx < queryStringLength {  
+         nextToken = token.nextTokenWithCharacter(classChainQuery.characterAtIndex(charIdx))
+         if nil == nextToken {
+           if (error != nil) {
+-            *error = self.dynamicType.tokenizationErrorWithIndex(charIdx, originalQuery:classChainQuery)
++            error = self.dynamicType.tokenizationErrorWithIndex(charIdx, originalQuery:classChainQuery)
+           }
+           return nil
+         }
+         if nextToken != token {
+           result.addObject(token)
+           if nextToken.previousItemsCountToOverride > 0 && result.count > 0 {
+-            let itemsCountToOverride:UInt = nextToken.previousItemsCountToOverride <= result.count ? nextToken.previousItemsCountToOverride : result.count
++            let itemsCountToOverride = nextToken.previousItemsCountToOverride <= result.count ? nextToken.previousItemsCountToOverride : result.count
+             result.removeObjectsInRange(NSMakeRange(result.count - itemsCountToOverride, itemsCountToOverride))
+           }
+           token = nextToken
+         }
++        charIdx += 1
+        }
+       if (nextToken != nil) {
+         if nextToken.previousItemsCountToOverride > 0 && result.count > 0 {
+-          let itemsCountToOverride:UInt = nextToken.previousItemsCountToOverride <= result.count ? nextToken.previousItemsCountToOverride : result.count
++          let itemsCountToOverride = nextToken.previousItemsCountToOverride <= result.count ? nextToken.previousItemsCountToOverride : result.count
+           result.removeObjectsInRange(NSMakeRange(result.count - itemsCountToOverride, itemsCountToOverride))
+         }
+         result.addObject(nextToken)
+       }
+ 
+-      let lastToken:FBBaseClassChainToken = result.lastObject()
++      let lastToken:FBBaseClassChainToken = result.last!
+       if !(lastToken is FBClosingBracketToken ||
+             lastToken is FBClassNameToken ||
+             lastToken is FBStarToken) {
+         if (error != nil) {
+-          *error = self.dynamicType.tokenizationErrorWithIndex(queryStringLength - 1, originalQuery:classChainQuery)
++          error = self.dynamicType.tokenizationErrorWithIndex(queryStringLength - 1, originalQuery:classChainQuery)
+         }
+         return nil
+       }
+ 
+-      return result.copy
++      return Array(result)
+     }
+ 
+     class func compilationErrorWithQuery(_ originalQuery:String, description:String) -> NSError {
+@@ -1353,28 +872,28 @@
+       return FBErrorBuilder.builder.withDescription(fullDescription).build()
+     }
+ 
+-    class func compiledQueryWithTokenizedQuery(_ tokenizedQuery:[AnyObject]!, originalQuery:String, error:NSError) -> FBClassChain? {
+-      let result:NSMutableArray = NSMutableArray.array()
++    class func compiledQueryWithTokenizedQuery(_ tokenizedQuery:[FBBaseClassChainToken], originalQuery:String, error:inout NSError) throws -> FBClassChain? {
++      var result:Array<AnyObject> = Array<AnyObject>()
+       var chainElementType:XCUIElementType = XCUIElementType.XCUIElementTypeAny
+-      var chainElementPosition:NSNumber = nil
++      var chainElementPosition:NSNumber? = nil
+       var isTypeSet:Bool = false
+       var isPositionSet:Bool = false
+       var isDescendantSet:Bool = false
+-      let predicates:NSMutableArray = NSMutableArray.array()
++      var predicates:Array<AnyObject> = Array<AnyObject>()
+       for token in tokenizedQuery {  
+         if token is FBClassNameToken {
+           if isTypeSet {
+             let description:String = String(format:"Unexpected token '%@'. The type name can be set only once.", token.asString)
+-            *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++            error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+             return nil
+           }
+-          @try {
++          do {
+             chainElementType = FBElementTypeTransformer.elementTypeWithTypeName(token.asString)
+             isTypeSet = true
+-          } @catch (e:NSException) {
++          } catch let e {
+             if (e.name == FBInvalidArgumentException) {
+               let description:String = String(format:"'%@' class name is unknown to WDA", token.asString)
+-              *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++              error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+               return nil
+             }
+             throw e
+@@ -1382,7 +901,7 @@
+         } else if token is FBStarToken {
+           if isTypeSet {
+             let description:String = String(format:"Unexpected token '%@'. The type name can be set only once.", token.asString)
+-            *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++            error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+             return nil
+           }
+           chainElementType = XCUIElementType.XCUIElementTypeAny
+@@ -1390,7 +909,7 @@
+         } else if token is FBDescendantMarkerToken {
+           if isDescendantSet {
+             let description:String = String(format:"Unexpected token '%@'. Descendant markers cannot be duplicated.", token.asString)
+-            *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++            error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+             return nil
+           }
+           isTypeSet = false
+@@ -1400,15 +919,15 @@
+         } else if token is FBAbstractPredicateToken {
+           if isPositionSet {
+             let description:String = String(format:"Predicate value '%@' must be set before position value.", token.asString)
+-            *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++            error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+             return nil
+           }
+           if !(token as! FBAbstractPredicateToken).isParsingCompleted {
+             let description:String = String(format:"Cannot find the end of '%@' predicate value.", token.asString)
+-            *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++            error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+             return nil
+           }
+-          let value:NSPredicate = NSPredicate.fb_formatSearchPredicate(FBPredicate.predicateWithFormat(token.asString))
++          let value:NSPredicate = NSPredicate.fb_formatSearchPredicate(FBPredicate.predicateWithFormat(token.asString, arguments: [AnyObject]()))
+           if token is FBSelfPredicateToken {
+             predicates.addObject(FBSelfPredicateItem(value:value))
+           } else if token is FBDescendantPredicateToken {
+@@ -1417,16 +936,16 @@
+         } else if token is FBNumberToken {
+           if isPositionSet {
+             let description:String = String(format:"Position value '%@' is expected to be set only once.", token.asString)
+-            *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++            error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+             return nil
+           }
+-          let position:NSNumber = numberFormatter.numberFromString(token.asString)
++          let position:NSNumber? = numberFormatter.number(from: token.asString)
+           if nil == position || 0 == position.intValue {
+             let description:String = String(format:"Position value '%@' is expected to be a valid integer number not equal to zero.", token.asString)
+-            *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++            error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+             return nil
+           }
+-          chainElementPosition = position
++          chainElementPosition = position!
+           isPositionSet = true
+         } else if token is FBSplitterToken {
+           if !isPositionSet {
+@@ -1434,11 +953,11 @@
+           }
+           if isDescendantSet {
+             if isTypeSet {
+-              result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:predicates.copy, isDescendant:true))
++              result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:Array(predicates), isDescendant:true))
+               isDescendantSet = false
+             }
+           } else {
+-            result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:predicates.copy, isDescendant:false))
++            result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:Array(predicates), isDescendant:false))
+           }
+           isTypeSet = false
+           isPositionSet = false
+@@ -1450,25 +969,25 @@
+       }
+       if isDescendantSet {
+         if isTypeSet {
+-          result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:predicates.copy, isDescendant:true))
++          result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:Array(predicates), isDescendant:true))
+         } else {
+           let description:String = "Descendants lookup modifier '**/' should be followed with the actual element type"
+-          *error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
++          error = self.dynamicType.compilationErrorWithQuery(originalQuery, description:description)
+           return nil
+         }
+       } else {
+-        result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:predicates.copy, isDescendant:false))
++        result.addObject(FBClassChainItem(type:chainElementType, position:chainElementPosition, predicates:Array(predicates), isDescendant:false))
+       }
+-      return FBClassChain(elements:result.copy)
++      return FBClassChain(elements:Array(result))
+     }
+ 
+-    class func parseQuery(_ classChainQuery:String, error:NSError) -> FBClassChain? {
++    class func parseQuery(_ classChainQuery:String, error:inout NSError) -> FBClassChain? {
+       NSAssert(classChainQuery.count > 0, "Query length should be greater than zero", nil)
+-      let tokenizedQuery:[AnyObject]! = self.dynamicType.tokenizedQueryWithQuery(classChainQuery, error:error)
++      let tokenizedQuery:[AnyObject]? = FBClassChainQueryParser.tokenizedQueryWithQuery(classChainQuery, error:&error)
+       if nil == tokenizedQuery {
+         return nil
+       }
+-      return self.dynamicType.compiledQueryWithTokenizedQuery(tokenizedQuery, originalQuery:classChainQuery, error:error)
++      return self.dynamicType.compiledQueryWithTokenizedQuery(tokenizedQuery!, originalQuery:classChainQuery, error:error)
+     }
+ }
+ 
+@@ -1523,14 +1042,14 @@
+ 
+ extension XCUIElement {
+ 
+-    func fb_descendantsMatchingClassChain(_ classChainQuery:String, shouldReturnAfterFirstMatch:Bool) -> [AnyObject] {
++    func fb_descendantsMatchingClassChain(_ classChainQuery:String, shouldReturnAfterFirstMatch:Bool) throws -> [AnyObject] {
+       var error:NSError
+-      let parsedChain:FBClassChain = FBClassChainQueryParser.parseQuery(classChainQuery, error:&error)
++      let parsedChain:FBClassChain? = FBClassChainQueryParser.parseQuery(classChainQuery, error:&error)
+       if nil == parsedChain {
+         throw NSError(domain: "FBClassChainQueryParseException", code: 0, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])
+         return nil
+       }
+-      let lookupChain:NSMutableArray = parsedChain.elements.mutableCopy
++      var lookupChain:Array<FBClassChainItem> = Array(parsedChain!.elements)
+       var chainItem:FBClassChainItem = lookupChain.first!
+       var currentRoot:XCUIElement = self
+       var query:XCUIElementQuery = currentRoot.fb_queryWithChainItem(chainItem, query:nil)
+@@ -1540,7 +1059,7 @@
+         if nil != chainItem.position {
+           // It is necessary to resolve the query if intermediate element index is not zero or one,
+           // because predicates don't support search by indexes
+-          let currentRootMatch:[AnyObject]! = self.fb_matchingElementsWithItem(chainItem,
++          let currentRootMatch:[AnyObject] = XCUIElement.fb_matchingElementsWithItem(chainItem,
+                                                                                        query:query,
+                                                                  shouldReturnAfterFirstMatch:nil)
+           if 0 == currentRootMatch.count {
+@@ -1553,12 +1072,12 @@
+         query = currentRoot.fb_queryWithChainItem(chainItem, query:isRootChanged ? nil : query)
+         lookupChain.removeObjectAtIndex(0)
+       }
+-      return self.fb_matchingElementsWithItem(chainItem,
++      return XCUIElement.fb_matchingElementsWithItem(chainItem,
+                                                query:query,
+                          shouldReturnAfterFirstMatch:shouldReturnAfterFirstMatch)
+     }
+ 
+-    func fb_queryWithChainItem(_ item:FBClassChainItem, query:XCUIElementQuery?) -> XCUIElementQuery! {
++    func fb_queryWithChainItem(_ item:FBClassChainItem, query:XCUIElementQuery?) -> XCUIElementQuery {
+       if item.isDescendant {
+         if (query != nil) {
+           query = query!.descendantsMatchingType(item.type)
+@@ -1581,22 +1100,22 @@
+           }
+          }
+       }
+-      return query
++      return query!
+     }
+ 
+-    class func fb_matchingElementsWithItem(_ item:FBClassChainItem, query:XCUIElementQuery, shouldReturnAfterFirstMatch:NSNumber?) -> [AnyObject] {
++    class func fb_matchingElementsWithItem(_ item:FBClassChainItem, query:XCUIElementQuery, shouldReturnAfterFirstMatch:NSNumber?) -> [XCUIElement] {
+       if 1 == item.position!.intValue || (0 == item.position!.intValue && shouldReturnAfterFirstMatch!.boolValue) {
+-        let result:XCUIElement = query.fb_firstMatch
+-        return result ? [result] : []
++        let result:XCUIElement? = query.fb_firstMatch()
++        return result != nil ? [result!] : []
+       }
+-      let allMatches:[AnyObject]! = query.fb_allMatches
++      let allMatches:[XCUIElement] = query.fb_allMatches()
+       if 0 == item.position!.intValue {
+         return allMatches
+       }
+-      if allMatches.count >= (ABS(item.position!.intValue) as! NSUInteger) {
++      if allMatches.count >= abs(item.position!.intValue) {
+         return item.position!.intValue > 0
+-          ? [allMatches.objectAtIndex(item.position!.intValue - 1)]
+-          : [allMatches.objectAtIndex(allMatches.count + item.position!.intValue)]
++          ? [allMatches[item.position!.intValue - 1] as! XCUIElement]
++          : [allMatches[allMatches.count + item.position!.intValue] as! XCUIElement]
+       }
+       return []
+     }
+@@ -1625,36 +1144,12 @@
+ //#import "XCPointerEvent.h"
+ 
+ /**
+- The version of testmanagerd process which is running on the device.
+-
+- Potentially, we can handle processes based on this version instead of iOS versions,
+- iOS 10.1 -> 6
+- iOS 11.0.1 -> 18
+- iOS 11.4 -> 22
+- iOS 12.1, 12.4 -> 26
+- iOS 13.0, 13.4.1 -> 28
+-
+- tvOS 13.3 -> 28
+-
+- @return The version of testmanagerd
+- */
+-var FBTestmanagerdVersion:@convention(c) (Void)->Int
+-
+-
+-/**
+  Set of categories that patches method name differences between Xcode versions,
+  so that WDA can be build with different Xcode versions.
+  */
+ 
+ 
+ /**
+- The exception happends if one tries to call application method,
+- which is not supported in the current iOS version
+- */
+-var FBApplicationMethodNotSupportedException:String
+-
+-
+-/**
+  * Copyright (c) 2015-present, Facebook, Inc.
+  * All rights reserved.
+  *
+@@ -1673,106 +1168,16 @@
+ //#import "FBXCTestDaemonsProxy.h"
+ //#import "XCTestManager_ManagerInterface-Protocol.h"
+ 
+-let APP_STATE_CHANGE_TIMEOUT:NSTimeInterval = 5.0
+-
+-var FBShouldUseOldElementRootSelector:Bool = false
+-var onceRootElementToken:dispatch_once_t
+-extension XCElementSnapshot {
+-
+-    func fb_rootElement() -> XCElementSnapshot? {
+-      dispatch_once(&onceRootElementToken, { 
+-        FBShouldUseOldElementRootSelector = self.respondsToSelector(Selector("_rootElement"))
+-      })
+-      if FBShouldUseOldElementRootSelector {
+-        return self._rootElement()
+-      }
+-      return self.rootElement()
+-    }
+-
+-    class func fb_axAttributesForElementSnapshotKeyPathsIOS(_ arg1:AnyObject) -> AnyObject! {
+-      return self.dynamicType.axAttributesForElementSnapshotKeyPaths(arg1, isMacOS:false)
+-    }
+-
+-    lazy class var fb_attributesForElementSnapshotKeyPathsSelector: SEL?  = {
+-      var attributesForElementSnapshotKeyPathsSelector:SEL = nil
+-      var attributesForElementSnapshotKeyPathsSelectorToken:dispatch_once_t
+-      { 
+-        if self.dynamicType.respondsToSelector(Selector("snapshotAttributesForElementSnapshotKeyPaths:")) {
+-          attributesForElementSnapshotKeyPathsSelector = Selector("snapshotAttributesForElementSnapshotKeyPaths:")
+-        } else if self.dynamicType.respondsToSelector(Selector("axAttributesForElementSnapshotKeyPaths:")) {
+-          attributesForElementSnapshotKeyPathsSelector = Selector("axAttributesForElementSnapshotKeyPaths:")
+-        } else if self.dynamicType.respondsToSelector(Selector("axAttributesForElementSnapshotKeyPaths:isMacOS:")) {
+-          attributesForElementSnapshotKeyPathsSelector = Selector("fb_axAttributesForElementSnapshotKeyPathsIOS:")
+-        }
+-      }
+-      return attributesForElementSnapshotKeyPathsSelector
+-    }()
+-}
+-
+-
+-let FBApplicationMethodNotSupportedException:String = "FBApplicationMethodNotSupportedException"
+-
+-var FBShouldUseOldAppWithPIDSelector:Bool = false
+-var onceAppWithPIDToken:dispatch_once_t
+-extension XCUIApplication {
+-
+-    class func fb_applicationWithPID(_ processID:pid_t) -> Self? {
+-      dispatch_once(&onceAppWithPIDToken, { 
+-        FBShouldUseOldAppWithPIDSelector = XCUIApplication.respondsToSelector(Selector("appWithPID:"))
+-      })
+-      if 0 == processID {
+-        return nil
+-      }
+-
+-      if FBShouldUseOldAppWithPIDSelector {
+-        return self.appWithPID(processID)
+-      }
+-      return self.applicationWithPID(processID)
+-    }
+-
+-    func fb_activate() {
+-      self.activate()
+-      if !self.waitForState(XCUIApplicationStateRunningForeground, timeout:APP_STATE_CHANGE_TIMEOUT / 2) || !self.fb_waitForAppElement(APP_STATE_CHANGE_TIMEOUT / 2) {
+-        FBLogger.logFmt("The application '%@' is not running in foreground after %.2f seconds", self.bundleID, APP_STATE_CHANGE_TIMEOUT)
+-      }
+-    }
+-
+-    func fb_terminate() {
+-      self.terminate()
+-      if !self.waitForState(XCUIApplicationStateNotRunning, timeout:APP_STATE_CHANGE_TIMEOUT) {
+-        FBLogger.logFmt("The active application is still '%@' after %.2f seconds timeout", self.bundleID, APP_STATE_CHANGE_TIMEOUT)
+-      }
+-    }
+-
+-    func fb_state() -> UInt {
+-      return self["state"].intValue()
+-    }
+-}
+-
+-
+ extension XCUIElementQuery {
+ 
+-    func fb_isUniqueSnapshotSupported() -> Bool {
+-      var onceToken:dispatch_once_t
+-      var isUniqueMatchingSnapshotAvailable:Bool
+-      dispatch_once(&onceToken, { 
+-        isUniqueMatchingSnapshotAvailable = self.respondsToSelector(Selector("uniqueMatchingSnapshotWithError:"))
+-      })
+-      return isUniqueMatchingSnapshotAvailable
+-    }
+-
+-    func fb_uniqueSnapshotWithError(_ error:NSError) -> XCElementSnapshot? {
+-      return self.uniqueMatchingSnapshotWithError(error)
+-    }
+-
+-    func fb_firstMatch() -> XCUIElement! {
++    func fb_firstMatch() -> XCUIElement? {
+       let match:XCUIElement = FBConfiguration.useFirstMatch()
+         ? self.firstMatch()
+-        : self.fb_allMatches.first!
++        : self.fb_allMatches().first!
+       return match.exists() ? match : nil
+     }
+ 
+-    func fb_allMatches() -> [AnyObject] {
++    func fb_allMatches() -> [XCUIElement] {
+       return FBConfiguration.boundElementsByIndex()
+         ? self.allElementsBoundByIndex
+         : self.allElementsBoundByAccessibilityElement
+@@ -1783,7 +1188,7 @@
+ extension XCUIElement {
+ 
+     func fb_resolveWithError(_ error:NSError) -> Bool {
+-      @try {
++      do {
+         // The order here matters
+         if self.respondsToSelector(Selector("resolveOrRaiseTestFailure")) {
+           self.resolveOrRaiseTestFailure()
+@@ -1794,7 +1199,7 @@
+           self.resolve()
+           return nil != self.lastSnapshot
+         }
+-      } @catch (e:NSException) {
++      } catch let e {
+         if nil != e.reason {
+           return FBErrorBuilder.builder.withDescription((e.reason as! NSString)).buildError(error)
+         }
+@@ -1818,33 +1223,18 @@
+     }
+ }
+ 
+-extension XCPointerEvent {
++/**
++ * Copyright (c) 2015-present, Facebook, Inc.
++ * All rights reserved.
++ *
++ * This source code is licensed under the BSD-style license found in the
++ * LICENSE file in the root directory of this source tree. An additional grant
++ * of patent rights can be found in the PATENTS file in the same directory.
++ */
++
++//#import <XCTest/XCTest.h>
+ 
+-    lazy class var fb_areKeyEventsSupported: Bool  = {
+-      var isKbInputSupported:Bool = false
+-      var onceKbInputSupported:dispatch_once_t
+-      { 
+-        isKbInputSupported = XCPointerEvent.self.respondsToSelector(Selector("keyboardEventForKeyCode:keyPhase:modifierFlags:offset:"))
+-      }
+-      return isKbInputSupported
+-    }()
+-}
+ 
+-func FBTestmanagerdVersion() -> Int
+-{
+-  var getTestmanagerdVersion:dispatch_once_t
+-  var testmanagerdVersion:Int
+-  dispatch_once(&getTestmanagerdVersion, { 
+-    let proxy:XCTestManager_ManagerInterface = FBXCTestDaemonsProxy.testRunnerProxy()
+-    let sem:dispatch_semaphore_t = dispatch_semaphore_create(0)
+-    proxy._XCT_exchangeProtocolVersion(testmanagerdVersion, reply:{ (code:UInt64) in 
+-      testmanagerdVersion = (code as! NSInteger)
+-      dispatch_semaphore_signal(sem)
+-    })
+-    dispatch_semaphore_wait(sem, dispatch_time(DISPATCH_TIME_NOW, ((0.5 * NSEC_PER_SEC) as! int64_t)))
+-  })
+-  return testmanagerdVersion
+-}
+ /**
+  * Copyright (c) 2015-present, Facebook, Inc.
+  * All rights reserved.
+@@ -1854,8 +1244,12 @@
+  * of patent rights can be found in the PATENTS file in the same directory.
+  */
+ 
+-
+-//#import <XCTest/XCTest.h>
++//#import "FBClassChainQueryParser.h"
++//#import "FBErrorBuilder.h"
++//#import "FBElementTypeTransformer.h"
++//#import "FBExceptions.h"
++//#import "FBPredicate.h"
++//#import "NSPredicate+FBFormat.h"
+ 
+ 
+ /**
+@@ -1889,13 +1283,13 @@
+ 
+     class func fb_extractMatchingElementsFromQuery(_ query:XCUIElementQuery, shouldReturnAfterFirstMatch:Bool) -> [AnyObject] {
+       if !shouldReturnAfterFirstMatch {
+-        return query.fb_allMatches
++        return query.fb_allMatches()
+       }
+-      let matchedElement:XCUIElement = query.fb_firstMatch
+-      return matchedElement ? [matchedElement] : []
++      let matchedElement:XCUIElement? = query.fb_firstMatch()
++      return matchedElement != nil ? [matchedElement!] : []
+     }
+ 
+-    func fb_cachedSnapshotWithQuery(_ query:XCUIElementQuery) -> XCElementSnapshot! {
++    func fb_cachedSnapshotWithQuery(_ query:XCUIElementQuery) -> XCElementSnapshot {
+       return self is XCUIApplication ? query.rootElementSnapshot : self.fb_cachedSnapshot
+     }
+ 
+@@ -1904,7 +1298,7 @@
+     func fb_descendantsMatchingClassName(_ className:String, shouldReturnAfterFirstMatch:Bool) -> [AnyObject] {
+       let type:XCUIElementType = FBElementTypeTransformer.elementTypeWithTypeName(className)
+       let query:XCUIElementQuery = self.fb_query().descendantsMatchingType(type)
+-      let result:NSMutableArray = NSMutableArray.array()
++      var result:Array<AnyObject> = Array<AnyObject>()
+       result.addObjectsFromArray(self.fb_extractMatchingElementsFromQuery(query, shouldReturnAfterFirstMatch:shouldReturnAfterFirstMatch))
+       let cachedSnapshot:XCElementSnapshot = self.fb_cachedSnapshotWithQuery(query)
+       if type == XCUIElementType.XCUIElementTypeAny || cachedSnapshot.elementType == type {
+@@ -1913,50 +1307,19 @@
+         }
+         result.insertObject(self, atIndex:0)
+       }
+-      return result.copy
++      return Array(result)
+     }
+ 
+ 
+     // MARK: - Search by property value
+-
+-    func fb_descendantsMatchingProperty(_ property:String, value:String, partialSearch:Bool) -> [AnyObject] {
+-      let elements:NSMutableArray = NSMutableArray.array()
+-      self.descendantsWithProperty(property, value:value, partial:partialSearch, results:elements)
+-      return elements
+-    }
+-
+-    func descendantsWithProperty(_ property:String, value:String, partial partialSearch:Bool, results:NSMutableArray) {
+-      if partialSearch {
+-        let text:String = self.fb_valueForWDAttributeName(property)
+-        let isString:Bool = (text is NSString)
+-        if isString && text.rangeOfString(value).location != NSNotFound {
+-          results.addObject(self)
+-        }
+-      } else {
+-        if self.fb_valueForWDAttributeName(property).isEqual(value) {
+-          results.addObject(self)
+-        }
+-      }
+-
+-      property = FBElementUtils.wdAttributeNameForAttributeName(property)
+-      value = value.stringByReplacingOccurrencesOfString("'", withString:"\\'")
+-      let operation:String = partialSearch ?
+-      String(format:"%@ like '*%@*'", property, value) :
+-      String(format:"%@ == '%@'", property, value)
+-
+-      let predicate:NSPredicate = FBPredicate.predicateWithFormat(operation)
+-      let query:XCUIElementQuery = self.fb_query().descendantsMatchingType(XCUIElementType.XCUIElementTypeAny).matchingPredicate(predicate)
+-      let childElements:[AnyObject]! = query.fb_allMatches
+-      results.addObjectsFromArray(childElements)
+-    }
+-
++    // removed
+ 
+     // MARK: - Search by Predicate String
+ 
+     func fb_descendantsMatchingPredicate(_ predicate:NSPredicate, shouldReturnAfterFirstMatch:Bool) -> [AnyObject] {
+       let formattedPredicate:NSPredicate = NSPredicate.fb_formatSearchPredicate(predicate)
+       let query:XCUIElementQuery = self.fb_query().descendantsMatchingType(XCUIElementType.XCUIElementTypeAny).matchingPredicate(formattedPredicate)
+-      let result:NSMutableArray = NSMutableArray.array()
++      var result:Array<AnyObject> = Array<AnyObject>()
+       result.addObjectsFromArray(self.fb_extractMatchingElementsFromQuery(query,
+                                                       shouldReturnAfterFirstMatch:shouldReturnAfterFirstMatch))
+       let cachedSnapshot:XCElementSnapshot = self.fb_cachedSnapshotWithQuery(query)
+@@ -1967,34 +1330,12 @@
+         }
+         result.insertObject(self, atIndex:0)
+       }
+-      return result.copy
++      return Array(result)
+     }
+ 
+ 
+     // MARK: - Search by xpath
+ 
+-    func fb_descendantsMatchingXPathQuery(_ xpathQuery:String, shouldReturnAfterFirstMatch:Bool) -> [AnyObject] {
+-      // XPath will try to match elements only class name, so requesting elements by XCUIElementType.XCUIElementTypeAny will not work. We should use '*' instead.
+-      xpathQuery = xpathQuery.stringByReplacingOccurrencesOfString("XCUIElementTypeAny", withString:"*")
+-      var matchingSnapshots:[AnyObject]! = FBXPath.matchesWithRootElement(self, forQuery:xpathQuery)
+-      if 0 == matchingSnapshots.count() {
+-        return []
+-      }
+-      if shouldReturnAfterFirstMatch {
+-        let snapshot:XCElementSnapshot = matchingSnapshots.first!
+-        matchingSnapshots = [snapshot]
+-      }
+-      return self.fb_filterDescendantsWithSnapshots(matchingSnapshots,
+-                                             selfUID:self.lastSnapshot.wdUID,
+-                                        onlyChildren:false)
+-    }
+-
+-
+     // MARK: - Search by Accessibility Id
+ 
+-    func fb_descendantsMatchingIdentifier(_ accessibilityId:String, shouldReturnAfterFirstMatch:Bool) -> [AnyObject] {
+-      let predicate:NSPredicate = FBPredicate.predicateWithFormat("name == %@", accessibilityId)
+-      return self.fb_descendantsMatchingPredicate(predicate,
+-                       shouldReturnAfterFirstMatch:shouldReturnAfterFirstMatch)
+-    }
+ }

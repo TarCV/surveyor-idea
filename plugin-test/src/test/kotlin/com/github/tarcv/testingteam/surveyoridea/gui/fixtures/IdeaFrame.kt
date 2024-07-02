@@ -8,11 +8,14 @@ import com.intellij.remoterobot.fixtures.DefaultXpath
 import com.intellij.remoterobot.fixtures.FixtureName
 import com.intellij.remoterobot.fixtures.JMenuBarFixture
 import com.intellij.remoterobot.search.locators.byXpath
+import com.intellij.remoterobot.steps.CommonSteps
 import com.intellij.remoterobot.stepsProcessing.step
 import com.intellij.remoterobot.utils.attempt
+import com.intellij.remoterobot.utils.keyboard
 import com.intellij.remoterobot.utils.waitForIgnoringError
 import org.apache.commons.text.StringEscapeUtils
 import java.io.Serializable
+import java.nio.file.Path
 import java.time.Duration
 
 fun RemoteRobot.idea(function: IdeaFrame.() -> Unit) {
@@ -39,8 +42,13 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
         }
 
     fun selectInMenuBar(vararg items: String) {
-        attempt(5) {
-            menuBar.select(*items)
+        return attempt(5) {
+            try {
+                return@attempt menuBar.select(*items)
+            } catch (e: Throwable) {
+                keyboard { escape() }
+                throw e
+            }
         }
     }
 
@@ -52,8 +60,15 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
         )
     }
 
-    fun openFileInTestProject(filePath: String, editorKey: String) {
-        val jsEscapedFilePath = StringEscapeUtils.escapeEcmaScript(filePath)
+    fun RemoteRobot.openFileAndToolWindow(filePath: Path, editorKey: String) {
+        idea {
+            openFileInTestProject(filePath, editorKey)
+            openToolWindow()
+        }
+    }
+
+    fun openFileInTestProject(filePath: Path, editorKey: String) {
+        val jsEscapedFilePath = StringEscapeUtils.escapeEcmaScript(filePath.toString())
         println("Opening '$jsEscapedFilePath'")
         runJs(
             runInEdt = true, script =
@@ -69,10 +84,10 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
                     run: function () {
                         const project = ProjectManagerEx.getInstance().openProjects[0]
                         const file = LocalFileSystem.getInstance().findFileByNioFile(Paths.get("$jsEscapedFilePath"))
-                        const textEditor = FileEditorManagerEx.getInstance(project)
+                        const textEditor = FileEditorManagerEx.getInstanceEx(project)
                             .openFile(file, true, true)
                             [0]
-                        local.put('$editorKey', textEditor)
+                        global.put('$editorKey', textEditor)
                     }
                 }))
                 """.trimIndent()
@@ -87,8 +102,10 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
                 ApplicationManager.getApplication().invokeLater(new Runnable({
                     run: function () {
                         const project = ProjectManagerEx.getInstance().openProjects[0]
-                        const textEditor = local.get('$editorKey')
-                        IdeFocusManager.getInstance(project).requestFocus(textEditor.editor.contentComponent, true);
+                        const textEditor = global.get('$editorKey')
+                        if (textEditor != null && !textEditor.editor.isDisposed()) {
+                            IdeFocusManager.getInstance(project).requestFocus(textEditor.editor.contentComponent, true);
+                        }
                     }
                 }))
                 """.trimIndent()
@@ -99,8 +116,10 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
                 importPackage(com.intellij.openapi.application)
                 ApplicationManager.getApplication().invokeLater(new Runnable({
                     run: function () {
-                        const textEditor = local.get('$editorKey')
-                        textEditor.editor.caretModel.moveToOffset(0)
+                        const textEditor = global.get('$editorKey')
+                        if (textEditor != null && !textEditor.editor.isDisposed()) {
+                            textEditor.editor.caretModel.moveToOffset(0)
+                        }
                     }
                 }))
                 """.trimIndent()
@@ -109,27 +128,61 @@ class IdeaFrame(remoteRobot: RemoteRobot, remoteComponent: RemoteComponent) :
             0 == callJs<Int>(
                 runInEdt = true, script =
                 """
-                        const textEditor = local.get('$editorKey')
-                        textEditor.editor.caretModel.offset
+                        const textEditor = global.get('$editorKey')
+                        if (textEditor != null && !textEditor.editor.isDisposed()) {
+                          textEditor.editor.caretModel.offset
+                        } else {
+                          -1
+                        }
                         """.trimIndent()
             )
         }
+    }
+
+    fun resizeWindow(newWidth: Int, newHeight: Int) {
+        runJs(
+            runInEdt = true, script =
+            """
+                    importPackage(com.intellij.openapi.application)
+                    ApplicationManager.getApplication().invokeLater(new Runnable({
+                        run: function () {
+                            component.setSize($newWidth, $newHeight)
+                        }
+                    }))
+                          """.trimIndent()
+        )
+    }
+
+    private fun RemoteRobot.openToolWindow() {
+        CommonSteps(this)
+            .invokeAction("ActivateLocateElementToolWindow")
+        waitForToolWindowSmartMode()
+    }
+
+    private fun waitForToolWindowSmartMode() {
+        // Opening 'Locate Element' tool window sometimes causes reindexing
+        Thread.sleep(2_000)
+        CommonSteps(remoteRobot).waitForSmartMode(1)
     }
 
     fun <T : Serializable> callJsInEditor(editorKey: String, code: String): T {
         @Suppress("JSUnusedLocalSymbols")
         return callJs(
             runInEdt = true, script =
-            """const editor = local.get('$editorKey');$code"""
+            """const editor = global.get('$editorKey');$code"""
         )
     }
 
     fun getSelectedXmlNodeOuterXml(editorKey: String) =
         callJsInEditor<String>(editorKey, """
-                                    const start = editor.editor.caretModel.currentCaret.selectionStart
-                                    const end = editor.editor.caretModel.currentCaret.selectionEnd
-                                    const snapshotText = editor.editor.document.text
-                                    snapshotText.substring(snapshotText.lastIndexOf("<", start), snapshotText.indexOf(">", end) + 1)
+                                    if (editor == null || editor.editor.isDisposed()) {
+                                        "<Couldn't get editor instance>"
+                                    } else {
+                                        const start = editor.editor.caretModel.currentCaret.selectionStart
+                                        const end = editor.editor.caretModel.currentCaret.selectionEnd
+                                        const snapshotText = editor.editor.document.text
+                                        snapshotText.substring(snapshotText.lastIndexOf("<", start), snapshotText.indexOf(">", end) + 1)
+                                    }
                 """.trimIndent()
         )
 }

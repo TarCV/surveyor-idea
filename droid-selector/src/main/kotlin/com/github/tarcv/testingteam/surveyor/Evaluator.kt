@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ import bsh.Interpreter
 import java.io.Closeable
 
 class Evaluator {
-    fun evaluate(rootNode: Node, locator: String): Node? {
+    fun evaluate(rootNode: List<Node>, locator: String): Node? {
         val limitingClassloader = LimitedClassloader(javaClass.classLoader)
         val interpreter = Interpreter().apply {
             setClassLoader(limitingClassloader)
@@ -49,20 +49,20 @@ class Evaluator {
         }
     }
 
-    internal fun evaluateUiSelector(rootNode: Node, selector: UiSelector): Node? {
-        return withUiDeviceFrom(rootNode) {
+    internal fun evaluateUiSelector(rootNodes: List<Node>, selector: UiSelector): Node? {
+        return withUiDeviceFrom(rootNodes) {
             extractNode(findObject(selector))
         }
     }
 
-    internal fun evaluateBySelector(rootNode: Node, selector: BySelector): Node? {
-        return withUiDeviceFrom(rootNode) {
+    internal fun evaluateBySelector(rootNodes: List<Node>, selector: BySelector): Node? {
+        return withUiDeviceFrom(rootNodes) {
             findObject(selector)
                 ?.let { extractNode(it) }
         }
     }
 
-    internal fun <T> withUiDeviceFrom(rootNode: Node, block: UiDevice.() -> T): T {
+    internal fun <T> withUiDeviceFrom(rootNodes: List<Node>, block: UiDevice.() -> T): T {
         val instanceResetter = Closeable {
             UiDevice::class.java
                 .getDeclaredField("sInstance")
@@ -71,7 +71,7 @@ class Evaluator {
                 }
                 .set(null, null)
         }
-        val instrumentation = Instrumentation(rootNode)
+        val instrumentation = Instrumentation(rootNodes)
         return instanceResetter.use {
             val device = UiDevice.getInstance(instrumentation)
             block(device)

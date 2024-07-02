@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -23,4 +23,15 @@ data class Notice(
     val noticeText: String
 ) {
     override fun toString(): String = title
+
+    companion object {
+        inline fun <reified T : Any> T.loadNoticeFromResource(title: String, introText: String, noticePath: String): Notice {
+            val noticeText = T::class.java.classLoader
+                .getResourceAsStream(noticePath)
+                ?.bufferedReader()
+                ?.readText()
+                ?: "<Failed to load the license or notice>"
+            return Notice(title, introText, noticeText)
+        }
+    }
 }

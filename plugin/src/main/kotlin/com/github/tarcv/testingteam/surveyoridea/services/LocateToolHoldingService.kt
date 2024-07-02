@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -17,17 +17,51 @@
  */
 package com.github.tarcv.testingteam.surveyoridea.services
 
+import com.github.tarcv.testingteam.surveyoridea.data.DroidUiSelectorLocatorType
+import com.github.tarcv.testingteam.surveyoridea.data.LocatorType
 import com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow
+import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
+import com.intellij.ui.AppUIUtil
 import javax.annotation.concurrent.GuardedBy
 
-@Service
-class LocateToolHoldingService(project: Project) {
+// TODO: implement PersistentStateComponent
+@Service(Service.Level.PROJECT)
+class LocateToolHoldingService(private val project: Project) {
     private val lock = Any()
 
     @GuardedBy("lock")
     private var locateToolWindow: LocateToolWindow? = null
+    @GuardedBy("lock")
+    private var _locatorType: LocatorType = synchronized(lock) {
+        val locatorTypeValue = PropertiesComponent.getInstance(project)
+            .getValue(locatorTypePersistanceKey)
+        LocatorType::class.sealedSubclasses
+            .firstOrNull { it.simpleName == locatorTypeValue }
+            ?.objectInstance
+            ?: DroidUiSelectorLocatorType
+    }
+
+    var locatorType: LocatorType
+        get() = synchronized(lock) {
+            _locatorType
+        }
+        set(value) = synchronized(lock) {
+            _locatorType = value
+
+            PropertiesComponent.getInstance(project)
+                .setValue(locatorTypePersistanceKey, value.javaClass.simpleName, null)
+
+            AppUIUtil.invokeLaterIfProjectAlive(project) {
+                project.messageBus.syncPublisher(LocatorTypeChangedListener.topic)
+                    .onLocatorTypeChanged(value)
+            }
+        }
+
+    companion object {
+        private val locatorTypePersistanceKey = "${LocateToolHoldingService::class.java.name}.locatorType"
+    }
 
     fun registerToolWindow(toolWindow: LocateToolWindow) = synchronized(lock) {
         locateToolWindow = toolWindow

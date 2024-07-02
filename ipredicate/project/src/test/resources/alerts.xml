@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2024 TarCV
+
+  This file is part of UI Surveyor.
+  UI Surveyor is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+  This file is based on the parts of WebDriverAgent which are
+  (copies of referenced files can be found in ipredicate/licenses/wda subdirectory
+  in this repository):
+
+      Copyright (c) 2015-present, Facebook, Inc.
+      All rights reserved.
+
+      This source code is licensed under the BSD-style license found in the
+      LICENSE file in the root directory of this source tree. An additional grant
+      of patent rights can be found in the PATENTS file in the same directory.
+-->
+<AppiumAUT><XCUIElementTypeApplication type="XCUIElementTypeApplication" name="IntegrationApp" label="IntegrationApp" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+    <XCUIElementTypeWindow type="XCUIElementTypeWindow" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                    <XCUIElementTypeNavigationBar type="XCUIElementTypeNavigationBar" name="View" enabled="true" visible="true" x="0" y="48" width="414" height="44" index="0">
+                        <XCUIElementTypeButton type="XCUIElementTypeButton" name="Back" label="Back" enabled="true" visible="true" x="0" y="48" width="71" height="44" index="0"/>
+                    </XCUIElementTypeNavigationBar>
+                    <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="1">
+                        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="0" y="0" width="414" height="896" index="0">
+                                <XCUIElementTypeTextField type="XCUIElementTypeTextField" value="Value" label="" enabled="true" visible="true" x="20" y="103" width="374" height="34" index="0"/>
+                                <XCUIElementTypeTextField type="XCUIElementTypeTextField" value="Value2" name="aIdentifier" label="aLabel" enabled="true" visible="true" x="20" y="145" width="374" height="34" index="1"/>
+                                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Button" label="Button" enabled="true" visible="true" x="103" y="205" width="47" height="30" index="2">
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Button" name="Button" label="Button" enabled="true" visible="true" x="103" y="211" width="47" height="18" index="0"/>
+                                </XCUIElementTypeButton>
+                                <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Label" name="Label" label="Label" enabled="true" visible="true" x="107" y="246" width="42" height="21" index="3"/>
+                                <XCUIElementTypeButton type="XCUIElementTypeButton" name="not_accessible" label="not_accessible" enabled="true" visible="true" x="174" y="252" width="103" height="30" index="4">
+                                    <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="not_accessible" name="not_accessible" label="not_accessible" enabled="true" visible="false" x="174" y="258" width="103" height="18" index="0"/>
+                                </XCUIElementTypeButton>
+                                <XCUIElementTypeSegmentedControl type="XCUIElementTypeSegmentedControl" enabled="true" visible="true" x="64" y="271" width="131" height="29" index="5">
+                                    <XCUIElementTypeButton type="XCUIElementTypeButton" value="1" name="First" label="First" enabled="true" visible="true" x="64" y="271" width="65" height="29" index="0"/>
+                                    <XCUIElementTypeButton type="XCUIElementTypeButton" name="Second" label="Second" enabled="true" visible="true" x="130" y="271" width="65" height="29" index="1"/>
+                                </XCUIElementTypeSegmentedControl>
+                                <XCUIElementTypeSlider type="XCUIElementTypeSlider" value="50%" enabled="true" visible="true" x="207" y="280" width="118" height="31" index="6"/>
+                                <XCUIElementTypeStepper type="XCUIElementTypeStepper" enabled="true" visible="true" x="69" y="315" width="94" height="29" index="7">
+                                    <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" x="69" y="315" width="94" height="32" index="0">
+                                        <XCUIElementTypeImage type="XCUIElementTypeImage" enabled="true" visible="false" x="69" y="315" width="47" height="32" index="0"/>
+                                        <XCUIElementTypeButton type="XCUIElementTypeButton" name="Decrement" label="Decrement" enabled="false" visible="true" x="69" y="315" width="47" height="32" index="1"/>
+                                        <XCUIElementTypeImage type="XCUIElementTypeImage" enabled="true" visible="false" x="115" y="315" width="2" height="32" index="2">
+                                            <XCUIElementTypeImage type="XCUIElementTypeImage" enabled="true" visible="false" x="115" y="315" width="2" height="32" index="0"/>
+                                        </XCUIElementTypeImage>
+                                        <XCUIElementTypeImage type="XCUIElementTypeImage" enabled="true" visible="false" x="116" y="315" width="47" height="32" index="3"/>
+                                        <XCUIElementTypeButton type="XCUIElementTypeButton" name="Increment" label="Increment" enabled="true" visible="true" x="116" y="315" width="47" height="32" index="4"/>
+                                    </XCUIElementTypeOther>
+                                </XCUIElementTypeStepper>
+                                <XCUIElementTypePageIndicator type="XCUIElementTypePageIndicator" value="page 1 of 3" enabled="true" visible="true" x="161" y="324" width="39" height="42" index="8"/>
+                                <XCUIElementTypeActivityIndicator type="XCUIElementTypeActivityIndicator" value="0" name="Progress halted" label="Progress halted" enabled="true" visible="true" x="171" y="324" width="20" height="20" index="9"/>
+                                <XCUIElementTypeSwitch type="XCUIElementTypeSwitch" value="1" enabled="true" visible="true" x="235" y="318" width="51" height="31" index="10"/>
+                                <XCUIElementTypeProgressIndicator type="XCUIElementTypeProgressIndicator" value="50%" name="Progress" label="Progress" enabled="true" visible="true" x="134" y="347" width="150" height="24" index="11"/>
+                                <XCUIElementTypeDatePicker type="XCUIElementTypeDatePicker" enabled="true" visible="true" x="20" y="369" width="374" height="126" index="12">
+                                    <XCUIElementTypePicker type="XCUIElementTypePicker" enabled="true" visible="true" x="20" y="369" width="374" height="126" index="0">
+                                        <XCUIElementTypePickerWheel type="XCUIElementTypePickerWheel" value="Today" enabled="true" visible="true" x="69" y="331" width="134" height="202" index="0"/>
+                                        <XCUIElementTypePickerWheel type="XCUIElementTypePickerWheel" value="2 o’clock" enabled="true" visible="true" x="208" y="331" width="45" height="202" index="1"/>
+                                        <XCUIElementTypePickerWheel type="XCUIElementTypePickerWheel" value="42 minutes" enabled="true" visible="true" x="258" y="331" width="50" height="202" index="2"/>
+                                        <XCUIElementTypePickerWheel type="XCUIElementTypePickerWheel" value="AM" enabled="true" visible="true" x="313" y="331" width="51" height="202" index="3"/>
+                                    </XCUIElementTypePicker>
+                                </XCUIElementTypeDatePicker>
+                                <XCUIElementTypeTextView type="XCUIElementTypeTextView" value="Text Field long text" enabled="true" visible="true" x="20" y="503" width="374" height="323" index="13"/>
+                            </XCUIElementTypeOther>
+                        </XCUIElementTypeOther>
+                    </XCUIElementTypeOther>
+                </XCUIElementTypeOther>
+            </XCUIElementTypeOther>
+        </XCUIElementTypeOther>
+    </XCUIElementTypeWindow>
+    <XCUIElementTypeWindow type="XCUIElementTypeWindow" enabled="true" visible="false" x="0" y="0" width="414" height="896" index="1">
+        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" x="0" y="0" width="414" height="896" index="0">
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" x="0" y="0" width="414" height="896" index="0"/>
+        </XCUIElementTypeOther>
+    </XCUIElementTypeWindow>
+</XCUIElementTypeApplication></AppiumAUT>
