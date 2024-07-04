@@ -110,7 +110,7 @@ jobs:
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
         env:
           IDE_CODE: ${{ steps.prepare-IDE_CODE.outputs.result }}
           IDE_VERSION: ${{ steps.prepare-IDE_VERSION.outputs.result }}
