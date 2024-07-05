@@ -16,7 +16,7 @@ rm artifacts.old
 
 sort -u -o artifacts.lst artifacts.lst
 
-nix run generateVerificationMetadata
+nix eval --impure --raw .#generateVerificationMetadata > artifacts.xml
 
 # FindSha
 fs() { find "$HOME/.gradle" -name "$1*" -exec sha256sum {} \;; }
