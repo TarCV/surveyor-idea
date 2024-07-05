@@ -24,7 +24,7 @@ import com.intellij.ui.content.ContentFactory
 
 
 class LocateToolWindowFactory : ToolWindowFactory {
-    private val contentFactory = ContentFactory.SERVICE.getInstance()
+    private val contentFactory = ContentFactory.getInstance()
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val locateToolWindow: LocateToolWindow = if (hasJavaPlugin()) {

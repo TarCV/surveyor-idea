@@ -45,14 +45,15 @@ jobs:
         os: [ macos-13, ubuntu-latest, windows-latest ]
         ideDate: # Up to 2 versions per year, initial major ver release date should be not older than a year
           #          - IC-LATEST_EAP # TODO: Run this variant weekly
-          - IC-2023.3.2 # released on 20.12.2023, major from 06.12.2023
-          - IC-2023.1.5 # released on 25.07.2023, major from 28.03.2023
-          - IC-2022.3.3 # released on 8.03.2023, major from 30.11.2022
+          - IC-2024.1.4 # released on 21.06.2024, major from 04.04.2024
+          - IC-2023.3.7 # released on 10.06.2024, major from 06.12.2023
+          - IC-2023.1.7 # released on 10.06.2024, major from 28.03.2023
           #          - PC-LATEST_EAP # TODO: Run this variant weekly
-          - PC-2023.3.2 # released on 20.12.2023, major from 06.12.2023
-          - PC-2023.1.4 # released on 13.07.2023, major from 30.03.2023
-          - PC-2022.3.3 # released on 10.03.2023, major from 01.12.2022
+          - PC-2024.1.4 # released on 25.06.2024, major from 04.04.2024
+          - PC-2023.3.6 # released on 10.06.2024, major from 06.12.2023
+          - PC-2023.1.6 # released on 10.06.2024, major from 30.03.2023
           # Versions should match https://jb.gg/android-studio-releases-list.xml
+          # TODO: - AS-TODO
 
         include:
           - os: ubuntu-latest
@@ -106,7 +107,7 @@ jobs:
           IDE_VERSION: ${{ steps.prepare-IDE_VERSION.outputs.result }}
         with:
           distribution: zulu
-          java-version: 11
+          java-version: 17
 
       # Setup Gradle
       - name: Setup Gradle

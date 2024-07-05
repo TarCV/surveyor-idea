@@ -96,6 +96,9 @@
                               )
                             );
               in let
+                  # TODO: Sort in the same way Gradle does
+                  # TODO: Copy okio-2.4.3.jar metadata as okio-jvm-2.4.3.jar metadata
+                  # TODO: Calculate hashes for libraries extracted for IDE zips
                   verificationList = (builtins.map
                         (artifacts: let
                             firstArtifact = builtins.elemAt artifacts 0;
@@ -144,6 +147,7 @@
                                                       "https://plugins.gradle.org/m2/"
                                                       "https://repo1.maven.org/maven2/"
                                                       "https://repo.maven.apache.org/maven2/"
+                                                      "https://cache-redirector.jetbrains.com/www.jetbrains.com/intellij-repository/releases/"
                                                     ];
                                                     artiPath = builtins.fetchurl url;
                                                     urlParts = builtins.elemAt
@@ -298,7 +302,7 @@
                  };
                  buildInputs = [
                    pkgs.autoPatchelfHook
-                   pkgs.jdk11
+                   pkgs.jdk17
                    pkgs.perl
                    pkgs.unzip
 
@@ -347,7 +351,7 @@
 
                    install -Dm444 ${ipredicateKt}/* ipredicate/project/src/main/kotlin/com/github/tarcv/testingteam/surveyor/ipredicate/
 
-                   export JAVA_HOME=${pkgs.jdk11.home}
+                   export JAVA_HOME=${pkgs.jdk17.home}
 
                    # Use '--debug' to debug dependency downloads by plugins
                    ./gradlew -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=1g \

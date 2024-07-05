@@ -5,10 +5,10 @@ with import <nixpkgs> {};
   targetPkgs = pkgs: (with pkgs;
     [
       pkgs.git
-      pkgs.jdk11
+      pkgs.jdk17
 
       # required for JBR JVM installed by various Gradle test tasks
-      # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/compilers/openjdk/11.nix
+      # From https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/compilers/openjdk/17.nix
       pkgs.freetype
       pkgs.harfbuzz
       pkgs.alsa-lib
@@ -31,12 +31,12 @@ with import <nixpkgs> {};
     ]);
 
   profile = ''
-export JAVA_HOME="${pkgs.jdk11.home}"
-export GRADLE_OPTS="-Dorg.gradle.java.home=${pkgs.jdk11.home}"
+export JAVA_HOME="${pkgs.jdk17.home}"
+export GRADLE_OPTS="-Dorg.gradle.java.home=${pkgs.jdk17.home}"
 
 # Write out a configuration for EnvFile Idea Plugin.
 cat <<EOF > .env
-JAVA11_HOME="${pkgs.jdk11.home}"
+JAVA17_HOME="${pkgs.jdk17.home}"
 EOF
 
 ./gradlew --stop # Make sure there is no leftover daemons running outside of this env
