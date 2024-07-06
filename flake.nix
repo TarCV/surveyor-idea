@@ -97,6 +97,7 @@
                             );
               in let
                   # TODO: Sort in the same way Gradle does
+                  # TODO: Remove duplicate entries
                   # TODO: Copy okio-2.4.3.jar metadata as okio-jvm-2.4.3.jar metadata
                   # TODO: Calculate hashes for libraries extracted for IDE zips
                   verificationList = (builtins.map
