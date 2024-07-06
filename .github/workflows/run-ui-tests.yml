@@ -55,6 +55,9 @@ jobs:
           # Versions should match https://jb.gg/android-studio-releases-list.xml
           # TODO: - AS-TODO
 
+        exclude:
+          - os: windows-latest # IDE downloader doesn't know URL for this version on Win
+            ideDate: PC-2023.1.6
         include:
           - os: ubuntu-latest
             runTests: |
@@ -118,7 +121,7 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
-      # Check out current repository
+      # Check out the current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 

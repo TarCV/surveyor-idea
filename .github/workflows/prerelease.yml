@@ -15,7 +15,7 @@ jobs:
       contents: write
     steps:
 
-      # Check out current repository
+      # Check out the current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 
@@ -58,7 +58,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create v${{ steps.prepare.outputs.version }} \
+          gh release create "v${{ steps.prepare.outputs.version }}" \
             --draft \
             --title "v${{ steps.prepare.outputs.version }}" \
             --notes "$(cat << 'EOM'

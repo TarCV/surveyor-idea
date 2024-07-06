@@ -29,6 +29,10 @@ tasks {
         doNotTrackState("UI tests should always run")
 
         useJUnitPlatform()
+
+        // Required for deserialization of exceptions from UI Robot
+        jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+
         testLogging {
             events("passed", "skipped", "failed")
         }
