@@ -13,7 +13,7 @@ qodana = "2024.1.5"
 beanshell = "5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c"
 u4jregex = "67352f493146a4436c340c294a3f680a3281dde3"
 junitVideo = "2.0"
-remoteRobot = "0.11.22"
+remoteRobot = "0.11.23"
 uiautomator = "2.2.0"
 
 [plugins]
