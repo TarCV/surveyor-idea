@@ -23,6 +23,7 @@ import net.jqwik.api.Arbitrary
 import net.jqwik.api.ForAll
 import net.jqwik.api.Property
 import net.jqwik.api.Provide
+import net.jqwik.api.providers.TypeUsage
 import kotlin.test.assertEquals
 
 
@@ -53,7 +54,12 @@ class StringCompareProperties {
     }
 
     @Provide
-    fun optionSet(): Arbitrary<Set<*>> {
-        return Arbitraries.defaultFor(Set::class.java, StringCompareOption::class.java)
+    fun optionSet(): Arbitrary<Set<StringCompareOption>> {
+        return Arbitraries.defaultFor(
+            TypeUsage.of(
+                Set::class.java,
+                TypeUsage.of(StringCompareOption::class.java)
+            )
+        )
     }
 }
