@@ -7,7 +7,7 @@ pluginManagement {
             url = uri("https://jitpack.io")
             content {
                 // Download only these groups from the repository
-                includeGroup("com.github.TarCV.aar2jar")
+                includeGroup("com.github.stepango.aar2jar")
             }
         }
     }
@@ -16,9 +16,9 @@ pluginManagement {
             if (requested.id.id == "com.android.application") {
                 useModule("com.android.tools.build:gradle:${requested.version}")
             }
-            if (requested.id.id.startsWith("com.github.TarCV")) {
-                val (_, _, _, name) = requested.id.id.split(".", limit = 4)
-                useModule("com.github.TarCV.$name:build:${requested.version}")
+            if (requested.id.id.startsWith("com.stepango.aar2jar")) {
+                val (_, _, name) = requested.id.id.split(".", limit = 3)
+                useModule("com.github.stepango.$name:build:${requested.version}")
             }
         }
     }

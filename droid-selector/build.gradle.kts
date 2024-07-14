@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     kotlin("jvm")
-    id("com.github.TarCV.aar2jar")
+    alias(libs.plugins.aar2jar)
 }
 
 dependencies {

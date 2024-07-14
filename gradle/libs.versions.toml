@@ -1,6 +1,6 @@
 [versions]
 # plugins
-aar2jar = "d4d5195de2"
+aar2jar = "31c2b585b10b23365d73ded239b979881b8a9065"
 changelog = "2.2.0"
 gradleIntelliJPlugin = "1.17.4"
 jqwik = "1.8.5"
@@ -17,7 +17,7 @@ remoteRobot = "0.11.23"
 uiautomator = "2.2.0"
 
 [plugins]
-aar2jar = { id = "com.github.TarCV.aar2jar", version.ref = "aar2jar" }
+aar2jar = { id = "com.stepango.aar2jar", version.ref = "aar2jar" }
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
 gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

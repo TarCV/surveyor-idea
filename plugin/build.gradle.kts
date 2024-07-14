@@ -6,7 +6,7 @@ fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     kotlin("jvm")
-    id("com.github.TarCV.aar2jar")
+    alias(libs.plugins.aar2jar)
 
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij")
