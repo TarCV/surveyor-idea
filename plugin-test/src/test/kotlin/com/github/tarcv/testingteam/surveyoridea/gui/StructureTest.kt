@@ -5,12 +5,14 @@ import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.trimAllIndent
 import com.github.tarcv.testingteam.surveyoridea.waitingAssertEquals
 import com.intellij.remoterobot.RemoteRobot
+import com.intellij.remoterobot.client.IdeaSideException
 import com.intellij.remoterobot.fixtures.ActionButtonFixture.PopState.PUSHED
 import com.intellij.remoterobot.fixtures.ActionButtonFixture.PopState.SELECTED
 import com.intellij.remoterobot.fixtures.ComponentFixture
 import com.intellij.remoterobot.fixtures.HeavyWeightWindowFixture
 import com.intellij.remoterobot.fixtures.JListFixture
 import com.intellij.remoterobot.fixtures.JListFixture.Companion.byItem
+import com.intellij.remoterobot.fixtures.JTreeFixture
 import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.steps.CommonSteps
 import com.intellij.remoterobot.utils.attempt
@@ -116,8 +118,8 @@ class StructureTest : BaseTestProjectTests() {
                 openStructureToolwindow()
 
                 // this is both an Act and an Assertion that this path exists
-                waitForIgnoringError {
-                    structureTree.expandAll()
+                attempt(tries = 2) {
+                    structureTree.expandAllWorkaround()
                     structureTree.doubleClickPath(
                         *path,
                         fullMatch = true
@@ -133,6 +135,19 @@ class StructureTest : BaseTestProjectTests() {
                 }
             }
         }
+
+    private fun JTreeFixture.expandAllWorkaround() {
+        try {
+            expandAll()
+        } catch (e: IdeaSideException) {
+            if (e.message?.contains("timeout", ignoreCase = true) == true) {
+                // expandAll is broken in Robot 0.11.23
+                e.printStackTrace()
+            } else {
+                throw e
+            }
+        }
+    }
 
     private fun RemoteRobot.openStructureToolwindow() {
         CommonSteps(this)
