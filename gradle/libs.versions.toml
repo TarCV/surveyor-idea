@@ -10,7 +10,7 @@ kover = "0.8.1"
 qodana = "2024.1.5"
 
 # libraries
-beanshell = "5e2cc2f240eaec2d7d9c9b745aa3a5d04bc8fa2c"
+beanshell = "5934e52dd5e65b62f4ca57b423d845d486abf683"
 u4jregex = "67352f493146a4436c340c294a3f680a3281dde3"
 junitVideo = "2.0"
 remoteRobot = "0.11.23"
@@ -25,7 +25,7 @@ kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
 
 [libraries]
-beanshell = { group = "com.github.TarCV.beanshell", name = "bsh", version.ref = "beanshell" }
+beanshell = { group = "com.github.beanshell", name = "beanshell", version.ref = "beanshell" }
 u4jregex = { group = "com.github.TarCV", name = "u4j-regex", version.ref = "u4jregex" }
 jqwik = { group = "net.jqwik", name = "jqwik", version.ref = "jqwik" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api" }
