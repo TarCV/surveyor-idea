@@ -27,6 +27,7 @@ import java.util.regex.Pattern
 val singleRootNode = Node(
     null,
     DroidProperty::class.nestedClasses
+        .filter { !it.isCompanion }
         .associate {
             val property = it.objectInstance as DroidProperty<*>
             property to generateValueForProperty(property)
@@ -39,11 +40,6 @@ fun generateValueForProperty(it: DroidProperty<*>): Any {
     val propertiesType = it.javaClass.genericInterfaces.single() as ParameterizedType
     return generateValueFor(propertiesType.actualTypeArguments.single() as Class<*>)
 }
-
-fun methodByName(clazz: Class<*>, name: String) =
-    clazz
-        .methods
-        .single { it.toGenericString() == name }
 
 private fun isGoodPattern(pattern: String) = try {
     Pattern.compile(pattern)

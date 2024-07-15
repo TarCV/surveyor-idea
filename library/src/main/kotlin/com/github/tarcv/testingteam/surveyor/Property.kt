@@ -17,5 +17,4 @@
  */
 package com.github.tarcv.testingteam.surveyor
 
-// TODO: Remove properties and create node objects directly from XML (or pass data class objects if needed)
-interface Property<T>
+interface Property<out T>

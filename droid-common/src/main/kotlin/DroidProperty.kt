@@ -18,6 +18,7 @@
 package com.github.tarcv.testingteam.surveyor
 
 sealed interface DroidProperty<T> : Property<T> {
+
     object CLASS_NAME: DroidProperty<String>
     object IS_CLICKABLE: DroidProperty<Boolean>
     object ACCESSIBILITY_DESCRIPTION: DroidProperty<String>

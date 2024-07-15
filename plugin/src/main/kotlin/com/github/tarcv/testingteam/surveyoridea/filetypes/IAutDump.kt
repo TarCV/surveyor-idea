@@ -18,77 +18,38 @@
 package com.github.tarcv.testingteam.surveyoridea.filetypes
 
 import com.github.tarcv.testingteam.surveyor.IProperty
-import com.github.tarcv.testingteam.surveyor.Node
 import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.UiPsiElementReference
-import com.intellij.openapi.project.Project
-import com.intellij.psi.PsiFile
-import com.intellij.psi.xml.XmlFile
 import com.intellij.psi.xml.XmlTag
-import java.util.IdentityHashMap
 
-data object IAutSnapshot: XmlFileType {
-    override fun tryConvert(
-        project: Project,
-        psiFile: PsiFile,
-        mapping: IdentityHashMap<Node, UiPsiElementReference>
-    ): List<Node>? {
-        if (psiFile !is XmlFile) {
-            return null
-        }
+object IAutSnapshot: XmlFileType<IAutNode, IProperty<*>>(
+    rootTagName = "AppiumAUT",
+    propertyClass = IProperty::class
+) {
 
-        val rootTag = psiFile.rootTag ?: return null
-        if (!isXmlFileOfType(rootTag)) {
-            return null
-        }
-        return rootTag.subTags
-            .map { convert(it, mapping) }
+    override fun uiNodeFactory(node: XmlTag) = IAutNode(node)
+
+    override fun propertyFactory(
+        it: IProperty<*>,
+        node: XmlTag
+    ) = when (it) {
+        is IProperty.CHILD_INDEX -> getPropertyFromTag(it, node, "index")
+        is IProperty.ELEMENT_TYPE -> getPropertyFromTag(it, node, "type")
+        is IProperty.HAS_FOCUS -> getPropertyFromTag(it, node, "focused")
+        is IProperty.IDENTIFIER_OR_LABEL -> getPropertyFromTag(it, node, "name")
+        is IProperty.IS_ACCESSIBILITY_CONTAINER -> getPropertyFromTag(it, node, "accessibilityContainer")
+        is IProperty.IS_ACCESSIBLE -> getPropertyFromTag(it, node, "accessible")
+        is IProperty.IS_ENABLED -> getPropertyFromTag(it, node, "enabled")
+        is IProperty.IS_SELECTED -> getPropertyFromTag(it, node, "selected")
+        is IProperty.LABEL -> getPropertyFromTag(it, node, "label")
+        is IProperty.VALUE -> getPropertyFromTag(it, node, "value")
+        is IProperty.WDA_UID -> getPropertyFromTag(it, node, "uid")
+        is IProperty.X -> getPropertyFromTag(it, node, "x")
+        is IProperty.Y -> getPropertyFromTag(it, node, "y")
+        is IProperty.WIDTH -> getPropertyFromTag(it, node, "width")
+        is IProperty.HEIGHT -> getPropertyFromTag(it, node, "height")
     }
 
-    fun isXmlFileOfType(rootTag: XmlTag): Boolean {
-        return rootTag.name == "AppiumAUT"
-    }
-
-    private fun convert(
-        node: XmlTag,
-        mapping: IdentityHashMap<Node, UiPsiElementReference>
-    ): Node {
-        // TODO: How to handle missing values?
-        val props: Map<IProperty<*>, Any?> = IProperty.allProperties
-            .associateWith {
-                when (it) {
-                    IProperty.CHILD_INDEX -> getPropertyFromTag(IProperty.CHILD_INDEX, node, "index")
-                    IProperty.ELEMENT_TYPE -> getPropertyFromTag(IProperty.ELEMENT_TYPE, node, "type")
-                    IProperty.HAS_FOCUS -> getPropertyFromTag(IProperty.HAS_FOCUS, node, "focused")
-                    IProperty.IDENTIFIER_OR_LABEL -> getPropertyFromTag(IProperty.IDENTIFIER_OR_LABEL, node, "name")
-                    IProperty.IS_ACCESSIBILITY_CONTAINER -> getPropertyFromTag(IProperty.IS_ACCESSIBILITY_CONTAINER, node, "accessibilityContainer")
-                    IProperty.IS_ACCESSIBLE -> getPropertyFromTag(IProperty.IS_ACCESSIBLE, node, "accessible")
-                    IProperty.IS_ENABLED -> getPropertyFromTag(IProperty.IS_ENABLED, node, "enabled")
-                    IProperty.IS_SELECTED -> getPropertyFromTag(IProperty.IS_SELECTED, node, "selected")
-                    IProperty.LABEL -> getPropertyFromTag(IProperty.LABEL, node, "label")
-                    IProperty.VALUE -> getPropertyFromTag(IProperty.VALUE, node, "value")
-                    IProperty.WDA_UID -> getPropertyFromTag(IProperty.WDA_UID, node, "uid")
-                    IProperty.X -> getPropertyFromTag(IProperty.X, node, "x")
-                    IProperty.Y -> getPropertyFromTag(IProperty.Y, node, "y")
-                    IProperty.WIDTH -> getPropertyFromTag(IProperty.WIDTH, node, "width")
-                    IProperty.HEIGHT -> getPropertyFromTag(IProperty.HEIGHT, node, "height")
-                }
-            }
-
-        val out = Node(
-            null,
-            props,
-            node.subTags.map { convert(it, mapping) },
-            true // TODO
-        ).apply {
-            finalizeChildren()
-        }
-
-        mapping[out] = IAutNode(node)
-
-        return out
-    }
-
-    fun structureTitleFor(tag: XmlTag): String = buildString {
+    override fun structureTitleFor(tag: XmlTag): String = buildString {
         append(tag.name.removePrefix("XCUIElementType"))
         append(' ')
         append(
@@ -98,22 +59,6 @@ data object IAutSnapshot: XmlFileType {
                 ?: ""
         )
     }
-}
-@Suppress("UNUSED_PARAMETER")
-private fun getPropertyFromTag(property: IProperty<out Boolean?>, node: XmlTag, attribute: String): Boolean? {
-    return node.getAttribute(attribute)
-        ?.value
-        ?.toBooleanStrictOrNull()
-}
-@Suppress("UNUSED_PARAMETER")
-private fun getPropertyFromTag(property: IProperty<out Int?>, node: XmlTag, attribute: String): Int? {
-    return node.getAttribute(attribute)
-        ?.value
-        ?.toIntOrNull()
-}
-@Suppress("UNUSED_PARAMETER")
-private fun getPropertyFromTag(property: IProperty<out String?>, node: XmlTag, attribute: String): String? {
-    return node.getAttribute(attribute)?.value
 }
 
 data class IAutNode(override val psiElement: XmlTag): UiPsiElementReference

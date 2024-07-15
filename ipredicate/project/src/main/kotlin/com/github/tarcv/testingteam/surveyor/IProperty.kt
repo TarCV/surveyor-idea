@@ -18,10 +18,6 @@
 package com.github.tarcv.testingteam.surveyor
 
 sealed interface IProperty<T> : Property<T> {
-    companion object {
-        val allProperties = IProperty::class.sealedSubclasses
-            .mapNotNull { it.objectInstance }
-    }
 
     object X: IProperty<Int>
     object Y: IProperty<Int>
