@@ -20,11 +20,11 @@ package com.github.tarcv.testingteam.surveyoridea.services
 import com.github.tarcv.testingteam.surveyoridea.data.DroidUiSelectorLocatorType
 import com.github.tarcv.testingteam.surveyoridea.data.LocatorType
 import com.github.tarcv.testingteam.surveyoridea.gui.LocateToolWindow
+import com.google.errorprone.annotations.concurrent.GuardedBy
 import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
 import com.intellij.ui.AppUIUtil
-import javax.annotation.concurrent.GuardedBy
 
 // TODO: implement PersistentStateComponent
 @Service(Service.Level.PROJECT)

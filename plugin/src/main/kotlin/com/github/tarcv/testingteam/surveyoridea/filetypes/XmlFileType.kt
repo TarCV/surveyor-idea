@@ -18,9 +18,11 @@
 package com.github.tarcv.testingteam.surveyoridea.filetypes
 
 import com.github.tarcv.testingteam.surveyor.Node
+import com.github.tarcv.testingteam.surveyor.Property
 import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.UiPsiElementReference
 import com.intellij.icons.AllIcons
 import com.intellij.openapi.project.Project
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.xml.XmlFile
 import com.intellij.psi.xml.XmlTag
@@ -29,21 +31,14 @@ import com.intellij.util.xml.DomFileElement
 import com.intellij.util.xml.DomManager
 import java.util.IdentityHashMap
 import javax.swing.Icon
+import kotlin.reflect.KClass
 
-sealed interface XmlFileType {
+sealed class XmlFileType<N: UiPsiElementReference, P : Property<*>>(
+    private val rootTagName: String,
+    private val propertyClass: KClass<P>
+) {
+
     companion object {
-        fun <T : DomElement> tryReadAsXml(
-            project: Project,
-            xmlFile: PsiFile,
-            rootClass: Class<T>
-        ): DomFileElement<T>? {
-            if (xmlFile !is XmlFile) {
-                return null
-            }
-            return DomManager.getDomManager(project)
-                .getFileElement(xmlFile, rootClass)
-        }
-
         fun structureIconFor(tag: XmlTag): Icon {
             return when {
                 tag.subTags.isEmpty() -> AllIcons.Ide.LocalScope
@@ -51,12 +46,55 @@ sealed interface XmlFileType {
             }
         }
 
-        fun rootTagFrom(o: XmlTag) = (o.containingFile as? XmlFile)?.rootTag
+        fun rootTagFrom(o: PsiElement?) = (o?.containingFile as? XmlFile)?.rootTag
     }
 
     fun tryConvert(
-        project: Project,
         psiFile: PsiFile,
         mapping: IdentityHashMap<Node, UiPsiElementReference>
-    ): List<Node>?
+    ): List<Node>? {
+        if (psiFile !is XmlFile) {
+            return null
+        }
+
+        val rootTag = psiFile.rootTag ?: return null
+        if (!isXmlFileOfType(rootTag)) {
+            return null
+        }
+        return rootTag.subTags
+            .map { convert(it, mapping) }
+    }
+
+    abstract fun uiNodeFactory(node: XmlTag): N
+    abstract fun propertyFactory(it: P, node: XmlTag): Any?
+    abstract fun structureTitleFor(tag: XmlTag): String
+    fun isXmlFileOfType(rootTag: XmlTag): Boolean {
+        return rootTag.name == rootTagName
+    }
+
+    private fun convert(
+        node: XmlTag,
+        mapping: IdentityHashMap<Node, UiPsiElementReference>
+    ): Node {
+        val props: Map<P, Any?> = propertyClass.sealedSubclasses
+            .mapNotNull {
+                it.objectInstance
+            }
+            .associateWith {
+                propertyFactory(it, node)
+            }
+
+        val out = Node(
+            null,
+            props,
+            node.subTags.map { convert(it, mapping) },
+            true // TODO
+        ).apply {
+            finalizeChildren()
+        }
+
+        mapping[out] = uiNodeFactory(node)
+
+        return out
+    }
 }

@@ -69,7 +69,7 @@ class LocateAction: AnAction() {
         val nodes = XmlFileType::class.sealedSubclasses
             .firstNotNullOfOrNull { type ->
                 requireNotNull(type.objectInstance)
-                    .tryConvert(project, xmlFile, mapping)
+                    .tryConvert(xmlFile, mapping)
             }
             ?.takeIf { it.isNotEmpty() }
             ?: return project.notify(

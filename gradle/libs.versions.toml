@@ -11,6 +11,7 @@ qodana = "2024.1.5"
 
 # libraries
 beanshell = "5934e52dd5e65b62f4ca57b423d845d486abf683"
+errorprone = "2.28.0"
 u4jregex = "67352f493146a4436c340c294a3f680a3281dde3"
 junitVideo = "2.0"
 remoteRobot = "0.11.23"
@@ -26,6 +27,7 @@ qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
 
 [libraries]
 beanshell = { group = "com.github.beanshell", name = "beanshell", version.ref = "beanshell" }
+errorprone = { group = "com.google.errorprone", name = "error_prone_annotations", version.ref = "errorprone" }
 u4jregex = { group = "com.github.TarCV", name = "u4j-regex", version.ref = "u4jregex" }
 jqwik = { group = "net.jqwik", name = "jqwik", version.ref = "jqwik" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api" }

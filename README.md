@@ -15,6 +15,9 @@ They provide the following features:
 * **Syntax highlighting and autocomplete for element selectors (UIAutomator selectors in Java IDEs only)** <br />
 ![Autocomplete & Highlighting](docs/Autocomplete.png)
 * **Improved structure navigation for XML UI snapshots** <br />
+  **Note:** When using with an old IDE or Kotlin plugin, navigation bar display might be broken - XML tag names
+  displayed without any UI element identifiers or texts (e.g. just `node` instead of `Button "ZERO"`). This is a known
+  issue that can be fixed by updating your Kotlin plugin and/or IDE (please see [KTIJ-27484](https://youtrack.jetbrains.com/issue/KTIJ-27484/) for details).<br />
 ![Structure navigation](docs/StructureNavigation.png)
 
 If for some reason `Locate Element` tool window is not enabled, you can open it from the View menu: <br />

@@ -18,20 +18,33 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
 import com.github.tarcv.testingteam.surveyoridea.filetypes.IAutSnapshot
+import com.github.tarcv.testingteam.surveyoridea.filetypes.UixSnapshot
 import com.github.tarcv.testingteam.surveyoridea.filetypes.XmlFileType
-import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.ActualUiElement
-import com.github.tarcv.testingteam.surveyoridea.filetypes.interfaces.RootUiElement
 import com.intellij.ide.navigationToolbar.StructureAwareNavBarModelExtension
 import com.intellij.lang.Language
 import com.intellij.lang.xml.XMLLanguage
 import com.intellij.openapi.util.Iconable
+import com.intellij.psi.PsiElement
 import com.intellij.psi.xml.XmlFile
 import com.intellij.psi.xml.XmlTag
-import com.intellij.util.xml.DomManager
 import javax.swing.Icon
 
 class UiAwareNavigationBar : StructureAwareNavBarModelExtension() {
     override val language: Language = XMLLanguage.INSTANCE
+
+    override fun isAcceptableLanguage(psiElement: PsiElement?): Boolean {
+        val language = psiElement?.language ?: return false
+        if (language !is XMLLanguage) {
+            return false
+        }
+        val rootTag = XmlFileType.rootTagFrom(psiElement)
+            ?: return false
+        return IAutSnapshot.isXmlFileOfType(rootTag) || UixSnapshot.isXmlFileOfType(rootTag)
+    }
+
+    override fun getPresentableText(o: Any?, forPopup: Boolean): String? {
+        return getPresentableText(o)
+    }
 
     override fun getPresentableText(o: Any?): String? {
         if (o is XmlFile) {
@@ -41,21 +54,13 @@ class UiAwareNavigationBar : StructureAwareNavBarModelExtension() {
             return null
         }
 
-        val domElement = DomManager.getDomManager(o.project)
-            .getDomElement(o)
-        if (domElement == null) {
-            val rootTag = XmlFileType.rootTagFrom(o) ?: return null
-            return if (IAutSnapshot.isXmlFileOfType(rootTag)) {
-                IAutSnapshot.structureTitleFor(o)
-            } else {
-                null
-            }
+        val rootTag = XmlFileType.rootTagFrom(o) ?: return null
+        return if (IAutSnapshot.isXmlFileOfType(rootTag)) {
+            IAutSnapshot.structureTitleFor(o)
+        } else if (UixSnapshot.isXmlFileOfType(rootTag)) {
+            UixSnapshot.structureTitleFor(o)
         } else {
-            return when (domElement) {
-                is RootUiElement -> o.containingFile.virtualFile?.presentableName ?: o.containingFile.name
-                is ActualUiElement -> domElement.presentation.elementName
-                else -> null
-            }
+            return null
         }
     }
 
