@@ -52,7 +52,7 @@ class LocatorTypeComboBoxAction: ComboBoxAction(), DumbAware {
             val service = project?.getService(LocateToolHoldingService::class.java)
                 ?: return@run false
             service.locatorType.let {
-                if (it != null && !ActionPlaces.isMainMenuOrActionSearch(e.place)) {
+                if (!ActionPlaces.isMainMenuOrActionSearch(e.place)) {
                     presentation.text = it.title
                 }
             }

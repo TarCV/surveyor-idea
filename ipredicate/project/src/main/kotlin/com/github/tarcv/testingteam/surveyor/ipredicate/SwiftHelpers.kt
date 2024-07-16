@@ -264,7 +264,7 @@ enum class ComparisonResult {
 const val NSLocalizedDescriptionKey = "NSLocalizedDescriptionKey"
 class NSError(
     type: String,
-    code: Int,
+    @Suppress("UNUSED_PARAMETER") code: Int,
     info: Map<String, Any>
 ): Exception(type + System.lineSeparator() + info) {
     val localizedDescription: String = info[NSLocalizedDescriptionKey]?.toString() ?: ""
@@ -275,8 +275,15 @@ class NSError(
         info: Map<String, Any>
     ): this(type.toString(), code, info)
 }
-fun GSPropertyListMake(obj: NSString, a1: Nothing?, asXml: Boolean, asDescription: Boolean, indent: Int, out: InOut<NSString>) {
-    require(a1 == null)
+fun GSPropertyListMake(
+    obj: NSString,
+    a1: Nothing?,
+    asXml: Boolean,
+    asDescription: Boolean,
+    @Suppress("UNUSED_PARAMETER") indent: Int,
+    out: InOut<NSString>
+) {
+    @Suppress("SENSELESS_COMPARISON") require(a1 == null)
     require(!asXml)
     require(asDescription)
     val result = if (obj.utf16.isEmpty()) {

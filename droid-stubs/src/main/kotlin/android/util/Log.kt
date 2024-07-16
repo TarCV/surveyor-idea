@@ -21,6 +21,7 @@ import com.github.tarcv.testingteam.surveyor.Logger
 
 class Log {
     companion object {
+        @Suppress("UNUSED_PARAMETER")
         @JvmStatic
         fun isLoggable(a: String, b: Int): Boolean = true
 

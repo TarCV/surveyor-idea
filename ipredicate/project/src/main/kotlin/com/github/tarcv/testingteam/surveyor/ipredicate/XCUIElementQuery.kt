@@ -39,9 +39,9 @@ internal data class XCUIElementQuery(
                 }
         }
 
-    open fun firstMatch(): XCUIElement = allElementsBoundByAccessibilityElement.first()
+    fun firstMatch(): XCUIElement = allElementsBoundByAccessibilityElement.first()
 
-    open fun descendantsMatchingType(type: XCUIElementType): XCUIElementQuery {
+    fun descendantsMatchingType(type: XCUIElementType): XCUIElementQuery {
         return copy(filters = filters + object : Resolver {
             override fun resolve(prevResults: List<XCUIElement>): List<XCUIElement> {
                 return prevResults
@@ -65,7 +65,7 @@ internal data class XCUIElementQuery(
         })
     }
 
-    open fun matchingPredicate(predicate: NSPredicate): XCUIElementQuery {
+    fun matchingPredicate(predicate: NSPredicate): XCUIElementQuery {
         return copy(filters = filters + object : Resolver {
             override fun resolve(prevResults: List<XCUIElement>): List<XCUIElement> {
                 return prevResults
