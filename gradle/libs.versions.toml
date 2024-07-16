@@ -14,7 +14,7 @@ errorprone = "2.30.0"
 u4jregex = "67352f493146a4436c340c294a3f680a3281dde3"
 junitVideo = "2.0"
 remoteRobot = "0.11.23"
-uiautomator = "2.2.0"
+uiautomator = "2.3.0"
 
 [plugins]
 aar2jar = { id = "com.stepango.aar2jar", version.ref = "aar2jar" }
