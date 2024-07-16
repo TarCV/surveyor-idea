@@ -32,7 +32,8 @@ fun NSStringCompareOptions.insert(item: StringCompareOption) {
     this.add(item)
 }
 
-class NSString private constructor(val utf16: StringUTF16View, unused: Nothing?): StringUTF16View by utf16 {
+class NSString private constructor(val utf16: StringUTF16View, @Suppress("UNUSED_PARAMETER") unused: Nothing?)
+    : StringUTF16View by utf16 {
     constructor(utf16: StringUTF16View): this(Collections.unmodifiableList(utf16), null)
 
     private val asString: String by lazy {
@@ -49,8 +50,9 @@ class NSString private constructor(val utf16: StringUTF16View, unused: Nothing?)
                 .let { NSString(it) }
         }
 
+        @Suppress("FunctionName")
         fun CompareOptions(flags: UInt = 0u): NSStringCompareOptions {
-            return StringCompareOption.values()
+            return StringCompareOption.entries
                 .filter { (flags and it.ordinal.toUInt()) == it.ordinal.toUInt() }
                 .toMutableSet()
         }
@@ -190,9 +192,10 @@ operator fun StringUTF16View.get(index: StringUTF16ViewIndex): UniChar = this[in
 
 @JvmInline
 value class StringUTF16ViewIndex(val index: Int): Comparable<StringUTF16ViewIndex> {
-    override fun compareTo(other: StringUTF16ViewIndex): Int = Integer.compare(index, other.index)
+    override fun compareTo(other: StringUTF16ViewIndex): Int = index.compareTo(other.index)
 }
 
+@Suppress("UnusedReceiverParameter")
 val StringUTF16View.startIndex: StringUTF16ViewIndex
     get() = StringUTF16ViewIndex(0)
 val StringUTF16View.endIndex: StringUTF16ViewIndex
@@ -200,16 +203,18 @@ val StringUTF16View.endIndex: StringUTF16ViewIndex
 
 fun StringUTF16View.index(from: Int, distance: UInt) = this.index(from, distance.toInt())
 
+@Suppress("UnusedReceiverParameter")
 fun StringUTF16View.index(from: Int, distance: Int): StringUTF16ViewIndex {
     return StringUTF16ViewIndex(from + distance)
 }
 
+@Suppress("UnusedReceiverParameter")
 fun StringUTF16View.index(from: StringUTF16ViewIndex, distance: Int): StringUTF16ViewIndex {
     return StringUTF16ViewIndex(from.index + distance)
 }
 
-fun StringUTF16ViewIndex.utf16Offset(unused: StringUTF16View): Int = this.index
-fun StringUTF16ViewIndex.utf16Offset(unused: NSString): Int = this.index
+fun StringUTF16ViewIndex.utf16Offset(@Suppress("UNUSED_PARAMETER") unused: StringUTF16View): Int = this.index
+fun StringUTF16ViewIndex.utf16Offset(@Suppress("UNUSED_PARAMETER") unused: NSString): Int = this.index
 
 fun NSString(format: String, vararg args: Any?): NSString {
     val specifierRegex = Regex("(?<!%)%(.)")

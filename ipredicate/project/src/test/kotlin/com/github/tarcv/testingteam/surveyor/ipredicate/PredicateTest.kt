@@ -31,22 +31,16 @@ private fun assertTrue(actual: Boolean, message: NSString) =
   assertTrue(actual, message.toString())
 
 private fun <T> assertEquals(expected: T, actual: T, message: NSString) {
-  assertEquals(toNSStringIfNeeded(expected), toNSStringIfNeeded(actual), message.toString())
-}
-
-private fun <T> toNSStringIfNeeded(expected: T) = if (expected is String) {
-  expected.toNSString()
-} else {
-  expected
+  assertEquals(expected, actual, message.toString())
 }
 
 @Suppress("JoinDeclarationAndAssignment")
 class PredicateTest {
   @Test
   fun testKVC() {
-    assertEquals("A Title".toNSString(), (dict["title".toNSString()]), "com.github.tarcv.testingteam.surveyor.ipredicate.valueForKeyPath: with string".toNSString())
-    assertEquals("A Title".toNSString(), (dict.valueForKeyPath("title".toNSString())), "com.github.tarcv.testingteam.surveyor.ipredicate.valueForKeyPath: with string".toNSString())
-    assertEquals("John".toNSString(), (dict.valueForKeyPath("Record1.Name".toNSString())), "com.github.tarcv.testingteam.surveyor.ipredicate.valueForKeyPath: with string".toNSString())
+    assertEquals("A Title".toNSString(), (dict["title".toNSString()] as NSString), "com.github.tarcv.testingteam.surveyor.ipredicate.valueForKeyPath: with string".toNSString())
+    assertEquals("A Title".toNSString(), (dict.valueForKeyPath("title".toNSString()) as NSString), "com.github.tarcv.testingteam.surveyor.ipredicate.valueForKeyPath: with string".toNSString())
+    assertEquals("John".toNSString(), (dict.valueForKeyPath("Record1.Name".toNSString()) as NSString), "com.github.tarcv.testingteam.surveyor.ipredicate.valueForKeyPath: with string".toNSString())
     assertEquals(30, dict.valueForKeyPath("Record2.Age".toNSString()) as Int, "com.github.tarcv.testingteam.surveyor.ipredicate.valueForKeyPath: with int".toNSString())
   }
 

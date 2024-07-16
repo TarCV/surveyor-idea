@@ -43,10 +43,7 @@ class LocateAction: AnAction() {
         val project = getEventProject(e)
         val service = project?.getService(LocateToolHoldingService::class.java) ?: return
         val locator = service.getCurrentLocator() ?: return
-        val locatorType = service.locatorType ?: return project.notify(
-            "Can't locate an element when no locator type is selected",
-            NotificationType.ERROR
-        )
+        val locatorType = service.locatorType
 
         // TODO: Check if locatorType supports current UI snapshot type
         val (editor, xmlFile: PsiFile) = FileEditorManager.getInstance(project).selectedEditors

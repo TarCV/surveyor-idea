@@ -61,7 +61,7 @@ class BySelectorProperties {
                     .let { arbitraries ->
                         when (arbitraries.size) {
                             1 -> arbitraries[0].map { listOf(it) }
-                            2 -> Combinators.combine(arbitraries[0], arbitraries[1]).`as` { a, b -> listOf(a, b) }
+                            2 -> Combinators.combine(arbitraries[0], arbitraries[1]).`as` { a, b -> listOf<Any?>(a, b) }
                             else -> TODO()
                         }
                     }
@@ -101,7 +101,7 @@ class BySelectorProperties {
                     .let { arbitraries ->
                         when (arbitraries.size) {
                             1 -> arbitraries[0].map { listOf(it) }
-                            2 -> Combinators.combine(arbitraries[0], arbitraries[1]).`as` { a, b -> listOf(a, b) }
+                            2 -> Combinators.combine(arbitraries[0], arbitraries[1]).`as` { a, b -> listOf<Any?>(a, b) }
                             else -> TODO()
                         }
                     }
