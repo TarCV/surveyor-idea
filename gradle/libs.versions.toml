@@ -11,7 +11,7 @@ qodana = "2024.1.5"
 
 # libraries
 beanshell = "5934e52dd5e65b62f4ca57b423d845d486abf683"
-errorprone = "2.28.0"
+errorprone = "2.29.1"
 u4jregex = "67352f493146a4436c340c294a3f680a3281dde3"
 junitVideo = "2.0"
 remoteRobot = "0.11.23"
