@@ -1,11 +1,11 @@
-name: Compare with Garnix artefact
+name: Compare with Garnix artifact
 on:
   check_run:
     types: [completed]
 
 jobs:
   verifyReproducible:
-    name: Compare with Garnix artefact
+    name: Compare with Garnix artifact
     if: >-
       github.event.check_run.app.name == 'Garnix CI'
       && contains(github.event.check_run.name, 'package default')
@@ -27,7 +27,7 @@ jobs:
           commit: ${{github.event.check_run.head_sha}}
           name: ".+[Ss]urveyor-\\d.+"
           name_is_regexp: true
-          path: gha-artefact
+          path: gha-artifact
       - uses: cachix/install-nix-action@V27
         with:
           extra_nix_config: |
@@ -38,23 +38,23 @@ jobs:
           if cat <<- 'EOF' | grep --perl-regexp --only-matching '\/nix\/store\/\K\S+(?=-gradleBuild)' | tail --lines=1 | curl "https://cache.garnix.io/$(cat).narinfo" | tee _narinfo; then
           ${{ github.event.check_run.output.text }}
           EOF
-            curl --output _artefact.nar "https://cache.garnix.io/$(grep --perl-regexp --only-matching 'URL:\s*\K\S+' <_narinfo)"
-            nix-store --restore ./artefact <_artefact.nar && rm _*
-            if [[ -f ./artefact ]]; then
-              # Received a .drv file instead of an out artefact directory
-              grep --perl-regexp --only-matching '\/nix\/store\/\K\S+(?=-gradleBuild)' <./artefact | tail --lines=1 | curl "https://cache.garnix.io/$(cat).narinfo" | tee _narinfo
-              curl --verbose --output _artefact.nar "https://cache.garnix.io/$(grep --perl-regexp --only-matching 'URL:\s*\K\S+' <_narinfo)"
-              rm ./artefact
-              nix-store --restore ./artefact <_artefact.nar && rm _*
+            curl --output _artifact.nar "https://cache.garnix.io/$(grep --perl-regexp --only-matching 'URL:\s*\K\S+' <_narinfo)"
+            nix-store --restore ./artifact <_artifact.nar && rm _*
+            if [[ -f ./artifact ]]; then
+              # Received a .drv file instead of an out artifact directory
+              grep --perl-regexp --only-matching '\/nix\/store\/\K\S+(?=-gradleBuild)' <./artifact | tail --lines=1 | curl "https://cache.garnix.io/$(cat).narinfo" | tee _narinfo
+              curl --verbose --output _artifact.nar "https://cache.garnix.io/$(grep --perl-regexp --only-matching 'URL:\s*\K\S+' <_narinfo)"
+              rm ./artifact
+              nix-store --restore ./artifact <_artifact.nar && rm _*
             fi
           else
             # Failed to get a valid NAR URL, so trying the long way for getting an artifact
             nix build --max-jobs 0 --print-build-logs .#defaultPackage.x86_64-linux
             # upload-artifact doesn't accept links
-            cp --dereference --recursive ./result ./artefact
+            cp --dereference --recursive ./result ./artifact
           fi
           ls --almost-all --format=long --recursive .
-          [[ -d ./artefact ]]
+          [[ -d ./artifact ]]
       - name: Compute sha256sum for the artifact from Garnix
         run: |
           echo 'sha256sum of the artifact built in Garnix:'
@@ -62,9 +62,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: artefact-from-garnix
-          path: ./artefact/*
+          name: artifact-from-garnix
+          path: ./artifact/*
       - name: Verify same (i.e. reproducible)
         run: |
-          cmp -b gha-artefact/*/*.zip artefact/*.zip
-          cmp -b ci/generated/project/*.kt artefact/*.kt
+          cmp -b gha-artifact/*/*.zip artifact/*.zip
+
+          pushd ci/generated/project/
+            for f in *.kt; do \
+              cmp -b "$f" "$GITHUB_WORKSPACE/artifact/$f";
+            done;
+          popd
