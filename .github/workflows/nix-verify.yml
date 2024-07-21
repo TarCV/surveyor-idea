@@ -58,7 +58,7 @@ jobs:
       - name: Compute sha256sum for the artifact from Garnix
         run: |
           echo 'sha256sum of the artifact built in Garnix:'
-          sha256sum -b "$(find artefact/*)"
+          find artifact/* -type f -exec sha256sum -b {} +
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
