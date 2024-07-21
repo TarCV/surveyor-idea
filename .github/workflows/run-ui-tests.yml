@@ -41,6 +41,7 @@ jobs:
     needs: getPlugin
     strategy:
       fail-fast: false
+      max-parallel: 8
       matrix:
         os: [ macos-13, ubuntu-latest, windows-latest ]
         ideDate: # Up to 2 versions per year, initial major ver release date should be not older than a year

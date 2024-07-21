@@ -75,10 +75,11 @@ jobs:
           FILENAME=`ls *.zip`
           echo "filename=${FILENAME:0:-4}" >> $GITHUB_OUTPUT
 
-      - name: Compute sha256sum for the artifact
+      - name: Compute sha256sum for the artifact and generated files
         run: |
-          echo 'sha256sum of the artifact (please compare this sum with the sum from Garnix workflow):'
-          sha256sum -b "$(find ./plugin/build/distributions/*)"
+          echo 'sha256sum of the artifact (please compare these sums with the sums from Garnix workflow):'
+          find ./plugin/build/distributions -type f -exec sha256sum -b {} +
+          find ./ci/generated -type f -exec sha256sum -b {} +
 
       # Store already-built plugin as an artifact for downloading
       - name: Upload artifact
