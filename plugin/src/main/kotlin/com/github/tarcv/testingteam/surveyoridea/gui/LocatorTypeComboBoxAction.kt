@@ -96,6 +96,5 @@ class SelectLocatorTypeAction(private val locatorType: LocatorType) : AnAction()
         val project = getEventProject(e)
         val service = project?.getService(LocateToolHoldingService::class.java) ?: return
         service.locatorType = locatorType
-        // TODO: update textarea highlighting language
     }
 }

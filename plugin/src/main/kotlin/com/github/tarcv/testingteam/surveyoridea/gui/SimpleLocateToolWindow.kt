@@ -21,7 +21,6 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiSelector
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.fileTypes.FileTypes
-import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.fileTypes.PlainTextFileType
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.NlsSafe
@@ -29,9 +28,7 @@ import com.intellij.openapi.util.text.StringUtil
 import com.intellij.ui.EditorTextField
 
 @Suppress("UnstableApiUsage")
-class SimpleLocateToolWindow(project: Project) : LocateToolWindow(project) {
-    override val fileType: LanguageFileType = PlainTextFileType.INSTANCE
-
+class SimpleLocateToolWindow(project: Project) : LocateToolWindow(project, PlainTextFileType.INSTANCE) {
     private val locatorText: @NlsSafe String
         get() = getPlainTextLocatorText()
 

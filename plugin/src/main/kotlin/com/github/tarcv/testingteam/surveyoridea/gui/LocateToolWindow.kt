@@ -34,11 +34,13 @@ import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.fileTypes.FileTypes
 import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.SimpleToolWindowPanel
 import com.intellij.openapi.ui.playback.commands.ActionCommand
 import com.intellij.openapi.util.SystemInfo
 import com.intellij.openapi.util.text.StringUtil
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.ui.EditorTextField
+import com.intellij.util.ui.components.BorderLayoutPanel
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
 import javax.swing.JComponent
@@ -46,19 +48,17 @@ import javax.swing.JPanel
 import javax.swing.KeyStroke
 
 
-abstract class LocateToolWindow(protected val project: Project) : LocatorTypeChangedListener {
-    private lateinit var content: JPanel
-    protected lateinit var locatorField: JPanel
-    private lateinit var toolbar: JComponent
+abstract class LocateToolWindow(
+    protected val project: Project,
+    droidSnapshotFileType: LanguageFileType
+) : SimpleToolWindowPanel(/* vertical = */ true, /* borderless = */ false), LocatorTypeChangedListener {
+    protected var locatorField: JPanel
+    val preferredFocusedComponent: JComponent
+        get() = locatorField
 
-    protected abstract val fileType: LanguageFileType
     private var locatorProvider: () -> String = { "" }
 
     init {
-        project.messageBus.connect().subscribe(LocatorTypeChangedListener.topic, this)
-    }
-
-    fun createUIComponents() {
         val actionToolbar = with(ActionManager.getInstance()) {
             createActionToolbar(
                 ActionPlaces.TOOLWINDOW_CONTENT,
@@ -66,10 +66,9 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
                 true
             )
         }
-        toolbar = actionToolbar.component
 
         // TODO: Set initial locator depending on the selected type
-        val editorField = EditorTextField("new UiSelector()", project, fileType).apply {
+        val editorField = EditorTextField("new UiSelector()", project, droidSnapshotFileType).apply {
             setOneLineMode(false)
         }
 
@@ -99,12 +98,25 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
             onLocatorTypeChanged(locatorType)
             registerToolWindow(this@LocateToolWindow)
         }
-        actionToolbar.setTargetComponent(editorField)
+
+        @Suppress("LeakingThis")
+        setContent(BorderLayoutPanel().apply {
+            addToCenter(editorField)
+        })
+
+        actionToolbar.targetComponent = editorField
+        @Suppress("LeakingThis") setToolbar(actionToolbar.component)
+
         locatorField = editorField
     }
 
     override fun onLocatorTypeChanged(newType: LocatorType?): Unit = invokeLater {
         val editorField = locatorField as EditorTextField
+        val oldCaretPosition = if (editorField.isFocusOwner) {
+            editorField.caretModel?.primaryCaret?.offset
+        } else {
+            null
+        }
         editorField.isEnabled = false
         try {
             when (newType) {
@@ -122,7 +134,19 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
                 }
             }
         } finally {
-            editorField.isEnabled = true
+            with(editorField) {
+                isEnabled = true
+                invokeLater { // TODO: Consider modality values everywhere
+                    if (oldCaretPosition != null) {
+                        try {
+                            setCaretPosition(oldCaretPosition)
+                        } catch (e: IllegalArgumentException) {
+                            // no-op
+                        }
+                        requestFocusInWindow()
+                    }
+                }
+            }
         }
     }
 
@@ -138,8 +162,6 @@ abstract class LocateToolWindow(protected val project: Project) : LocatorTypeCha
     fun getCurrentLocator(): String = locatorProvider().trim()
 
     abstract fun switchToDroidUiAutomator(editorField: EditorTextField)
-
-    fun getContent(): JPanel = content
 
     abstract fun getCurrentDroidUiAutomatorLocator(): String
 }
