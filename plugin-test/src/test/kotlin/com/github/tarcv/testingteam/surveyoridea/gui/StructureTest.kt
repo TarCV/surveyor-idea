@@ -120,18 +120,17 @@ class StructureTest : BaseTestProjectTests() {
                 // this is both an Act and an Assertion that this path exists
                 attempt(tries = 2) {
                     structureTree.expandAllWorkaround()
-                    structureTree.doubleClickPath(
+                    structureTree.doubleClickPath( // this method selects wrong item on the first try
                         *path,
                         fullMatch = true
                     )
-                    true
-                }
 
-                waitingAssertEquals(
-                    "Correct node should be selected",
-                    expectedNode.trimAllIndent()
-                ) {
-                    getSelectedXmlNodeOuterXml("editorWithSnapshot").trimAllIndent()
+                    waitingAssertEquals(
+                        "Correct node should be selected",
+                        expectedNode.trimAllIndent()
+                    ) {
+                        getSelectedXmlNodeOuterXml("editorWithSnapshot").trimAllIndent()
+                    }
                 }
             }
         }

@@ -53,7 +53,7 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
         println("Caching downloaded files at $cacheDir")
 
         val pathToIde: Path = with(requestedIdeCode) {
-            val ide = Ide.values().singleOrNull { it.code == this } ?: error("'$this' code is not supported")
+            val ide = Ide.entries.singleOrNull { it.code == this } ?: error("'$this' code is not supported")
             ideDownloader.getIde(ide, requestedIdeVersion, cacheDir)
         }
 
@@ -70,10 +70,6 @@ class LaunchIdeExtension : BeforeAllCallback, ExtensionContext.Store.CloseableRe
                 "idea.trust.all.projects" to "true",
                 "jb.consents.confirmation.enabled" to "false",
                 "jb.privacy.policy.text" to "<!--999.999-->",
-
-                // Disable native menus on Mac:
-                "apple.laf.useScreenMenuBar" to false,
-                "jbScreenMenuBar.enabled" to false,
 
                 // Disable 'Code with Me' tooltip:
                 "idea.suppressed.plugins.id" to "com.jetbrains.codeWithMe",
