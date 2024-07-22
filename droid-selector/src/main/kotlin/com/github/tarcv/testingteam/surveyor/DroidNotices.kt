@@ -10,8 +10,7 @@ object DroidNotices {
 
 private val droidUiAutomatorIntro = """
 depends on UIAutomator library which is covered by
-the following copyright and permission notices:
-""".trimStart()
+the following copyright and permission notices:""".trimStart()
 
 private val droidUiAutomatorNotices = """
 Copyright (C) 2014 The Android Open Source Project

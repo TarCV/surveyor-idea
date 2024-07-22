@@ -25,28 +25,94 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.ui.Gray
 import com.intellij.ui.IdeBorderFactory.createBorder
 import com.intellij.ui.components.JBList
+import com.intellij.ui.components.JBScrollPane
+import com.intellij.ui.components.JBTextArea
 import com.intellij.ui.scale.JBUIScale
 import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.UIUtil
-import java.awt.BorderLayout
-import javax.swing.*
+import com.intellij.util.ui.components.BorderLayoutPanel
+import java.awt.Font
+import javax.swing.Action
+import javax.swing.BorderFactory
+import javax.swing.JComponent
 import javax.swing.border.CompoundBorder
 
 class NoticeDialogWrapper : DialogWrapper(false) {
-    private lateinit var contentPane: JPanel
-    private lateinit var topPane: JPanel
-    private lateinit var listPane: JPanel
-    private lateinit var dialogIntro: JTextArea
-    private lateinit var introText: JTextArea
-    private lateinit var noticeList: JBList<Notice>
-    private lateinit var noticeText: JTextArea
+    private var introText: JBTextArea
+    private var noticeList: JBList<Notice>
+    private var noticeText: JBTextArea
 
     init {
         isModal = true
         title = "Licenses and Notices"
         setCancelButtonText("Close")
+
+        introText = JBTextArea().apply {
+            isEditable = false
+            lineWrap = true
+            margin.bottom = JBUIScale.scale(3)
+            minimumSize = JBUI.size(1, 12)
+            wrapStyleWord = true
+        }
+        noticeText = JBTextArea().apply {
+            border = CompoundBorder(BorderFactory.createLineBorder(Gray._200), JBUI.Borders.empty(3))
+            isEditable = false
+            font = Font.decode("JetBrains Mono")
+            rows = 10
+        }
+
+        noticeList = JBList<Notice>().apply {
+            background = UIUtil.getListBackground()
+            selectionBackground = UIUtil.getListSelectionBackground(true)
+
+            border = createBorder()
+
+            model = JBList.createDefaultListModel(
+                DroidNotices.uiAutomatorNotice,
+                IPredicateNotices.gnuStepNotice,
+                IPredicateNotices.wdaNotice
+            )
+
+            addListSelectionListener {
+                val notice = selectedValue
+                introText.text = "UI Surveyor plugin " + notice.introText
+                noticeText.text = notice.noticeText
+                noticeText.select(0, 0)
+            }
+        }
+
         init()
         pack()
+    }
+
+    override fun createCenterPanel(): JComponent {
+        val dialogIntro = JBTextArea().apply {
+            background = null
+            isEditable = false
+            lineWrap = true
+            minimumSize = JBUI.size(1, 12)
+            rows = 2
+            text = "UI Surveyor plugin depends on libraries " +
+                    "which are covered by the following copyright and permission notices:"
+            wrapStyleWord = true
+        }
+        val listPane = BorderLayoutPanel(0, 3).apply {
+            addToTop(dialogIntro)
+            addToCenter(noticeList)
+        }
+
+        val topPane = BorderLayoutPanel(0, 6).apply {
+            addToCenter(listPane)
+            addToBottom(introText)
+        }
+
+        return BorderLayoutPanel(0, 0).apply {
+            minimumSize = JBUI.size(124, 124)
+            preferredSize = JBUI.size(600, 450)
+
+            addToTop(topPane)
+            addToCenter(JBScrollPane(noticeText))
+        }
     }
 
     override fun show() {
@@ -57,50 +123,6 @@ class NoticeDialogWrapper : DialogWrapper(false) {
                 selectedIndex = 0
             }
         }
-    }
-
-    override fun createCenterPanel(): JComponent {
-        contentPane.apply {
-            topPane.apply {
-                (layout as BorderLayout).vgap = JBUIScale.scale(6)
-
-                dialogIntro.background = listPane.background
-
-                listPane.apply {
-                    (layout as BorderLayout).vgap = JBUIScale.scale(3)
-                }
-                noticeList.apply {
-                    background = UIUtil.getListBackground()
-                    selectionBackground = UIUtil.getListSelectionBackground(true)
-
-                    border = createBorder()
-
-                    model = JBList.createDefaultListModel(
-                        DroidNotices.uiAutomatorNotice,
-                        IPredicateNotices.gnuStepNotice,
-                        IPredicateNotices.wdaNotice
-                    )
-
-                    addListSelectionListener {
-                        val notice = noticeList.selectedValue
-                        introText.text = "UI Surveyor plugin " + notice.introText
-                        noticeText.text = notice.noticeText
-                        noticeText.select(0, 0)
-                    }
-                }
-            }
-
-            introText.apply {
-                margin.top = JBUIScale.scale(3)
-            }
-            noticeText.apply {
-                border = CompoundBorder(BorderFactory.createLineBorder(Gray._200), JBUI.Borders.empty(3))
-            }
-            (layout as BorderLayout).vgap = JBUIScale.scale(3)
-            preferredSize = JBUI.size(600, 450)
-        }
-
-        return contentPane
     }
 
     override fun createActions(): Array<Action> = arrayOf(cancelAction)
