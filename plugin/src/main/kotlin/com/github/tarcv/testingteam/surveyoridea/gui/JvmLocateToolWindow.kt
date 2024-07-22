@@ -22,7 +22,6 @@ import androidx.test.uiautomator.UiSelector
 import com.intellij.codeInsight.daemon.impl.analysis.JavaModuleGraphUtil
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.openapi.application.invokeLater
-import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.module.ModuleManager
 import com.intellij.openapi.module.ModuleTypeId
@@ -43,7 +42,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 
 @Suppress("UnstableApiUsage", "unused") // Used by string reference in LocateToolWindowFactory.createToolWindowContent
-class JvmLocateToolWindow(project: Project) : LocateToolWindow(project) {
+class JvmLocateToolWindow(project: Project) : LocateToolWindow(project, JavaFileType.INSTANCE) {
     companion object {
         const val OLD_MODULE_NAME = "UISurveyor_Highlighting"
         const val MODULE_NAME = "__UISurveyor_Highlighting"
@@ -55,8 +54,6 @@ class JvmLocateToolWindow(project: Project) : LocateToolWindow(project) {
             val docField = locatorField as EditorTextField
             return PsiDocumentManager.getInstance(project).getPsiFile(docField.document)
         }
-
-    override val fileType: LanguageFileType = JavaFileType.INSTANCE
 
     override fun switchToDroidUiAutomator(editorField: EditorTextField) {
         invokeLater {

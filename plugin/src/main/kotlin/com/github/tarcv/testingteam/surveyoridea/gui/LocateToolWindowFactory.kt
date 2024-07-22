@@ -17,13 +17,15 @@
  */
 package com.github.tarcv.testingteam.surveyoridea.gui
 
+import com.github.tarcv.testingteam.surveyoridea.services.LocatorTypeChangedListener
+import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.content.ContentFactory
 
 
-class LocateToolWindowFactory : ToolWindowFactory {
+class LocateToolWindowFactory : ToolWindowFactory, DumbAware {
     private val contentFactory = ContentFactory.getInstance()
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
@@ -34,7 +36,10 @@ class LocateToolWindowFactory : ToolWindowFactory {
         } else {
             SimpleLocateToolWindow(project)
         }
-        val content = contentFactory.createContent(locateToolWindow.getContent(), null, false)
+        project.messageBus.connect().subscribe(LocatorTypeChangedListener.topic, locateToolWindow)
+        val content = contentFactory.createContent(locateToolWindow, null, false).apply {
+            preferredFocusableComponent = locateToolWindow.preferredFocusedComponent
+        }
         toolWindow.contentManager.addContent(content)
     }
 
