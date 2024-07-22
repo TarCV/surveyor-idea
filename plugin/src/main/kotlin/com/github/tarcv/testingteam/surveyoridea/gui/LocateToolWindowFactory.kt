@@ -25,7 +25,7 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.content.ContentFactory
 
 
-class LocateToolWindowFactory : ToolWindowFactory {
+class LocateToolWindowFactory : ToolWindowFactory, DumbAware {
     private val contentFactory = ContentFactory.getInstance()
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {

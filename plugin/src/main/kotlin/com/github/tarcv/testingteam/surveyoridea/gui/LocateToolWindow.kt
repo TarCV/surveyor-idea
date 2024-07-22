@@ -124,7 +124,6 @@ abstract class LocateToolWindow(
                     switchToDroidUiAutomator(editorField)
                     locatorProvider = ::getCurrentDroidUiAutomatorLocator
                 }
-                // TODO: Don't require completed indexing when highlighting is not supported
                 IClassChainLocatorType, IPredicateLocatorType -> {
                     with(editorField) {
                         document = EditorFactory.getInstance().createDocument(StringUtil.convertLineSeparators(text))
