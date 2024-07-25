@@ -5,12 +5,12 @@
 ## [Unreleased]
 
 ### Added
-- Class chain and predicate query evaluation
+- Class chain and predicate query support
 
 ### Fixed
-- Double-click in Structure panel should now work for navigation inside a snapshot
+- Double-click in Structure panel should now work for navigating inside a snapshot
 - Mod+Enter keyboard shortcut previously sometimes changed the current selector
-- Added a note on minor incompatibility with old IDE/Kotlin plugin versions
+- Added a note on a minor incompatibility with old IDE/Kotlin plugin versions
 - Updated dependencies
 
 ## [1.0.2] - 2023-12-10
