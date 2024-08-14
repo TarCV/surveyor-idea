@@ -7,7 +7,6 @@ jqwik = "1.8.5"
 junit = "5.10.2"
 kotlin = "1.9.24"
 kover = "0.8.1"
-qodana = "2024.1.5"
 
 # libraries
 beanshell = "5934e52dd5e65b62f4ca57b423d845d486abf683"
@@ -23,7 +22,6 @@ changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
 gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
-qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
 
 [libraries]
 beanshell = { group = "com.github.beanshell", name = "beanshell", version.ref = "beanshell" }

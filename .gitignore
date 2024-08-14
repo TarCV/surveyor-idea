@@ -1,7 +1,6 @@
 .env
 .gradle
 .idea
-.qodana
 .jqwik-database
 build
 /plugin-test/screenshot
