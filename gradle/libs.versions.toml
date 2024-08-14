@@ -4,7 +4,7 @@ aar2jar = "31c2b585b10b23365d73ded239b979881b8a9065"
 changelog = "2.2.0"
 gradleIntelliJPlugin = "1.17.4"
 jqwik = "1.8.5"
-junit = "5.10.2"
+junit = "5.11.0"
 kotlin = "1.9.24"
 kover = "0.8.1"
 
