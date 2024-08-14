@@ -10,8 +10,6 @@ plugins {
     alias(libs.plugins.gradleIntelliJPlugin) apply false
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     alias(libs.plugins.changelog) apply false
-    // Gradle Qodana Plugin
-    alias(libs.plugins.qodana)
     // Gradle Kover Plugin
     alias(libs.plugins.kover)
 
