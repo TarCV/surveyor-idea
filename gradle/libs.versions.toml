@@ -6,7 +6,7 @@ gradleIntelliJPlugin = "1.17.4"
 jqwik = "1.8.5"
 junit = "5.10.2"
 kotlin = "1.9.24"
-kover = "0.8.1"
+kover = "0.8.3"
 
 # libraries
 beanshell = "5934e52dd5e65b62f4ca57b423d845d486abf683"
