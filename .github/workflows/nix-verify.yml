@@ -28,7 +28,7 @@ jobs:
           name: ".+[Ss]urveyor-\\d.+"
           name_is_regexp: true
           path: gha-artifact
-      - uses: cachix/install-nix-action@V27
+      - uses: cachix/install-nix-action@V28
         with:
           extra_nix_config: |
             extra-substituters = https://cache.garnix.io
