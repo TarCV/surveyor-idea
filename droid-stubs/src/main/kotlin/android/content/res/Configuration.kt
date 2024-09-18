@@ -15,17 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package android.view
+package android.content.res
 
-import android.content.Context
+import android.util.DisplayMetrics
 
-@Suppress("UNUSED_PARAMETER")
-class ViewConfiguration {
-    companion object {
-        @JvmStatic
-        fun get(context: Context) = ViewConfiguration()
-
-        @JvmStatic
-        fun getLongPressTimeout(): Int = 500
-    }
+class Configuration {
+    @JvmField
+    val densityDpi: Int = DisplayMetrics.DENSITY_DEFAULT
 }

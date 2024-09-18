@@ -6,7 +6,7 @@ import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.LocateElementToolW
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.locateElementToolWindow
 import com.github.tarcv.testingteam.surveyoridea.trimAllIndent
-import com.github.tarcv.testingteam.surveyoridea.waitingAssertEquals
+import com.github.tarcv.testingteam.surveyoridea.waitingAssertion
 import com.intellij.remoterobot.fixtures.ComponentFixture
 import com.intellij.remoterobot.fixtures.HeavyWeightWindowFixture
 import com.intellij.remoterobot.utils.Locators
@@ -31,46 +31,51 @@ class LocateActionUiTests : BaseTestProjectTests() {
         @JvmStatic
         fun locationExamples(): List<LocationSetupData> {
             return buildList {
-                addDroidAutomatorExamples()
+                addDroidAutomatorExamples(droidAutomatorSnapshotFile)
+                addDroidAutomatorExamples(droidAutomator23SnapshotFile)
                 addIPredicateExamples()
                 this.addIClasschainExamples()
             }
         }
 
-        private fun MutableList<LocationSetupData>.addDroidAutomatorExamples() {
-            val expectedTag = """
+        private fun MutableList<LocationSetupData>.addDroidAutomatorExamples(snaphostFile: String) {
+            val expectedTagStart = """
                                     <node index="4" text="-0.00" resource-id="com.github.tarcv.converter:id/celsiusText"
                                         class="android.widget.EditText" package="com.github.tarcv.converter" content-desc=""
                                         checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
                                         focused="true" scrollable="false" long-clickable="true" password="false"
-                                        selected="false" bounds="[250,933][830,1057]"/>
-                                    """.trimAllIndent()
+                                        selected="false"
+                                    """
+            val expectedTagMiddle = """bounds="[250,933][830,1057]""""
             val singleLineSelector = """new UiSelector().resourceIdMatches(".+/celsiusText")"""
             add(
                 LocationSetupData(
-                    droidAutomatorSnapshotFile,
+                    snaphostFile,
                     null,
                     singleLineSelector,
-                    expectedTag
+                    expectedTagStart,
+                    expectedTagMiddle
                 )
             )
             add(
                 LocationSetupData(
-                    droidAutomatorSnapshotFile,
+                    snaphostFile,
                     null,
                     """new UiSelector()${'\n'}.resourceIdMatches(${'\n'}".+/celsiusText")""",
-                    expectedTag
+                    expectedTagStart,
+                    expectedTagMiddle
                 )
             )
             add(
                 LocationSetupData(
-                    droidAutomatorSnapshotFile,
+                    snaphostFile,
                     {
                         selectLocatorType(ipredicateSelectorType)
                         selectLocatorType(droidAutomatorSelectorType)
                     },
                     singleLineSelector,
-                    expectedTag
+                    expectedTagStart,
+                    expectedTagMiddle
                 )
             )
         }
@@ -83,7 +88,8 @@ class LocateActionUiTests : BaseTestProjectTests() {
                     iPredicateSnapshotFile,
                     ipredicateSelectorType,
                     """type = 'XCUIElementTypeButton' AND${'\n'}name BEGINSWITH 'Scroll'""",
-                    expectedTag
+                    expectedTag,
+                    ""
                 )
             )
             add(
@@ -91,7 +97,8 @@ class LocateActionUiTests : BaseTestProjectTests() {
                     iPredicateSnapshotFile,
                     ipredicateSelectorType,
                     """type = 'XCUIElementTypeButton' AND name BEGINSWITH 'Scroll'""",
-                    expectedTag
+                    expectedTag,
+                    ""
                 )
             )
         }
@@ -106,7 +113,8 @@ class LocateActionUiTests : BaseTestProjectTests() {
                     iPredicateSnapshotFile,
                     iClasschainSelectorType,
                     singleLineSelector,
-                    expectedTag
+                    expectedTag,
+                    ""
                 )
             )
             add(
@@ -114,7 +122,8 @@ class LocateActionUiTests : BaseTestProjectTests() {
                     iPredicateSnapshotFile,
                     iClasschainSelectorType,
                     """XCUIElementTypeWindow/**/XCUIElementTypeButton[`name${'\n'}BEGINSWITH 'Attr'`]""",
-                    expectedTag
+                    expectedTag,
+                    ""
                 )
             )
             add(
@@ -126,23 +135,26 @@ class LocateActionUiTests : BaseTestProjectTests() {
                         selectLocatorType(iClasschainSelectorType)
                     },
                     singleLineSelector,
-                    expectedTag
+                    expectedTag,
+                    ""
                 )
             )
         }
     }
 
     data class LocationSetupData(
-        var snapshotFile: String,
-        var toolwindowSetup: LocateElementToolWindowFixture.() -> Unit,
-        var locator: String,
-        var expectedTag: String
+        val snapshotFile: String,
+        val toolwindowSetup: LocateElementToolWindowFixture.() -> Unit,
+        val locator: String,
+        val expectedNodeStartsWith: String,
+        val expectedNodeContains: String
     ) {
         constructor(
             snapshotFile: String,
             type: String?,
             locator: String,
-            expectedTag: String
+            expectedNodeStartsWith: String,
+            expectedNodeContains: String
         ) : this(
             snapshotFile,
             {
@@ -151,7 +163,8 @@ class LocateActionUiTests : BaseTestProjectTests() {
                 }
             },
             locator,
-            expectedTag
+            expectedNodeStartsWith,
+            expectedNodeContains
         )
     }
 
@@ -204,8 +217,9 @@ class LocateActionUiTests : BaseTestProjectTests() {
                         <node index="1" text="ICE MELTING (0°C)" resource-id="" class="android.widget.Button"
                             package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
                             clickable="true" enabled="true" focusable="true" focused="false" scrollable="false"
-                            long-clickable="false" password="false" selected="false" bounds="[618,501][750,897]"/>
-                """.trimAllIndent()
+                            long-clickable="false" password="false" selected="false"
+                """,
+                """bounds="[618,501][750,897]""""
             )
         )
     }
@@ -298,11 +312,11 @@ class LocateActionUiTests : BaseTestProjectTests() {
             }
             triggerActionWithBlock()
 
-            waitingAssertEquals(
+            waitingAssertion(
                 "Correct node should be selected.",
-                locationSetupData.expectedTag
-            ) {
-                getSelectedXmlNodeOuterXml(editorWithSnapshot).trimAllIndent()
+                { getSelectedXmlNodeOuterXml(editorWithSnapshot).trimAllIndent() }
+            ) { it.startsWith(locationSetupData.expectedNodeStartsWith.trimAllIndent()) &&
+                    it.contains(locationSetupData.expectedNodeContains.trimAllIndent())
             }
         }
     }

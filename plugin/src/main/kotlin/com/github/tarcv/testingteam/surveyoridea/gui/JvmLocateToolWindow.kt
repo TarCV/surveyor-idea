@@ -61,6 +61,7 @@ class JvmLocateToolWindow(project: Project) : LocateToolWindow(project, JavaFile
             removeModuleIfExists(MODULE_NAME)
             val module = createModuleForHighlighting()
 
+            // TODO: Move this call to a non-EDT thread
             val modulePsi = JavaModuleGraphUtil.findDescriptorByModule(module, false)
 
             val importedClasses = listOf(UiSelector::class.java, By::class.java)

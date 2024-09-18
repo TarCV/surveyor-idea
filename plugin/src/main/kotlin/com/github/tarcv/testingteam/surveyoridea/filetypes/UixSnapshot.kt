@@ -47,6 +47,8 @@ object UixSnapshot: XmlFileType<UixNode, DroidProperty<*>>(
         is DroidProperty.IS_SCROLLABLE -> getPropertyFromTag(it, node, "scrollable")
         is DroidProperty.IS_SELECTED -> getPropertyFromTag(it, node, "selected")
         is DroidProperty.TEXT -> getPropertyFromTag(it, node, "text")
+        is DroidProperty.DISPLAY_ID -> getPropertyFromTag(it, node, "display-id") ?: 0
+        is DroidProperty.HINT -> getPropertyFromTag(it, node, "hint")
     }
 
     override fun structureTitleFor(tag: XmlTag): String = buildString {

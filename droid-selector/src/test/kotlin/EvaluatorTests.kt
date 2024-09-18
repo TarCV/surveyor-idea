@@ -43,7 +43,8 @@ class EvaluatorTests {
             DroidProperty.RESOURCE_ID to "id",
             DroidProperty.IS_SCROLLABLE to false,
             DroidProperty.IS_SELECTED to false,
-            DroidProperty.TEXT to "text"
+            DroidProperty.TEXT to "text",
+            DroidProperty.DISPLAY_ID to 0,
         )
         Node(null, properties, emptyList(), true)
     }

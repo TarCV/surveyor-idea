@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -17,8 +17,15 @@
  */
 package android.content
 
+import android.app.Service
 import android.content.res.Resources
+import android.hardware.display.DisplayManager
 
 class Context {
     val resources = Resources()
+
+    fun getSystemService(service: String): Any = when (service) {
+        Service.DISPLAY_SERVICE -> DisplayManager()
+        else -> throw IllegalArgumentException(service)
+    }
 }

@@ -30,6 +30,8 @@ open class BaseTestProjectTests {
     companion object {
         @JvmStatic
         protected val droidAutomatorSnapshotFile = """demo/snapshots/dump.uix"""
+        @JvmStatic
+        protected val droidAutomator23SnapshotFile = """demo/snapshots/dump23.uix"""
 
         @JvmStatic
         protected val iPredicateSnapshotFile = """demo/snapshots/main.xml"""
