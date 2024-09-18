@@ -37,6 +37,9 @@ val singleRootNode = Node(
 )
 
 fun generateValueForProperty(it: DroidProperty<*>): Any {
+    if (it == DroidProperty.CLASS_NAME) {
+        return (generateValueFor(Class::class.java) as Class<*>).name
+    }
     val propertiesType = it.javaClass.genericInterfaces.single() as ParameterizedType
     return generateValueFor(propertiesType.actualTypeArguments.single() as Class<*>)
 }
@@ -60,7 +63,9 @@ fun commonArbitraryFor(it: Class<*>?, expectsPattern: Boolean): Arbitrary<out An
     }
 
     it.isAssignableFrom(java.lang.String::class.java) || it.isAssignableFrom(String::class.java) -> {
-        Arbitraries.strings().filter { it.isNotEmpty() }
+        Arbitraries.strings()
+            .edgeCases { it.add(generatedStringPropertyValue) }
+            .filter { it.isNotEmpty() }
     }
 
     it.isAssignableFrom(java.lang.Integer::class.java) || it.isAssignableFrom(Int::class.java) -> {
@@ -70,11 +75,12 @@ fun commonArbitraryFor(it: Class<*>?, expectsPattern: Boolean): Arbitrary<out An
     else -> Arbitraries.defaultFor(it)
 }
 
+private const val generatedStringPropertyValue = "foo"
 private fun generateValueFor(type: Class<*>): Any {
     return type.let {
         when {
             it.isAssignableFrom(Class::class.java) -> Node::class.java
-            it.isAssignableFrom(java.lang.String::class.java) || it.isAssignableFrom(String::class.java) -> "foo"
+            it.isAssignableFrom(java.lang.String::class.java) || it.isAssignableFrom(String::class.java) -> generatedStringPropertyValue
             it.isAssignableFrom(java.lang.Integer::class.java) || it.isAssignableFrom(Int::class.java) -> 0
             it.isAssignableFrom(java.lang.Boolean::class.java) || it.isAssignableFrom(Boolean::class.java) -> false
             else -> TODO()
