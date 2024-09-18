@@ -32,7 +32,9 @@ class Node(
     fun <T> getProperty(key: Property<T>, clazz: Class<T>): T {
         val found = properties[key]
         return if (found == null && !properties.containsKey(key)) {
-            throw InvalidSnapshotException("${key.javaClass.simpleName} property is not supported within the current snapshot format")
+            throw InvalidSnapshotException(
+                "${key.javaClass.simpleName} property is not supported within the current snapshot"
+            )
         } else {
             found as T
         }
