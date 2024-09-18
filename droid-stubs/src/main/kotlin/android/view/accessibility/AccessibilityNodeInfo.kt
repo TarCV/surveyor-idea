@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -20,6 +20,8 @@ package android.view.accessibility
 import com.github.tarcv.testingteam.surveyor.Node
 import com.github.tarcv.testingteam.surveyor.DroidProperty.ACCESSIBILITY_DESCRIPTION
 import com.github.tarcv.testingteam.surveyor.DroidProperty.CLASS_NAME
+import com.github.tarcv.testingteam.surveyor.DroidProperty.DISPLAY_ID
+import com.github.tarcv.testingteam.surveyor.DroidProperty.HINT
 import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_CHECKABLE
 import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_CHECKED
 import com.github.tarcv.testingteam.surveyor.DroidProperty.IS_CLICKABLE
@@ -33,7 +35,7 @@ import com.github.tarcv.testingteam.surveyor.DroidProperty.PACKAGE_NAME
 import com.github.tarcv.testingteam.surveyor.DroidProperty.RESOURCE_ID
 import com.github.tarcv.testingteam.surveyor.DroidProperty.TEXT
 
-class AccessibilityNodeInfo(val node: Node) {
+data class AccessibilityNodeInfo(val node: Node) {
     companion object {
         @JvmStatic
         fun obtain(node: AccessibilityNodeInfo) = node
@@ -123,6 +125,15 @@ class AccessibilityNodeInfo(val node: Node) {
             return node.getProperty(IS_CHECKABLE)
         }
 
+    val displayId: Int
+        get() = node.getProperty(DISPLAY_ID)
+
+    val hintText: CharSequence
+        get() = node.getProperty(HINT)
+
+    val window by lazy {
+        AccessibilityWindowInfo(this)
+    }
 
     fun getChild(index: Int): AccessibilityNodeInfo = AccessibilityNodeInfo(node.children[index])
 

@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -32,7 +32,25 @@ class Log {
         }
 
         @JvmStatic
+        fun e(tag: String, message: String): Int {
+            Logger.info("$tag $message")
+            return 0
+        }
+
+        @JvmStatic
         fun i(tag: String, message: String): Int {
+            Logger.info("$tag $message")
+            return 0
+        }
+
+        @JvmStatic
+        fun i(tag: String, message: String, exception: Throwable): Int {
+            Logger.info("$tag $message $exception")
+            return 0
+        }
+
+        @JvmStatic
+        fun w(tag: String, message: String): Int {
             Logger.info("$tag $message")
             return 0
         }

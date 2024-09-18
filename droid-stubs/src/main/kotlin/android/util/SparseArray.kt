@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -23,25 +23,26 @@ class SparseArray<E: Any> private constructor(private val synchronizedMap: Mutab
     constructor() : this(synchronizedMap(LinkedHashMap()))
 
     override fun clone(): SparseArray<E> {
-        @Suppress("UNCHECKED_CAST")
         return SparseArray(synchronizedMap)
     }
 
-    fun indexOfKey(key: Int): Int = synchronizedMap.keys.indexOf(key)
+    fun indexOfKey(key: Int): Int = synchronized(synchronizedMap) {
+        synchronizedMap.keys.indexOf(key)
+    }
 
     fun get(key: Int, defaultValue: E?): E? {
-        return if (synchronizedMap.containsKey(key)) {
-            synchronizedMap[key]
-        } else {
-            defaultValue
-        }
+        return synchronizedMap.getOrDefault(key, defaultValue)
     }
 
     fun put(key: Int, value: E) {
         synchronizedMap[key] = value
     }
 
-    fun keyAt(index: Int): Int = synchronizedMap.keys.elementAt(index)
+    fun keyAt(index: Int): Int = synchronized(synchronizedMap) {
+        synchronizedMap.keys.elementAt(index)
+    }
 
-    fun valueAt(index: Int): E = synchronizedMap.values.elementAt(index)
+    fun valueAt(index: Int): E = synchronized(synchronizedMap) {
+        synchronizedMap.values.elementAt(index)
+    }
 }

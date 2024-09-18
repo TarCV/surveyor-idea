@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- Updated to UiAutomator 2.3 and added support for new view attributes
+
 ### Fixed
 - Updated dependencies
 

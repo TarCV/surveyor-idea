@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -17,4 +17,8 @@
  */
 package android.view.accessibility
 
-class AccessibilityWindowInfo(val root: AccessibilityNodeInfo)
+// This class should be created by calling root.window
+data class AccessibilityWindowInfo internal constructor(val root: AccessibilityNodeInfo) {
+    val displayId: Int
+        get() = root.displayId
+}

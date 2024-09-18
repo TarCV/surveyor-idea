@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<hierarchy rotation="0">
+    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.github.tarcv.converter"
+          content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+          focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+          visible-to-user="true" bounds="[0,0][1080,2009]" drawing-order="0" hint="" display-id="0">
+        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.github.tarcv.converter"
+              content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+              focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+              visible-to-user="true" bounds="[0,0][1080,2009]" drawing-order="1" hint="" display-id="0">
+            <node index="0" text="" resource-id="" class="android.widget.FrameLayout"
+                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                  clickable="false" enabled="true" focusable="false" focused="false" scrollable="false"
+                  long-clickable="false" password="false" selected="false" visible-to-user="true"
+                  bounds="[0,66][1080,2009]" drawing-order="2" hint="" display-id="0">
+                <node index="0" text="" resource-id="com.github.tarcv.converter:id/decor_content_parent"
+                      class="android.view.ViewGroup" package="com.github.tarcv.converter" content-desc=""
+                      checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                      focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+                      visible-to-user="true" bounds="[0,66][1080,2009]" drawing-order="1" hint="" display-id="0">
+                    <node index="0" text="" resource-id="com.github.tarcv.converter:id/action_bar_container"
+                          class="android.widget.FrameLayout" package="com.github.tarcv.converter" content-desc=""
+                          checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                          focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+                          visible-to-user="true" bounds="[0,66][1080,220]" drawing-order="2" hint="" display-id="0">
+                        <node index="0" text="" resource-id="com.github.tarcv.converter:id/action_bar"
+                              class="android.view.ViewGroup" package="com.github.tarcv.converter" content-desc=""
+                              checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                              focused="false" scrollable="false" long-clickable="false" password="false"
+                              selected="false" visible-to-user="true" bounds="[0,66][1080,220]" drawing-order="1"
+                              hint=""
+                              display-id="0">
+                            <node index="0" text="Converter" resource-id="" class="android.widget.TextView"
+                                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                                  clickable="false" enabled="true" focusable="false" focused="false" scrollable="false"
+                                  long-clickable="false" password="false" selected="false" visible-to-user="true"
+                                  bounds="[44,106][284,180]" drawing-order="1" hint="" display-id="0"/>
+                        </node>
+                    </node>
+                    <node index="1" text="" resource-id="android:id/content" class="android.widget.FrameLayout"
+                          package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                          clickable="false" enabled="true" focusable="false" focused="false" scrollable="false"
+                          long-clickable="false" password="false" selected="false" visible-to-user="true"
+                          bounds="[0,220][1080,2009]" drawing-order="1" hint="" display-id="0">
+                        <node index="0" text="" resource-id="com.github.tarcv.converter:id/rootLayout"
+                              class="android.view.ViewGroup" package="com.github.tarcv.converter" content-desc=""
+                              checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                              focused="false" scrollable="false" long-clickable="false" password="false"
+                              selected="false" visible-to-user="true" bounds="[0,220][1080,2009]" drawing-order="1"
+                              hint="" display-id="0">
+                            <node index="0" text="ABSOLUTE ZERO" resource-id="" class="android.widget.Button"
+                                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                                  clickable="true" enabled="true" focusable="true" focused="false" scrollable="false"
+                                  long-clickable="false" password="false" selected="false" visible-to-user="true"
+                                  bounds="[0,528][110,897]" drawing-order="8" hint="" display-id="0"/>
+                            <node index="1" text="ICE MELTING (0°C)" resource-id="" class="android.widget.Button"
+                                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                                  clickable="true" enabled="true" focusable="true" focused="false" scrollable="false"
+                                  long-clickable="false" password="false" selected="false" visible-to-user="true"
+                                  bounds="[618,501][750,897]" drawing-order="10" hint="" display-id="0"/>
+                            <node index="2" text="WATER BOILING" resource-id="" class="android.widget.Button"
+                                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                                  clickable="true" enabled="true" focusable="true" focused="false" scrollable="false"
+                                  long-clickable="false" password="false" selected="false" visible-to-user="true"
+                                  bounds="[852,543][984,897]" drawing-order="12" hint="" display-id="0"/>
+                            <node index="3" text="" resource-id="com.github.tarcv.converter:id/aboveDivider"
+                                  class="android.view.View" package="com.github.tarcv.converter" content-desc=""
+                                  checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                                  focused="false" scrollable="false" long-clickable="false" password="false"
+                                  selected="false" visible-to-user="true" bounds="[0,919][1080,922]" drawing-order="4"
+                                  hint="" display-id="0"/>
+                            <node index="4" text="-0.00" resource-id="com.github.tarcv.converter:id/celsiusText"
+                                  class="android.widget.EditText" package="com.github.tarcv.converter" content-desc=""
+                                  checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
+                                  focused="true" scrollable="false" long-clickable="true" password="false"
+                                  selected="false" visible-to-user="true" bounds="[250,933][830,1057]" drawing-order="1"
+                                  hint="Celsius" display-id="0"/>
+                            <node index="5" text="" resource-id="com.github.tarcv.converter:id/seekBar"
+                                  class="android.widget.SeekBar" package="com.github.tarcv.converter" content-desc=""
+                                  checkable="false" checked="false" clickable="false" enabled="true" focusable="true"
+                                  focused="false" scrollable="false" long-clickable="false" password="false"
+                                  selected="false" visible-to-user="true" bounds="[0,1090][1080,1140]" drawing-order="2"
+                                  hint="" display-id="0"/>
+                            <node index="6" text="32.00" resource-id="com.github.tarcv.converter:id/fahrenheitText"
+                                  class="android.widget.EditText" package="com.github.tarcv.converter" content-desc=""
+                                  checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
+                                  focused="false" scrollable="false" long-clickable="true" password="false"
+                                  selected="false" visible-to-user="true" bounds="[250,1140][830,1264]"
+                                  drawing-order="3"
+                                  hint="Fahrenheit" display-id="0"/>
+                            <node index="7" text="" resource-id="com.github.tarcv.converter:id/belowDivider"
+                                  class="android.view.View" package="com.github.tarcv.converter" content-desc=""
+                                  checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                                  focused="false" scrollable="false" long-clickable="false" password="false"
+                                  selected="false" visible-to-user="true" bounds="[0,1286][1080,1289]" drawing-order="5"
+                                  hint="" display-id="0"/>
+                            <node index="8" text="0°F" resource-id="" class="android.widget.Button"
+                                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                                  clickable="true" enabled="true" focusable="true" focused="false" scrollable="false"
+                                  long-clickable="false" password="false" selected="false"
+                                  visible-to-user="true" bounds="[576,1311][708,1553]" drawing-order="9" hint=""
+                                  display-id="0"/>
+                            <node index="9" text="HUMAN BODY" resource-id="" class="android.widget.Button"
+                                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                                  clickable="true" enabled="true" focusable="true" focused="false" scrollable="false"
+                                  long-clickable="false" password="false" selected="false"
+                                  visible-to-user="true" bounds="[705,1311][837,1630]" drawing-order="11" hint=""
+                                  display-id="0"/>
+                            <node NAF="true" index="9" text="" resource-id="" class="android.widget.Button"
+                                  package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false"
+                                  clickable="true" enabled="true" focusable="true" focused="false" scrollable="false"
+                                  long-clickable="false" password="false" selected="false"
+                                  visible-to-user="true" bounds="[705,1311][837,1630]" drawing-order="14" hint=""
+                                  display-id="0"/>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </node>
+        <node index="1" text="" resource-id="android:id/statusBarBackground" class="android.view.View"
+              package="com.github.tarcv.converter" content-desc="" checkable="false" checked="false" clickable="false"
+              enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false"
+              password="false" selected="false" visible-to-user="true" bounds="[0,0][1080,66]" drawing-order="0"
+              hint="" display-id="0"/>
+    </node>
+</hierarchy>

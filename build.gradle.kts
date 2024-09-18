@@ -53,7 +53,13 @@ allprojects {
                 includeGroup("com.github.TarCV")
             }
         }
-        google()
+        google {
+            metadataSources {
+                // Redirection breaks aar2jar transformation
+                ignoreGradleMetadataRedirection()
+                mavenPom()
+            }
+        }
     }
 
     tasks {

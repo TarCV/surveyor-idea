@@ -15,17 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package android.view
+package android.view.accessibility
 
-import android.content.Context
-
-@Suppress("UNUSED_PARAMETER")
-class ViewConfiguration {
-    companion object {
-        @JvmStatic
-        fun get(context: Context) = ViewConfiguration()
-
-        @JvmStatic
-        fun getLongPressTimeout(): Int = 500
-    }
+enum class AccessibilityEvent {
+    TYPE_VIEW_TEXT_TRAVERSED_AT_MOVEMENT_GRANULARITY,
+    TYPE_WINDOW_STATE_CHANGED,
 }

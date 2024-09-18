@@ -1,9 +1,9 @@
 package com.github.tarcv.testingteam.surveyoridea.gui
 
-import com.github.tarcv.testingteam.surveyoridea.ScreenshotTest
 import com.github.tarcv.testingteam.surveyoridea.gui.fixtures.idea
 import com.github.tarcv.testingteam.surveyoridea.trimAllIndent
 import com.github.tarcv.testingteam.surveyoridea.waitingAssertEquals
+import com.github.tarcv.testingteam.surveyoridea.waitingAssertion
 import com.intellij.remoterobot.RemoteRobot
 import com.intellij.remoterobot.client.IdeaSideException
 import com.intellij.remoterobot.fixtures.ActionButtonFixture.PopState.PUSHED
@@ -17,16 +17,21 @@ import com.intellij.remoterobot.search.locators.byXpath
 import com.intellij.remoterobot.steps.CommonSteps
 import com.intellij.remoterobot.utils.attempt
 import com.intellij.remoterobot.utils.waitForIgnoringError
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 import java.time.Duration
 
 class StructureTest : BaseTestProjectTests() {
-    @Test
-    fun testDroidSnapshotNavigationFromStructure() =
+    @MethodSource("getDroidAutomatorSnapshotVariant")
+    @ParameterizedTest
+    // TODO: Test navigation for the bar for both snapshot types
+    fun testDroidSnapshotNavigationFromStructure(snapshot: Snapshot) =
         verifySnapshotNavigationFromStructure(
-            droidAutomatorSnapshotFile,
+            snapshot.relativePath,
             arrayOf(
-                "dump.uix",
+                snapshot.relativePath.substringAfterLast('/'),
                 "FrameLayout",
                 "LinearLayout",
                 "FrameLayout",
@@ -40,16 +45,19 @@ class StructureTest : BaseTestProjectTests() {
                               class="android.widget.EditText" package="com.github.tarcv.converter" content-desc=""
                               checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
                               focused="false" scrollable="false" long-clickable="true" password="false"
-                              selected="false" bounds="[250,1140][830,1264]"/>
-                """
+                              selected="false"
+                """,
+            """bounds="[250,1140][830,1264]""""
         )
 
-    @ScreenshotTest
-    fun screenshotDroidSnapshotNavigationFromStructure() = with(remoteRobot) {
+    @MethodSource("getDroidAutomatorSnapshotVariant")
+    @Tag(REQUIRES_SCREENSHOT_ASSUMPTIONS_TAG)
+    @ParameterizedTest
+    fun screenshotDroidSnapshotNavigationFromStructure(snapshot: Snapshot) = with(remoteRobot) {
         verifySnapshotNavigationFromStructure(
-            droidAutomatorSnapshotFile,
+            snapshot.relativePath,
             arrayOf(
-                "dump.uix",
+                snapshot.relativePath.substringAfterLast('/'),
                 "FrameLayout",
                 "LinearLayout",
                 "FrameLayout",
@@ -63,8 +71,9 @@ class StructureTest : BaseTestProjectTests() {
                                   class="android.widget.EditText" package="com.github.tarcv.converter" content-desc=""
                                   checkable="false" checked="false" clickable="true" enabled="true" focusable="true"
                                   focused="true" scrollable="false" long-clickable="true" password="false"
-                                  selected="false" bounds="[250,933][830,1057]"/>
-                    """
+                                  selected="false"
+                    """,
+            """bounds="[250,933][830,1057]""""
         )
         idea {
             attempt(tries = 2) {
@@ -90,7 +99,7 @@ class StructureTest : BaseTestProjectTests() {
     fun testIDeviceSnapshotNavigationFromStructure() = verifySnapshotNavigationFromStructure(
         iPredicateSnapshotFile,
         arrayOf(
-            "main.xml",
+            iPredicateSnapshotFile.substringAfterLast('/'),
             "Application IntegrationApp",
             "Window",
             "Other",
@@ -104,13 +113,15 @@ class StructureTest : BaseTestProjectTests() {
         """
             <XCUIElementTypeButton type="XCUIElementTypeButton" name="Attributes" label="Attributes" enabled="true"
                               visible="true" x="173" y="197" width="68" height="30" index="2">
-            """
+            """,
+        ""
     )
 
     private fun verifySnapshotNavigationFromStructure(
         snapshotFile: String,
         path: Array<out String>,
-        expectedNode: String
+        expectedNodeStartsWith: String,
+        expectedNodeContains: String
     ) =
         with(remoteRobot) {
             idea {
@@ -125,11 +136,12 @@ class StructureTest : BaseTestProjectTests() {
                         fullMatch = true
                     )
 
-                    waitingAssertEquals(
+                    waitingAssertion(
                         "Correct node should be selected",
-                        expectedNode.trimAllIndent()
+                        { getSelectedXmlNodeOuterXml(editorWithSnapshot).trimAllIndent() }
                     ) {
-                        getSelectedXmlNodeOuterXml("editorWithSnapshot").trimAllIndent()
+                        it.startsWith(expectedNodeStartsWith.trimAllIndent()) &&
+                                it.contains(expectedNodeContains.trimAllIndent())
                     }
                 }
             }
@@ -153,12 +165,13 @@ class StructureTest : BaseTestProjectTests() {
             .invokeAction("ActivateStructureToolWindow")
     }
 
-    @Test
-    fun testDroidSnapshotHighlightInStructure() = verifySnapshotHighlighInStructure(
-        droidAutomatorSnapshotFile,
-        6750,
+    @MethodSource("getDroidAutomatorSnapshotVariant")
+    @ParameterizedTest
+    fun testDroidSnapshotHighlightInStructure(snapshot: Snapshot) = verifySnapshotHighlighInStructure(
+        snapshot.relativePath,
+        snapshot.editorOffsetForStructureCheck,
         listOf(
-            "dump.uix",
+            snapshot.relativePath.substringAfterLast('/'),
             "FrameLayout",
             "LinearLayout",
             "FrameLayout",
@@ -174,7 +187,7 @@ class StructureTest : BaseTestProjectTests() {
         iPredicateSnapshotFile,
         4400,
         listOf(
-            "main.xml",
+            iPredicateSnapshotFile.substringAfterLast('/'),
             "Application IntegrationApp",
             "Window",
             "Other",
@@ -209,5 +222,16 @@ class StructureTest : BaseTestProjectTests() {
         }
     }
 
-    // TODO: Test navigation for the bar for both snapshot types
+    data class Snapshot(
+        val relativePath: String,
+        val editorOffsetForStructureCheck: Int
+    )
+
+    private companion object {
+        @JvmStatic
+        val droidAutomatorSnapshotVariant: List<Snapshot> = listOf(
+            Snapshot(droidAutomatorSnapshotFile, editorOffsetForStructureCheck = 6750),
+            Snapshot(droidAutomator23SnapshotFile, editorOffsetForStructureCheck = 7971)
+        )
+    }
 }

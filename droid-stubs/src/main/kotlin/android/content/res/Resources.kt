@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2023 TarCV
+ *  Copyright (C) 2024 TarCV
  *
  *  This file is part of UI Surveyor.
  *  UI Surveyor is free software: you can redistribute it and/or modify
@@ -21,4 +21,5 @@ import android.util.DisplayMetrics
 
 class Resources {
     val displayMetrics = DisplayMetrics()
+    val configuration = Configuration()
 }

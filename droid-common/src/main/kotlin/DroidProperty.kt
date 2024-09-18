@@ -34,4 +34,6 @@ sealed interface DroidProperty<T> : Property<T> {
     object TEXT: DroidProperty<String>
     object IS_CHECKED: DroidProperty<Boolean>
     object IS_CHECKABLE: DroidProperty<Boolean>
+    object DISPLAY_ID: DroidProperty<Int>
+    object HINT: DroidProperty<String>
 }

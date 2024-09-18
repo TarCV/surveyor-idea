@@ -18,6 +18,7 @@
 package android.app
 
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.util.SparseArray
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityWindowInfo
 import com.github.tarcv.testingteam.surveyor.Node
@@ -41,7 +42,19 @@ class UiAutomation(rootNodes: List<Node>) {
     }
 
     fun getWindows(): List<AccessibilityWindowInfo> {
-        // TODO: support multiple roots
-        return listOf(AccessibilityWindowInfo(getRootInActiveWindow()))
+        return rootNodes.map { it.window }
+    }
+
+    fun getWindowsOnAllDisplays(): SparseArray<List<AccessibilityWindowInfo>> {
+        val out = SparseArray<List<AccessibilityWindowInfo>>()
+        rootNodes
+            .groupBy { it.displayId }
+            .forEach { (k, v) ->
+                out.put(
+                    k,
+                    v.map { it.window }
+                )
+            }
+        return out
     }
 }
