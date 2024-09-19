@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    testImplementation("commons-io:commons-io:2.15.0")
+    testImplementation("commons-io:commons-io:2.17.0")
     testImplementation("org.apache.commons:commons-text:1.11.0")
 
     testImplementation(kotlin("test"))
