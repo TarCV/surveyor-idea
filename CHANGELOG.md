@@ -4,10 +4,14 @@
 
 ## [Unreleased]
 
+## [2.1.0] - 2024-09-20
+
 ### Added
+
 - Updated to UiAutomator 2.3 and added support for new view attributes
 
 ### Fixed
+
 - Updated dependencies
 
 ## [2.0.0] - 2024-07-25
@@ -50,7 +54,8 @@ the plugin tool window is opened. But only as long as they still contain just on
 - Selector autocomplete & highlighting as Java code
 - Structure navigation for UI snapshots
 
-[Unreleased]: https://github.com/TarCV/surveyor-idea/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/TarCV/surveyor-idea/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/TarCV/surveyor-idea/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/TarCV/surveyor-idea/compare/v1.0.2...v2.0.0
 [1.0.2]: https://github.com/TarCV/surveyor-idea/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/TarCV/surveyor-idea/compare/v1.0.0...v1.0.1
