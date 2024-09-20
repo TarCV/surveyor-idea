@@ -49,7 +49,7 @@ jobs:
             fi
           else
             # Failed to get a valid NAR URL, so trying the long way for getting an artifact
-            nix build --max-jobs 0 --print-build-logs .#defaultPackage.x86_64-linux
+            nix build --max-jobs 0 --print-build-logs .#default
             # upload-artifact doesn't accept links
             cp --dereference --recursive ./result ./artifact
           fi
