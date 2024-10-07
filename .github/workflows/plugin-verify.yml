@@ -57,7 +57,7 @@ jobs:
           # prepare list of IDEs for Plugin Verifier:
           ./gradlew listProductsReleases
       - name: Setup Plugin Verifier IDEs Cache
-        uses: actions/cache@v4.0.2
+        uses: actions/cache@v4.1.0
         with:
           path: ${{ steps.prepare.outputs.pluginVerifierHomeDir }}/ides
           key: plugin-verifier-${{ hashFiles('plugin/build/listProductsReleases.txt') }}
