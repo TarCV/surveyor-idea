@@ -25,7 +25,7 @@ jobs:
           ref: ${{ env.GITHUB_SHA }}
 
       - name: Download plugin
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v7
         with:
           workflow: build.yml
           commit: ${{ env.GITHUB_SHA }}
