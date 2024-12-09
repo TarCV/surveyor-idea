@@ -89,7 +89,7 @@ jobs:
           script: return "${{ matrix.ideDate }}".split("-", 2)[1]
           result-encoding: string
       - name: Setup FFmpeg via action
-        uses: FedericoCarboni/setup-ffmpeg@v2
+        uses: FedericoCarboni/setup-ffmpeg@v3
         with:
           # Not strictly necessary, but it may prevent rate limit
           # errors especially on GitHub-hosted macos machines.
